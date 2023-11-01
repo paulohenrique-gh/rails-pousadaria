@@ -1,0 +1,19 @@
+<h2><%= @guesthouse.brand_name %></h2>
+<dl>
+  <dt>Telefone:</dt>
+  <dd><%= @guesthouse.phone_number %></dd>
+  <dt>E-mail:</dt>
+  <dd><%= @guesthouse.email %></dd>
+  <dt>Endereço:</dt>
+  <dd>
+    <%= @guesthouse.address.street_name %>,
+    <%= @guesthouse.address.number %>,
+    <% if @guesthouse.address.complement %>
+      <%= @guesthouse.address.complement %>,
+    <% end %>
+    <%= @guesthouse.address.neighbourhood %>,
+    <%= @guesthouse.address.postal_code %>,
+    <%= @guesthouse.address.city %> -
+    <%= @guesthouse.address.state %>
+  </dd>
+</dl>

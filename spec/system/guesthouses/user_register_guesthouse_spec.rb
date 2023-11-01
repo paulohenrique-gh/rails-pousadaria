@@ -70,7 +70,43 @@ describe 'User registers guesthouse' do
     expect(page).to have_content 'Pousada cadastrada com sucesso'
     expect(page).to have_content 'Pousada Bosque'
     expect(page).to have_content 'Telefone: 1130205000'
-    expect(page).to have_content 'Email: atendimento@pousadabosque'
+    expect(page).to have_content 'E-mail: atendimento@pousadabosque'
     expect(page).to have_content 'Rua das Pedras, 30, Térreo, Santa Helena, 99000-525, Pulomiranga - RN'
+  end
+
+  it 'and leaves mandatory fields blank' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Cadastrar Pousada'
+    fill_in 'Nome Fantasia', with: 'Pousada Bosque'
+    fill_in 'Razão Social', with: 'Pousada Ramos Faria LTDA'
+    fill_in 'CNPJ', with: ''
+    fill_in 'Telefone', with: '1130205000'
+    fill_in 'E-mail', with: 'atendimento@pousadabosque'
+    fill_in 'Logradouro', with: 'Rua das Pedras'
+    fill_in 'Número', with: ''
+    fill_in 'Complemento', with: 'Térreo'
+    fill_in 'Bairro', with: 'Santa Helena'
+    fill_in 'CEP', with: '99000-525'
+    fill_in 'Cidade', with: 'Pulomiranga'
+    fill_in 'Estado', with: 'RN'
+    fill_in 'Descrição', with: 'Pousada em local tranquilo no interior do Rio Grande do Norte'
+    fill_in 'Método de pagamento 1', with: 'Pix'
+    fill_in 'Método de pagamento 2', with: 'Cartão de crédito'
+    fill_in 'Método de pagamento 3', with: 'Dinheiro'
+    check 'Aceita pets'
+    fill_in 'Políticas de uso', with: 'Não é permitido uso de bebida alcoólica'
+    fill_in 'Horário de check-in', with: '08:00'
+    fill_in 'Horário de check-out', with: '20:00'
+    click_on 'Enviar'
+
+    # Assert
+    expect(page).to have_content 'Não foi possível cadastrar pousada'
+    expect(page).to have_content 'CNPJ não pode ficar em branco'
+    expect(page).to have_content 'Número não pode ficar em branco'
   end
 end

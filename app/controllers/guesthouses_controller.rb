@@ -6,10 +6,12 @@ class GuesthousesController < ApplicationController
 
   def create
     @guesthouse = Guesthouse.new(guesthouse_params)
+    @guesthouse.user = current_user
 
     if @guesthouse.save
       redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
     else
+
     end
   end
 
