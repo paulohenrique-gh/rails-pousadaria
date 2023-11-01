@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      address:
+        one: 'Endereço'
+        other: 'Endereços'
+    attributes:
+      address:
+        street_name: 'Logradouro'
+        number: 'Número'
+        complement: 'Complemento'
+        neighbourhood: 'Bairro'
+        city: 'Cidade'
+        state: 'Estado'
+        postal_code: 'CEP'

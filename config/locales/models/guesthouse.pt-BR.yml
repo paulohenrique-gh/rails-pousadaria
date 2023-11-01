@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      guesthouse:
+        one: 'Pousada'
+        other: 'Pousadas'
+    attributes:
+      guesthouse:
+        brand_name: 'Nome Fantasia'
+        corporate_name: 'Razão Social'
+        registration_number: 'CNPJ'
+        phone_number: 'Telefone'
+        email: 'E-mail'
+        description: 'Descrição'
+        payment_method_one: 'Método de pagamento 1'
+        payment_method_two: 'Método de pagamento 2'
+        payment_method_three: 'Método de pagamento 3'
+        pet_policy: 'Aceita pets'
+        guesthouse_policy: 'Políticas de uso'
+        checkin_time: 'Horário de check-in'
+        checkout_time: 'Horário de check-out'

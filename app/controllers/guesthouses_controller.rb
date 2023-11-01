@@ -11,7 +11,8 @@ class GuesthousesController < ApplicationController
     if @guesthouse.save
       redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
     else
-
+      flash[:alert] = 'Não foi possível cadastrar pousada'
+      render 'new', status: :unprocessable_entity
     end
   end
 
