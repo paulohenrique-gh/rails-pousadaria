@@ -1,0 +1,89 @@
+<h2>Cadastro de Pousada</h2>
+
+<%= form_with(model: @guesthouse) do |f| %>
+  <div>
+    <%= f.label :brand_name, 'Nome Fantasia' %>
+    <%= f.text_field :brand_name %>
+  </div>
+  <div>
+    <%= f.label :corporate_name, 'Razão Social' %>
+    <%= f.text_field :corporate_name %>
+  </div>
+  <div>
+    <%= f.label :registration_number, 'CNPJ' %>
+    <%= f.text_field :registration_number %>
+  </div>
+  <div>
+    <%= f.label :phone_number, 'Telefone' %>
+    <%= f.telephone_field :phone_number %>
+  </div>
+  <div>
+    <%= f.label :email, 'E-mail' %>
+    <%= f.email_field :email %>
+  </div>
+  <%= f.fields_for :address do |a| %>
+    <div>
+      <%= a.label :street_name, 'Logradouro' %>
+      <%= a.text_field :street_name %>
+    </div>
+    <div>
+      <%= a.label :number, 'Número' %>
+      <%= a.text_field :number %>
+    </div>
+    <div>
+      <%= a.label :complement, 'Complemento' %>
+      <%= a.text_field :complement %>
+    </div>
+    <div>
+      <%= a.label :neighbourhood, 'Bairro' %>
+      <%= a.text_field :neighbourhood %>
+    </div>
+    <div>
+      <%= a.label :postal_code, 'CEP' %>
+      <%= a.text_field :postal_code %>
+    </div>
+    <div>
+      <%= a.label :city, 'Cidade' %>
+      <%= a.text_field :city %>
+    </div>
+    <div>
+      <%= a.label :state, 'Estado' %>
+      <%= a.text_field :state %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :payment_method_one, 'Método de pagamento 1' %>
+    <%= f.text_field :payment_method_one %>
+  </div>
+  <div>
+    <%= f.label :payment_method_two, 'Método de pagamento 2' %>
+    <%= f.text_field :payment_method_two %>
+  </div>
+  <div>
+    <%= f.label :payment_method_three, 'Método de pagamento 3' %>
+    <%= f.text_field :payment_method_three %>
+  </div>
+  <div>
+    <%= f.label :pet_policy, 'Aceita pets' %>
+    <%= f.check_box :pet_policy %>
+  </div>
+  <div>
+    <%= f.label :guesthouse_policy, 'Políticas de uso' %>
+    <%= f.text_area :guesthouse_policy %>
+  </div>
+  <div>
+    <%= f.label :checkin_time, 'Horário de check-in' %>
+    <%= f.time_field :checkin_time %>
+  </div>
+  <div>
+    <%= f.label :checkout_time, 'Horário de check-out' %>
+    <%= f.time_field :checkout_time %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

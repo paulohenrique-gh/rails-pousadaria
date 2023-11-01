@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { host: 0 }
+  has_one :guesthouse
 end
