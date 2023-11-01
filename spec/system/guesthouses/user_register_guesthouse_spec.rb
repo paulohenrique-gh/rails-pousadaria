@@ -35,6 +35,12 @@ describe 'User registers guesthouse' do
     expect(page).to have_button 'Enviar'
   end
 
+  it 'and must be authenticated' do
+    visit new_guesthouse_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'successfully' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
