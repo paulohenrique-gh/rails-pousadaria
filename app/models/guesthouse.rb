@@ -1,5 +1,5 @@
 class Guesthouse < ApplicationRecord
-  has_one :address
+  belongs_to :address
   belongs_to :user
 
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
