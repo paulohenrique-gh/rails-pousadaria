@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_01_010512) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_01_141706) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name", null: false
     t.string "number", null: false
@@ -19,10 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_01_010512) do
     t.string "city", null: false
     t.string "state", null: false
     t.string "postal_code", null: false
-    t.integer "guesthouse_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["guesthouse_id"], name: "index_addresses_on_guesthouse_id"
   end
 
   create_table "guesthouses", force: :cascade do |t|
@@ -42,6 +40,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_01_010512) do
     t.string "payment_method_two"
     t.string "payment_method_three"
     t.integer "user_id", null: false
+    t.integer "address_id", null: false
+    t.index ["address_id"], name: "index_guesthouses_on_address_id"
     t.index ["user_id"], name: "index_guesthouses_on_user_id"
   end
 
@@ -58,6 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_01_010512) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "guesthouses"
+  add_foreign_key "guesthouses", "addresses"
   add_foreign_key "guesthouses", "users"
 end
