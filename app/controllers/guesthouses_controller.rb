@@ -1,5 +1,6 @@
 class GuesthousesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
+  # before_action :set_guesthouse, only: [:edit, :update]
 
   def new
     @guesthouse = Guesthouse.new
@@ -13,9 +14,22 @@ class GuesthousesController < ApplicationController
     if @guesthouse.save
       redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
     else
-      flash[:alert] = 'Não foi possível cadastrar pousada'
+      flash.now[:alert] = 'Não foi possível cadastrar pousada'
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @guesthouse = Guesthouse.find(params[:id])
+    if @guesthouse.user != current_user
+      redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
+    end
+  end
+
+  def update
+    @guesthouse = Guesthouse.find(params[:id])
+    @guesthouse.update(guesthouse_params)
+    redirect_to root_path, notice: 'Pousada atualizada com sucesso'
   end
 
   private
@@ -32,4 +46,11 @@ class GuesthousesController < ApplicationController
       ]
     )
   end
+
+  # def set_guesthouse
+  #   @guesthouse = Guesthouse.find(params[:id])
+  #   if @guesthouse.user != current_user
+  #     redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
+  #   end
+  # end
 end

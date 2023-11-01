@@ -8,7 +8,7 @@
   <dd>
     <%= @guesthouse.address.street_name %>,
     <%= @guesthouse.address.number %>,
-    <% if @guesthouse.address.complement %>
+    <% if @guesthouse.address.complement.present? %>
       <%= @guesthouse.address.complement %>,
     <% end %>
     <%= @guesthouse.address.neighbourhood %>,
@@ -17,3 +17,6 @@
     <%= @guesthouse.address.state %>
   </dd>
 </dl>
+<div>
+  <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
+</div>
