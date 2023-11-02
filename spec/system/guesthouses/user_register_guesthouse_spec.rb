@@ -100,19 +100,35 @@ describe 'User registers guesthouse' do
     fill_in 'CEP', with: '99000-525'
     fill_in 'Cidade', with: 'Pulomiranga'
     fill_in 'Estado', with: 'RN'
-    fill_in 'Descrição', with: 'Pousada em local tranquilo no interior do Rio Grande do Norte'
-    fill_in 'Método de pagamento 1', with: 'Pix'
-    fill_in 'Método de pagamento 2', with: 'Cartão de crédito'
-    fill_in 'Método de pagamento 3', with: 'Dinheiro'
-    check 'Aceita pets'
-    fill_in 'Políticas de uso', with: 'Não é permitido uso de bebida alcoólica'
-    fill_in 'Horário de check-in', with: '08:00'
-    fill_in 'Horário de check-out', with: '20:00'
     click_on 'Enviar'
 
     # Assert
     expect(page).to have_content 'Não foi possível cadastrar pousada'
     expect(page).to have_content 'CNPJ não pode ficar em branco'
     expect(page).to have_content 'Número não pode ficar em branco'
+  end
+
+  it 'and already has a guesthouse registered' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user)
+
+    # Act
+    login_as user
+    visit new_guesthouse_path
+
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Você já possui uma pousada cadastrada'
   end
 end

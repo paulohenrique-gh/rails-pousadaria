@@ -1,3 +1,12 @@
+<% if @guesthouse.errors.any? %>
+  <p>O formulário contém os erros abaixo:</p>
+  <ul>
+    <% @guesthouse.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @guesthouse) do |f| %>
   <div>
     <%= f.label :brand_name, 'Nome Fantasia' %>

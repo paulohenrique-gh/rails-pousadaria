@@ -1,13 +1,3 @@
 <h2>Cadastro de Pousada</h2>
 
-<% if @guesthouse.errors.any? %>
-  <p>O formulário contém os erros abaixo:</p>
-  <ul>
-    <% @guesthouse.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-<h2>Cadastro de Pousada</h2>
-
 <%= render 'form' %>

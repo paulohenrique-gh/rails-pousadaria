@@ -1,6 +1,7 @@
 class GuesthousesController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  # before_action :set_guesthouse, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_guesthouse, only: [:edit, :update, :inactivate]
+  before_action :check_guesthouse_presence, only: [:new, :create]
 
   def new
     @guesthouse = Guesthouse.new
@@ -19,17 +20,20 @@ class GuesthousesController < ApplicationController
     end
   end
 
-  def edit
-    @guesthouse = Guesthouse.find(params[:id])
-    if @guesthouse.user != current_user
-      redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
+  def edit; end
+
+  def update
+    if @guesthouse.update(guesthouse_params)
+      redirect_to root_path, notice: 'Pousada atualizada com sucesso'
+    else
+      flash.now[:alert] = 'Não foi possível atualizar a pousada'
+      render 'edit', status: :unprocessable_entity
     end
   end
 
-  def update
-    @guesthouse = Guesthouse.find(params[:id])
-    @guesthouse.update(guesthouse_params)
-    redirect_to root_path, notice: 'Pousada atualizada com sucesso'
+  def inactivate
+    @guesthouse.inactive!
+    redirect_to root_path, notice: 'Pousada inativada com sucesso'
   end
 
   private
@@ -47,10 +51,16 @@ class GuesthousesController < ApplicationController
     )
   end
 
-  # def set_guesthouse
-  #   @guesthouse = Guesthouse.find(params[:id])
-  #   if @guesthouse.user != current_user
-  #     redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
-  #   end
-  # end
+  def set_guesthouse
+    @guesthouse = Guesthouse.find(params[:id])
+    if @guesthouse.user != current_user
+      redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
+    end
+  end
+
+  def check_guesthouse_presence
+    if current_user.guesthouse
+      redirect_to root_path, alert: 'Você já possui uma pousada cadastrada'
+    end
+  end
 end

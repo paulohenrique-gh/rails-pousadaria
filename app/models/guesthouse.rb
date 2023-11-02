@@ -5,5 +5,7 @@ class Guesthouse < ApplicationRecord
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, presence: true
 
+  enum status: { active: 0, inactive: 1 }
+
   accepts_nested_attributes_for :address
 end
