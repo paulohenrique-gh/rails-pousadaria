@@ -1,3 +1,11 @@
 * {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
+.alert {
+  color: rgb(184, 2, 2)
+}
+
+.notice {
+  color: rgb(4, 168, 4)
+}

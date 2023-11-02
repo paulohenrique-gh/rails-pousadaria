@@ -11,18 +11,17 @@
   </head>
 
   <body>
-    <h1>Pousadaria</h1>
+    <h1><%= link_to 'Pousadaria', root_path %></h1>
     <nav>
       <% if current_user %>
-        <span><%= current_user.email %></span>
-        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <%= render 'layouts/loggedin' %>
       <% else %>
         <%= link_to 'Entrar', new_user_session_path %>
       <% end %>
     </nav>
     <main>
-        <div><%= alert %></div>
-        <div><%= notice %></div>
+        <div class="alert"><%= alert %></div>
+        <div class="notice"><%= notice %></div>
     </main>
     <%= yield %>
   </body>

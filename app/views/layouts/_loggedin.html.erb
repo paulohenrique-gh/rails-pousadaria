@@ -1,0 +1,10 @@
+<% if current_user.host? %>
+  <% if current_user.guesthouse %>
+    <%= link_to 'Minha Pousada', current_user.guesthouse %>
+  <% else %>
+    <%= link_to 'Cadastrar Pousada', new_guesthouse_path %>
+  <% end %>
+<% end %> |
+<span><%= current_user.email %></span>
+
+<%= button_to 'Sair', destroy_user_session_path, method: :delete %>

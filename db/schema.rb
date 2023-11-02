@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_31_005325) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_02_005253) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_name", null: false
+    t.string "number", null: false
+    t.string "complement"
+    t.string "neighbourhood", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "postal_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guesthouses", force: :cascade do |t|
+    t.string "brand_name"
+    t.string "corporate_name"
+    t.string "registration_number"
+    t.string "phone_number"
+    t.string "email"
+    t.text "description"
+    t.boolean "pet_policy"
+    t.text "guesthouse_policy"
+    t.time "checkin_time"
+    t.time "checkout_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "payment_method_one"
+    t.string "payment_method_two"
+    t.string "payment_method_three"
+    t.integer "user_id", null: false
+    t.integer "address_id", null: false
+    t.integer "status", default: 0
+    t.index ["address_id"], name: "index_guesthouses_on_address_id"
+    t.index ["user_id"], name: "index_guesthouses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -24,4 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_31_005325) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "guesthouses", "addresses"
+  add_foreign_key "guesthouses", "users"
 end
