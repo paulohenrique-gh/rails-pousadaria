@@ -7,15 +7,7 @@
     <dd><%= g.email %></dd>
     <dt>Endereço:</dt>
     <dd>
-      <%= g.address.street_name %>,
-      <%= g.address.number %>,
-      <% if g.address.complement.present? %>
-        <%= g.address.complement %>,
-      <% end %>
-      <%= g.address.neighbourhood %>,
-      <%= g.address.postal_code %>,
-      <%= g.address.city %> -
-      <%= g.address.state %>
+      <%= full_address_string(g.address) %>
     </dd>
   </dl>
   <hr>

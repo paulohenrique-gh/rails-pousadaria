@@ -64,7 +64,7 @@
 
   <% if @guesthouse.pet_policy.present? %>
     <dt><strong>Política para pets:</strong></dt>
-    <dd><%= @guesthouse.pet_policy_description %></dd>
+    <dd><%= pet_policy_description(@guesthouse) %></dd>
   <% end %>
 
   <% if @guesthouse.guesthouse_policy %>
@@ -74,12 +74,12 @@
   
   <% if @guesthouse.checkin_time %>
     <dt><strong>Horário de check-in:</strong></dt>
-    <dd><%= @guesthouse.formatted_checkin_time %></dd>
+    <dd><%= formatted_checkin_time(@guesthouse) %></dd>
   <% end %>
 
   <% if @guesthouse.checkout_time %>
     <dt><strong>Horário de check-out:</strong></dt>
-    <dd><%= @guesthouse.formatted_checkout_time %></dd>
+    <dd><%= formatted_checkout_time(@guesthouse) %></dd>
   <% end %>
 
   <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
@@ -91,3 +91,4 @@
     %>
   <% end %>
 </dl>
+
