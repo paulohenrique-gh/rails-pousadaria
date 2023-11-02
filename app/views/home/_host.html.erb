@@ -18,14 +18,6 @@
       <%= @guesthouse.address.state %>
     </dd>
   </dl>
-  <div>
-    <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
-    <%= 
-      button_to 'Inativar',
-      inactivate_guesthouse_path(@guesthouse.id),
-      { method: 'patch' }
-    %>
-  </div>
 <% else %>
   <p>Você não tem uma pousada ativa</p>
 <% end %>

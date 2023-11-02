@@ -8,4 +8,6 @@ describe 'User visits home page' do
     # Assert
     expect(page).to have_content 'Pousadaria'
   end
+
+  pending "and doesn't see other people's guesthouses (check)"
 end

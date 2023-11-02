@@ -1,0 +1,90 @@
+<h2>Detalhes de <%= @guesthouse.brand_name %></h2>
+
+<dl>
+  <dt><strong>Nome fantasia:</strong></dt>
+  <dd><%= @guesthouse.brand_name %></dd>
+
+  <dt><strong>Razão social:</strong></dt>
+  <dd><%= @guesthouse.corporate_name %></dd>
+
+  <dt><strong>CNPJ:</strong></dt>
+  <dd><%= @guesthouse.registration_number %></dd>
+
+  <dt><strong>Telefone:</strong></dt>
+  <dd><%= @guesthouse.phone_number %></dd>
+
+  <dt><strong>E-mail:</strong></dt>
+  <dd><%= @guesthouse.email %></dd>
+
+  <dt><strong>Logradouro:</strong></dt>
+  <dd><%= @guesthouse.address.street_name %></dd>
+
+  <dt><strong>Número:</strong></dt>
+  <dd><%= @guesthouse.address.number %></dd>
+
+  <% if @guesthouse.address.complement %>
+    <dt><strong>Complemento:</strong></dt>
+    <dd><%= @guesthouse.address.complement %></dd>
+  <% end %>
+
+  <dt><strong>Bairro:</strong></dt>
+  <dd><%= @guesthouse.address.neighbourhood %></dd>
+
+  <dt><strong>CEP:</strong></dt>
+  <dd><%= @guesthouse.address.postal_code %></dd>
+
+  <dt><strong>Cidade:</strong></dt>
+  <dd><%= @guesthouse.address.city %></dd>
+
+  <dt><strong>Estado:</strong></dt>
+  <dd><%= @guesthouse.address.state %></dd>
+
+  <% if @guesthouse.description %>
+    <dt><strong>Descrição:</strong></dt>
+    <dd><%= @guesthouse.description %></dd>
+  <% end %>
+
+  <% if @guesthouse.payment_method_one %>
+    <dt><strong>Método de pagamento 1:</strong></dt>
+    <dd><%= @guesthouse.payment_method_one %></dd>
+  <% end %>
+
+  <% if @guesthouse.payment_method_two %>
+    <dt><strong>Método de pagamento 2:</strong></dt>
+    <dd><%= @guesthouse.payment_method_two %></dd>
+  <% end %>
+
+  <% if @guesthouse.payment_method_three %>
+    <dt><strong>Método de pagamento 3:</strong></dt>
+    <dd><%= @guesthouse.payment_method_three %></dd>
+  <% end %>
+
+  <% if @guesthouse.pet_policy.present? %>
+    <dt><strong>Política para pets:</strong></dt>
+    <dd><%= @guesthouse.pet_policy_description %></dd>
+  <% end %>
+
+  <% if @guesthouse.guesthouse_policy %>
+    <dt><strong>Políticas de uso:</strong></dt>
+    <dd><%= @guesthouse.guesthouse_policy %></dd>
+  <% end %>
+  
+  <% if @guesthouse.checkin_time %>
+    <dt><strong>Horário de check-in:</strong></dt>
+    <dd><%= @guesthouse.formatted_checkin_time %></dd>
+  <% end %>
+
+  <% if @guesthouse.checkout_time %>
+    <dt><strong>Horário de check-out:</strong></dt>
+    <dd><%= @guesthouse.formatted_checkout_time %></dd>
+  <% end %>
+
+  <% if @user && @guesthouse == @user.guesthouse %>
+    <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
+    <%= 
+      button_to 'Inativar',
+      inactivate_guesthouse_path(@guesthouse.id),
+      { method: 'patch' }
+    %>
+  <% end %>
+</dl>
