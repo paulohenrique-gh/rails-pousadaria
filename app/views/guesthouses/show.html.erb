@@ -1,6 +1,9 @@
 <h2>Detalhes de <%= @guesthouse.brand_name %></h2>
 
 <dl>
+  <dt><strong>Status:</strong></dt>
+  <dd><%= t(@guesthouse.status) %></dd>
+  
   <dt><strong>Nome fantasia:</strong></dt>
   <dd><%= @guesthouse.brand_name %></dd>
 
@@ -79,7 +82,7 @@
     <dd><%= @guesthouse.formatted_checkout_time %></dd>
   <% end %>
 
-  <% if @user && @guesthouse == @user.guesthouse %>
+  <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
     <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
     <%= 
       button_to 'Inativar',

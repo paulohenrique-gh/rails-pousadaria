@@ -9,5 +9,11 @@ describe 'User visits home page' do
     expect(page).to have_content 'Pousadaria'
   end
 
-  pending "and doesn't see other people's guesthouses (check)"
+  it "and sees the search bar" do
+    # Act
+    visit root_path
+
+    # Assert
+    expect(page).to have_field 'Buscar pousada'
+  end
 end

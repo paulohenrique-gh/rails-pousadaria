@@ -32,6 +32,7 @@ describe 'Guest visits guesthouse details page' do
     click_on 'Pousada Bosque'
 
     # Assert
+    expect(page).to have_content 'Status: Ativa'
     expect(page).to have_content 'Nome fantasia: Pousada Bosque'
     expect(page).to have_content 'Razão social: Pousada Ramos Faria LTDA'
     expect(page).to have_content 'CNPJ: 02303221000152'

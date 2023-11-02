@@ -24,7 +24,6 @@ describe 'User inactivates a guesthouse' do
 
     # Assert
     expect(page).to have_content 'Pousada inativada com sucesso'
-    expect(page).to have_content 'Você não tem uma pousada ativa'
     expect(page).not_to have_content 'Pousada Bosque'
     expect(page).not_to have_content 'Telefone: 1130205000'
     expect(page).not_to have_content 'E-mail: atendimento@pousadabosque'

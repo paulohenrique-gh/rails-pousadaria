@@ -8,7 +8,7 @@ describe 'User signs in' do
     # Act
     visit root_path
     click_on 'Entrar'
-    within 'form' do
+    within '.login_form' do
       fill_in 'E-mail', with: 'exemplo@mail.com'
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'
@@ -30,7 +30,7 @@ describe 'User signs in' do
     # Act
     visit root_path
     click_on 'Entrar'
-    within 'form' do
+    within '.login_form' do
       fill_in 'E-mail', with: 'exemplo@mail.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
