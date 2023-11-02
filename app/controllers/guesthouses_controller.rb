@@ -43,6 +43,11 @@ class GuesthousesController < ApplicationController
     redirect_to root_path, notice: 'Pousada inativada com sucesso'
   end
 
+  def search
+    @query = params[:query]
+    @guesthouses = Guesthouse.active.where("brand_name LIKE ?", "%#{@query}%")
+  end
+
   private
 
   def guesthouse_params

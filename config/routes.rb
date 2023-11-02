@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :guesthouses, only: [:new, :create, :edit, :update, :show] do
     patch :inactivate, on: :member
+    get 'search', on: :collection
   end
 end
