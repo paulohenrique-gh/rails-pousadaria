@@ -67,11 +67,7 @@ RSpec.describe Address, type: :model do
       # Assert
       expect(address).not_to be_valid
     end
+
+    pending 'returns true when all required arguments are given'
   end
 end
-
-
-# address = Address.create!(street_name: 'Rua das Pedras', number: '30',
-#                           neighbourhood: 'Santa Helena',
-#                           city: 'Pulomiranga', state: 'RN',
-#                           postal_code: '99000-525')

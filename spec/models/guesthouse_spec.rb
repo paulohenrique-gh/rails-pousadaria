@@ -120,5 +120,7 @@ RSpec.describe Guesthouse, type: :model do
 
       expect(guesthouse).not_to be_valid
     end
+
+    pending 'returns true when all required arguments are given'
   end
 end
