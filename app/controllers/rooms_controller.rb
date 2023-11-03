@@ -7,7 +7,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    puts "PARAMS = #{params}"
     @guesthouse = Guesthouse.find(params[:guesthouse_id])
 
     @room = Room.new(room_params)
