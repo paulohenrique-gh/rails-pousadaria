@@ -88,6 +88,5 @@ describe 'Host visits own guesthouse details page' do
     expect(page).to have_link 'Adicionar quarto'
     expect(page).to have_link 'Editar'
     expect(page).to have_button 'Inativar'
-
   end
 end

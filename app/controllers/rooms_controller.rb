@@ -31,8 +31,11 @@ class RoomsController < ApplicationController
 
   def set_guesthouse_and_check_user
     @guesthouse = Guesthouse.find(params[:guesthouse_id])
-    if @guesthouse.user != current_user
-      redirect_to root_path, notice: 'Você não tem autorização para alterar esta pousada'
+    if @guesthouse.user != current_user || @guesthouse.inactive?
+      redirect_to(
+        root_path,
+        notice: 'Você não tem autorização para alterar esta pousada'
+      )
     end
   end
 end

@@ -139,7 +139,28 @@ describe 'User adds a room to their guesthouse' do
     expect(guesthouse.rooms.size).to eq 0
   end
 
-  pending 'and can have multiple rooms'
+  it 'and guesthouse is inactive' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
 
-  pending 'and guesthouse must be active'
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user,
+                                    status: :inactive)
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Minha Pousada'
+
+    # Assert
+    expect(page).not_to have_link 'Adicionar quarto'
+  end
 end
