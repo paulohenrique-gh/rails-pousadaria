@@ -27,7 +27,7 @@ describe 'User edits guesthouse' do
     expect(response).to redirect_to(new_user_session_path)
   end
 
-  it 'and is not the owner' do
+  it 'and must be the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com',
@@ -68,7 +68,7 @@ describe 'User edits guesthouse' do
     expect(response).to redirect_to(root_path)
   end
 
-  it 'and guesthouse is inactive' do
+  it 'and guesthouse must be active' do
     # Assert
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',

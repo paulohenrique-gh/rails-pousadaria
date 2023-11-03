@@ -1,0 +1,42 @@
+<h2><%= @room.guesthouse.brand_name %></h2>
+<h3>Detalhes do quarto <%= @room.name %></h3>
+
+<dl>
+  <dt>Nome:</dt>
+  <dd><%= @room.name %></dd>
+
+  <dt>Descrição:</dt>
+  <dd><%= @room.description %></dd>
+  
+  <dt>Dimensão em m²:</dt>
+  <dd>
+    <%= 
+      number_with_precision(@room.dimension, separator: ',',
+                            strip_insignificant_zeros: true) %>
+  </dd>
+
+  <dt>Número máximo de pessoas:</dt>
+  <dd><%= @room.max_people %></dd>
+
+  <dt>Valor da diária:</dt>
+  <dd>
+    <%= number_to_currency(@room.daily_rate,
+                           strip_insignificant_zeros: true) %>
+  </dd>
+
+  <% if extra_features?(@room) %>
+    <dt>Adicionais:</dt>
+    <dd>
+      <ul>
+        <% extra_features_collection(@room).each do |feat| %>
+          <li><%= feat %></li>
+        <% end %>
+      </ul>
+    </dd>
+  <% end %>
+</dl>
+
+<% if @room.guesthouse.user == current_user %>
+  <%= link_to 'Editar', edit_guesthouse_room_path(@room.guesthouse.id,
+                                                  @room.id) %>
+<% end %>

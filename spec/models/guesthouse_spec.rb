@@ -9,7 +9,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: '',
+      guesthouse = Guesthouse.new(brand_name: '',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',
@@ -26,7 +26,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: '',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',
@@ -43,7 +43,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '',
                                      phone_number: '1130205000',
@@ -60,7 +60,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '',
@@ -77,7 +77,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',
@@ -94,7 +94,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',
@@ -111,7 +111,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',
@@ -128,7 +128,7 @@ RSpec.describe Guesthouse, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
+      guesthouse = Guesthouse.new(brand_name: 'Pousada Bosque',
                                      corporate_name: 'Pousada Ramos Faria LTDA',
                                      registration_number: '02303221000152',
                                      phone_number: '1130205000',

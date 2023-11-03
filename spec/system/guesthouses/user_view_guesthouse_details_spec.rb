@@ -59,6 +59,8 @@ describe 'Guest visits guesthouse details page' do
     expect(page).to have_content 'Horário de check-out: 20:00'
     expect(page).not_to have_link 'Adicionar quarto'
   end
+
+  pending 'fix empty payment methods'
 end
 
 describe 'Host visits own guesthouse details page' do

@@ -10,14 +10,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: '', description: 'Quarto com tema Brasil',
+      room = Room.new(name: '', description: 'Quarto com tema Brasil',
                           dimension: 200, max_people: 3, daily_rate: 150,
                           guesthouse: guesthouse)
 
@@ -33,14 +33,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: '',
+      room = Room.new(name: 'Brasil', description: '',
                           dimension: 200, max_people: 3, daily_rate: 150,
                           guesthouse: guesthouse)
 
@@ -56,14 +56,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: 'Quarto com tema Brasil',
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
                           dimension: nil, max_people: 3, daily_rate: 150,
                           guesthouse: guesthouse)
 
@@ -79,14 +79,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: 'Quarto com tema Brasil',
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
                           dimension: 200, max_people: nil, daily_rate: 150,
                           guesthouse: guesthouse)
 
@@ -102,14 +102,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: 'Quarto com tema Brasil',
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
                           dimension: 200, max_people: 3, daily_rate: nil,
                           guesthouse: guesthouse)
 
@@ -125,14 +125,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: 'Quarto com tema Brasil',
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
                           dimension: 200, max_people: 3, daily_rate: 150,
                           guesthouse: nil)
 
@@ -148,14 +148,14 @@ RSpec.describe Room, type: :model do
                                 city: 'Pulomiranga', state: 'RN',
                                 postal_code: '99000-525')
 
-      guesthouse = Guesthouse.create(brand_name: 'Pousada Bosque',
-                                     corporate_name: 'Pousada Ramos Faria LTDA',
-                                     registration_number: '02303221000152',
-                                     phone_number: '1130205000',
-                                     email: 'atendimento@pousadabosque',
-                                     address: address, user: user)
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
 
-      room = Room.create(name: 'Brasil', description: 'Quarto com tema Brasil',
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
                           dimension: 200, max_people: 3, daily_rate: 150,
                           guesthouse: guesthouse)
 
