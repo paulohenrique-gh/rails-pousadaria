@@ -1,0 +1,53 @@
+<%= form_with(model: [@guesthouse, @room]) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %> 
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :dimension, 'Dimensão em m²' %>
+    <%= f.number_field :dimension, step: 0.5 %>
+  </div>
+  <div>
+    <%= f.label :max_people, 'Quantidade máxima de pessoas' %>
+    <%= f.number_field :max_people %>
+  </div>
+  <div>
+    <%= f.label :daily_rate, 'Valor da diária' %>
+    <%= f.number_field :daily_rate %>
+  </div>
+  <div>
+    <%= f.label :private_bathroom, 'Possui banheiro próprio' %>
+    <%= f.check_box :private_bathroom %>
+  </div>
+  <div>
+    <%= f.label :balcony, 'Possui varanda' %>
+    <%= f.check_box :balcony %>
+  </div>
+  <div>
+    <%= f.label :air_conditioning, 'Possui ar-condicionado' %>
+    <%= f.check_box :air_conditioning %>
+  </div>
+  <div>
+    <%= f.label :tv, 'Possui TV' %>
+    <%= f.check_box :tv %>
+  </div>
+  <div>
+    <%= f.label :closet, 'Possui guarda-roupas' %>
+    <%= f.check_box :closet %>
+  </div>
+  <div>
+    <%= f.label :safe, 'Possui cofre' %>
+    <%= f.check_box :safe %>
+  </div>
+  <div>
+    <%= f.label :accessibility, 'Acessível para pessoas com deficiência' %>
+    <%= f.check_box :accessibility %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

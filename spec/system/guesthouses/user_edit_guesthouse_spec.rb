@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe 'User edits guesthouse' do
+  pending 'and is not authenticated'
+
   it 'and is not the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')

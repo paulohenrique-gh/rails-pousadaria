@@ -57,10 +57,11 @@ describe 'Guest visits guesthouse details page' do
     )
     expect(page).to have_content 'Horário de check-in: 08:00'
     expect(page).to have_content 'Horário de check-out: 20:00'
+    expect(page).not_to have_link 'Adicionar quarto'
   end
 end
 
-describe 'Host visits guesthouse details page' do
+describe 'Host visits own guesthouse details page' do
   it 'and sees edit and inactivate options' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -84,6 +85,7 @@ describe 'Host visits guesthouse details page' do
     click_on 'Minha Pousada'
 
     # Assert
+    expect(page).to have_link 'Adicionar quarto'
     expect(page).to have_link 'Editar'
     expect(page).to have_button 'Inativar'
 
