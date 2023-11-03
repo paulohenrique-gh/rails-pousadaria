@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      room:
+        one: 'Quarto'
+        other: 'Quartos'
+    attributes:
+      room:
+        name: 'Nome'
+        description: 'Descrição'
+        dimension: 'Dimensão em m²'
+        max_people: 'Quantidade máxima de pessoas'
+        daily_rate: 'Valor da diária'
+        private_bathroom: 'Possui banheiro próprio'
+        air_conditioning: 'Possui ar-condicionado'
+        tv: 'Possui TV'
+        closet: 'Possui guarda-roupas'
+        safe: 'Possui cofre'
+        accessibility: 'Acessível para pessoas com deficiência'

@@ -1,7 +1,27 @@
 require 'rails_helper'
 
 describe 'User adds a room to their guesthouse' do
-  pending 'and is not authenticated'
+  it 'and is not authenticated' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user)
+
+    # Act
+    visit new_guesthouse_room_path(guesthouse.id)
+
+    # Assert
+    expect(current_path).to eq new_user_session_path
+  end
 
   it 'from the guesthouse details page' do
     # Arrange
@@ -80,9 +100,44 @@ describe 'User adds a room to their guesthouse' do
     expect(page).to have_link 'Brasil'
   end
 
-  pending 'and return to guesthouse details page'
+  it 'and leaves required fields empty' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
 
-  pending 'and leaves required fields empty'
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user)
+
+    # Act
+    login_as user
+    visit root_path
+    click_on 'Minha Pousada'
+    click_on 'Adicionar quarto'
+    fill_in 'Nome', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Dimensão em m²', with: ''
+    fill_in 'Quantidade máxima de pessoas', with: ''
+    fill_in 'Valor da diária', with: ''
+    click_on 'Enviar'
+
+    # Assert
+    expect(page).to have_content 'Não foi possível adicionar quarto'
+    expect(page).to have_content 'Nome não pode ficar em branco'
+    expect(page).to have_content 'Descrição não pode ficar em branco'
+    expect(page).to have_content 'Dimensão em m² não pode ficar em branco'
+    expect(page).to have_content(
+      'Quantidade máxima de pessoas não pode ficar em branco'
+    )
+    expect(page).to have_content 'Valor da diária não pode ficar em branco'
+    expect(guesthouse.rooms.size).to eq 0
+  end
 
   pending 'and can have multiple rooms'
 

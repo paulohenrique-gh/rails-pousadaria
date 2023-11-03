@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_03_021029) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_134042) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name", null: false
     t.string "number", null: false
@@ -52,13 +52,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_03_021029) do
     t.float "dimension"
     t.integer "max_people"
     t.float "daily_rate"
-    t.boolean "private_bathroom"
-    t.boolean "balcony"
-    t.boolean "air_conditioning"
-    t.boolean "tv"
-    t.boolean "closet"
-    t.boolean "safe"
-    t.boolean "accessibility"
+    t.boolean "private_bathroom", default: false
+    t.boolean "balcony", default: false
+    t.boolean "air_conditioning", default: false
+    t.boolean "tv", default: false
+    t.boolean "closet", default: false
+    t.boolean "safe", default: false
+    t.boolean "accessibility", default: false
     t.boolean "available", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
