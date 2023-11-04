@@ -84,22 +84,22 @@
 
   <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
     <dt><strong>Quartos:</strong></dt>
-    <dl>
+    <dd>
       <ul>
         <% @all_rooms.each do |room| %>
           <li><%= link_to room.name, [@guesthouse, room] %></li>
         <% end %>
       </ul>
-    </dl>
+    </dd>
   <% elsif @available_rooms.any? %>
     <dt><strong>Quartos:</strong></dt>
-    <dl>
+    <dd>
       <ul>
         <% @available_rooms.each do |room| %>
           <li><%= link_to room.name, [@guesthouse, room] %></li>
         <% end %>
       </ul>
-    </dl>
+    </dd>
   <% end %>
 
   <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>

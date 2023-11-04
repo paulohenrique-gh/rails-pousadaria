@@ -4,30 +4,30 @@
   <strong><%= room_availability(@room) %></strong>
 </div>
 <dl>
-  <dt>Nome:</dt>
+  <dt><strong>Nome:</strong></dt>
   <dd><%= @room.name %></dd>
 
-  <dt>Descrição:</dt>
+  <dt><strong>Descrição:</strong></dt>
   <dd><%= @room.description %></dd>
   
-  <dt>Dimensão em m²:</dt>
+  <dt><strong>Dimensão:</strong></dt>
   <dd>
     <%= 
       number_with_precision(@room.dimension, separator: ',',
-                            strip_insignificant_zeros: true) %>
+                            strip_insignificant_zeros: true) %> m²
   </dd>
 
-  <dt>Número máximo de pessoas:</dt>
+  <dt><strong>Número máximo de pessoas:</strong></dt>
   <dd><%= @room.max_people %></dd>
 
-  <dt>Valor da diária:</dt>
+  <dt><strong>Valor da diária:</strong></dt>
   <dd>
     <%= number_to_currency(@room.daily_rate,
                            strip_insignificant_zeros: true) %>
   </dd>
 
   <% if extra_features?(@room) %>
-    <dt>Adicionais:</dt>
+    <dt><strong>Adicionais:</strong></dt>
     <dd>
       <ul>
         <% extra_features_collection(@room).each do |feat| %>

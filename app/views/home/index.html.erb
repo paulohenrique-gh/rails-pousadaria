@@ -1,11 +1,11 @@
 <% @guesthouses.each do |g| %>
   <h2><%= link_to g.brand_name, g %></h2>
   <dl>
-    <dt>Telefone:</dt>
+    <dt><strong>Telefone:</strong></dt>
     <dd><%= g.phone_number %></dd>
-    <dt>E-mail:</dt>
+    <dt><strong>E-mail:</strong></dt>
     <dd><%= g.email %></dd>
-    <dt>Endereço:</dt>
+    <dt><strong>Endereço:</strong></dt>
     <dd>
       <%= full_address_string(g.address) %>
     </dd>

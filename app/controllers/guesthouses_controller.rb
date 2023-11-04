@@ -10,7 +10,6 @@ class GuesthousesController < ApplicationController
     @user = current_user
     @available_rooms = @guesthouse.rooms.where(available: true)
     @all_rooms = @guesthouse.rooms
-    # debugger
   end
 
   def new
