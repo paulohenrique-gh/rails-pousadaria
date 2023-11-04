@@ -58,8 +58,7 @@ describe 'User adds seasonal rate to room' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
     room.seasonal_rates.create!(start_date: '2023-11-20',
-                                finish_date: '2023-11-30',
-                                rate: 225)
+                                finish_date: '2023-11-30', rate: 225)
 
     # Act
     login_as user
