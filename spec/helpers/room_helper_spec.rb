@@ -67,4 +67,32 @@ RSpec.describe RoomHelper, type: :helper do
       expect(result).to be_empty
     end
   end
+
+  describe '#room_availability' do
+    it 'returns "Disponível para reservas" when room is available' do
+      # Arrange
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
+                      dimension: 200, max_people: 3, daily_rate: 150,
+                      available: true)
+
+      # Act
+      result = room_availability(room)
+
+      # Assert
+      expect(result).to eq 'Disponível para reservas'
+    end
+
+    it 'returns "Não disponível para reservas" when room is not available' do
+      # Arrange
+      room = Room.new(name: 'Brasil', description: 'Quarto com tema Brasil',
+                      dimension: 200, max_people: 3, daily_rate: 150,
+                      available: false)
+
+      # Act
+      result = room_availability(room)
+
+      # Assert
+      expect(result).to eq 'Não disponível para reservas'
+    end
+  end
 end

@@ -1,6 +1,8 @@
 <h2><%= @room.guesthouse.brand_name %></h2>
 <h3>Detalhes do quarto <%= @room.name %></h3>
-
+<div>
+  <strong><%= room_availability(@room) %></strong>
+</div>
 <dl>
   <dt>Nome:</dt>
   <dd><%= @room.name %></dd>
@@ -37,6 +39,12 @@
 </dl>
 
 <% if @room.guesthouse.user == current_user %>
-  <%= link_to 'Editar', edit_guesthouse_room_path(@room.guesthouse.id,
-                                                  @room.id) %>
+  <div>
+    <%= link_to 'Editar', edit_guesthouse_room_path(@room.guesthouse.id,
+                                                    @room.id) %>
+  </div>
 <% end %>
+
+<div>
+  <%= link_to 'Voltar para pousada', @room.guesthouse %>
+</div>

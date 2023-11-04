@@ -29,6 +29,10 @@
     <%= f.number_field :daily_rate %>
   </div>
   <div>
+    <%= f.label :available, 'Disponível para reservas' %>
+    <%= f.check_box :available %>
+  </div>
+  <div>
     <%= f.label :private_bathroom, 'Possui banheiro próprio' %>
     <%= f.check_box :private_bathroom %>
   </div>

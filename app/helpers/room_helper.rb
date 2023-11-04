@@ -15,4 +15,9 @@ module RoomHelper
     features << 'Acessível para pessoas com deficiência' if room.accessibility
     features
   end
+
+  def room_availability(room)
+    return 'Disponível para reservas' if room.available?
+    'Não disponível para reservas'
+  end
 end

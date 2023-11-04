@@ -25,7 +25,7 @@
   <dt><strong>Número:</strong></dt>
   <dd><%= @guesthouse.address.number %></dd>
 
-  <% if @guesthouse.address.complement %>
+  <% if @guesthouse.address.complement.present? %>
     <dt><strong>Complemento:</strong></dt>
     <dd><%= @guesthouse.address.complement %></dd>
   <% end %>
@@ -42,22 +42,22 @@
   <dt><strong>Estado:</strong></dt>
   <dd><%= @guesthouse.address.state %></dd>
 
-  <% if @guesthouse.description %>
+  <% if @guesthouse.description.present? %>
     <dt><strong>Descrição:</strong></dt>
     <dd><%= @guesthouse.description %></dd>
   <% end %>
 
-  <% if @guesthouse.payment_method_one %>
+  <% if @guesthouse.payment_method_one.present? %>
     <dt><strong>Método de pagamento 1:</strong></dt>
     <dd><%= @guesthouse.payment_method_one %></dd>
   <% end %>
 
-  <% if @guesthouse.payment_method_two %>
+  <% if @guesthouse.payment_method_two.present? %>
     <dt><strong>Método de pagamento 2:</strong></dt>
     <dd><%= @guesthouse.payment_method_two %></dd>
   <% end %>
 
-  <% if @guesthouse.payment_method_three %>
+  <% if @guesthouse.payment_method_three.present? %>
     <dt><strong>Método de pagamento 3:</strong></dt>
     <dd><%= @guesthouse.payment_method_three %></dd>
   <% end %>
@@ -67,34 +67,40 @@
     <dd><%= pet_policy_description(@guesthouse) %></dd>
   <% end %>
 
-  <% if @guesthouse.guesthouse_policy %>
+  <% if @guesthouse.guesthouse_policy.present? %>
     <dt><strong>Políticas de uso:</strong></dt>
     <dd><%= @guesthouse.guesthouse_policy %></dd>
   <% end %>
   
-  <% if @guesthouse.checkin_time %>
+  <% if @guesthouse.checkin_time.present? %>
     <dt><strong>Horário de check-in:</strong></dt>
     <dd><%= formatted_checkin_time(@guesthouse) %></dd>
   <% end %>
 
-  <% if @guesthouse.checkout_time %>
+  <% if @guesthouse.checkout_time.present? %>
     <dt><strong>Horário de check-out:</strong></dt>
     <dd><%= formatted_checkout_time(@guesthouse) %></dd>
   <% end %>
 
-  <% if @guesthouse.rooms.any? %>
+  <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
     <dt><strong>Quartos:</strong></dt>
     <dl>
       <ul>
-        <% @guesthouse.rooms.each do |room| %>
+        <% @all_rooms.each do |room| %>
           <li><%= link_to room.name, [@guesthouse, room] %></li>
         <% end %>
       </ul>
     </dl>
-  <% else %>
-    
+  <% elsif @available_rooms.any? %>
+    <dt><strong>Quartos:</strong></dt>
+    <dl>
+      <ul>
+        <% @available_rooms.each do |room| %>
+          <li><%= link_to room.name, [@guesthouse, room] %></li>
+        <% end %>
+      </ul>
+    </dl>
   <% end %>
-
 
   <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
     <div>

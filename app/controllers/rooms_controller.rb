@@ -49,7 +49,7 @@ class RoomsController < ApplicationController
                                  :max_people, :daily_rate,
                                  :private_bathroom, :balcony,
                                  :air_conditioning, :tv, :closet,
-                                 :safe, :accessibility)
+                                 :safe, :accessibility, :available)
   end
 
   def set_guesthouse_and_check_user
