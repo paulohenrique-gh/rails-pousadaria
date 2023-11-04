@@ -31,7 +31,7 @@ describe 'User visits room page' do
     # Assert
     expect(page).to have_content 'Nome: Brasil'
     expect(page).to have_content 'Descrição: Quarto com tema Brasil'
-    expect(page).to have_content 'Dimensão em m²: 200'
+    expect(page).to have_content 'Dimensão: 200 m²'
     expect(page).to have_content 'Número máximo de pessoas: 3'
     expect(page).to have_content 'Valor da diária: R$ 150'
     expect(page).to have_content 'Disponível para reservas'
