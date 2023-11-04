@@ -61,4 +61,6 @@ class RoomsController < ApplicationController
       )
     end
   end
+
+  # TODO: get_room before show, edit and update
 end

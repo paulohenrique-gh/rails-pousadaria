@@ -1,0 +1,23 @@
+<h2>
+  <%= @seasonal_rate.room.guesthouse.brand_name %> -
+  Quarto <%= @seasonal_rate.room.name %>
+</h2>
+<h3>Adicionar preço por período</h3>
+
+<%= form_with(model: [@room.guesthouse, @room, @seasonal_rate]) do |f| %>
+  <div>
+    <%= f.label :start_date, 'Data inicial' %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :finish_date, 'Data final' %>
+    <%= f.date_field :finish_date %>
+  </div>
+  <div>
+    <%= f.label :rate, 'Valor' %>
+    <%= f.number_field :rate %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>
