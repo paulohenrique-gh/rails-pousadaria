@@ -1,13 +1,13 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-  # TODO: Move to ApplicationController
-  before_action :set_guesthouse_and_check_user, only: [:new, :create,
-                                                       :edit, :update]
-
-  def show
-    @room = Room.find(params[:id])
+  before_action only: [:new, :create, :edit, :update] do
+    set_guesthouse_and_check_user(params[:guesthouse_id])
   end
+
+  before_action :set_room, only: [:show, :edit, :update]
+
+  def show; end
 
   def new
     @room = Room.new(guesthouse: @guesthouse)
@@ -24,14 +24,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  def edit
-    @room = Room.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @room = Room.find(params[:id])
-    @guesthouse = @room.guesthouse
-
     if @room.update(room_params)
       redirect_to(
         [@guesthouse, @room], notice: 'Quarto atualizado com sucesso'
@@ -52,15 +47,7 @@ class RoomsController < ApplicationController
                                  :safe, :accessibility, :available)
   end
 
-  def set_guesthouse_and_check_user
-    @guesthouse = Guesthouse.find(params[:guesthouse_id])
-    if @guesthouse.user != current_user || @guesthouse.inactive?
-      redirect_to(
-        root_path,
-        alert: 'Você não tem autorização para alterar esta pousada'
-      )
-    end
+  def set_room
+    @room = Room.find(params[:id])
   end
-
-  # TODO: get_room before show, edit and update
 end

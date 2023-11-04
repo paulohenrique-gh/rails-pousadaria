@@ -1,8 +1,11 @@
 class GuesthousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit,
                                             :update, :inactivate]
-  before_action :set_guesthouse_and_check_user, only: [:edit, :update,
-                                                       :inactivate]
+
+  before_action  only: [:edit, :update,:inactivate] do
+    set_guesthouse_and_check_user(params[:id])
+  end
+
   before_action :check_guesthouse_presence, only: [:new, :create]
 
   def show
@@ -63,13 +66,6 @@ class GuesthousesController < ApplicationController
         :postal_code, :city, :state
       ]
     )
-  end
-
-  def set_guesthouse_and_check_user
-    @guesthouse = Guesthouse.find(params[:id])
-    if @guesthouse.user != current_user
-      redirect_to root_path, alert: 'Você não tem autorização para alterar esta pousada'
-    end
   end
 
   def check_guesthouse_presence

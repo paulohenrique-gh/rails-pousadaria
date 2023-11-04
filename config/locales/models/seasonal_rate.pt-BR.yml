@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      seasonal_rate:
+        one: 'Preço por período'
+        other: 'Preços por período'
+    attributes:
+      seasonal_rate:
+        start_date: 'Data inicial'
+        finish_date: 'Data final'
+        rate: 'Valor'

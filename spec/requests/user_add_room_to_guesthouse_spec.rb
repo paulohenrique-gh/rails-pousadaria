@@ -65,6 +65,7 @@ describe 'User adds room to guesthouse' do
         }
       }
     )
+    other_guesthouse.reload
 
     # Assert
     expect(response).to redirect_to root_path
@@ -98,6 +99,7 @@ describe 'User adds room to guesthouse' do
         }
       }
     )
+    guesthouse.reload
 
     # Assert
     expect(response).to redirect_to root_path

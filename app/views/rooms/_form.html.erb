@@ -1,10 +1,12 @@
 <% if @room.errors.any? %>
-  <p>O formulário contém os erros abaixo:</p>
-  <ul>
-    <% @room.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div>
+    <p>O formulário contém os erros abaixo:</p>
+    <ul>
+      <% @room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <%= form_with(model: [@guesthouse, @room]) do |f| %>
@@ -26,7 +28,7 @@
   </div>
   <div>
     <%= f.label :daily_rate, 'Valor da diária' %>
-    <%= f.number_field :daily_rate %>
+    <%= f.number_field :daily_rate, step: 0.01 %>
   </div>
   <div>
     <%= f.label :available, 'Disponível para reservas' %>

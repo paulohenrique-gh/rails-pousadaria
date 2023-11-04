@@ -22,8 +22,7 @@
 
   <dt><strong>Valor da diária:</strong></dt>
   <dd>
-    <%= number_to_currency(@room.daily_rate,
-                           strip_insignificant_zeros: true) %>
+    <%= number_to_currency(@room.daily_rate) %>
   </dd>
 
   <% if extra_features?(@room) %>
@@ -36,6 +35,23 @@
       </ul>
     </dd>
   <% end %>
+
+  <dt><strong>Preços por período:</strong></dt>
+  <dd>
+    <ul>
+      <li>
+        <strong>Padrão:</strong> <%= number_to_currency(@room.daily_rate) %>
+      </li>
+      
+      <% @room.seasonal_rates.each do |r| %>
+        <li>
+          <strong>De <%= I18n.localize(r.start_date) %>
+          a <%= I18n.localize(r.finish_date) %>:</strong>
+          <%= number_to_currency(r.rate) %>
+        </li>
+      <% end %>
+    </ul>
+  </dd>
 </dl>
 
 <% if @room.guesthouse.user == current_user %>

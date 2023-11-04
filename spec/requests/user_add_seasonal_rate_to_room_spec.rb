@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'User inactivates guesthouse' do
-  it 'and is not authenticated' do
+describe 'User adds seasonal rate to room' do
+  it 'and must be authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
-    other_user = User.create!(email: 'outroexemplo@mail.com', password: '123456')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -16,19 +16,36 @@ describe 'User inactivates guesthouse' do
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
                                     address: address, user: user)
+
+    room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        guesthouse: guesthouse)
+
     # Act
-    patch inactivate_guesthouse_path(guesthouse.id)
-    guesthouse.reload
+    post(
+      guesthouse_room_seasonal_rates_path(guesthouse.id, room.id),
+      params: {
+        seasonal_rate: {
+          start_date: '2023-12-06',
+          finish_date: '2023-12-08',
+          rate: 125
+        }
+      }
+    )
+    room.reload
 
     # Assert
-    expect(guesthouse.status).to eq 'active'
     expect(response).to redirect_to(new_user_session_path)
+    expect(room.seasonal_rates).to be_empty
+
   end
 
-  it 'and is not the owner' do
+  it 'and must be the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
-    other_user = User.create!(email: 'outroexemplo@mail.com', password: '123456')
+    other_user = User.create!(email: 'outroexemplo@mail.com',
+                              password: '123456')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -40,13 +57,27 @@ describe 'User inactivates guesthouse' do
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
                                     address: address, user: user)
+
+    room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        guesthouse: guesthouse)
+
     # Act
     login_as other_user
-    patch(inactivate_guesthouse_path(guesthouse.id))
-    guesthouse.reload
+    post(
+      guesthouse_room_seasonal_rates_path(guesthouse.id, room.id),
+      params: {
+        seasonal_rate: {
+          start_date: '2023-12-06',
+          finish_date: '2023-12-08',
+          rate: 125
+        }
+      }
+    )
+    room.reload
 
     # Assert
-    expect(guesthouse.status).to eq 'active'
     expect(response).to redirect_to(root_path)
+    expect(room.seasonal_rates).to be_empty
   end
 end

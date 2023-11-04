@@ -21,6 +21,7 @@ describe 'User edits guesthouse' do
       guesthouse_path(guesthouse.id),
       params: { guesthouse: { brand_name: 'Nova Pousada'}}
     )
+    guesthouse.reload
 
     # Assert
     expect(guesthouse.brand_name).to eq 'Pousada Bosque'
@@ -62,6 +63,7 @@ describe 'User edits guesthouse' do
       guesthouse_path(guesthouse.id),
       params: { guesthouse: { brand_name: 'Nova Pousada'}}
     )
+    guesthouse.reload
 
     # Assert
     expect(guesthouse.brand_name).to eq 'Pousada Bosque'
@@ -90,6 +92,7 @@ describe 'User edits guesthouse' do
       guesthouse_path(guesthouse.id),
       params: { guesthouse: { brand_name: 'Nova Pousada'}}
     )
+    guesthouse.reload
 
     # Assert
     expect(guesthouse.brand_name).not_to eq 'Nova Pousada'
