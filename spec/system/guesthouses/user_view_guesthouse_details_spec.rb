@@ -112,6 +112,7 @@ describe 'Host visits own guesthouse details page' do
     click_on 'Minha Pousada'
 
     # Assert
+    expect(current_path).to eq my_guesthouse_path
     expect(page).to have_link 'Adicionar quarto'
     expect(page).to have_link 'Editar'
     expect(page).to have_button 'Inativar'

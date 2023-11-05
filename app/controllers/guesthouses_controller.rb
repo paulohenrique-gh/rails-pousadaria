@@ -54,6 +54,15 @@ class GuesthousesController < ApplicationController
     @guesthouses = Guesthouse.active.where("brand_name LIKE ?", "%#{@query}%")
   end
 
+  def user_guesthouse
+    @user = current_user
+    @guesthouse = @user.guesthouse
+    @available_rooms = @guesthouse.rooms.where(available: true)
+    @all_rooms = @guesthouse.rooms
+
+    render 'show', status: :ok
+  end
+
   private
 
   def guesthouse_params

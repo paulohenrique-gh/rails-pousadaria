@@ -1,8 +1,4 @@
 class ApplicationController < ActionController::Base
-
-  # before_action :redirect_host_to_guesthouse_creation
-
-
   protected
 
   def redirect_host_to_guesthouse_creation

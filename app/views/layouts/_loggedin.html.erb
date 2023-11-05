@@ -1,6 +1,6 @@
 <% if current_user.host? %>
   <% if current_user.guesthouse %>
-    <strong><%= link_to 'Minha Pousada', current_user.guesthouse %></strong>
+    <strong><%= link_to 'Minha Pousada', my_guesthouse_path %></strong>
   <% else %>
     <%= link_to 'Cadastrar Pousada', new_guesthouse_path %>
   <% end %>

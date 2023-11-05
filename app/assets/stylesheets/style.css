@@ -3,9 +3,11 @@
 }
 
 .alert {
-  color: rgb(184, 2, 2)
+  color: rgb(184, 2, 2);
+  font-weight: bold;
 }
 
 .notice {
-  color: rgb(4, 168, 4)
+  color: rgb(4, 168, 4);
+  font-weight: bold
 }
