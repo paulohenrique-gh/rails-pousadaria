@@ -61,7 +61,10 @@ describe 'User registers guesthouse' do
     fill_in 'CEP', with: '99000-525'
     fill_in 'Cidade', with: 'Pulomiranga'
     fill_in 'Estado', with: 'RN'
-    fill_in 'Descrição', with: 'Pousada em local tranquilo no interior do Rio Grande do Norte'
+    fill_in(
+      'Descrição',
+      with: 'Pousada em local tranquilo no interior do Rio Grande do Norte'
+    )
     fill_in 'Método de pagamento 1', with: 'Pix'
     fill_in 'Método de pagamento 2', with: 'Cartão de crédito'
     fill_in 'Método de pagamento 3', with: 'Dinheiro'
@@ -77,7 +80,9 @@ describe 'User registers guesthouse' do
     expect(page).to have_content 'Pousada Bosque'
     expect(page).to have_content 'Telefone: 1130205000'
     expect(page).to have_content 'E-mail: atendimento@pousadabosque'
-    expect(page).to have_content 'Rua das Pedras, 30, Térreo, Santa Helena, 99000-525, Pulomiranga - RN'
+    expect(page).to have_content(
+      'Rua das Pedras, 30, Térreo, Santa Helena, 99000-525, Pulomiranga - RN'
+    )
   end
 
   it 'and leaves mandatory fields blank' do

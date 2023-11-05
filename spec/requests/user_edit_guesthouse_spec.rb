@@ -4,6 +4,7 @@ describe 'User edits guesthouse' do
   it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -73,6 +74,7 @@ describe 'User edits guesthouse' do
   it 'and guesthouse must be active' do
     # Assert
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',

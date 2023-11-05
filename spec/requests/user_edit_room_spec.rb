@@ -24,11 +24,7 @@ describe 'User edits room' do
     # Act
     patch(
       guesthouse_room_path(guesthouse.id, room.id),
-      params: {
-        room: {
-          name: 'USA'
-        }
-      }
+      params: { room: { name: 'USA' } }
     )
     room.reload
 
@@ -63,11 +59,7 @@ describe 'User edits room' do
     login_as other_user
     patch(
       guesthouse_room_path(guesthouse.id, room.id),
-      params: {
-        room: {
-          name: 'USA'
-        }
-      }
+      params: { room: { name: 'USA' } }
     )
 
     # Assert

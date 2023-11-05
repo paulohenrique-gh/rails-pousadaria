@@ -22,8 +22,8 @@ describe 'User marks room as unavailable' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse, available: true)
     other_room = Room.create!(name: 'Suécia', description: 'Tema sueco',
-                        dimension: 400, max_people: 3, daily_rate: 580,
-                        guesthouse: guesthouse, available: true)
+                              dimension: 400, max_people: 3, daily_rate: 580,
+                              guesthouse: guesthouse, available: true)
 
     # Act
     login_as user
@@ -61,8 +61,8 @@ describe 'User marks room as unavailable' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse, available: false)
     other_room = Room.create!(name: 'Suécia', description: 'Tema sueco',
-                        dimension: 400, max_people: 3, daily_rate: 580,
-                        guesthouse: guesthouse, available: true)
+                              dimension: 400, max_people: 3, daily_rate: 580,
+                              guesthouse: guesthouse, available: true)
 
     # Act
     visit root_path
@@ -132,8 +132,8 @@ describe 'User marks room as available' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse, available: false)
     other_room = Room.create!(name: 'Suécia', description: 'Tema sueco',
-                        dimension: 400, max_people: 3, daily_rate: 580,
-                        guesthouse: guesthouse, available: true)
+                              dimension: 400, max_people: 3, daily_rate: 580,
+                              guesthouse: guesthouse, available: true)
 
     # Act
     login_as user

@@ -1,0 +1,10 @@
+<% if extra_features?(@room) %>
+  <dt><strong>Adicionais:</strong></dt>
+  <dd>
+    <ul>
+      <% extra_features_collection(@room).each do |feat| %>
+        <li><%= feat %></li>
+      <% end %>
+    </ul>
+  </dd>
+<% end %>

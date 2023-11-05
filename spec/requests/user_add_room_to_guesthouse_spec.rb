@@ -4,6 +4,7 @@ describe 'User adds room to guesthouse' do
   it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -27,6 +28,7 @@ describe 'User adds room to guesthouse' do
   it 'and is not the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     other_user = User.create!(email: 'outroexemplo@mail.com',
                               password: 'senhasecreta')
 
@@ -75,6 +77,7 @@ describe 'User adds room to guesthouse' do
   it 'and guesthouse is inactive' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',

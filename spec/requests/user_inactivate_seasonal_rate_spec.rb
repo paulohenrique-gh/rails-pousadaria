@@ -4,6 +4,7 @@ describe 'User inactivates seasonal rate' do
   it 'and must be authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -42,6 +43,7 @@ describe 'User inactivates seasonal rate' do
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com',
                               password: '123456')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',

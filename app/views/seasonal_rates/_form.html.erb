@@ -1,13 +1,6 @@
-<% if @seasonal_rate.errors.any? %>
-  <div>
-    <p>O formulário contém os erros abaixo:</p>
-    <ul>
-      <% @seasonal_rate.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= 
+  render partial: 'shared/error_messages', locals: { resource: @seasonal_rate }
+%>
 
 <%= form_with(model: [@room.guesthouse, @room, @seasonal_rate]) do |f| %>
   <div>

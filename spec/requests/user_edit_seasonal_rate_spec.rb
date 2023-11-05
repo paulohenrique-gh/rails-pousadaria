@@ -30,11 +30,7 @@ describe 'User edits seasonal rate' do
     patch(
       guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
                                          seasonal_rate.id),
-      params: {
-        seasonal_rate: {
-          start_date: '2023-11-12'
-        }
-      }
+      params: { seasonal_rate: { start_date: '2023-11-12' } }
     )
     seasonal_rate.reload
 
@@ -48,6 +44,7 @@ describe 'User edits seasonal rate' do
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com',
                               password: '123456')
+
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -74,11 +71,7 @@ describe 'User edits seasonal rate' do
     patch(
       guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
                                          seasonal_rate.id),
-      params: {
-        seasonal_rate: {
-          start_date: '2023-11-12'
-        }
-      }
+      params: { seasonal_rate: { start_date: '2023-11-12' } }
     )
     seasonal_rate.reload
 

@@ -1,0 +1,29 @@
+<dt><strong>Preços por período:</strong></dt>
+<dd>
+  <ul class="seasonal_rates_list">
+    <li>
+      <strong>Padrão:</strong>
+      <%= number_to_currency(@room.daily_rate) %>
+    </li>
+    
+    <% @active_seasonal_rates.each do |sr| %>
+      <li>
+        <strong>
+          De <%= I18n.localize(sr.start_date) %>
+          a <%= I18n.localize(sr.finish_date) %>: 
+        </strong> <%= number_to_currency(sr.rate) %>
+
+        <% if @room.guesthouse.user == current_user %>
+          | <%=
+              link_to(
+                'Editar',
+                edit_guesthouse_room_seasonal_rate_path(
+                  @room.guesthouse.id, @room.id, sr.id
+                )
+              )
+            %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</dd>

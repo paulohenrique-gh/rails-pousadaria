@@ -1,13 +1,4 @@
-<% if @room.errors.any? %>
-  <div>
-    <p>O formulário contém os erros abaixo:</p>
-    <ul>
-      <% @room.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: 'shared/error_messages', locals: { resource: @room } %>
 
 <%= form_with(model: [@guesthouse, @room]) do |f| %>
   <div>

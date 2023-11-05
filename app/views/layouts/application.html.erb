@@ -13,14 +13,10 @@
   <body>
     <h1><%= link_to 'Pousadaria', root_path %></h1>
     <nav>
-      <%= form_with(url: search_guesthouses_path, method: :get) do |f| %>
-        <%= f.label :query, 'Buscar pousada' %>
-        <%= f.text_field :query %>
-        <%= f.submit 'Buscar' %>
-      <% end %>
+      <%= render 'layouts/search' %>
       
       <% if current_user %>
-        <%= render 'layouts/loggedin' %>
+        <%= render 'layouts/authenticated' %>
       <% else %>
         <strong><%= link_to 'Entrar', new_user_session_path %></strong>
       <% end %>

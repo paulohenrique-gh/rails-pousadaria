@@ -82,38 +82,8 @@
     <dd><%= formatted_checkout_time(@guesthouse) %></dd>
   <% end %>
 
-  <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
-    <dt><strong>Quartos:</strong></dt>
-    <dd>
-      <ul>
-        <% @all_rooms.each do |room| %>
-          <li><%= link_to room.name, [@guesthouse, room] %></li>
-        <% end %>
-      </ul>
-    </dd>
-  <% elsif @available_rooms.any? %>
-    <dt><strong>Quartos:</strong></dt>
-    <dd>
-      <ul>
-        <% @available_rooms.each do |room| %>
-          <li><%= link_to room.name, [@guesthouse, room] %></li>
-        <% end %>
-      </ul>
-    </dd>
-  <% end %>
+  <%= render 'rooms' %>
 
-  <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
-    <div>
-      <%= link_to 'Adicionar quarto', new_guesthouse_room_path(@guesthouse.id) %>
-    </div>
-    <div>
-      <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
-    </div>
-    <%= 
-      button_to 'Inativar',
-      inactivate_guesthouse_path(@guesthouse.id),
-      { method: 'patch' }
-    %>
-  <% end %>
+  <%= render 'links' %>
 </dl>
 

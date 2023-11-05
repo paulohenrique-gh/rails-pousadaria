@@ -1,0 +1,19 @@
+<% if @room.guesthouse.user == current_user %>
+  <div>
+    <%= 
+      link_to(
+        'Editar', edit_guesthouse_room_path(@room.guesthouse.id,@room.id)
+      )
+    %> |
+    <%=
+      link_to(
+        'Adicionar preço por período',
+        new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id, @room.id)
+      )
+    %>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to 'Voltar para pousada', @room.guesthouse %>
+</div>

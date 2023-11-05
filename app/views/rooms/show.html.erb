@@ -13,8 +13,10 @@
   <dt><strong>Dimensão:</strong></dt>
   <dd>
     <%= 
-      number_with_precision(@room.dimension, separator: ',',
-                            strip_insignificant_zeros: true) %> m²
+      number_with_precision(
+        @room.dimension, separator: ',', strip_insignificant_zeros: true
+      )
+    %> m²
   </dd>
 
   <dt><strong>Número máximo de pessoas:</strong></dt>
@@ -25,56 +27,9 @@
     <%= number_to_currency(@daily_rate) %>
   </dd>
 
-  <% if extra_features?(@room) %>
-    <dt><strong>Adicionais:</strong></dt>
-    <dd>
-      <ul>
-        <% extra_features_collection(@room).each do |feat| %>
-          <li><%= feat %></li>
-        <% end %>
-      </ul>
-    </dd>
-  <% end %>
+  <%= render 'extra_features' %>
 
-  <dt><strong>Preços por período:</strong></dt>
-  <dd>
-    <ul class="seasonal_rates_list">
-      <li>
-        <strong>Padrão:</strong>
-        <%= number_to_currency(@room.daily_rate) %>
-      </li>
-      
-      <% @active_seasonal_rates.each do |sr| %>
-        <li>
-          <strong>
-            De <%= I18n.localize(sr.start_date) %>
-            a <%= I18n.localize(sr.finish_date) %>: 
-          </strong> <%= number_to_currency(sr.rate) %>
-
-          <% if @room.guesthouse.user == current_user %>
-            | <%= link_to(
-                'Editar',
-                edit_guesthouse_room_seasonal_rate_path(
-                  @room.guesthouse.id, @room.id, sr.id
-                )
-              ) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </dd>
+  <%= render 'seasonal_rates' %>
 </dl>
 
-<% if @room.guesthouse.user == current_user %>
-  <div>
-    <%= link_to 'Editar', edit_guesthouse_room_path(@room.guesthouse.id,
-                                                    @room.id) %> |
-    <%= link_to('Adicionar preço por período',
-                new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id,
-                                                     @room.id))%>
-  </div>
-<% end %>
-
-<div>
-  <%= link_to 'Voltar para pousada', @room.guesthouse %>
-</div>
+<%= render 'links' %>

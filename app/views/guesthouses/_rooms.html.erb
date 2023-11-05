@@ -1,0 +1,19 @@
+  <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
+    <dt><strong>Quartos:</strong></dt>
+    <dd>
+      <ul>
+        <% @all_rooms.each do |room| %>
+          <li><%= link_to room.name, [@guesthouse, room] %></li>
+        <% end %>
+      </ul>
+    </dd>
+  <% elsif @available_rooms.any? %>
+    <dt><strong>Quartos:</strong></dt>
+    <dd>
+      <ul>
+        <% @available_rooms.each do |room| %>
+          <li><%= link_to room.name, [@guesthouse, room] %></li>
+        <% end %>
+      </ul>
+    </dd>
+  <% end %>

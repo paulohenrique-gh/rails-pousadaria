@@ -10,21 +10,15 @@ describe 'Guest visits guesthouse details page' do
                               city: 'Pulomiranga', state: 'RN',
                               postal_code: '99000-525')
     guesthouse = Guesthouse.create!(
-      brand_name: 'Pousada Bosque',
-      corporate_name: 'Pousada Ramos Faria LTDA',
-      registration_number: '02303221000152',
-      phone_number: '1130205000',
+      brand_name: 'Pousada Bosque', corporate_name: 'Pousada Ramos Faria LTDA',
+      registration_number: '02303221000152', phone_number: '1130205000',
       email: 'atendimento@pousadabosque',
       description: 'Pousada tranquila no interior do Rio Grande do Norte',
-      payment_method_one: 'Pix',
-      payment_method_two: 'Cartão de crédito',
-      payment_method_three: 'Dinheiro',
-      pet_policy: true,
+      payment_method_one: 'Pix', payment_method_two: 'Cartão de crédito',
+      payment_method_three: 'Dinheiro', pet_policy: true,
       guesthouse_policy: 'Não é permitido uso de bebida alcoólica',
-      checkin_time: '08:00',
-      checkout_time: '20:00',
-      address: address,
-      user: user
+      checkin_time: '08:00', checkout_time: '20:00',
+      address: address, user: user
     )
 
     # Act
@@ -67,15 +61,12 @@ describe 'Guest visits guesthouse details page' do
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
                               postal_code: '99000-525')
-    guesthouse = Guesthouse.create!(
-      brand_name: 'Pousada Bosque',
-      corporate_name: 'Pousada Ramos Faria LTDA',
-      registration_number: '02303221000152',
-      phone_number: '1130205000',
-      email: 'atendimento@pousadabosque',
-      address: address,
-      user: user
-    )
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user)
 
     # Act
     visit root_path
@@ -96,15 +87,12 @@ describe 'Host visits own guesthouse details page' do
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
                               postal_code: '99000-525')
-    guesthouse = Guesthouse.create!(
-      brand_name: 'Pousada Bosque',
-      corporate_name: 'Pousada Ramos Faria LTDA',
-      registration_number: '02303221000152',
-      phone_number: '1130205000',
-      email: 'atendimento@pousadabosque',
-      address: address,
-      user: user
-    )
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    address: address, user: user)
 
     # Act
     login_as user

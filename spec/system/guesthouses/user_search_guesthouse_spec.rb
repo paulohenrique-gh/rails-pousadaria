@@ -64,12 +64,12 @@ describe 'User searches for a guesthouse' do
                                     email: 'atendimento@pousadabosque',
                                     address: address, user: user)
     other_guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosques Verdes',
-                               corporate_name: 'Santa Bárbara Hotelaria LTDA',
-                               registration_number: '02303221000152',
-                               phone_number: '1130205000',
-                               email: 'atendimento@pousadabosque',
-                               address: other_address, user: other_user,
-                               status: :inactive)
+                                corporate_name: 'Santa Bárbara Hotelaria LTDA',
+                                registration_number: '02303221000152',
+                                phone_number: '1130205000',
+                                email: 'atendimento@pousadabosque',
+                                address: other_address, user: other_user,
+                                status: :inactive)
 
     # Act
     visit root_path
