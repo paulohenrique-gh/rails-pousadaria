@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User inactivates guesthouse' do
-  it 'and is not authenticated' do
+  it 'and must be authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com', password: '123456')
@@ -21,11 +21,11 @@ describe 'User inactivates guesthouse' do
     guesthouse.reload
 
     # Assert
-    expect(guesthouse.status).to eq 'active'
     expect(response).to redirect_to(new_user_session_path)
+    expect(guesthouse).to be_active
   end
 
-  it 'and is not the owner' do
+  it 'and must be the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com', password: '123456')
@@ -46,7 +46,7 @@ describe 'User inactivates guesthouse' do
     guesthouse.reload
 
     # Assert
-    expect(guesthouse.status).to eq 'active'
     expect(response).to redirect_to(root_path)
+    expect(guesthouse).to be_active
   end
 end

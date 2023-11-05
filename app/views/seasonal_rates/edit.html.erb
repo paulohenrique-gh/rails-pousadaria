@@ -4,4 +4,13 @@
 </h2>
 <h3>Editar preço por período</h3>
 
+<%= button_to(
+  'Excluir',
+  inactivate_guesthouse_room_seasonal_rate_path(@room.guesthouse.id,
+                                                @room.id, @seasonal_rate.id),
+  { method: 'patch' }
+) %>
+
+<br>
+
 <%= render 'form' %>

@@ -1,11 +1,13 @@
 class SeasonalRatesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create,
+                                            :edit, :update, :inactivate]
 
-  before_action only: [:new, :create, :edit, :update] do
+  before_action only: [:new, :create, :edit, :update, :inactivate] do
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
-  before_action :set_room, only: [:new, :create, :edit, :update]
+  before_action :set_room, only: [:new, :create, :edit, :update, :inactivate]
+  before_action :set_seasonal_rate, only: [:edit, :update, :inactivate]
 
   def new
     @seasonal_rate = SeasonalRate.new(room: @room)
@@ -24,13 +26,9 @@ class SeasonalRatesController < ApplicationController
     end
   end
 
-  def edit
-    @seasonal_rate = SeasonalRate.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @seasonal_rate = SeasonalRate.find(params[:id])
-
     if @seasonal_rate.update(seasonal_rate_params)
       redirect_to([@seasonal_rate.room.guesthouse,@seasonal_rate.room],
                   notice: 'Preço por período atualizado com sucesso')
@@ -38,6 +36,14 @@ class SeasonalRatesController < ApplicationController
       flash.now[:alert] = 'Não foi possível atualizar preço por período'
       render 'edit', status: :unprocessable_entity
     end
+  end
+
+  def inactivate
+    @seasonal_rate.inactive!
+    redirect_to(
+      [@guesthouse, @room],
+      notice: 'Preço por período excluído com sucesso'
+    )
   end
 
   private
@@ -48,5 +54,9 @@ class SeasonalRatesController < ApplicationController
 
   def set_room
     @room = Room.find(params[:room_id])
+  end
+
+  def set_seasonal_rate
+    @seasonal_rate = SeasonalRate.find(params[:id])
   end
 end

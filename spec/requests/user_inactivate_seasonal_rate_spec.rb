@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-describe 'User edits seasonal rate' do
+describe 'User inactivates seasonal rate' do
   it 'and must be authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
-
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
@@ -28,22 +27,17 @@ describe 'User edits seasonal rate' do
 
     # Act
     patch(
-      guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
-                                         seasonal_rate.id),
-      params: {
-        seasonal_rate: {
-          start_date: '2023-11-12'
-        }
-      }
+      inactivate_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
+                                                    seasonal_rate.id),
     )
     seasonal_rate.reload
 
     # Assert
     expect(response).to redirect_to(new_user_session_path)
-    expect(seasonal_rate.start_date).to eq('2023-11-10'.to_date)
+    expect(seasonal_rate).to be_active
   end
 
-  it 'and is not the owner' do
+  it 'and must be the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     other_user = User.create!(email: 'outroexemplo@mail.com',
@@ -72,18 +66,13 @@ describe 'User edits seasonal rate' do
     # Act
     login_as other_user
     patch(
-      guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
-                                         seasonal_rate.id),
-      params: {
-        seasonal_rate: {
-          start_date: '2023-11-12'
-        }
-      }
+      inactivate_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
+                                                    seasonal_rate.id),
     )
     seasonal_rate.reload
 
     # Assert
     expect(response).to redirect_to(root_path)
-    expect(seasonal_rate.start_date).to eq('2023-11-10'.to_date)
+    expect(seasonal_rate).to be_active
   end
 end

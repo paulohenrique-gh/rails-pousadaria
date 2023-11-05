@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_04_125455) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_05_021907) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name", null: false
     t.string "number", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_04_125455) do
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["room_id"], name: "index_seasonal_rates_on_room_id"
   end
 

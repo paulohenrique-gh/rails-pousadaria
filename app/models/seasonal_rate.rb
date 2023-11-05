@@ -1,6 +1,8 @@
 class SeasonalRate < ApplicationRecord
   belongs_to :room
 
+  enum status: { active: 0, inactive: 1 }
+
   validates :start_date, :finish_date, :rate, presence: true
   validate :finish_date_is_greater_than_start_date, :dates_do_not_overlap
 
@@ -30,8 +32,8 @@ class SeasonalRate < ApplicationRecord
 
   def dates_do_not_overlap
     if dates_present?
-      SeasonalRate.all.where(room_id: self.room_id).
-                       where.not(id: self.id).each do |sr|
+      SeasonalRate.active.where(room_id: self.room_id).
+                          where.not(id: self.id).each do |sr|
         check_overlap_in_dates(sr)
 
         if self.errors.include?(:start_date) ||
