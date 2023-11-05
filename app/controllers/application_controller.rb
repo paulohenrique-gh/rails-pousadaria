@@ -1,4 +1,16 @@
 class ApplicationController < ActionController::Base
+
+  # before_action :redirect_host_to_guesthouse_creation
+
+
+  protected
+
+  def redirect_host_to_guesthouse_creation
+    if current_user && current_user.host? && current_user.guesthouse.nil?
+      redirect_to(new_guesthouse_path)
+    end
+  end
+
   def set_guesthouse_and_check_user(guesthouse_id)
     @guesthouse = Guesthouse.find(guesthouse_id)
     if @guesthouse.user != current_user || @guesthouse.inactive?

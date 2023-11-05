@@ -2,4 +2,4 @@ pt-BR:
   activerecord:
     attributes:
       user/role:
-        host: 'Dono de pousada'
+        host: 'Proprietário'

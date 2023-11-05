@@ -107,7 +107,7 @@ describe 'User edits seasonal rate' do
                                                   seasonal_rate.id)
 
     # Assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_guesthouse_path
     expect(page).to have_content(
       'Você não tem autorização para alterar esta pousada'
     )

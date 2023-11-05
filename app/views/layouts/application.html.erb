@@ -22,7 +22,7 @@
       <% if current_user %>
         <%= render 'layouts/loggedin' %>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <strong><%= link_to 'Entrar', new_user_session_path %></strong>
       <% end %>
     </nav>
     <main>

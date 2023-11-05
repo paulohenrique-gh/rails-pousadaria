@@ -8,6 +8,8 @@ class GuesthousesController < ApplicationController
 
   before_action :check_guesthouse_presence, only: [:new, :create]
 
+  before_action :redirect_host_to_guesthouse_creation, except: [:new, :create]
+
   def show
     @guesthouse = Guesthouse.find(params[:id])
     @user = current_user
@@ -23,7 +25,6 @@ class GuesthousesController < ApplicationController
   def create
     @guesthouse = Guesthouse.new(guesthouse_params)
     @guesthouse.user = current_user
-
     if @guesthouse.save
       redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
     else

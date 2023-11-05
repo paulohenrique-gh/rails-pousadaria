@@ -56,7 +56,7 @@ describe 'User edits room' do
     expect(page).to have_content(
       'Você não tem autorização para alterar esta pousada'
     )
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_guesthouse_path
   end
 
   it 'from the guesthouse details page' do

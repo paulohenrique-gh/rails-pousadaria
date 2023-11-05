@@ -1,11 +1,14 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
+
   before_action only: [:new, :create, :edit, :update] do
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
   before_action :set_room, only: [:show, :edit, :update]
+
+  before_action :redirect_host_to_guesthouse_creation
 
   def show
     @daily_rate = @room.daily_rate

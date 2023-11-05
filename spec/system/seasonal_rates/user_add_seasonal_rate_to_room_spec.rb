@@ -208,7 +208,7 @@ describe 'User adds seasonal rate to room' do
     visit new_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id)
 
     # Assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_guesthouse_path
     expect(page).to have_content(
       'Você não tem autorização para alterar esta pousada'
     )
