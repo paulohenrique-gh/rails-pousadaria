@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :guesthouses, only: [:new, :create, :edit, :update, :show] do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
-      resources :seasonal_rates, only: [:new, :create]
+      resources :seasonal_rates, only: [:new, :create, :edit, :update]
     end
     patch :inactivate, on: :member
     get 'search', on: :collection

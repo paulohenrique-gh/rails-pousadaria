@@ -30,7 +30,8 @@ class SeasonalRate < ApplicationRecord
 
   def dates_do_not_overlap
     if dates_present?
-      SeasonalRate.all.where(room_id: self.room_id).each do |sr|
+      SeasonalRate.all.where(room_id: self.room_id).
+                       where.not(id: self.id).each do |sr|
         check_overlap_in_dates(sr)
 
         if self.errors.include?(:start_date) ||

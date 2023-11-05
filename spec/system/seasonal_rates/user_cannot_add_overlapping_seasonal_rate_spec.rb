@@ -28,7 +28,6 @@ describe 'User adds a seasonal rate to a room' do
     visit root_path
     click_on 'Minha Pousada'
     click_on 'Brasil'
-    click_on 'Editar'
     click_on 'Adicionar preço por período'
     fill_in 'Data inicial', with: '24/12/2023'
     fill_in 'Data final', with: '30/12/2023'

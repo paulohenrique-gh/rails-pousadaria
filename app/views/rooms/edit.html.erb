@@ -1,9 +1,4 @@
 <h2><%= @room.guesthouse.brand_name %></h2>
 <h3>Editar Quarto</h3>
 
-<div>
-  <%= link_to('Adicionar preço por período',
-              new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id,
-                                                     @room.id))%>
-</div>
 <%= render 'form' %>

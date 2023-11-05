@@ -92,7 +92,7 @@ describe 'User edits room' do
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Dimensão'
     expect(page).to have_field 'Quantidade máxima de pessoas'
-    expect(page).to have_field 'Valor da diária'
+    expect(page).to have_field 'Valor da diária padrão'
     expect(page).to have_field 'Possui banheiro próprio'
     expect(page).to have_field 'Possui varanda'
     expect(page).to have_field 'Possui ar-condicionado'

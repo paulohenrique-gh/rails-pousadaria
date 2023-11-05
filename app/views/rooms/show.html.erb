@@ -22,7 +22,7 @@
 
   <dt><strong>Valor da diária:</strong></dt>
   <dd>
-    <%= number_to_currency(@room.daily_rate) %>
+    <%= number_to_currency(@daily_rate) %>
   </dd>
 
   <% if extra_features?(@room) %>
@@ -38,16 +38,24 @@
 
   <dt><strong>Preços por período:</strong></dt>
   <dd>
-    <ul>
+    <ul class="seasonal_rates_list">
       <li>
         <strong>Padrão:</strong> <%= number_to_currency(@room.daily_rate) %>
       </li>
       
-      <% @room.seasonal_rates.each do |r| %>
+      <% @room.seasonal_rates.each do |sr| %>
         <li>
-          <strong>De <%= I18n.localize(r.start_date) %>
-          a <%= I18n.localize(r.finish_date) %>:</strong>
-          <%= number_to_currency(r.rate) %>
+          <strong>De <%= I18n.localize(sr.start_date) %>
+          a <%= I18n.localize(sr.finish_date) %>:</strong>
+          <%= number_to_currency(sr.rate) %>
+          <% if @room.guesthouse.user == current_user %>
+            <%= link_to(
+              'Editar',
+              edit_guesthouse_room_seasonal_rate_path(
+                @room.guesthouse.id, @room.id, sr.id
+              )
+            ) %>
+          <% end %>
         </li>
       <% end %>
     </ul>
@@ -57,7 +65,10 @@
 <% if @room.guesthouse.user == current_user %>
   <div>
     <%= link_to 'Editar', edit_guesthouse_room_path(@room.guesthouse.id,
-                                                    @room.id) %>
+                                                    @room.id) %> |
+    <%= link_to('Adicionar preço por período',
+                new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id,
+                                                     @room.id))%>
   </div>
 <% end %>
 
