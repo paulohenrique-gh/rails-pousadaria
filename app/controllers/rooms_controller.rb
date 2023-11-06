@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
     set_room(params[:id])
   end
 
-  before_action :redirect_host_to_guesthouse_creation
+  before_action :redirect_new_host_to_guesthouse_creation
 
   def show
     @daily_rate = @room.daily_rate

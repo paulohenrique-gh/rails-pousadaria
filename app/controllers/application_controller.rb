@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protected
 
-  def redirect_host_to_guesthouse_creation
+  def redirect_new_host_to_guesthouse_creation
     if current_user && current_user.host? && current_user.guesthouse.nil?
       redirect_to(new_guesthouse_path)
     end
