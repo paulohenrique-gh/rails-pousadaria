@@ -4,9 +4,20 @@ Versão Ruby: 3.2.1
 
 Versão Rails: 7.1.1
 
-Criar o banco de dados: ```rails db:migrate```
+Instalar dependências:
+```
+bundle install
+```
 
-Iniciar o servidor: ```rails server```
+Criar o banco de dados:
+```
+rails db:migrate
+```
+
+Iniciar o servidor:
+```
+rails server
+```
 
 Porta padrão: [3000](http://localhost:3000)
 
