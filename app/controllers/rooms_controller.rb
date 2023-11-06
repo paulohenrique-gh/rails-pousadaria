@@ -14,7 +14,10 @@ class RoomsController < ApplicationController
     @daily_rate = @room.daily_rate
     @active_seasonal_rates = @room.seasonal_rates.active
     @active_seasonal_rates.each do |sr|
-      @daily_rate = sr.rate if Date.today.between?(sr.start_date, sr.finish_date)
+      if Date.today.between?(sr.start_date, sr.finish_date)
+        @daily_rate = sr.rate
+        break
+      end
     end
   end
 
