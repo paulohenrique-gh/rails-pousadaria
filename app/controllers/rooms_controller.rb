@@ -1,12 +1,13 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-
   before_action only: [:new, :create, :edit, :update] do
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
-  before_action :set_room, only: [:show, :edit, :update]
+  before_action only: [:show, :edit, :update] do
+    set_room(params[:id])
+  end
 
   before_action :redirect_host_to_guesthouse_creation
 
@@ -57,9 +58,5 @@ class RoomsController < ApplicationController
                                  :private_bathroom, :balcony,
                                  :air_conditioning, :tv, :closet,
                                  :safe, :accessibility, :available)
-  end
-
-  def set_room
-    @room = Room.find(params[:id])
   end
 end

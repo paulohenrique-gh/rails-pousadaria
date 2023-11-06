@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       )
     end
   end
+
+  def set_room(room_id)
+    @room = Room.find(room_id)
+  end
 end

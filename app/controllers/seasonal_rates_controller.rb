@@ -6,7 +6,9 @@ class SeasonalRatesController < ApplicationController
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
-  before_action :set_room, only: [:new, :create, :edit, :update, :inactivate]
+  before_action only: [:new, :create, :edit, :update, :inactivate] do
+    set_room(params[:room_id])
+  end
   before_action :set_seasonal_rate, only: [:edit, :update, :inactivate]
 
   def new
@@ -50,10 +52,6 @@ class SeasonalRatesController < ApplicationController
 
   def seasonal_rate_params
     params.require(:seasonal_rate).permit(:start_date, :finish_date, :rate)
-  end
-
-  def set_room
-    @room = Room.find(params[:room_id])
   end
 
   def set_seasonal_rate
