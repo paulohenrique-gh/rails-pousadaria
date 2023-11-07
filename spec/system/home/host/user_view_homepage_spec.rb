@@ -60,6 +60,6 @@ describe 'User visits home page' do
     visit root_path
 
     # Assert
-    expect(page).to have_content 'Pousada Campos Verdes - Pulomiranga'
+    expect(page).to have_content "Pousada Campos Verdes\nPulomiranga"
   end
 end

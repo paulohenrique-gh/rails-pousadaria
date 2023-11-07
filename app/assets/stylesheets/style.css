@@ -12,11 +12,16 @@
   font-weight: bold;
 }
 
-.warehouse-listing hr {
+.guesthouse_listing hr {
   margin-top: 25px;
 }
 
-.warehouse-listing-item {
+.guesthouse_listing-item {
   margin-top: 15px;
-  font-size: 20px;
+  font-size: 22px;
+}
+
+.guesthouse_listing-item-city {
+  margin-top: 5px;
+  font-size: 15px;
 }

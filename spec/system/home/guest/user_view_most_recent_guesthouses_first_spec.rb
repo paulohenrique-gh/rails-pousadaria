@@ -69,12 +69,12 @@ describe 'User visits home page' do
     visit root_path
 
     # Assert
-    within('.recent-guesthouses') do
-      expect(page).to have_content 'Pousada Cinco Estrelas - Cinco Santos'
-      expect(page).to have_content 'Pousada Quaresma - Quadradópolis'
-      expect(page).to have_content 'Pousada Três Reis - Teresina'
-      expect(page).not_to have_content 'Pousada Dualidade - Natal'
-      expect(page).not_to have_content 'Pousada Uno - Pulomiranga'
+    within('.recent_guesthouses') do
+      expect(page).to have_content "Pousada Cinco Estrelas\nCinco Santos"
+      expect(page).to have_content "Pousada Quaresma\nQuadradópolis"
+      expect(page).to have_content "Pousada Três Reis\nTeresina"
+      expect(page).not_to have_content "Pousada Dualidade\nNatal"
+      expect(page).not_to have_content "Pousada Uno\nPulomiranga"
     end
   end
 end

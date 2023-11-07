@@ -3,6 +3,6 @@ class HomeController < ApplicationController
 
   def index
     @recent_guesthouses = Guesthouse.active.order(created_at: :desc).first(3)
-    @other_guesthouses = Guesthouse.active.order(created_at: :desc)[3..]
+    @other_guesthouses = Guesthouse.active.order(created_at: :desc)[3..] || []
   end
 end

@@ -93,7 +93,7 @@ describe 'User edits guesthouse' do
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Pousada atualizada com sucesso'
-    expect(page).to have_content 'Pousada dos Diamantes - Pulomiranga'
+    expect(page).to have_content "Pousada dos Diamantes\nPulomiranga"
   end
 
   it 'and leaves mandatory fields blank' do

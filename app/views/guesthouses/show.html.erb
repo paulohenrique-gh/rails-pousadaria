@@ -4,14 +4,18 @@
   <dt><strong>Status:</strong></dt>
   <dd><%= t(@guesthouse.status) %></dd>
   
-  <dt><strong>Nome fantasia:</strong></dt>
+  <dt><strong>Nome:</strong></dt>
   <dd><%= @guesthouse.brand_name %></dd>
+  
+  <% if current_user == @guesthouse.user %>
+    <dt><strong>Razão social:</strong></dt>
+    <dd><%= @guesthouse.corporate_name %></dd>
+  <% end %>
 
-  <dt><strong>Razão social:</strong></dt>
-  <dd><%= @guesthouse.corporate_name %></dd>
-
-  <dt><strong>CNPJ:</strong></dt>
-  <dd><%= @guesthouse.registration_number %></dd>
+  <% if current_user == @guesthouse.user %>
+    <dt><strong>CNPJ:</strong></dt>
+    <dd><%= @guesthouse.registration_number %></dd>
+  <% end %>
 
   <dt><strong>Telefone:</strong></dt>
   <dd><%= @guesthouse.phone_number %></dd>

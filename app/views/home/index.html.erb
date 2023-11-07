@@ -1,21 +1,33 @@
-<div class="warehouse-listing">
-  <div class="recent-guesthouses">
+<div class="guesthouse_listing">
+  <div class="recent_guesthouses">
     <h2>Pousadas Recentes</h2>
     <% @recent_guesthouses.each do |g| %>
-      <div class="warehouse-listing-item">
-        <%= link_to g.brand_name, g %> - <%= g.address.city %>
+      <div class="guesthouse_listing-item">
+        <div class="guesthouse_listing-item-name">
+          <%= link_to g.brand_name, g %>
+        </div>
+        <div class="guesthouse_listing-item-city">
+          <%= g.address.city %>
+        </div>
       </div>
     <% end %>
   </div>
   
   <hr>
   
-  <div class="other-guesthouses">
-    <h2>Outras Pousadas</h2>
-    <% @other_guesthouses.each do |g| %>
-      <div class="warehouse-listing-item">
-        <%= link_to g.brand_name, g %> - <%= g.address.city %>
-      </div>
-    <% end %>
-  </div>
+  <% if @other_guesthouses.any? %>
+    <div class="other_guesthouses">
+      <h2>Outras Pousadas</h2>
+      <% @other_guesthouses.each do |g| %>
+        <div class="guesthouse_listing-item">
+          <div class="guesthouse_listing-item-name">
+            <%= link_to g.brand_name, g %>
+          </div>
+          <div class="guesthouse_listing-item-city">
+            <%= g.address.city %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

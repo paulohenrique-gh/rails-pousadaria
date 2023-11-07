@@ -27,9 +27,9 @@ describe 'Guest visits guesthouse details page' do
 
     # Assert
     expect(page).to have_content 'Status: Ativa'
-    expect(page).to have_content 'Nome fantasia: Pousada Bosque'
-    expect(page).to have_content 'Razão social: Pousada Ramos Faria LTDA'
-    expect(page).to have_content 'CNPJ: 02303221000152'
+    expect(page).to have_content 'Nome: Pousada Bosque'
+    expect(page).not_to have_content 'Razão social: Pousada Ramos Faria LTDA'
+    expect(page).not_to have_content 'CNPJ: 02303221000152'
     expect(page).to have_content 'Telefone: 1130205000'
     expect(page).to have_content 'E-mail: atendimento@pousadabosque'
     expect(page).to have_content 'Logradouro: Rua das Pedras'
@@ -73,6 +73,7 @@ describe 'Guest visits guesthouse details page' do
     click_on 'Pousada Bosque'
 
     # Assert
+    expect(page).not_to have_content 'Complemento'
     expect(page).not_to have_content 'Método de pagamento 1'
     expect(page).not_to have_content 'Método de pagamento 2'
     expect(page).not_to have_content 'Método de pagamento 3'
@@ -101,6 +102,8 @@ describe 'Host visits own guesthouse details page' do
 
     # Assert
     expect(current_path).to eq my_guesthouse_path
+    expect(page).to have_content 'Razão social: Pousada Ramos Faria LTDA'
+    expect(page).to have_content 'CNPJ: 02303221000152'
     expect(page).to have_link 'Adicionar quarto'
     expect(page).to have_link 'Editar'
     expect(page).to have_button 'Inativar'
