@@ -1,14 +1,21 @@
-<% @guesthouses.each do |g| %>
-  <h2><%= link_to g.brand_name, g %></h2>
-  <dl>
-    <dt><strong>Telefone:</strong></dt>
-    <dd><%= g.phone_number %></dd>
-    <dt><strong>E-mail:</strong></dt>
-    <dd><%= g.email %></dd>
-    <dt><strong>Endereço:</strong></dt>
-    <dd>
-      <%= full_address_string(g.address) %>
-    </dd>
-  </dl>
+<div class="warehouse-listing">
+  <div class="recent-guesthouses">
+    <h2>Pousadas Recentes</h2>
+    <% @recent_guesthouses.each do |g| %>
+      <div class="warehouse-listing-item">
+        <%= link_to g.brand_name, g %> - <%= g.address.city %>
+      </div>
+    <% end %>
+  </div>
+  
   <hr>
-<% end %>
+  
+  <div class="other-guesthouses">
+    <h2>Outras Pousadas</h2>
+    <% @other_guesthouses.each do |g| %>
+      <div class="warehouse-listing-item">
+        <%= link_to g.brand_name, g %> - <%= g.address.city %>
+      </div>
+    <% end %>
+  </div>
+</div>

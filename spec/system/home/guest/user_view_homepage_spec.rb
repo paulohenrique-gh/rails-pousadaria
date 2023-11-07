@@ -32,7 +32,7 @@ describe 'User visits home page' do
     other_address = Address.create!(street_name: 'Rua Carlos Pontes',
                                     number: '450',
                                     neighbourhood: 'Santa Helena',
-                                    city: 'Pulomiranga', state: 'RN',
+                                    city: 'Natal', state: 'RN',
                                     postal_code: '99004-100')
     inactive_address = Address.create!(street_name: 'Rua Inativa',
                                        number: '90',
@@ -64,23 +64,8 @@ describe 'User visits home page' do
     visit root_path
 
     # Assert
-    expect(page).to have_content 'Pousada Bosque'
-    expect(page).to have_content 'Telefone: 1130205000'
-    expect(page).to have_content 'E-mail: atendimento@pousadabosque'
-    expect(page).to have_content(
-      'Rua das Pedras, 30, Santa Helena, 99000-525, Pulomiranga - RN'
-    )
-    expect(page).to have_content 'Pousada Campos Verdes'
-    expect(page).to have_content 'Telefone: 1130205555'
-    expect(page).to have_content 'E-mail: atendimento@camposverdes.com'
-    expect(page).to have_content(
-      'Rua Carlos Pontes, 450, Santa Helena, 99004-100, Pulomiranga - RN'
-    )
-    expect(page).not_to have_content 'Pousada Inativa'
-    expect(page).not_to have_content 'Telefone: 1132227777'
-    expect(page).not_to have_content 'E-mail: atendimento@inativa.com'
-    expect(page).not_to have_content(
-      'Rua Inativa, 90, Santa Inativa, 99555-122, Pulomiranga - RN'
-    )
+    expect(page).to have_content 'Pousada Bosque - Pulomiranga'
+    expect(page).to have_content 'Pousada Campos Verdes - Natal'
+    expect(page).not_to have_content 'Pousada Inativa - Pulomiranga'
   end
 end

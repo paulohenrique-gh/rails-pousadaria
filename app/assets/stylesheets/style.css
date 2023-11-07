@@ -9,5 +9,14 @@
 
 .notice {
   color: rgb(4, 168, 4);
-  font-weight: bold
+  font-weight: bold;
+}
+
+.warehouse-listing hr {
+  margin-top: 25px;
+}
+
+.warehouse-listing-item {
+  margin-top: 15px;
+  font-size: 20px;
 }

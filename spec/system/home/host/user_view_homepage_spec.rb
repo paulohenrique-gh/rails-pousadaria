@@ -60,11 +60,6 @@ describe 'User visits home page' do
     visit root_path
 
     # Assert
-    expect(page).to have_link 'Pousada Campos Verdes'
-    expect(page).to have_content 'Telefone: 1130205555'
-    expect(page).to have_content 'E-mail: atendimento@camposverdes.com'
-    expect(page).to have_content(
-      'Rua Carlos Pontes, 450, Santa Helena, 99004-100, Pulomiranga - RN'
-    )
+    expect(page).to have_content 'Pousada Campos Verdes - Pulomiranga'
   end
 end

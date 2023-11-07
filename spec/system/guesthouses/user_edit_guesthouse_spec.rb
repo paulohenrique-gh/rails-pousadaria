@@ -93,12 +93,7 @@ describe 'User edits guesthouse' do
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content 'Pousada atualizada com sucesso'
-    expect(page).to have_content 'Pousada dos Diamantes'
-    expect(page).to have_content 'Telefone: 1130205000'
-    expect(page).to have_content 'E-mail: atendimento@pousadabosque'
-    expect(page).to have_content(
-      'Rua das Jóias, 30, Santa Helena, 99000-525, Pulomiranga - RN'
-    )
+    expect(page).to have_content 'Pousada dos Diamantes - Pulomiranga'
   end
 
   it 'and leaves mandatory fields blank' do
