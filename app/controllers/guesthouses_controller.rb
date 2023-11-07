@@ -2,7 +2,7 @@ class GuesthousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit,
                                             :update, :inactivate]
 
-  before_action  only: [:edit, :update,:inactivate] do
+  before_action  only: [:edit, :update, :inactivate] do
     set_guesthouse_and_check_user(params[:id])
   end
 
@@ -61,6 +61,15 @@ class GuesthousesController < ApplicationController
     @all_rooms = @guesthouse.rooms
 
     render 'show', status: :ok
+  end
+
+  def by_city
+    @city = params[:city]
+    addresses_by_city = Address.where(city: @city)
+    @available_guesthouses = Guesthouse.active
+                                       .where(address: addresses_by_city)
+                                       .order(:brand_name)
+    redirect_to root_path if @available_guesthouses.empty?
   end
 
   private

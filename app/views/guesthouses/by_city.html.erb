@@ -1,0 +1,15 @@
+<h2>Pousadas disponíveis em <%= @city %></h2>
+
+<div class="guesthouses_by_city">
+  <ul class="guesthouses_by_city-list">
+    <% @available_guesthouses.each do |g| %>
+        <li class="guesthouses_by_city-list-item">
+          <%= link_to g.brand_name, g %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="return_link">
+  <%= link_to 'Voltar', root_path %>
+</div>

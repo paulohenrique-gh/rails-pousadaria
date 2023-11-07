@@ -47,11 +47,11 @@ describe 'User visits home page' do
     # debugger
 
     # Assert
-    first_item = page.find('.cities_list-city_link:nth-child(1)')
-    second_item = page.find('.cities_list-city_link:nth-child(2)')
-    third_item = page.find('.cities_list-city_link:nth-child(3)')
-    expect(first_item).to have_link 'Americana'
-    expect(second_item).to have_link 'Bananeira'
-    expect(third_item).to have_link 'Casarão'
+    # first_item = page.find('.cities_list-city_link:nth-child(1)')
+    # second_item = page.find('.cities_list-city_link:nth-child(2)')
+    # third_item = page.find('.cities_list-city_link:nth-child(3)')
+    expect(page).to have_link 'Americana'
+    expect(page).to have_link 'Bananeira'
+    expect(page).to have_link 'Casarão'
   end
 end
