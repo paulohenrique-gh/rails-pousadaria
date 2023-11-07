@@ -1,10 +1,13 @@
 <% if @guesthouses.any? %>
-  <h2>Resultados para "<%= @query %>"</h2>
+  <h2><%= search_result_message(@guesthouses, @query) %></h2>
 
-  <% @guesthouses.each do |g| %>
-    <%= link_to(g.brand_name, g) %>
-    <hr>
-  <% end %>
+  <ul class="search_result_list">
+    <% @guesthouses.each do |g| %>
+      <li class="search_result_list-item">
+        <%= link_to(g.brand_name, g) %>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
   <h2>Nenhum resultado encontrado para "<%= @query %>"</h2>
 <% end %>

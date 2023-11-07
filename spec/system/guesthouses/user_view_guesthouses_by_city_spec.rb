@@ -94,10 +94,11 @@ describe "User visits the guesthouses-by-city page" do
     # Act
     visit root_path
     click_on 'Pulomiranga'
+
+    # Assert
     first_guesthouse = page.find('.guesthouses_by_city-list-item:nth-child(1)')
     second_guesthouse = page.find('.guesthouses_by_city-list-item:nth-child(2)')
     third_guesthouse = page.find('.guesthouses_by_city-list-item:nth-child(3)')
-
     expect(first_guesthouse).to have_link 'Americana'
     expect(second_guesthouse).to have_link 'Brisa'
     expect(third_guesthouse).to have_link 'Casa de Família'

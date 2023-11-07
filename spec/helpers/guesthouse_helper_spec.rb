@@ -98,4 +98,30 @@ RSpec.describe GuesthouseHelper, type: :helper do
       expect(result).to eq '20:30'
     end
   end
+
+  describe '#search_result_message' do
+    it 'returns the correct string when collection size is 1' do
+      # Arrange
+      collection = ['item 1']
+      query = 'termo de pesquisa'
+
+      # Act
+      result = search_result_message(collection, query)
+
+      # Assert
+      expect(result).to eq '1 resultado encontrado para "termo de pesquisa"'
+    end
+
+    it 'returns the correct string when collection size is greater than 1' do
+      # Arrange
+      collection = ['item 1', 'item 2', 'item 3']
+      query = 'termo de pesquisa'
+
+      # Act
+      result = search_result_message(collection, query)
+
+      # Assert
+      expect(result).to eq '3 resultados encontrados para "termo de pesquisa"'
+    end
+  end
 end

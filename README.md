@@ -42,3 +42,4 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [Action View Number Helpers](https://api.rubyonrails.org/classes/ActionView/Helpers/NumberHelper.html#)
 - [Reload](https://dpericich.medium.com/using-activerecords-reload-method-to-keep-attributes-current-652504427fc7)
 - [Pluck](https://guides.rubyonrails.org/v5.1/active_record_querying.html#pluck)
+- [Join](https://guides.rubyonrails.org/active_record_querying.html#joining-tables)
