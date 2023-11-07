@@ -11,16 +11,16 @@ describe 'User visits home page' do
     address_one = Address.create!(street_name: 'Rua Carlos Pontes',
                                   number: '450',
                                   neighbourhood: 'Santa Helena',
-                                  city: 'Natal', state: 'RN',
+                                  city: 'Casarão', state: 'RN',
                                   postal_code: '99004-100')
     address_two = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
-                                  city: 'Pulomiranga', state: 'RN',
+                                  city: 'Bananeira', state: 'RN',
                                   postal_code: '99000-525')
     address_three = Address.create!(street_name: 'Rua Teresa Cristina',
                                     number: '55',
                                     neighbourhood: 'Santa Teresa',
-                                    city: 'Teresina', state: 'PI',
+                                    city: 'Americana', state: 'PI',
                                     postal_code: '72655-100')
 
     guesthouse_one = Guesthouse.create!(brand_name: 'Pousada Dualidade',
@@ -47,11 +47,11 @@ describe 'User visits home page' do
     # debugger
 
     # Assert
-    # first_item = page.find('.cities_list-city_link:nth-child(1)')
-    # second_item = page.find('.cities_list-city_link:nth-child(2)')
-    # third_item = page.find('.cities_list-city_link:nth-child(3)')
-    # expect(first_item).to have_link 'Pulomiranga'
-    # expect(second_item).to have_link 'Natal'
-    # expect(third_item).to have_link 'Teresina'
+    first_item = page.find('.cities_list-city_link:nth-child(1)')
+    second_item = page.find('.cities_list-city_link:nth-child(2)')
+    third_item = page.find('.cities_list-city_link:nth-child(3)')
+    expect(first_item).to have_link 'Americana'
+    expect(second_item).to have_link 'Bananeira'
+    expect(third_item).to have_link 'Casarão'
   end
 end

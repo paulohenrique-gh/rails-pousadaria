@@ -1,11 +1,12 @@
 <div class="home_page_content">
   <div class="available_cities">
     <ul class="cities_list">
-      <%# @available_cities.each do |city| %>
+      <div class="cities_list-header">Cidades disponíveis</div>
+      <% @available_cities.each do |city| %>
         <li class="cities_list-city_link">
-          <%#= link_to (city, "/by_city/#{city}") %>
+          <%= link_to city, guesthouses_by_city_path(city) %>
         </li>
-      <%# end %>
+      <% end %>
     </ul>
   </div>
 

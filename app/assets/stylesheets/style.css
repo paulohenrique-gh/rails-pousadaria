@@ -20,6 +20,17 @@
 
 .cities_list {
   list-style: none;
+  padding: 0;
+}
+
+.cities_list-header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cities_list-city_link {
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 .available_cities {
@@ -29,13 +40,9 @@
 
 .guesthouse_listing {
   /* border: 2px solid blue; */
-  padding: 10px;
+  padding: 0 10px 10px 10px;
 }
 
-.guesthouse_listing h2 {
-  /* margin-top: 0; */
-  /* line-height: 100%; */
-}
 
 .guesthouse_listing hr {
   margin-top: 25px;
