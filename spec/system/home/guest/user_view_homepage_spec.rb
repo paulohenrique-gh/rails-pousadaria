@@ -68,4 +68,12 @@ describe 'User visits home page' do
     expect(page).to have_content "Pousada Campos Verdes\nNatal"
     expect(page).not_to have_content "Pousada Inativa\nPulomiranga"
   end
+
+  it 'and there are no registered guesthouses' do
+    # Act
+    visit root_path
+
+    # Assert
+    expect(page).to have_content 'Nenhuma pousada cadastrada'
+  end
 end

@@ -12,6 +12,31 @@
   font-weight: bold;
 }
 
+.home_page_content {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.cities_list {
+  list-style: none;
+}
+
+.available_cities {
+  /* border: 2px solid red; */
+  padding: 10px;
+}
+
+.guesthouse_listing {
+  /* border: 2px solid blue; */
+  padding: 10px;
+}
+
+.guesthouse_listing h2 {
+  /* margin-top: 0; */
+  /* line-height: 100%; */
+}
+
 .guesthouse_listing hr {
   margin-top: 25px;
 }
