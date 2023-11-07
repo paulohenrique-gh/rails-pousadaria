@@ -54,7 +54,8 @@ class GuesthousesController < ApplicationController
     @guesthouses = Guesthouse.active
                              .joins(:address)
                              .where("guesthouses.brand_name LIKE :query OR "\
-                                    "addresses.neighbourhood LIKE :query",
+                                    "addresses.neighbourhood LIKE :query OR "\
+                                    "addresses.city LIKE :query",
                                     query: "%#{@query}%")
                              .order(:brand_name)
   end

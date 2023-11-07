@@ -13,8 +13,8 @@ module GuesthouseHelper
   end
 
   def search_result_message(guesthouses, query)
-    result_found = "resultado encontrado"
-    result_found = "resultados encontrados" if guesthouses.size > 1
-    "#{guesthouses.size} #{result_found} para \"#{query}\""
+    found = "resultado encontrado"
+    found = "resultados encontrados" if guesthouses.size > 1
+    "#{guesthouses.size} #{found} para \"#{query}\""
   end
 end

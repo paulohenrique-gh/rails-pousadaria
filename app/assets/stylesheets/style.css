@@ -48,7 +48,9 @@
   margin-top: 25px;
 }
 
-.guesthouse_listing-item, .guesthouses_by_city-list-item {
+.guesthouse_listing-item,
+.guesthouses_by_city-list-item,
+.search_result_list-item {
   margin-top: 15px;
   font-size: 22px;
 }
