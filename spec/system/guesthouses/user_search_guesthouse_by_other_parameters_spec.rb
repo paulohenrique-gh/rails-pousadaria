@@ -105,7 +105,7 @@ describe 'User searches for a guesthouse' do
                                         registration_number: '0333033333',
                                         phone_number: '1130333333',
                                         email: 'tresreis@tresreis.com',
-                                        address: address_three, user: user_three)
+                                        address: address_four, user: user_four)
 
     # Act
     visit root_path
