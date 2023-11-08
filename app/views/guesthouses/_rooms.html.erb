@@ -1,5 +1,0 @@
-<% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
-  <%= render partial: 'room_details', locals: { rooms: @all_rooms } %>
-<% elsif @available_rooms.any? %>
-  <%= render partial: 'room_details', locals: { rooms: @available_rooms } %>
-<% end %>
