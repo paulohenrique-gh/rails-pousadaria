@@ -1,23 +1,5 @@
 <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
-  <dt><strong>Quartos:</strong></dt>
-  <dd>
-    <ul class="room_details_list">
-      <% @all_rooms.each do |room| %>
-        <li class="room_details_list-item">
-          <%= render partial: 'room_details', locals: { room: room } %>
-        </li>
-      <% end %>
-    </ul>
-  </dd>
+  <%= render partial: 'room_details', locals: { rooms: @all_rooms } %>
 <% elsif @available_rooms.any? %>
-  <dt><strong>Quartos:</strong></dt>
-  <dd>
-    <ul class="room_details_list">
-      <% @available_rooms.each do |room| %>
-        <li class="room_details_list-item">
-          <%= render partial: 'room_details', locals: { room: room } %>
-        </li>
-      <% end %>
-    </ul>
-  </dd>
+  <%= render partial: 'room_details', locals: { rooms: @available_rooms } %>
 <% end %>
