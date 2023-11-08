@@ -26,16 +26,14 @@ describe 'User visits room page' do
     # Act
     visit root_path
     click_on 'Pousada Bosque'
-    click_on 'Brasil'
 
     # Assert
-    expect(page).to have_content 'Nome: Brasil'
-    expect(page).to have_content 'Descrição: Quarto com tema Brasil'
-    expect(page).to have_content 'Dimensão: 200 m²'
-    expect(page).to have_content 'Número máximo de pessoas: 3'
+    expect(page).to have_content 'Brasil'
+    expect(page).to have_content 'Quarto com tema Brasil'
+    expect(page).to have_content '200 m²'
+    expect(page).to have_content 'Capacidade para até 3 pessoas'
     expect(page).to have_content 'Valor da diária: R$ 150'
     expect(page).to have_content 'Disponível para reservas'
-    expect(page).to have_content 'Adicionais:'
     expect(page).to have_content 'Banheiro próprio'
     expect(page).to have_content 'Varanda'
     expect(page).to have_content 'Ar-condicionado'

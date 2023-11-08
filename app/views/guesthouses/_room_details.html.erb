@@ -1,0 +1,24 @@
+<strong><%= room.name %></strong>
+<p><%= room.description %></p>
+<p>
+  <%= 
+    number_with_precision(
+      room.dimension, separator: ',', strip_insignificant_zeros: true
+    )
+  %> m²
+</p>
+<p>Capacidade para até <%= room.max_people %> pessoa(s)</p>
+<p>Valor da diária: <%= number_to_currency(@daily_rate) %></p>
+<p><%= room_availability(room) %></p>
+
+<% if extra_features?(room) %>
+  <% extra_features_collection(room).each do |feat| %>
+    <p><%= feat %><p>
+  <% end %>
+<% end %>
+
+<% if room.guesthouse.user == current_user %>
+  <%= link_to 'Mais detalhes', [room.guesthouse, room] %>
+<% end %>
+
+<!-- CRIAR ARRUMAR FORMA DE TRAZER A VARIÁVEL @DAILY RATE PARA CÁ -->
