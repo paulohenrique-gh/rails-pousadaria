@@ -12,16 +12,7 @@ class RoomsController < ApplicationController
   before_action :redirect_new_host_to_guesthouse_creation
 
   def show
-    @daily_rate = @room.daily_rate
     @active_seasonal_rates = @room.seasonal_rates.active
-
-    # TODO: refactor so it uses the method current_seasonal_rate in the model
-    @active_seasonal_rates.each do |sr|
-      if Date.today.between?(sr.start_date, sr.finish_date)
-        @daily_rate = sr.rate
-        break
-      end
-    end
   end
 
   def new
