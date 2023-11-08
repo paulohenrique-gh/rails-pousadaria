@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  describe "#valid" do
+  describe '#valid' do
     it 'returns false when name is empty' do
       # Arrange
       user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -161,6 +161,39 @@ RSpec.describe Room, type: :model do
 
       # Assert
       expect(room).to be_valid
+    end
+  end
+
+  describe '#current_daily_rate' do
+    it 'returns value according to seasonal rate' do
+      # Arrange
+      user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+      address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                                neighbourhood: 'Santa Helena',
+                                city: 'Pulomiranga', state: 'RN',
+                                postal_code: '99000-525')
+
+      guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                      corporate_name: 'Pousada Ramos Faria LTDA',
+                                      registration_number: '02303221000152',
+                                      phone_number: '1130205000',
+                                      email: 'atendimento@pousadabosque',
+                                      address: address, user: user)
+
+      room = Room.create!(name: 'Brasil',
+                          description: 'Quarto com tema Brasil',
+                          dimension: 200, max_people: 3, daily_rate: 150,
+                          guesthouse: guesthouse)
+
+      room.seasonal_rates.create!(start_date: 5.days.ago,
+                                  finish_date: 5.days.from_now, rate: 225)
+
+      # Act
+      result = room.current_daily_rate
+
+      # Assert
+      expect(result).to eq 225
     end
   end
 end

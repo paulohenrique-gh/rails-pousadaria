@@ -21,15 +21,15 @@ describe 'User marks room as unavailable' do
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse, available: true)
-    other_room = Room.create!(name: 'Suécia', description: 'Tema sueco',
-                              dimension: 400, max_people: 3, daily_rate: 580,
-                              guesthouse: guesthouse, available: true)
 
     # Act
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
+
     click_on 'Editar'
     uncheck 'Disponível para reservas'
     click_on 'Enviar'
@@ -69,8 +69,10 @@ describe 'User marks room as unavailable' do
     click_on 'Pousada Bosque'
 
     # Assert
-    expect(page).not_to have_link 'Brasil'
-    expect(page).to have_link 'Suécia'
+    expect(page).not_to have_content 'Brasil'
+    expect(page).not_to have_content 'Quarto com tema Brasil'
+    expect(page).to have_content 'Suécia'
+    expect(page).to have_content 'Tema sueco'
   end
 end
 
@@ -100,7 +102,10 @@ describe 'User marks room as available' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
+
     click_on 'Editar'
     check 'Disponível para reservas'
     click_on 'Enviar'
@@ -141,7 +146,9 @@ describe 'User marks room as available' do
     click_on 'Minha Pousada'
 
     # Assert
-    expect(page).to have_link 'Suécia'
-    expect(page).to have_link 'Brasil'
+    within('.room_details_list') do
+      expect(page).to have_content 'Suécia'
+      expect(page).to have_content 'Brasil'
+    end
   end
 end

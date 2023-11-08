@@ -21,6 +21,13 @@ describe 'Guest visits guesthouse details page' do
       address: address, user: user
     )
 
+    guesthouse.rooms.create!(name: 'Brasil',
+                             description: 'Quarto com tema Brasil',
+                             dimension: 200, max_people: 3, daily_rate: 150,
+                             private_bathroom: true, balcony: true,
+                             air_conditioning: true, tv: true, closet: true,
+                             safe: true, accessibility: true)
+
     # Act
     visit root_path
     click_on 'Pousada Bosque'
@@ -51,6 +58,19 @@ describe 'Guest visits guesthouse details page' do
     )
     expect(page).to have_content 'Horário de check-in: 08:00'
     expect(page).to have_content 'Horário de check-out: 20:00'
+    expect(page).to have_content 'Brasil'
+    expect(page).to have_content 'Quarto com tema Brasil'
+    expect(page).to have_content '200 m²'
+    expect(page).to have_content 'Capacidade para até 3 pessoa(s)'
+    expect(page).to have_content 'Valor da diária: R$ 150,00'
+    expect(page).to have_content 'Disponível para reservas'
+    expect(page).to have_content 'Banheiro próprio'
+    expect(page).to have_content 'Varanda'
+    expect(page).to have_content 'Ar-condicionado'
+    expect(page).to have_content 'TV'
+    expect(page).to have_content 'Guarda-roupas'
+    expect(page).to have_content 'Cofre'
+    expect(page).to have_content 'Acessível para pessoas com deficiência'
     expect(page).not_to have_link 'Adicionar quarto'
   end
 

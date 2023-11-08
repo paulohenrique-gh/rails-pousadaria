@@ -8,7 +8,7 @@
   %> m²
 </p>
 <p>Capacidade para até <%= room.max_people %> pessoa(s)</p>
-<p>Valor da diária: <%= number_to_currency(@daily_rate) %></p>
+<p>Valor da diária: <%= number_to_currency(room.current_daily_rate) %></p>
 <p><%= room_availability(room) %></p>
 
 <% if extra_features?(room) %>
@@ -20,5 +20,3 @@
 <% if room.guesthouse.user == current_user %>
   <%= link_to 'Mais detalhes', [room.guesthouse, room] %>
 <% end %>
-
-<!-- CRIAR ARRUMAR FORMA DE TRAZER A VARIÁVEL @DAILY RATE PARA CÁ -->

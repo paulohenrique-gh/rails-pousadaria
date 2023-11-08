@@ -29,7 +29,10 @@ describe 'User edits seasonal rate' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
+
     within('.seasonal_rates_list') do
       click_on 'Editar'
     end
@@ -142,7 +145,10 @@ describe 'User edits seasonal rate' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
+
     within('.seasonal_rates_list') do
       click_on 'Editar'
     end
@@ -185,7 +191,10 @@ describe 'User edits seasonal rate' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
+
     within('.seasonal_rates_list') do
       click_on 'Editar'
     end

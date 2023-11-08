@@ -98,7 +98,18 @@ describe 'User adds a room to their guesthouse' do
     # Assert
     expect(current_path).to eq guesthouse_path(guesthouse.id)
     expect(page).to have_content 'Quarto cadastrado com sucesso'
-    expect(page).to have_link 'Brasil'
+    expect(page).to have_content 'Brasil'
+    expect(page).to have_content 'Quarto com tema Brasil'
+    expect(page).to have_content '200 m²'
+    expect(page).to have_content 'Capacidade para até 3 pessoa(s)'
+    expect(page).to have_content 'Valor da diária: R$ 150,00'
+    expect(page).to have_content 'Disponível para reservas'
+    expect(page).to have_content 'Banheiro próprio'
+    expect(page).to have_content 'Varanda'
+    expect(page).to have_content 'Ar-condicionado'
+    expect(page).to have_content 'TV'
+    expect(page).to have_content 'Cofre'
+    expect(page).to have_content 'Acessível para pessoas com deficiência'
   end
 
   it 'and leaves required fields empty' do

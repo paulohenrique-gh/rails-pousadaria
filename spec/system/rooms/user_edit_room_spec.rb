@@ -83,7 +83,9 @@ describe 'User edits room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
     click_on 'Editar'
 
     # Assert
@@ -127,7 +129,9 @@ describe 'User edits room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
     click_on 'Editar'
     fill_in 'Dimensão em m²', with: 300
     fill_in 'Descrição', with: 'Tema brasileiro'
@@ -163,7 +167,9 @@ describe 'User edits room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    click_on 'Brasil'
+    within('.room_details_list') do
+      click_on 'Mais detalhes'
+    end
     click_on 'Editar'
     fill_in 'Nome', with: ''
     fill_in 'Valor da diária', with: ''

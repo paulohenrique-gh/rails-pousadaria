@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-  before_action only: [:new, :create, :edit, :update] do
+  before_action only: [:show, :new, :create, :edit, :update] do
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
@@ -14,6 +14,8 @@ class RoomsController < ApplicationController
   def show
     @daily_rate = @room.daily_rate
     @active_seasonal_rates = @room.seasonal_rates.active
+
+    # TODO: refactor so it uses the method current_seasonal_rate in the model
     @active_seasonal_rates.each do |sr|
       if Date.today.between?(sr.start_date, sr.finish_date)
         @daily_rate = sr.rate
