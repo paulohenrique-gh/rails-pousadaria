@@ -121,6 +121,7 @@ describe 'User reactivates guesthouse' do
                                     checkin_time: '08:00',
                                     checkout_time: '18:00',
                                     address: other_address, user: other_user)
+
     # Act
     login_as other_user
     patch(reactivate_guesthouse_path(guesthouse.id))
