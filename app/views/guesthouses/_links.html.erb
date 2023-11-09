@@ -1,14 +1,22 @@
 <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
   <div>
-    <%= link_to 'Adicionar quarto', new_guesthouse_room_path(@guesthouse.id) %>
+    <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
   </div>
   <div>
-    <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
+    <%= link_to 'Adicionar quarto', new_guesthouse_room_path(@guesthouse.id) %>
   </div>
   <%= 
     button_to(
       'Inativar',
       inactivate_guesthouse_path(@guesthouse.id),
+      { method: 'patch' }
+    )
+  %>
+<% elsif @user && @guesthouse == @user.guesthouse && @guesthouse.inactive? %>
+  <%= 
+    button_to(
+      'Reativar',
+      reactivate_guesthouse_path(@guesthouse.id),
       { method: 'patch' }
     )
   %>

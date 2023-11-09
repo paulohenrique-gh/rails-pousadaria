@@ -34,12 +34,10 @@
 }
 
 .available_cities {
-  /* border: 2px solid red; */
   padding: 10px;
 }
 
 .guesthouse_listing {
-  /* border: 2px solid blue; */
   padding: 0 10px 10px 10px;
 }
 
@@ -62,4 +60,10 @@
 
 .return_link {
   margin-top: 15px;
+}
+
+.edit_options {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

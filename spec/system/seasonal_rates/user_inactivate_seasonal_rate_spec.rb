@@ -36,9 +36,9 @@ describe 'User inactivates seasonal rate' do
     end
 
     within('.seasonal_rates_list') do
-      click_on 'Inativar'
+      click_on 'Detalhes'
     end
-    click_on 'Confirmar inativação'
+    click_on 'Inativar'
 
     # Assert
     expect(page).to have_content 'Preço por período excluído com sucesso'

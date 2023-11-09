@@ -36,7 +36,7 @@ describe 'User visits seasonal rate details' do
     end
 
     within('.seasonal_rates_list') do
-      click_on 'Inativar'
+      click_on 'Detalhes'
     end
 
     # Assert
@@ -50,7 +50,7 @@ describe 'User visits seasonal rate details' do
     expect(page).to have_content "Data final: #{formatted_finish_date}"
     expect(page).to have_content 'Valor: R$ 400,00'
     expect(page).to have_content "Criado em: #{formatted_creation_date}"
-    expect(page).to have_button 'Confirmar inativação'
+    expect(page).to have_button 'Inativar'
   end
 
   it 'and must be authenticated' do

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
 
     patch :inactivate, on: :member
+    patch :reactivate, on: :member
     get 'search', on: :collection
   end
 end

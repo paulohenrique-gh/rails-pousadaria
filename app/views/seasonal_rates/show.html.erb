@@ -1,6 +1,6 @@
 <h2><%= @guesthouse.brand_name %> - Quarto <%= @room.name %></h2>
 
-<h3>Inativar preço por período</h3>
+<h3>Preço por período</h3>
 
 <dl>
   <dt><strong>Data inicial:</strong></dt>
@@ -16,11 +16,17 @@
   <dd><%= @seasonal_rate.created_at.strftime('%d/%m/%Y %H:%M:%S') %></dd>
 </dl>
 
-<%=
-  button_to(
-    'Confirmar inativação',
-    inactivate_guesthouse_room_seasonal_rate_path(@guesthouse.id, @room.id,
-                                                  @seasonal_rate.id),
-    { method: 'patch' }
-  )
-%>
+<div class="edit_options">
+  <%=
+    button_to(
+      'Inativar',
+      inactivate_guesthouse_room_seasonal_rate_path(@guesthouse.id, @room.id,
+                                                    @seasonal_rate.id),
+      { method: 'patch' }
+    )
+  %>
+  
+  <div>
+    <%= link_to 'Voltar', [@guesthouse, @room] %>
+  </div>
+</div>

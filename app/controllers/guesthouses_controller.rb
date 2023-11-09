@@ -1,17 +1,17 @@
 class GuesthousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit,
-                                            :update, :inactivate]
+                                            :update, :inactivate, :reactivate]
 
   before_action  only: [:edit, :update, :inactivate] do
     set_guesthouse_and_check_user(params[:id])
   end
 
+  before_action :set_guesthouse, only: [:show, :reactivate]
   before_action :check_guesthouse_presence, only: [:new, :create]
   before_action :redirect_new_host_to_guesthouse_creation, except: [:new,
                                                                     :create]
 
   def show
-    @guesthouse = Guesthouse.find(params[:id])
     @user = current_user
     @available_rooms = @guesthouse.rooms.where(available: true)
     @all_rooms = @guesthouse.rooms
@@ -47,6 +47,15 @@ class GuesthousesController < ApplicationController
   def inactivate
     @guesthouse.inactive!
     redirect_to root_path, notice: 'Pousada inativada com sucesso'
+  end
+
+  def reactivate
+    if current_user && @guesthouse.user == current_user
+      @guesthouse.active!
+      return redirect_to @guesthouse, notice: 'Pousada reativada com sucesso'
+    else
+      redirect_to root_path
+    end
   end
 
   def search
@@ -95,6 +104,10 @@ class GuesthousesController < ApplicationController
         :postal_code, :city, :state
       ]
     )
+  end
+
+  def set_guesthouse
+    @guesthouse = Guesthouse.find(params[:id])
   end
 
   def check_guesthouse_presence

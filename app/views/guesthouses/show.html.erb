@@ -91,7 +91,12 @@
   <% elsif @available_rooms.any? %>
     <%= render partial: 'room_details', locals: { rooms: @available_rooms } %>
   <% end %>
-
-  <%= render 'links' %>
 </dl>
+
+<div class="edit_options"><%= render 'links' %></div>
+
+<div class="return_link">
+  <%= link_to 'Voltar', root_path %>
+</div>
+
 

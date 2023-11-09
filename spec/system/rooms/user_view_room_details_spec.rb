@@ -30,7 +30,7 @@ describe 'User visits room page' do
       click_on 'Mais detalhes'
     end
 
-    click_on 'Voltar para pousada'
+    click_on 'Voltar'
 
     # Assert
     expect(current_path).to eq guesthouse_path(guesthouse.id)

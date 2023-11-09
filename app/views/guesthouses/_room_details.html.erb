@@ -22,7 +22,7 @@
           <% end %>
         <% end %>
 
-        <% if room.guesthouse.user == current_user %>
+        <% if room.guesthouse.user == current_user && @guesthouse.active? %>
           <%= link_to 'Mais detalhes', [room.guesthouse, room] %>
         <% end %>
       </li>

@@ -79,11 +79,11 @@
   </div>
   <div>
     <%= f.label :checkin_time, 'Horário de check-in' %>
-    <%= f.time_field :checkin_time %>
+    <%= f.time_field :checkin_time, { value: formatted_checkin_time(@guesthouse) } %>
   </div>
   <div>
     <%= f.label :checkout_time, 'Horário de check-out' %>
-    <%= f.time_field :checkout_time %>
+    <%= f.time_field :checkout_time, { value: formatted_checkout_time(@guesthouse) } %>
   </div>
   <div>
     <%= f.submit 'Enviar' %>

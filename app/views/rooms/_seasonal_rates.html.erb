@@ -1,6 +1,12 @@
 <dt><strong>Preços por período:</strong></dt>
 <dd>
   <ul class="seasonal_rates_list">
+    <%=
+      link_to(
+        'Adicionar preço por período',
+        new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id, @room.id)
+      )
+    %>
     <li>
       <strong>Padrão:</strong>
       <%= number_to_currency(@room.daily_rate) %>
@@ -13,7 +19,7 @@
           a <%= I18n.localize(sr.finish_date) %>: 
         </strong> <%= number_to_currency(sr.rate) %>
 
-      | <%= link_to('Inativar', [@guesthouse, @room, sr]) %>
+      | <%= link_to('Detalhes', [@guesthouse, @room, sr]) %>
       </li>
     <% end %>
   </ul>

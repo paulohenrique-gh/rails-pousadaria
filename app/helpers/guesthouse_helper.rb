@@ -5,10 +5,12 @@ module GuesthouseHelper
   end
 
   def formatted_checkin_time(guesthouse)
+    return '%H:%M' if guesthouse.checkin_time.nil?
     guesthouse.checkin_time.strftime('%H:%M')
   end
 
   def formatted_checkout_time(guesthouse)
+    return '%H:%M' if guesthouse.checkout_time.nil?
     guesthouse.checkout_time.strftime('%H:%M')
   end
 
