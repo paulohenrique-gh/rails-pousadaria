@@ -63,7 +63,7 @@ class GuesthousesController < ApplicationController
   def user_guesthouse
     @user = current_user
     if @user.nil?
-      redirect_to root_path if @user.nil?
+      redirect_to root_path
     else
       @guesthouse = @user.guesthouse
       @available_rooms = @guesthouse.rooms.where(available: true)
