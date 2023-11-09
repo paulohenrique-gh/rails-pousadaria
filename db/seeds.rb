@@ -35,6 +35,8 @@
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
+    checkin_time: '08:00',
+    checkout_time: '18:00',
     user: user,
     address: address
   )
@@ -121,6 +123,8 @@ end
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
+    checkin_time: '08:00',
+    checkout_time: '18:00',
     user: user,
     address: address
   )
@@ -207,6 +211,8 @@ end
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
+    checkin_time: '08:00',
+    checkout_time: '18:00',
     user: user,
     address: address
   )

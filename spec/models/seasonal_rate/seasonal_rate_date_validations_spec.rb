@@ -39,7 +39,7 @@ RSpec.describe SeasonalRate, type: :model do
   end
 
   describe '#finish_date_is_greater_than_start_date' do
-    it 'adds error to object when start_date is greater than finish date' do
+    it 'adds error when start_date is greater than finish date' do
       # Arrange
       seasonal_rate = SeasonalRate.new(start_date: '2024-01-01',
                                        finish_date: '2023-12-24',

@@ -13,16 +13,7 @@
           a <%= I18n.localize(sr.finish_date) %>: 
         </strong> <%= number_to_currency(sr.rate) %>
 
-        <% if @room.guesthouse.user == current_user %>
-          | <%=
-              link_to(
-                'Editar',
-                edit_guesthouse_room_seasonal_rate_path(
-                  @room.guesthouse.id, @room.id, sr.id
-                )
-              )
-            %>
-        <% end %>
+      | <%= link_to('Inativar', [@guesthouse, @room, sr]) %>
       </li>
     <% end %>
   </ul>

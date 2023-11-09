@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show] do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
-      resources :seasonal_rates, only: [:new, :create, :edit, :update] do
+      resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member
       end
     end

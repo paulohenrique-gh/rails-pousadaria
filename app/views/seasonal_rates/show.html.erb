@@ -1,0 +1,26 @@
+<h2><%= @guesthouse.brand_name %> - Quarto <%= @room.name %></h2>
+
+<h3>Inativar preço por período</h3>
+
+<dl>
+  <dt><strong>Data inicial:</strong></dt>
+  <dd><%= I18n.localize(@seasonal_rate.start_date)%></dd>
+
+  <dt><strong>Data final:</strong></dt>
+  <dd><%= I18n.localize(@seasonal_rate.finish_date)%></dd>
+
+  <dt><strong>Valor:</strong></dt>
+  <dd><%= number_to_currency(@seasonal_rate.rate) %></dd>
+
+  <dt><strong>Criado em:</strong></dt>
+  <dd><%= @seasonal_rate.created_at.strftime('%d/%m/%Y %H:%M:%S') %></dd>
+</dl>
+
+<%=
+  button_to(
+    'Confirmar inativação',
+    inactivate_guesthouse_room_seasonal_rate_path(@guesthouse.id, @room.id,
+                                                  @seasonal_rate.id),
+    { method: 'patch' }
+  )
+%>

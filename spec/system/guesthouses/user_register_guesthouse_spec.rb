@@ -100,12 +100,16 @@ describe 'User registers guesthouse' do
     fill_in 'CEP', with: '99000-525'
     fill_in 'Cidade', with: 'Pulomiranga'
     fill_in 'Estado', with: 'RN'
+    fill_in 'Horário de check-in', with: ''
+    fill_in 'Horário de check-out', with: ''
     click_on 'Enviar'
 
     # Assert
     expect(page).to have_content 'Não foi possível cadastrar pousada'
     expect(page).to have_content 'CNPJ não pode ficar em branco'
     expect(page).to have_content 'Número não pode ficar em branco'
+    expect(page).to have_content 'Horário de check-in não pode ficar em branco'
+    expect(page).to have_content 'Horário de check-out não pode ficar em branco'
   end
 
   it 'and already has a guesthouse registered' do
@@ -121,6 +125,7 @@ describe 'User registers guesthouse' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00', checkout_time: '18:00',
                                     address: address, user: user)
 
     # Act

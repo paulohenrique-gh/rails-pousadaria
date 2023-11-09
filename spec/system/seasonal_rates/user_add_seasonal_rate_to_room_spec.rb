@@ -15,6 +15,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
@@ -54,6 +56,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
@@ -99,6 +103,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
@@ -139,6 +145,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
@@ -180,6 +188,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
@@ -209,6 +219,8 @@ describe 'User adds seasonal rate to room' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
                                     address: address, user: user)
 
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',

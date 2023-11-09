@@ -15,7 +15,8 @@ RSpec.describe GuesthouseHelper, type: :helper do
                         registration_number: '02303221000152',
                         phone_number: '1130205000',
                         email: 'atendimento@pousadabosque',
-                        pet_policy: true,
+                        pet_policy: true, checkin_time: '08:00',
+                        checkout_time: '18:00',
                         address: address, user: user)
 
       # Act
@@ -38,7 +39,8 @@ RSpec.describe GuesthouseHelper, type: :helper do
                         registration_number: '02303221000152',
                         phone_number: '1130205000',
                         email: 'atendimento@pousadabosque',
-                        pet_policy: false,
+                        pet_policy: false, checkin_time: '08:00',
+                        checkout_time: '18:00',
                         address: address, user: user)
 
       # Act
@@ -63,7 +65,7 @@ RSpec.describe GuesthouseHelper, type: :helper do
                         registration_number: '02303221000152',
                         phone_number: '1130205000',
                         email: 'atendimento@pousadabosque',
-                        checkin_time: '08:30',
+                        checkin_time: '08:30', checkout_time: '18:00',
                         address: address, user: user)
 
       # Act
@@ -88,7 +90,7 @@ RSpec.describe GuesthouseHelper, type: :helper do
                         registration_number: '02303221000152',
                         phone_number: '1130205000',
                         email: 'atendimento@pousadabosque',
-                        checkout_time: '20:30',
+                        checkin_time: '08:00', checkout_time: '20:30',
                         address: address, user: user)
 
       # Act

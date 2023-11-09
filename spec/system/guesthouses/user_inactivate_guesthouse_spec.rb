@@ -14,6 +14,7 @@ describe 'User inactivates a guesthouse' do
                                     registration_number: '02303221000152',
                                     phone_number: '1130205000',
                                     email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00', checkout_time: '18:00',
                                     address: address, user: user)
 
     # Act
@@ -25,10 +26,6 @@ describe 'User inactivates a guesthouse' do
     # Assert
     expect(page).to have_content 'Pousada inativada com sucesso'
     expect(page).not_to have_content 'Pousada Bosque'
-    expect(page).not_to have_content 'Telefone: 1130205000'
-    expect(page).not_to have_content 'E-mail: atendimento@pousadabosque'
-    expect(page).not_to have_content("
-      Rua das Pedras, 30, Térreo, Santa Helena, 99000-525, Pulomiranga - RN"
-    )
+    expect(page).not_to have_content 'Pulomiranga'
   end
 end

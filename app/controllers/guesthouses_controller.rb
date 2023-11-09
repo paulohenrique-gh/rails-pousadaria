@@ -62,11 +62,15 @@ class GuesthousesController < ApplicationController
 
   def user_guesthouse
     @user = current_user
-    @guesthouse = @user.guesthouse
-    @available_rooms = @guesthouse.rooms.where(available: true)
-    @all_rooms = @guesthouse.rooms
+    if @user.nil?
+      redirect_to root_path if @user.nil?
+    else
+      @guesthouse = @user.guesthouse
+      @available_rooms = @guesthouse.rooms.where(available: true)
+      @all_rooms = @guesthouse.rooms
 
-    render 'show', status: :ok
+      render 'show', status: :ok
+    end
   end
 
   def by_city

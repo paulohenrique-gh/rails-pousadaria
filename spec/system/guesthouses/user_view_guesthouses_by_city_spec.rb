@@ -27,18 +27,24 @@ describe "User visits the guesthouses-by-city page" do
                                         registration_number: '000000000001',
                                         phone_number: '1131111111',
                                         email: 'uno@uno.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_one, user: user_one)
     guesthouse_two = Guesthouse.create!(brand_name: 'Pousada Dualidade',
                                         corporate_name: 'Dualidade LTDA',
                                         registration_number: '0202020202',
                                         phone_number: '1132222222',
                                         email: 'dualidade@dualidade.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_two, user: user_two)
     guesthouse_three = Guesthouse.create!(brand_name: 'Pousada Três Reis',
                                         corporate_name: 'Pousada Três Reis LTDA',
                                         registration_number: '0333033333',
                                         phone_number: '1130333333',
                                         email: 'tresreis@tresreis.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_three, user: user_three)
 
     # Act
@@ -77,18 +83,24 @@ describe "User visits the guesthouses-by-city page" do
                                         registration_number: '000000000001',
                                         phone_number: '1131111111',
                                         email: 'uno@uno.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_one, user: user_one)
     guesthouse_two = Guesthouse.create!(brand_name: 'Brisa',
                                         corporate_name: 'Dualidade LTDA',
                                         registration_number: '0202020202',
                                         phone_number: '1132222222',
                                         email: 'dualidade@dualidade.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_two, user: user_two)
     guesthouse_three = Guesthouse.create!(brand_name: 'Americana',
                                         corporate_name: 'Pousada Três Reis LTDA',
                                         registration_number: '0333033333',
                                         phone_number: '1130333333',
                                         email: 'tresreis@tresreis.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_three, user: user_three)
 
     # Act

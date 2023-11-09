@@ -28,28 +28,30 @@ describe 'User visits home page' do
                                         registration_number: '0202020202',
                                         phone_number: '1132222222',
                                         email: 'dualidade@dualidade.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_one, user: user_one)
     guesthouse_two = Guesthouse.create!(brand_name: 'Pousada Uno',
                                         corporate_name: 'Uno LTDA',
                                         registration_number: '000000000001',
                                         phone_number: '1131111111',
                                         email: 'uno@uno.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_two, user: user_two)
     guesthouse_three = Guesthouse.create!(brand_name: 'Pousada Três Reis',
                                         corporate_name: 'Pousada Três Reis LTDA',
                                         registration_number: '0333033333',
                                         phone_number: '1130333333',
                                         email: 'tresreis@tresreis.com',
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
                                         address: address_three, user: user_three)
 
     # Act
     visit root_path
-    # debugger
 
     # Assert
-    # first_item = page.find('.cities_list-city_link:nth-child(1)')
-    # second_item = page.find('.cities_list-city_link:nth-child(2)')
-    # third_item = page.find('.cities_list-city_link:nth-child(3)')
     expect(page).to have_link 'Americana'
     expect(page).to have_link 'Bananeira'
     expect(page).to have_link 'Casarão'
