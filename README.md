@@ -60,7 +60,7 @@ Porta padrão: [3000](http://localhost:3000)
   - Possui ou não ar condicionado
   - Possui ou não TV
   - Possui ou não guarda-roupas
-  - Possui ou não ocofre
+  - Possui ou não cofre
   - Acessível para pessoas com deficiência ou não
 - Apenas o usuário dono da pousada tem acesso a adicionar e editar quartos em sua pousada
 - O dono da pousada consegue indicar se o quarto está disponível ou não para reservas. Quartos indisponíveis não são listados para o usuário final
