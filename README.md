@@ -73,17 +73,33 @@ Porta padrão: [3000](http://localhost:3000)
   - Data final
   - Valor da diária no período
 - Não é permitida sobreposição de datas. Ao tentar incluir período em que a data inicial ou final esteja dentro de outro período já cadastrado, o cadastro não é concluído
-- 
+- O dono da pousada tem acesso à lista de preços por período na tela de detalhes do quarto
+- Não é possível editar preço por período, apenas inativar
 
+### Listagem de pousadas
+- Usuário não autenticado visualiza todas as pousadas cadastradas e ativas na aplicação
+- As pousadas são listadas em 2 blocos: 
+  - 3 pousadas mais recentes
+  - Outras pousadas
+- Cada pousada é listada com seu nome fantasia e cidade
+- Cada pousada listada possui um link para a página com seus detalhes
+- Usuário visitante não visualiza razão social e CNPJ da pousada na página de detalhes
 
+### Pousadas por cidade
+- Usuário não autenticado tem acesso na tela inicial a um menu com cidades que tem pousada cadastrada
+- Ao clicar no nome da cidade, o usuário é direcionado para uma lista das pousadas disponíveis naquela cidade, em ordem alfabética pelo nome fantasia
+- Cada pousada na lista tem um link para sua página de detalhes
 
+### Busca de pousadas
+- Usuário não autenticado tem acesso a um campo de busca de pousadas
+- A busca pode ser feita pelo nome fantasia, pelo bairro ou pela cidade
+- A tela de resultados exibe a quantidade de registros encontrados, o termo utilizado na pesquisa, e uma lista em ordem alfabética pelo nome fantasia
+- Cada pousada na lista tem um link para sua página de detalhes
+- **TODO**: Página de pesquisa avançada
 
-
-
-
-
-
-
+### Visualização dos quartos
+- Usuário não autenticado consegue visualizar todos os quartos disponíveis na página de detalhes de uma pousada
+- Para cada quarto listado são exibidas as informações cadastradas, com exceção da lista de preços por período, que apenas o proprietárioi consegue acessar
 
 
 ## Referências
