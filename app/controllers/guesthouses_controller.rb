@@ -75,10 +75,7 @@ class GuesthousesController < ApplicationController
 
   def advanced_search_results
     search_params = params.require(:guesthouse)
-                          .permit(:brand_name, :address, :pet_policy,
-                                  :private_bathroom, :balcony,
-                                  :air_conditioning, :tv, :closet, :safe,
-                                  :accessibility,
+                          .permit(:brand_name, :pet_policy,
                                   address: [:neighbourhood, :city, :state],
                                   room: [:private_bathroom, :balcony,
                                          :air_conditioning, :air_conditioning,
@@ -89,6 +86,13 @@ class GuesthousesController < ApplicationController
                                      .delete_if { |_, v| v == '0' }
     @address_params = search_params[:address].compact_blank
     @room_params = search_params[:room].delete_if { |_, v| v == '0' }
+
+    if @guesthouse_params.empty? && @address_params.empty? && @room_params.empty?
+      return(redirect_to advanced_search_path,
+             alert: 'Informe pelo menos um critério para pesquisa')
+    else
+
+    end
 
     @guesthouses = Guesthouse.advanced_search(@guesthouse_params,
                                               @address_params,

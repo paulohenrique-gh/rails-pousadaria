@@ -2,6 +2,12 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+.search_options {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .alert {
   color: rgb(184, 2, 2);
   font-weight: bold;

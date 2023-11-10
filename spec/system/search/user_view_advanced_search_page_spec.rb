@@ -98,4 +98,48 @@ describe 'User visits advanced search page' do
     expect(second_result).to have_link 'Santa Helena'
     expect(page).not_to have_content 'Pousada Três Reis'
   end
+
+  it 'and gets no results' do
+    visit root_path
+    click_on 'Busca avançada'
+    fill_in 'Nome da pousada', with: 'pousada'
+    fill_in 'Cidade', with: 'são paulo'
+    check 'TV'
+    within '.advanced_search_form' do
+      click_on 'Buscar'
+    end
+
+    expect(page).to have_content 'Nenhum resultado encontrado'
+    expect(page).to have_content 'Nome fantasia: "pousada"'
+    expect(page).to have_content 'Possui TV'
+  end
+
+  it 'and leaves all fields empty' do
+    # Arrange
+    user = User.create!(email: 'usuario1@mail.com', password: 'password1')
+
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'São José',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse_one = Guesthouse.create!(brand_name: 'Santa Helena',
+                                        corporate_name: 'Uno LTDA',
+                                        registration_number: '000000000001',
+                                        phone_number: '1131111111',
+                                        email: 'uno@uno.com',
+                                        pet_policy: true,
+                                        checkin_time: '08:00',
+                                        checkout_time: '18:00',
+                                        address: address, user: user)
+
+    # Act
+    visit root_path
+    click_on 'Busca avançada'
+    within '.advanced_search_form' do
+      click_on 'Buscar'
+    end
+
+    expect(page).to have_content 'Informe pelo menos um critério para pesquisa'
+  end
 end

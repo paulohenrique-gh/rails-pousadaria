@@ -1,7 +1,0 @@
-<%= form_with(url: search_guesthouses_path, method: :get) do |f| %>
-  <%= f.label :query, 'Buscar pousada' %>
-  <%= f.text_field :query %>
-  <%= f.submit 'Buscar' %>
-<% end %>
-
-<%= link_to 'Busca avançada', advanced_search_path %>

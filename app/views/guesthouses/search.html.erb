@@ -1,7 +1,7 @@
 <% if @guesthouses.any? %>
   <h2><%= search_result_message(@guesthouses) %></h2>
   
-  <%= render 'search_params' %>
+  <%= render 'search_result_params' %>
 
   <ul class="search_result_list">
     <% @guesthouses.each do |g| %>
@@ -13,5 +13,5 @@
 <% else %>
   <h2>Nenhum resultado encontrado</h2>
 
-  <%= render 'search_params' %>
+  <%= render 'search_result_params' %>
 <% end %>
