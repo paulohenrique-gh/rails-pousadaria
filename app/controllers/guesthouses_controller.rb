@@ -83,17 +83,19 @@ class GuesthousesController < ApplicationController
                                          :tv, :closet, :safe, :accessibility])
 
     guesthouse_params = search_params.except(:address, :room)
+                                     .compact_blank
+                                     .delete_if { |_, v| v == '0' }
     address_params = search_params[:address].compact_blank
-    room_params = search_params[:room].delete_if { |_, v| v == "0" }
+    room_params = search_params[:room].delete_if { |_, v| v == '0' }
 
     matching_rooms = Room.where(room_params)
-    matching_addresses = Address.all
 
+    matching_addresses = Address.all
     address_params.each_pair do |k, v|
       matching_addresses = matching_addresses.where("#{k} LIKE ?", "%#{v}%")
     end
 
-    matching_guesthouses = Guesthouse.all
+    matching_guesthouses = Guesthouse.active
     guesthouse_params.each_pair do |k, v|
       matching_guesthouses = matching_guesthouses.where("#{k} LIKE ?", "%#{v}%")
     end
@@ -102,9 +104,7 @@ class GuesthousesController < ApplicationController
                                        .where(rooms: matching_rooms)
                                        .order(:brand_name)
 
-    # debugger
-
-
+    debugger
 
     render 'search'
   end
