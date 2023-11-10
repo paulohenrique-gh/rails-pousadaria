@@ -91,6 +91,9 @@ describe 'User visits advanced search page' do
     first_result = page.find('.search_result_list-item:nth-child(1)')
     second_result = page.find('.search_result_list-item:nth-child(2)')
     expect(page).to have_content '2 resultados encontrados'
+    expect(page).to have_content 'Nome fantasia: "helena"'
+    expect(page).to have_content 'Aceita pets'
+    expect(page).to have_content 'Possui ar-condicionado'
     expect(first_result).to have_link 'Helena Inn'
     expect(second_result).to have_link 'Santa Helena'
     expect(page).not_to have_content 'Pousada Três Reis'

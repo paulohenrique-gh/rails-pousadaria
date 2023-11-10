@@ -55,7 +55,7 @@ describe 'User searches for a guesthouse' do
     # Assert
     first_result = page.find('.search_result_list-item:nth-child(1)')
     second_result = page.find('.search_result_list-item:nth-child(2)')
-    expect(page).to have_content '2 resultados encontrados para "santa helena"'
+    expect(page).to have_content '2 resultados encontrados'
     expect(first_result).to have_link 'American Inn'
     expect(second_result).to have_link 'Santa Helena'
     expect(page).not_to have_content 'Pousada Três Reis'
@@ -130,7 +130,7 @@ describe 'User searches for a guesthouse' do
     first_result = page.find('.search_result_list-item:nth-child(1)')
     second_result = page.find('.search_result_list-item:nth-child(2)')
     third_result = page.find('.search_result_list-item:nth-child(3)')
-    expect(page).to have_content '3 resultados encontrados para "teresina"'
+    expect(page).to have_content '3 resultados encontrados'
     expect(first_result).to have_link 'Forte da Paz'
     expect(second_result).to have_link 'Pousada Esperança'
     expect(third_result).to have_link 'Pousada Teresina'

@@ -58,3 +58,16 @@
     <%= f.submit 'Buscar' %>
   </div>
 <% end %>
+
+<% if @guesthouses.present? && @guesthouses.any? %>
+  <h3><%= advanced_search_result_message(@guesthouses) %></h3>
+  <ul class="search_result_list">
+    <% @guesthouses.each do |g| %>
+      <li class="search_result_list-item">
+        <%= link_to(g.brand_name, g) %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif @guesthouses.present? && @guesthouse.empty? %>
+  <h3>Nenhum resultado encontrado para os termos informados</h3>
+<% end %>

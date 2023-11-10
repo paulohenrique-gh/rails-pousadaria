@@ -1,0 +1,13 @@
+<% if @single_query %>
+    Termo da pesquisa: "<%= @single_query %>"  
+<% elsif %>
+  <% @guesthouse_params.each_pair do |k, v| %>
+    <p><%= formatted_search_param(k, v) %></p>
+  <% end %>
+  <% @address_params.each_pair do |k, v| %>
+    <p><%= formatted_search_param(k, v) %></p>
+  <% end %>
+  <% @room_params.each_pair do |k, v| %>
+    <p><%= formatted_search_param(k, v) %></p>
+  <% end %>
+<% end %>

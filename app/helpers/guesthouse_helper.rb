@@ -14,9 +14,15 @@ module GuesthouseHelper
     guesthouse.checkout_time.strftime('%H:%M')
   end
 
-  def search_result_message(guesthouses, query)
-    found = "resultado encontrado"
-    found = "resultados encontrados" if guesthouses.size > 1
-    "#{guesthouses.size} #{found} para \"#{query}\""
+  def search_result_message(guesthouses)
+    found = 'resultado encontrado'
+    found = 'resultados encontrados' if guesthouses.size > 1
+    "#{guesthouses.size} #{found}"
+  end
+
+  def formatted_search_param(key, value)
+    formatted_string = "#{t(key)}"
+    formatted_string << ": \"#{value}\"" unless value == '1'
+    formatted_string
   end
 end

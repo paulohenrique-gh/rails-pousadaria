@@ -102,28 +102,44 @@ RSpec.describe GuesthouseHelper, type: :helper do
   end
 
   describe '#search_result_message' do
-    it 'returns the correct string when collection size is 1' do
+    it 'returns the correct string when input size is 1' do
       # Arrange
       collection = ['item 1']
-      query = 'termo de pesquisa'
 
       # Act
-      result = search_result_message(collection, query)
+      result = search_result_message(collection)
 
       # Assert
-      expect(result).to eq '1 resultado encontrado para "termo de pesquisa"'
+      expect(result).to eq '1 resultado encontrado'
     end
 
-    it 'returns the correct string when collection size is greater than 1' do
+    it 'returns the correct string when input size is greater than 1' do
       # Arrange
       collection = ['item 1', 'item 2', 'item 3']
-      query = 'termo de pesquisa'
 
       # Act
-      result = search_result_message(collection, query)
+      result = search_result_message(collection)
 
       # Assert
-      expect(result).to eq '3 resultados encontrados para "termo de pesquisa"'
+      expect(result).to eq '3 resultados encontrados'
+    end
+  end
+
+  describe '#formatted_search_param' do
+    it 'returns the correct string with string fields' do
+      # Act
+      result = formatted_search_param("brand_name", "Pousada Max")
+
+      # Assert
+      expect(result).to eq 'Nome fantasia: "Pousada Max"'
+    end
+
+    it 'returns the correct string with boolean fields' do
+      # Act
+      result = formatted_search_param("tv", "1")
+
+      # Assert
+      expect(result).to eq 'Possui TV'
     end
   end
 end

@@ -8,8 +8,8 @@ pt-BR:
         other: 'Pousadas'
     attributes:
       guesthouse:
-        brand_name: 'Nome Fantasia'
-        corporate_name: 'Razão Social'
+        brand_name: 'Nome fantasia'
+        corporate_name: 'Razão social'
         registration_number: 'CNPJ'
         phone_number: 'Telefone'
         email: 'E-mail'

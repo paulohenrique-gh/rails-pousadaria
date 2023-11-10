@@ -39,7 +39,7 @@ describe 'User searches for a guesthouse' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content '2 resultados encontrados para "bosque"'
+    expect(page).to have_content '2 resultados encontrados'
     expect(page).to have_link 'Pousada Bosque'
     expect(page).to have_link 'Pousada Bosques Verdes'
   end
@@ -82,7 +82,7 @@ describe 'User searches for a guesthouse' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content '1 resultado encontrado para "bosque"'
+    expect(page).to have_content '1 resultado encontrado'
     expect(page).to have_link 'Pousada Bosque'
     expect(page).not_to have_link 'Pousada Bosques Verdes'
   end
@@ -125,6 +125,6 @@ describe 'User searches for a guesthouse' do
     click_on 'Buscar'
 
     # Assert
-    expect(page).to have_content 'Nenhum resultado encontrado para "sol"'
+    expect(page).to have_content 'Nenhum resultado encontrado'
   end
 end

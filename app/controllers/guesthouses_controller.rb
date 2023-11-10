@@ -59,17 +59,19 @@ class GuesthousesController < ApplicationController
   end
 
   def search
-    @query = params[:query]
+    @single_query = params[:query]
     @guesthouses = Guesthouse.active
                              .joins(:address)
                              .where("guesthouses.brand_name LIKE :query OR "\
                                     "addresses.neighbourhood LIKE :query OR "\
                                     "addresses.city LIKE :query",
-                                    query: "%#{@query}%")
+                                    query: "%#{@single_query}%")
                              .order(:brand_name)
+
   end
 
-  def advanced_search; end
+  def advanced_search
+  end
 
   def advanced_search_results
     search_params = params.require(:guesthouse)
@@ -82,29 +84,15 @@ class GuesthousesController < ApplicationController
                                          :air_conditioning, :air_conditioning,
                                          :tv, :closet, :safe, :accessibility])
 
-    guesthouse_params = search_params.except(:address, :room)
+    @guesthouse_params = search_params.except(:address, :room)
                                      .compact_blank
                                      .delete_if { |_, v| v == '0' }
-    address_params = search_params[:address].compact_blank
-    room_params = search_params[:room].delete_if { |_, v| v == '0' }
+    @address_params = search_params[:address].compact_blank
+    @room_params = search_params[:room].delete_if { |_, v| v == '0' }
 
-    matching_rooms = Room.where(room_params)
-
-    matching_addresses = Address.all
-    address_params.each_pair do |k, v|
-      matching_addresses = matching_addresses.where("#{k} LIKE ?", "%#{v}%")
-    end
-
-    matching_guesthouses = Guesthouse.active
-    guesthouse_params.each_pair do |k, v|
-      matching_guesthouses = matching_guesthouses.where("#{k} LIKE ?", "%#{v}%")
-    end
-
-    @guesthouses = matching_guesthouses.where(address: matching_addresses)
-                                       .where(rooms: matching_rooms)
-                                       .order(:brand_name)
-
-    debugger
+    @guesthouses = Guesthouse.advanced_search(@guesthouse_params,
+                                              @address_params,
+                                              @room_params)
 
     render 'search'
   end

@@ -13,6 +13,7 @@ pt-BR:
         daily_rate: 'Valor da diária'
         private_bathroom: 'Possui banheiro próprio'
         air_conditioning: 'Possui ar-condicionado'
+        balcony: 'Possui varanda'
         tv: 'Possui TV'
         closet: 'Possui guarda-roupas'
         safe: 'Possui cofre'

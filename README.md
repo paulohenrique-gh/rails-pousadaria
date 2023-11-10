@@ -116,5 +116,6 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [Reload](https://dpericich.medium.com/using-activerecords-reload-method-to-keep-attributes-current-652504427fc7)
 - [Pluck](https://guides.rubyonrails.org/v5.1/active_record_querying.html#pluck)
 - [Join](https://guides.rubyonrails.org/active_record_querying.html#joining-tables)
+- [```except```](https://api.rubyonrails.org/classes/ActionController/Parameters.html#method-i-except)
 - [```compact_blank```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-compact_blank)
 - [```delete_if```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-delete_if)

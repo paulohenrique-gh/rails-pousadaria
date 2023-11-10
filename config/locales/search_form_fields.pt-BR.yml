@@ -1,0 +1,15 @@
+pt-BR:
+  query: Termo pesquisado
+  brand_name: 'Nome fantasia'
+  description: 'Descrição'
+  pet_policy: 'Aceita pets'
+  neighbourhood: 'Bairro'
+  city: 'Cidade'
+  state: 'Estado'
+  private_bathroom: 'Possui banheiro próprio'
+  air_conditioning: 'Possui ar-condicionado'
+  balcony: 'Possui varanda'
+  tv: 'Possui TV'
+  closet: 'Possui guarda-roupas'
+  safe: 'Possui cofre'
+  accessibility: 'Acessível para pessoas com deficiência'
