@@ -69,6 +69,46 @@ class GuesthousesController < ApplicationController
                              .order(:brand_name)
   end
 
+  def advanced_search; end
+
+  def advanced_search_results
+    search_params = params.require(:guesthouse)
+                          .permit(:brand_name, :address, :pet_policy,
+                                  :private_bathroom, :balcony,
+                                  :air_conditioning, :tv, :closet, :safe,
+                                  :accessibility,
+                                  address: [:neighbourhood, :city, :state],
+                                  room: [:private_bathroom, :balcony,
+                                         :air_conditioning, :air_conditioning,
+                                         :tv, :closet, :safe, :accessibility])
+
+    guesthouse_params = search_params.except(:address, :room)
+    address_params = search_params[:address].compact_blank
+    room_params = search_params[:room].delete_if { |_, v| v == "0" }
+
+    matching_rooms = Room.where(room_params)
+    matching_addresses = Address.all
+
+    address_params.each_pair do |k, v|
+      matching_addresses = matching_addresses.where("#{k} LIKE ?", "%#{v}%")
+    end
+
+    matching_guesthouses = Guesthouse.all
+    guesthouse_params.each_pair do |k, v|
+      matching_guesthouses = matching_guesthouses.where("#{k} LIKE ?", "%#{v}%")
+    end
+
+    @guesthouses = matching_guesthouses.where(address: matching_addresses)
+                                       .where(rooms: matching_rooms)
+                                       .order(:brand_name)
+
+    # debugger
+
+
+
+    render 'search'
+  end
+
   def user_guesthouse
     @user = current_user
     if @user.nil?

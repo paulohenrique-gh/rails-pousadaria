@@ -1,0 +1,60 @@
+<h2>Busca Avançada</h2>
+
+<%= form_with(scope: :guesthouse, url: advanced_search_results_path,
+              method: :get, class: 'advanced_search_form') do |f| %>
+  <div>
+    <%= f.label :brand_name, 'Nome da pousada' %>
+    <%= f.text_field :brand_name %>
+  </div>
+  <%= f.fields_for :address do |a| %>
+    <div>
+      <%= a.label :neighbourhood, 'Bairro' %>
+      <%= a.text_field :neighbourhood %>
+    </div>
+    <div>
+      <%= a.label :city, 'Cidade' %>
+      <%= a.text_field :city %>
+    </div>
+    <div>
+      <%= a.label :state, 'Estado' %>
+      <%= a.text_field :state %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.check_box :pet_policy %>
+    <%= f.label :pet_policy, 'Aceita pets' %>
+  </div>
+  <%= f.fields_for :room do |r| %>
+    <div>
+      <%= r.check_box :private_bathroom %>
+      <%= r.label :private_bathroom, 'Banheiro no quarto' %>
+    </div>
+    <div>
+      <%= r.check_box :balcony %>
+      <%= r.label :balcony, 'Varanda' %>
+    </div>
+    <div>
+      <%= r.check_box :air_conditioning %>
+      <%= r.label :air_conditioning, 'Ar-condicionado' %>
+    </div>
+    <div>
+      <%= r.check_box :tv %>
+      <%= r.label :tv, 'TV' %>
+    </div>
+    <div>
+      <%= r.check_box :closet %>
+      <%= r.label :closet, 'Guarda-roupas' %>
+    </div>
+    <div>
+      <%= r.check_box :safe %>
+      <%= r.label :safe, 'Cofre' %>
+    </div>
+    <div>
+      <%= r.check_box :accessibility %>
+      <%= r.label :accessibility, 'Acessível para pessoas com deficiência' %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.submit 'Buscar' %>
+  </div>
+<% end %>
