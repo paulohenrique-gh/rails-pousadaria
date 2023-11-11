@@ -95,7 +95,7 @@ Porta padrão: [3000](http://localhost:3000)
 - A busca pode ser feita pelo nome fantasia, pelo bairro ou pela cidade
 - A tela de resultados exibe a quantidade de registros encontrados, o termo utilizado na pesquisa, e uma lista em ordem alfabética pelo nome fantasia
 - Cada pousada na lista tem um link para sua página de detalhes
-- **TODO**: Página de pesquisa avançada
+- Página de pesquisa avançada
 
 ### Visualização dos quartos
 - Usuário não autenticado consegue visualizar todos os quartos disponíveis na página de detalhes de uma pousada
