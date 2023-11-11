@@ -1,6 +1,6 @@
 <h2>Busca Avançada</h2>
 
-<%= form_with(scope: :guesthouse, url: advanced_search_results_path,
+<%= form_with(scope: :guesthouse, url: search_results_path,
               method: :get, class: 'advanced_search_form') do |f| %>
   <div>
     <%= f.label :brand_name, 'Nome da pousada' %>
@@ -57,17 +57,4 @@
   <div>
     <%= f.submit 'Buscar' %>
   </div>
-<% end %>
-
-<% if @guesthouses.present? && @guesthouses.any? %>
-  <h3><%= advanced_search_result_message(@guesthouses) %></h3>
-  <ul class="search_result_list">
-    <% @guesthouses.each do |g| %>
-      <li class="search_result_list-item">
-        <%= link_to(g.brand_name, g) %>
-      </li>
-    <% end %>
-  </ul>
-<% elsif @guesthouses.present? && @guesthouse.empty? %>
-  <h3>Nenhum resultado encontrado para os termos informados</h3>
 <% end %>

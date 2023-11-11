@@ -10,6 +10,16 @@ class Guesthouse < ApplicationRecord
 
   accepts_nested_attributes_for :address
 
+  def self.quick_search(query)
+    Guesthouse.active
+              .joins(:address)
+              .where("guesthouses.brand_name LIKE :query OR "\
+                     "addresses.neighbourhood LIKE :query OR "\
+                     "addresses.city LIKE :query",
+                     query: "%#{query}%")
+              .order(:brand_name)
+  end
+
   def self.advanced_search(guesthouse_params, address_params, room_params)
     matching_guesthouses = Guesthouse.active
     guesthouse_params.each_pair do |k, v|
