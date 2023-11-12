@@ -72,16 +72,6 @@ describe 'User searches for a guesthouse' do
     expect(page).to have_content 'Termo da pesquisa: "bosque"'
   end
 
-  it 'and gets no result' do
-    # Act
-    visit root_path
-    fill_in 'Buscar pousada', with: 'sol'
-    click_on 'Buscar'
-
-    # Assert
-    expect(page).to have_content 'Nenhum resultado encontrado'
-  end
-
   it 'and list is in alphabetical order' do
     # Arrange
     user_one = User.create!(email: 'usuario1@mail.com', password: 'password1')

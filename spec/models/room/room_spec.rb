@@ -204,6 +204,10 @@ RSpec.describe Room, type: :model do
 
       room.seasonal_rates.create!(start_date: 5.days.ago,
                                   finish_date: 5.days.from_now, rate: 225)
+      room.seasonal_rates.create!(start_date: 10.days.ago,
+                                  finish_date: 6.days.ago, rate: 150)
+      room.seasonal_rates.create!(start_date: 7.days.from_now,
+                                  finish_date: 15.days.from_now, rate: 300)
 
       # Act
       result = room.current_daily_rate
