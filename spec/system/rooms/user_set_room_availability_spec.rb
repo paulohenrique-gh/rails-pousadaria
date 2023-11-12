@@ -28,10 +28,7 @@ describe 'User marks room as unavailable' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Editar'
     uncheck 'Disponível para reservas'
     click_on 'Enviar'
@@ -108,10 +105,7 @@ describe 'User marks room as available' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Editar'
     check 'Disponível para reservas'
     click_on 'Enviar'

@@ -48,5 +48,8 @@ describe 'User signs in' do
     login_as user
     visit root_path
     click_on 'Sair'
+
+    # Assert
+    expect(page).to have_content 'Logout efetuado com sucesso.'
   end
 end

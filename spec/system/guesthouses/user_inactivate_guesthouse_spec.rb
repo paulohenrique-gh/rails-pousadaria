@@ -27,6 +27,7 @@ describe 'User inactivates a guesthouse' do
     expect(page).to have_content 'Pousada inativada com sucesso'
     expect(page).not_to have_content 'Pousada Bosque'
     expect(page).not_to have_content 'Pulomiranga'
+    expect(guesthouse.reload).to be_inactive
   end
 end
 

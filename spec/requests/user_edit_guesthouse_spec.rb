@@ -18,7 +18,6 @@ describe 'User edits guesthouse' do
                                     checkin_time: '08:00',
                                     checkout_time: '18:00',
                                     address: address, user: user)
-
     # Act
     patch(
       guesthouse_path(guesthouse.id),
@@ -27,8 +26,8 @@ describe 'User edits guesthouse' do
     guesthouse.reload
 
     # Assert
-    expect(guesthouse.brand_name).to eq 'Pousada Bosque'
     expect(response).to redirect_to(new_user_session_path)
+    expect(guesthouse.brand_name).to eq 'Pousada Bosque'
   end
 
   it 'and must be the owner' do
@@ -72,8 +71,8 @@ describe 'User edits guesthouse' do
     guesthouse.reload
 
     # Assert
-    expect(guesthouse.brand_name).to eq 'Pousada Bosque'
     expect(response).to redirect_to(root_path)
+    expect(guesthouse.brand_name).to eq 'Pousada Bosque'
   end
 
   it 'and guesthouse must be active' do
@@ -104,7 +103,7 @@ describe 'User edits guesthouse' do
     guesthouse.reload
 
     # Assert
-    expect(guesthouse.brand_name).not_to eq 'Nova Pousada'
     expect(response).to redirect_to(root_path)
+    expect(guesthouse.brand_name).not_to eq 'Nova Pousada'
   end
 end

@@ -103,7 +103,7 @@ describe 'User edits guesthouse' do
     expect(page).to have_content "Pousada dos Diamantes\nPulomiranga"
   end
 
-  it 'and leaves mandatory fields blank' do
+  it 'and leaves required fields blank' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 

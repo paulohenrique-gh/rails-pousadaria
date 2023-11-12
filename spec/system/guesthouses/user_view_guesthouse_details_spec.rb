@@ -9,8 +9,8 @@ describe 'Guest visits guesthouse details page' do
                               neighbourhood: 'Santa Helena',
                               city: 'Pulomiranga', state: 'RN',
                               postal_code: '99000-525')
-    guesthouse = Guesthouse.create!(
-      brand_name: 'Pousada Bosque', corporate_name: 'Pousada Ramos Faria LTDA',
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+      corporate_name: 'Pousada Ramos Faria LTDA',
       registration_number: '02303221000152', phone_number: '1130205000',
       email: 'atendimento@pousadabosque',
       description: 'Pousada tranquila no interior do Rio Grande do Norte',
@@ -71,6 +71,7 @@ describe 'Guest visits guesthouse details page' do
     expect(page).to have_content 'Guarda-roupas'
     expect(page).to have_content 'Cofre'
     expect(page).to have_content 'Acessível para pessoas com deficiência'
+    expect(page).not_to have_link 'Mais detalhes'
     expect(page).not_to have_link 'Adicionar quarto'
   end
 

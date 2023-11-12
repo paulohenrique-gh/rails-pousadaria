@@ -31,10 +31,7 @@ describe 'User inactivates seasonal rate' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     within('.seasonal_rates_list') do
       click_on 'Detalhes'
     end

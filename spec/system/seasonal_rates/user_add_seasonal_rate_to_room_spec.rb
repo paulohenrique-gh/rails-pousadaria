@@ -27,10 +27,7 @@ describe 'User adds seasonal rate to room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
 
     # Assert
@@ -70,10 +67,7 @@ describe 'User adds seasonal rate to room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
     fill_in 'Data inicial', with: '24/12/2023'
     fill_in 'Data final', with: '01/01/2024'
@@ -115,10 +109,7 @@ describe 'User adds seasonal rate to room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
     fill_in 'Data inicial', with: '01/01/2024'
     fill_in 'Data final', with: '24/12/2023'
@@ -157,10 +148,7 @@ describe 'User adds seasonal rate to room' do
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
     fill_in 'Data inicial', with: ''
     fill_in 'Data final', with: ''

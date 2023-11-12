@@ -26,10 +26,7 @@ describe 'User visits room page' do
     login_as user
     visit root_path
     click_on 'Pousada Bosque'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
-
+    click_on 'Mais detalhes'
     click_on 'Voltar'
 
     # Assert
@@ -68,9 +65,7 @@ describe 'User visits room page' do
     login_as user
     visit root_path
     click_on 'Pousada Bosque'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
+    click_on 'Mais detalhes'
 
     # Assert
     expect(page).to have_content 'Valor da diária: R$ 400,00'
