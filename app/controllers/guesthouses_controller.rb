@@ -100,7 +100,7 @@ class GuesthousesController < ApplicationController
   end
 
   def check_guesthouse_presence
-    if current_user.guesthouse
+    if current_user && current_user.guesthouse
       redirect_to root_path, alert: 'Você já possui uma pousada cadastrada'
     end
   end

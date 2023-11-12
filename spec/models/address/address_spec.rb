@@ -68,7 +68,7 @@ RSpec.describe Address, type: :model do
       expect(address).not_to be_valid
     end
 
-    it 'returns true when all required arguments are given' do
+    it 'returns true when all required arguments are passed' do
       # Arrange
       address = Address.new(street_name: 'Rua das Pedras', number: '30',
                             neighbourhood: 'Santa Helena',
