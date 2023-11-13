@@ -19,7 +19,7 @@
     neighbourhood: "Conjunto #{i}",
     city: "Fortaleza",
     state: 'CE',
-    postal_code: "#{i.to_s * 8}",
+    postal_code: "#{i.to_s * 5}-#{i.to_s * 3}",
   )
   guesthouse = Guesthouse.create!(
     brand_name: "Boa Vista #{i}",
@@ -35,8 +35,6 @@
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
-    checkin_time: '08:00',
-    checkout_time: '18:00',
     user: user,
     address: address
   )
@@ -107,7 +105,7 @@ end
     neighbourhood: "Conjunto #{i}",
     city: "São Paulo",
     state: 'SP',
-    postal_code: "#{i.to_s * 8}",
+    postal_code: "#{i.to_s * 5}-#{i.to_s * 3}",
   )
   guesthouse = Guesthouse.create!(
     brand_name: "Casa Santo Antônio #{i}",
@@ -123,8 +121,6 @@ end
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
-    checkin_time: '08:00',
-    checkout_time: '18:00',
     user: user,
     address: address
   )
@@ -186,7 +182,7 @@ end
   )
 end
 
-7.upto(10) do |i|
+7.upto(9) do |i|
   user = User.create!(email: "usuario#{i}@mail.com", password: 'password')
   address = Address.create!(
     street_name: "Rua #{i}",
@@ -195,7 +191,7 @@ end
     neighbourhood: "Conjunto #{i}",
     city: "Limoeiro do Norte",
     state: 'CE',
-    postal_code: "#{i.to_s * 8}",
+    postal_code: "#{i.to_s * 5}-#{i.to_s * 3}",
   )
   guesthouse = Guesthouse.create!(
     brand_name: "Pousada Repouso #{i}",
@@ -211,8 +207,6 @@ end
     payment_method_one: 'Dinheiro',
     payment_method_two: 'Pix',
     payment_method_three: 'Cartão',
-    checkin_time: '08:00',
-    checkout_time: '18:00',
     user: user,
     address: address
   )

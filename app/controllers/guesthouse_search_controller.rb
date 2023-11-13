@@ -19,8 +19,8 @@ class GuesthouseSearchController < ApplicationController
                                          :tv, :closet, :safe, :accessibility])
 
     @guesthouse_params = search_params.except(:address, :room)
-                                     .compact_blank
-                                     .delete_if { |_, v| v == '0' }
+                                      .compact_blank
+                                      .delete_if { |_, v| v == '0' }
     @address_params = search_params[:address].compact_blank
     @room_params = search_params[:room].delete_if { |_, v| v == '0' }
 
@@ -32,7 +32,5 @@ class GuesthouseSearchController < ApplicationController
     @guesthouses = Guesthouse.advanced_search(@guesthouse_params,
                                               @address_params,
                                               @room_params)
-
-    render 'search_results'
   end
 end
