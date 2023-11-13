@@ -9,3 +9,8 @@ pt-BR:
         start_date: 'Data inicial'
         finish_date: 'Data final'
         rate: 'Valor'
+    errors:
+      models:
+        seasonal_rate:
+          finish_date:
+            greater_than_or_equal_to: 'não pode ser menor que data inicial'

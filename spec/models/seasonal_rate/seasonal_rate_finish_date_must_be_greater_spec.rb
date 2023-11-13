@@ -29,7 +29,6 @@ RSpec.describe SeasonalRate, type: :model do
         seasonal_rate = SeasonalRate.new(start_date: '2024-01-01',
                                         finish_date: '2023-12-24',
                                         rate: 200, room: room)
-
         expect(seasonal_rate).not_to be_valid
         expect(seasonal_rate.errors.include? :finish_date).to be true
         expect(seasonal_rate.errors[:finish_date]).to include(

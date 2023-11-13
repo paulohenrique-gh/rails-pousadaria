@@ -5,6 +5,7 @@ class Guesthouse < ApplicationRecord
 
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, :checkin_time, :checkout_time, presence: true
+  validates :phone_number, length: { in: 10..11 }
 
   enum status: { active: 0, inactive: 1 }
 

@@ -2,56 +2,56 @@
 
 <%= form_with(model: [@guesthouse, @room]) do |f| %>
   <div>
-    <%= f.label :name, 'Nome' %> 
-    <%= f.text_field :name %>
+    <%= f.label :name, 'Nome' %><span class="required"> *</span>
+    <%= f.text_field :name, required: true %>
   </div>
   <div>
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_area :description %>
+    <%= f.label :description, 'Descrição' %><span class="required"> *</span>
+    <%= f.text_area :description, required: true %>
   </div>
   <div>
-    <%= f.label :dimension, 'Dimensão em m²' %>
-    <%= f.number_field :dimension, step: 0.5 %>
+    <%= f.label :dimension, 'Dimensão em m²' %><span class="required"> *</span>
+    <%= f.number_field :dimension, step: 0.5, required: true %>
   </div>
   <div>
-    <%= f.label :max_people, 'Quantidade máxima de pessoas' %>
-    <%= f.number_field :max_people %>
+    <%= f.label :max_people, 'Quantidade máxima de pessoas' %><span class="required"> *</span>
+    <%= f.number_field :max_people, required: true %>
   </div>
   <div>
-    <%= f.label :daily_rate, 'Valor da diária padrão' %>
-    <%= f.number_field :daily_rate, step: 0.01 %>
+    <%= f.label :daily_rate, 'Valor da diária padrão' %><span class="required"> *</span>
+    <%= f.number_field :daily_rate, step: 0.01, required: true %>
   </div>
   <div>
     <%= f.label :available, 'Disponível para reservas' %>
-    <%= f.check_box :available %>
+    <%= f.check_box :available, required: true %>
   </div>
   <div>
     <%= f.label :private_bathroom, 'Possui banheiro próprio' %>
-    <%= f.check_box :private_bathroom %>
+    <%= f.check_box :private_bathroom, required: true %>
   </div>
   <div>
     <%= f.label :balcony, 'Possui varanda' %>
-    <%= f.check_box :balcony %>
+    <%= f.check_box :balcony, required: true %>
   </div>
   <div>
     <%= f.label :air_conditioning, 'Possui ar-condicionado' %>
-    <%= f.check_box :air_conditioning %>
+    <%= f.check_box :air_conditioning, required: true %>
   </div>
   <div>
     <%= f.label :tv, 'Possui TV' %>
-    <%= f.check_box :tv %>
+    <%= f.check_box :tv, required: true %>
   </div>
   <div>
     <%= f.label :closet, 'Possui guarda-roupas' %>
-    <%= f.check_box :closet %>
+    <%= f.check_box :closet, required: true %>
   </div>
   <div>
     <%= f.label :safe, 'Possui cofre' %>
-    <%= f.check_box :safe %>
+    <%= f.check_box :safe, required: true %>
   </div>
   <div>
     <%= f.label :accessibility, 'Acessível para pessoas com deficiência' %>
-    <%= f.check_box :accessibility %>
+    <%= f.check_box :accessibility, required: true %>
   </div>
   <div>
     <%= f.submit 'Enviar' %>

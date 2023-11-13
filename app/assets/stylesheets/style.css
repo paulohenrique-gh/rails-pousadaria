@@ -68,6 +68,10 @@
   margin-top: 15px;
 }
 
+.required {
+  color: red;
+}
+
 .edit_options {
   display: flex;
   flex-direction: row;

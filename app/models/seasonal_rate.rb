@@ -4,43 +4,26 @@ class SeasonalRate < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   validates :start_date, :finish_date, :rate, presence: true
-  validate :finish_date_is_greater_than_start_date, :dates_do_not_overlap
+  validates :finish_date, comparison: { greater_than_or_equal_to: :start_date,
+                          message: 'não pode ser menor que data inicial' }
+  validate :dates_do_not_overlap
+
+  scope :overlapping_dates, ->(id, date) {
+    active.where.not(id: id)
+          .where('? BETWEEN start_date AND finish_date', date)
+  }
 
   private
 
-  def dates_present?
-    self.start_date.present? && self.finish_date.present?
-  end
-
-  def finish_date_is_greater_than_start_date
-    if dates_present? && self.finish_date < self.start_date
-      self.errors.add(:finish_date, 'não pode ser menor que data inicial')
-    end
-  end
-
-  def check_overlap_in_dates(seasonal_rate)
-    if self.start_date.between?(seasonal_rate.start_date,
-                                seasonal_rate.finish_date)
+  def dates_do_not_overlap
+    start_date_overlap = SeasonalRate.overlapping_dates(self.id, self.start_date)
+    if start_date_overlap.any?
       self.errors.add(:start_date, 'dentro de período já cadastrado')
     end
 
-    if self.finish_date.between?(seasonal_rate.start_date,
-                                 seasonal_rate.finish_date)
+    finish_date_overlap = SeasonalRate.overlapping_dates(self.id, self.finish_date)
+    if finish_date_overlap.any?
       self.errors.add(:finish_date, 'dentro de período já cadastrado')
-    end
-  end
-
-  def dates_do_not_overlap
-    if dates_present?
-      SeasonalRate.active.where(room_id: self.room_id).
-                          where.not(id: self.id).each do |sr|
-        check_overlap_in_dates(sr)
-
-        if self.errors.include?(:start_date) ||
-           self.errors.include?(:finish_date)
-          return
-        end
-      end
     end
   end
 end

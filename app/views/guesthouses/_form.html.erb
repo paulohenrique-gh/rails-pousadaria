@@ -4,53 +4,53 @@
 
 <%= form_with(model: @guesthouse) do |f| %>
   <div>
-    <%= f.label :brand_name, 'Nome Fantasia' %>
-    <%= f.text_field :brand_name %>
+    <%= f.label :brand_name, 'Nome Fantasia' %><span class="required"> *</span>
+    <%= f.text_field :brand_name, required: true %> 
   </div>
   <div>
-    <%= f.label :corporate_name, 'Razão Social' %>
-    <%= f.text_field :corporate_name %>
+    <%= f.label :corporate_name, 'Razão Social' %><span class="required"> *</span>
+    <%= f.text_field :corporate_name, required: true %>
   </div>
   <div>
-    <%= f.label :registration_number, 'CNPJ' %>
-    <%= f.text_field :registration_number %>
+    <%= f.label :registration_number, 'CNPJ' %><span class="required"> *</span>
+    <%= f.text_field :registration_number, required: true %>
   </div>
   <div>
-    <%= f.label :phone_number, 'Telefone' %>
-    <%= f.telephone_field :phone_number %>
+    <%= f.label :phone_number, 'Telefone' %><span class="required"> *</span>
+    <%= f.telephone_field :phone_number, required: true, minlength: 10, maxlength: 11 %>
   </div>
   <div>
-    <%= f.label :email, 'E-mail' %>
-    <%= f.email_field :email %>
+    <%= f.label :email, 'E-mail' %><span class="required"> *</span>
+    <%= f.email_field :email, required: true %>
   </div>
   <%= f.fields_for :address do |a| %>
     <div>
-      <%= a.label :street_name, 'Logradouro' %>
-      <%= a.text_field :street_name %>
+      <%= a.label :street_name, 'Logradouro' %><span class="required"> *</span>
+      <%= a.text_field :street_name, required: true %>
     </div>
     <div>
-      <%= a.label :number, 'Número' %>
-      <%= a.text_field :number %>
+      <%= a.label :number, 'Número' %><span class="required"> *</span>
+      <%= a.text_field :number, required: true %>
     </div>
     <div>
       <%= a.label :complement, 'Complemento' %>
       <%= a.text_field :complement %>
     </div>
     <div>
-      <%= a.label :neighbourhood, 'Bairro' %>
-      <%= a.text_field :neighbourhood %>
+      <%= a.label :neighbourhood, 'Bairro' %><span class="required"> *</span>
+      <%= a.text_field :neighbourhood, required: true %>
     </div>
     <div>
-      <%= a.label :postal_code, 'CEP' %>
-      <%= a.text_field :postal_code %>
+      <%= a.label :postal_code, 'CEP' %><span class="required"> *</span>
+      <%= a.text_field :postal_code, required: true %>
     </div>
     <div>
-      <%= a.label :city, 'Cidade' %>
-      <%= a.text_field :city %>
+      <%= a.label :city, 'Cidade' %><span class="required"> *</span>
+      <%= a.text_field :city, required: true %>
     </div>
     <div>
-      <%= a.label :state, 'Estado' %>
-      <%= a.text_field :state %>
+      <%= a.label :state, 'Estado' %><span class="required"> *</span>
+      <%= a.text_field :state, required: true %>
     </div>
   <% end %>
   <div>

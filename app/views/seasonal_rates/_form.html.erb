@@ -4,15 +4,15 @@
 
 <%= form_with(model: [@room.guesthouse, @room, @seasonal_rate]) do |f| %>
   <div>
-    <%= f.label :start_date, 'Data inicial' %>
+    <%= f.label :start_date, 'Data inicial' %><span class="required"> *</span>
     <%= f.date_field :start_date %>
   </div>
   <div>
-    <%= f.label :finish_date, 'Data final' %>
+    <%= f.label :finish_date, 'Data final' %><span class="required"> *</span>
     <%= f.date_field :finish_date %>
   </div>
   <div>
-    <%= f.label :rate, 'Valor' %>
+    <%= f.label :rate, 'Valor' %><span class="required"> *</span>
     <%= f.number_field :rate, step: 0.01 %>
   </div>
   <div style="display: flex">
