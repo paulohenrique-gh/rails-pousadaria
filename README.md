@@ -137,3 +137,4 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [```except```](https://api.rubyonrails.org/classes/ActionController/Parameters.html#method-i-except)
 - [```compact_blank```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-compact_blank)
 - [```delete_if```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-delete_if)
+- [Scopes](https://www.campuscode.com.br/conteudos/scope-em-ruby-on-rails)
