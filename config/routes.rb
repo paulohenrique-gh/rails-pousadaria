@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       resources :reservations, only: [:new, :create]
+        get 'confirm', to: 'reservations#confirm'
       resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member
       end

@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      reservation:
+        one: 'Reserva'
+        other: 'Reservas'
+    attributes:
+      reservation:
+        checkin: 'Data de entrada'
+        checkout: 'Data de saída'
+        guest_count: 'Número de hóspedes'
+        max_people: 'Quantidade máxima de pessoas'
+        stay_total: 'Valor total das diárias'

@@ -1,0 +1,24 @@
+<h2>Quarto disponível no período informado</h2>
+<h3>Detalhes</h3>
+<p>
+  <strong>Data de entrada:</strong> <%= I18n.localize(@reservation.checkin) %>
+</p>
+<p>
+  <strong>Data de saída:</strong> <%= I18n.localize(@reservation.checkout) %>
+</p>
+<p>
+  <strong>Quantidade de hóspedes:</strong> <%= @reservation.checkout %>
+</p>
+<p>
+  <strong>Valor total das diárias:</strong>
+  <%= number_to_currency(@reservation.stay_total) %>
+</p>
+<%=
+  button_to 'Confirmar reserva',
+            room_reservations_path,
+            params: { checkin: @reservation.checkin,
+                      checkout: @reservation.checkout,
+                      guest_count: @reservation.checkout,
+                      stay_total: @reservation.stay_total,
+                      room_id: @reservation.room_id }
+%>

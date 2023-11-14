@@ -1,25 +1,23 @@
+<%= render partial: 'shared/error_messages', locals: { resource: @reservation } %>
+
 <h2>Realizar reserva</h2>
 
 <%= render partial: 'shared/room_details', locals: { room: @room }%>
 
-<%= form_with(model: [@room, @reservation]) do |f| %>
+<%= form_with(model: [@room, @reservation], url: room_confirm_path(@room.id), method: :get) do |f| %>
   <div>
-    <%= f.label :checkin, 'Data de entrada' %>
-    <%= f.date_field :checkin %>
+    <%= f.label :checkin, 'Data de entrada' %><span class="required"> *</span>
+    <%= f.date_field :checkin, required: true %>
   </div>
   <div>
-    <%= f.label :checkout, 'Data de saída' %>
-    <%= f.date_field :checkout %>
+    <%= f.label :checkout, 'Data de saída' %><span class="required"> *</span>
+    <%= f.date_field :checkout, required: true %>
   </div>
   <div>
-    <%= f.label :guest_count, 'Quantidade de hóspedes' %>
-    <%= f.date_field :guest_count %>
+    <%= f.label :guest_count, 'Quantidade de hóspedes' %><span class="required"> *</span>
+    <%= f.number_field :guest_count, required: true %>
   </div>
   <div>
-    <%= f.label :stay_total, 'Total' %>
-    <%= f.date_field :stay_total %>
-  </div>
-  <div>
-    <%= f.submit 'Enviar' %>
+    <%= f.submit 'Verificar disponibilidade' %>
   </div>
 <% end %>
