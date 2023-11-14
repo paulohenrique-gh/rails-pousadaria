@@ -15,7 +15,7 @@
   </div>
   <div>
     <%= f.label :guest_count, 'Quantidade de hóspedes' %><span class="required"> *</span>
-    <%= f.number_field :guest_count, required: true %>
+    <%= f.number_field :guest_count, required: true, min: 1 %>
   </div>
   <div>
     <%= f.submit 'Verificar disponibilidade' %>
