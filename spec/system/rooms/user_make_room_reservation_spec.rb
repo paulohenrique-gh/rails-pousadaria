@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User makes a reservation' do
-  pending 'from the room list in the guesthouse page' do
+  it 'from the room list in the guesthouse page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -33,7 +33,7 @@ describe 'User makes a reservation' do
     expect(page).to have_content 'Realizar reserva'
     expect(page).to have_content 'Quarto Brasil'
     expect(page).to have_content 'Quarto com tema Brasil'
-    expect(page).to have_content 'Capacidade para até 3 pessoas'
+    expect(page).to have_content 'Capacidade para até 3 pessoa(s)'
     expect(page).to have_content 'Valor da diária: R$ 150,00'
     expect(page).to have_content 'Disponível para reservas'
     expect(page).to have_content 'Banheiro próprio'

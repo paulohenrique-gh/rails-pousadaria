@@ -1,4 +1,4 @@
-<strong><%= room.name %></strong>
+<strong>Quarto <%= room.name %></strong>
 <p><%= room.description %></p>
 <p>
   <%= 
@@ -15,10 +15,4 @@
   <% extra_features_collection(room).each do |feat| %>
     <p><%= feat %><p>
   <% end %>
-<% end %>
-
-<% if room.guesthouse.user == current_user && @guesthouse.active? %>
-  <%= link_to 'Mais detalhes', room %>
-<% else %>
-  <%= button_to 'Reservar', new_room_reservation_path(room.id), method: :get %>
 <% end %>
