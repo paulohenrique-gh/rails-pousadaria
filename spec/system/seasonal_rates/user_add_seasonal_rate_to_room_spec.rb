@@ -76,7 +76,7 @@ describe 'User adds seasonal rate to room' do
 
     # Assert
     expect(page).to have_content 'Preço por período cadastrado com sucesso'
-    expect(current_path).to eq guesthouse_room_path(guesthouse.id, room.id)
+    expect(current_path).to eq room_path(room.id)
     expect(page).to have_content 'Preços por período:'
     expect(page).to have_content 'Padrão: R$ 150,00'
     expect(page).to have_content 'De 20/11/2023 a 30/11/2023: R$ 225,00'
@@ -185,7 +185,7 @@ describe 'User adds seasonal rate to room' do
                         guesthouse: guesthouse)
 
     # Act
-    visit new_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id)
+    visit new_room_seasonal_rate_path(room.id)
 
     # Assert
     expect(current_path).to eq new_user_session_path
@@ -217,7 +217,7 @@ describe 'User adds seasonal rate to room' do
 
     # Act
     login_as other_user
-    visit new_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id)
+    visit new_room_seasonal_rate_path(room.id)
 
     # Assert
     expect(current_path).to eq new_guesthouse_path

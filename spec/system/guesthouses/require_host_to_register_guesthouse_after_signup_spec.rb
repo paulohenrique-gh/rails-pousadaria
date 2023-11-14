@@ -79,7 +79,7 @@ describe "User creates host account" do
                         guesthouse: guesthouse)
     # Act
     login_as other_user
-    visit guesthouse_room_path(guesthouse.id, room.id)
+    visit room_path(room.id)
 
     # Assert
     expect(current_path).to eq new_guesthouse_path

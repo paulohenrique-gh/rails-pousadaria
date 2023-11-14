@@ -2,7 +2,7 @@
   render partial: 'shared/error_messages', locals: { resource: @seasonal_rate }
 %>
 
-<%= form_with(model: [@room.guesthouse, @room, @seasonal_rate]) do |f| %>
+<%= form_with(model: [@room, @seasonal_rate]) do |f| %>
   <div>
     <%= f.label :start_date, 'Data inicial' %><span class="required"> *</span>
     <%= f.date_field :start_date %>

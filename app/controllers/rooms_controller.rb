@@ -1,12 +1,16 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-  before_action only: [:show, :new, :create, :edit, :update] do
+  before_action only: [:show, :edit, :update] do
+    set_room(params[:id])
+  end
+
+  before_action only: [:new, :create] do
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
   before_action only: [:show, :edit, :update] do
-    set_room(params[:id])
+    set_guesthouse_and_check_user(@room.guesthouse_id)
   end
 
   before_action :redirect_new_host_to_guesthouse_creation
@@ -34,9 +38,7 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to(
-        [@guesthouse, @room], notice: 'Quarto atualizado com sucesso'
-      )
+      redirect_to @room, notice: 'Quarto atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar quarto'
       render 'new', status: :unprocessable_entity

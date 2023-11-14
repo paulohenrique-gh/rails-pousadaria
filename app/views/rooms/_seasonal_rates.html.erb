@@ -13,13 +13,13 @@
           a <%= I18n.localize(sr.finish_date) %>: 
         </strong> <%= number_to_currency(sr.rate) %>
 
-      | <%= link_to('Detalhes', [@guesthouse, @room, sr]) %>
+      | <%= link_to('Detalhes', sr) %>
       </li>
     <% end %>
     <%=
       link_to(
         'Adicionar preço por período',
-        new_guesthouse_room_seasonal_rate_path(@room.guesthouse_id, @room.id)
+        new_room_seasonal_rate_path(@room.id)
       )
     %>
   </ul>

@@ -22,7 +22,7 @@ describe 'User edits room' do
                         guesthouse: guesthouse)
 
     # Act
-    visit edit_guesthouse_room_path(guesthouse.id, room.id)
+    visit edit_room_path(room.id)
 
     # Assert
     expect(current_path).to eq new_user_session_path
@@ -54,7 +54,7 @@ describe 'User edits room' do
 
     # Act
     login_as other_user
-    visit edit_guesthouse_room_path(guesthouse.id, room.id)
+    visit edit_room_path(room.id)
 
     # Assert
     expect(page).to have_content(

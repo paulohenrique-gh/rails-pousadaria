@@ -29,10 +29,7 @@ describe 'User inactivates seasonal rate' do
                                          rate: 400, room: room)
 
     # Act
-    patch(
-      inactivate_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
-                                                    seasonal_rate.id),
-    )
+    patch(inactivate_seasonal_rate_path(seasonal_rate.id))
     seasonal_rate.reload
 
     # Assert
@@ -71,10 +68,7 @@ describe 'User inactivates seasonal rate' do
 
     # Act
     login_as other_user
-    patch(
-      inactivate_guesthouse_room_seasonal_rate_path(guesthouse.id, room.id,
-                                                    seasonal_rate.id),
-    )
+    patch(inactivate_seasonal_rate_path(seasonal_rate.id))
     seasonal_rate.reload
 
     # Assert

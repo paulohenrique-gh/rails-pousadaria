@@ -17,12 +17,14 @@ class SeasonalRate < ApplicationRecord
   private
 
   def dates_do_not_overlap
-    start_date_overlap = SeasonalRate.overlapping_dates(self.room_id, self.id, self.start_date)
+    start_date_overlap = SeasonalRate.overlapping_dates(self.room_id,
+                                                        self.id, self.start_date)
     if start_date_overlap.any?
       self.errors.add(:start_date, 'dentro de período já cadastrado')
     end
 
-    finish_date_overlap = SeasonalRate.overlapping_dates(self.room_id, self.id, self.finish_date)
+    finish_date_overlap = SeasonalRate.overlapping_dates(self.room_id,
+                                                         self.id, self.finish_date)
     if finish_date_overlap.any?
       self.errors.add(:finish_date, 'dentro de período já cadastrado')
     end

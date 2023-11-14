@@ -72,8 +72,7 @@ describe 'User inactivates seasonal rate' do
 
     # Act
     login_as user
-    visit guesthouse_room_seasonal_rate_path(guesthouse.id,room.id,
-                                             seasonal_rate.id)
+    visit seasonal_rate_path(seasonal_rate.id)
 
     # Assert
     expect(current_path).to eq root_path

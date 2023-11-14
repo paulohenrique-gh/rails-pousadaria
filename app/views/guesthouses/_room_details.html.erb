@@ -1,31 +1,24 @@
-<dt><strong>Quartos:</strong></dt>
-<dd>
-  <ul class="room_details_list">
-    <% rooms.each do |room| %>
-      <li class="room_details_list-item">
-        <strong><%= room.name %></strong>
-        <p><%= room.description %></p>
-        <p>
-          <%= 
-            number_with_precision(
-              room.dimension, separator: ',', strip_insignificant_zeros: true
-            )
-          %> m²
-        </p>
-        <p>Capacidade para até <%= room.max_people %> pessoa(s)</p>
-        <p>Valor da diária: <%= number_to_currency(room.current_daily_rate) %></p>
-        <p><%= room_availability(room) %></p>
+<strong><%= room.name %></strong>
+<p><%= room.description %></p>
+<p>
+  <%= 
+    number_with_precision(
+      room.dimension, separator: ',', strip_insignificant_zeros: true
+    )
+  %> m²
+</p>
+<p>Capacidade para até <%= room.max_people %> pessoa(s)</p>
+<p>Valor da diária: <%= number_to_currency(room.current_daily_rate) %></p>
+<p><%= room_availability(room) %></p>
 
-        <% if extra_features?(room) %>
-          <% extra_features_collection(room).each do |feat| %>
-            <p><%= feat %><p>
-          <% end %>
-        <% end %>
+<% if extra_features?(room) %>
+  <% extra_features_collection(room).each do |feat| %>
+    <p><%= feat %><p>
+  <% end %>
+<% end %>
 
-        <% if room.guesthouse.user == current_user && @guesthouse.active? %>
-          <%= link_to 'Mais detalhes', [room.guesthouse, room] %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</dd>
+<% if room.guesthouse.user == current_user && @guesthouse.active? %>
+  <%= link_to 'Mais detalhes', room %>
+<% else %>
+  <%= button_to 'Reservar', new_room_reservation_path(room.id), method: :get %>
+<% end %>

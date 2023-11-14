@@ -1,4 +1,5 @@
 <h2>Cadastro de Quarto</h2>
 <h3><%= @room.guesthouse.brand_name %></h3>
 
-<%= render 'form' %>
+<%= render partial: 'form',
+           locals: { resource: guesthouse_rooms_path(@guesthouse.id), method: 'post' } %>

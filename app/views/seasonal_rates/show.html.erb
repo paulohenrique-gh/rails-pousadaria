@@ -20,13 +20,12 @@
   <%=
     button_to(
       'Inativar',
-      inactivate_guesthouse_room_seasonal_rate_path(@guesthouse.id, @room.id,
-                                                    @seasonal_rate.id),
+      inactivate_seasonal_rate_path(@seasonal_rate.id),
       { method: 'patch' }
     )
   %>
   
   <div>
-    <%= link_to 'Voltar', [@guesthouse, @room] %>
+    <%= link_to 'Voltar', @room %>
   </div>
 </div>

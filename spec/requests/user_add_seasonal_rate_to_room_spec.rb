@@ -25,7 +25,7 @@ describe 'User adds seasonal rate to room' do
 
     # Act
     post(
-      guesthouse_room_seasonal_rates_path(guesthouse.id, room.id),
+      room_seasonal_rates_path(room.id),
       params: {
         seasonal_rate: {
           start_date: '2023-12-06',
@@ -69,7 +69,7 @@ describe 'User adds seasonal rate to room' do
     # Act
     login_as other_user
     post(
-      guesthouse_room_seasonal_rates_path(guesthouse.id, room.id),
+      room_seasonal_rates_path(guesthouse.id, room.id),
       params: {
         seasonal_rate: {
           start_date: '2023-12-06',

@@ -24,10 +24,7 @@ describe 'User edits room' do
                         guesthouse: guesthouse)
 
     # Act
-    patch(
-      guesthouse_room_path(guesthouse.id, room.id),
-      params: { room: { name: 'USA' } }
-    )
+    patch(room_path(room.id), params: { room: { name: 'USA' } })
     room.reload
 
     # Assert
@@ -61,10 +58,7 @@ describe 'User edits room' do
 
     # Act
     login_as other_user
-    patch(
-      guesthouse_room_path(guesthouse.id, room.id),
-      params: { room: { name: 'USA' } }
-    )
+    patch(room_path(room.id), params: { room: { name: 'USA' } })
 
     # Assert
     expect(response).to redirect_to(root_path)

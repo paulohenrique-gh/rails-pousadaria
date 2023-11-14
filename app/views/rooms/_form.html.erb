@@ -1,6 +1,6 @@
 <%= render partial: 'shared/error_messages', locals: { resource: @room } %>
 
-<%= form_with(model: [@guesthouse, @room]) do |f| %>
+<%= form_with(scope: @room, url: resource, method: method) do |f| %>
   <div>
     <%= f.label :name, 'Nome' %><span class="required"> *</span>
     <%= f.text_field :name, required: true %>

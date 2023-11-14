@@ -80,8 +80,7 @@ describe 'User visits seasonal rate details' do
                                          rate: 400, room: room)
 
     # Act
-    visit guesthouse_room_seasonal_rate_path(guesthouse.id,room.id,
-                                                  seasonal_rate.id)
+    visit seasonal_rate_path(seasonal_rate.id)
 
     # Assert
     expect(current_path).to eq(new_user_session_path)
@@ -117,8 +116,7 @@ describe 'User visits seasonal rate details' do
 
     # Act
     login_as other_user
-    visit guesthouse_room_seasonal_rate_path(guesthouse.id,room.id,
-                                                  seasonal_rate.id)
+    visit seasonal_rate_path(seasonal_rate.id)
 
     # Assert
     expect(current_path).to eq new_guesthouse_path

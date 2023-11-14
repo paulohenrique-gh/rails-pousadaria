@@ -94,7 +94,7 @@ describe 'User visits room page' do
                              available: false)
 
     # Act
-    visit guesthouse_room_path(guesthouse.id, room.id)
+    visit room_path(room.id)
 
     # Assert
     expect(current_path).to eq root_path
