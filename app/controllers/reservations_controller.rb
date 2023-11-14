@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_guest!, only: [:create]
+
   def new
     @room = Room.find(params[:room_id])
     @reservation = Reservation.new
@@ -25,5 +27,9 @@ class ReservationsController < ApplicationController
       flash.now[:alert] = 'Quarto não disponível no período informado'
       render :new
     end
+  end
+
+  def create
+
   end
 end

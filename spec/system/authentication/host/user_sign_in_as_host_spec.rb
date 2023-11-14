@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User signs in' do
+describe 'User signs in as host' do
   it 'successfully' do
     # Arrange
     User.create!(email: 'exemplo@mail.com', password: 'password')

@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      guest:
+        one: 'Hóspede'
+        other: 'Hóspede'
+      attributes:
+        guest:
+          name: 'Nome completo'
+          document: 'CPF'
+          email: 'E-mail'
+          password: 'Senha'

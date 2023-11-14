@@ -10,7 +10,6 @@ describe 'User sign up as host' do
     click_on 'Criar conta'
 
     # Assert
-    expect(page).to have_field 'Tipo de conta'
     expect(page).to have_field 'E-mail'
     expect(page).to have_field 'Senha'
     expect(page).to have_field 'Confirme sua senha'
@@ -21,7 +20,6 @@ describe 'User sign up as host' do
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
-    select 'Proprietário', from: 'Tipo de conta'
     fill_in 'E-mail', with: 'exemplo@mail.com'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
@@ -35,7 +33,6 @@ describe 'User sign up as host' do
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
-    select 'Proprietário', from: 'Tipo de conta'
     fill_in 'E-mail', with: 'exemplo@mail.com'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: ''

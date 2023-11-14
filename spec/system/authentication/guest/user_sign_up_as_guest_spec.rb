@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User sign up as guest' do
+describe 'User signs up as guest' do
   it 'before confirming reservation' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -43,5 +43,34 @@ describe 'User sign up as guest' do
     expect(page).to have_field 'Senha'
     expect(page).to have_field 'Confirme sua senha'
     expect(page).to have_button 'Salvar'
+  end
+
+  it 'successfully' do
+    # Act
+    visit new_guest_registration_path
+    fill_in 'Nome completo', with: 'Pedro Pedrada'
+    fill_in 'CPF', with: '12345678910'
+    fill_in 'E-mail', with: 'pedrada@mail.com'
+    fill_in 'Senha', with: 'password'
+    fill_in 'Confirme sua senha', with: 'password'
+    click_on 'Salvar'
+
+    # Assert
+    expect(page).to have_content 'Você realizou seu registro com sucesso!'
+    expect(page).to have_content 'pedrada@mail.com'
+  end
+
+  it 'and leaves required fields empty' do
+    # Act
+    visit new_guest_registration_path
+    fill_in 'Nome completo', with: 'Pedro Pedrada'
+    fill_in 'CPF', with: ''
+    fill_in 'E-mail', with: ''
+    fill_in 'Senha', with: 'password'
+    fill_in 'Confirme sua senha', with: 'password'
+    click_on 'Salvar'
+
+    # Assert
+    expect(page).to have_content 'Não foi possível salvar hóspede'
   end
 end

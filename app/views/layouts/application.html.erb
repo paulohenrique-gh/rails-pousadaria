@@ -16,9 +16,12 @@
       <%= render 'layouts/search_options' %>
       
       <% if current_user %>
-        <%= render 'layouts/authenticated' %>
+        <%= render 'layouts/user_authenticated' %>
+      <% elsif current_guest %>
+        <%= render 'layouts/guest_authenticated' %>
       <% else %>
         <strong><%= link_to 'Entrar', new_user_session_path %></strong>
+        <strong><%= link_to 'Entrar como hóspede', new_guest_session_path %></strong>
       <% end %>
     </nav>
     <main>

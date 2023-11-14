@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :guests, path: 'guests'
   root to: 'home#index'
 
   get 'my-guesthouse', to: 'guesthouses#user_guesthouse'

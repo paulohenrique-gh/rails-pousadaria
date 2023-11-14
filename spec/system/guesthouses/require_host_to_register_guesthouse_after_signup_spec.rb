@@ -6,7 +6,6 @@ describe "User creates host account" do
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
-    select 'Proprietário', from: 'Tipo de conta'
     fill_in 'E-mail', with: 'user@mail.com'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
