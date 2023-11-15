@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_guest!, only: [:create]
+  before_action :authenticate_guest!, only: [:create, :guest_index]
 
   def new
     @room = Room.find(params[:room_id])
@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
     days_count = (checkout - checkin).to_i + 1
 
     stay_total = @room.current_daily_rate * days_count
+
     @reservation = Reservation.new(checkin: checkin, checkout: checkout,
                                    guest_count: guest_count,
                                    stay_total: stay_total, room: @room)
@@ -42,6 +43,10 @@ class ReservationsController < ApplicationController
   def guest_index
     @reservations = Reservation.where(guest: current_guest)
     render 'index'
+  end
+
+  def inactivate
+
   end
 
   private

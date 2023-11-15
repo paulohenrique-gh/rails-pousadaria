@@ -9,9 +9,15 @@ class Reservation < ApplicationRecord
   validates :checkin, comparison: { greater_than: Date.today }
   validates :checkout, comparison: { greater_than: :checkin }
   validates :guest_count, :stay_total, comparison: { greater_than: 0 }
+  validates :code, uniqueness: true, on: :create
   validate :check_room_capacity
 
   enum status: { active: 0, inactive: 1 }
+
+  def cancel
+    days_before_checkin = (self.checkin.to_date - Date.today).to_i - 1
+    self.inactive! if days_before_checkin > 7
+  end
 
   private
 

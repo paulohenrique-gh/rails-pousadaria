@@ -1,17 +1,19 @@
 <% if current_guest && @reservations.any? %>
-  <h2>Minhas reservas</h2>
+  <h2>Minhas Reservas</h2>
 
   <% @reservations.each do |r| %>
-    <p><strong>Código da reserva</strong>: <%= r.code %></p>
-    <p><strong>Nome da pousada</strong>: <%= r.guesthouse.brand_name %></p>
-    <p><strong>Data de entrada</strong>: <%= I18n.localize(r.checkin) %></p>
-    <p><strong>Data de saída</strong>: <%= I18n.localize(r.checkout) %></p>
-    <% if r.active? %>
-      <%= 
-        button_to('Cancelar reserva',
-                  inactivate_reservation_path(r.id),
-                  method: :patch)
-      %>
-    <% end %>
+    <div>
+      <p><strong>Código da reserva</strong>: <%= r.code %></p>
+      <p><strong>Nome da pousada</strong>: <%= r.guesthouse.brand_name %></p>
+      <p><strong>Data de entrada</strong>: <%= I18n.localize(r.checkin) %></p>
+      <p><strong>Data de saída</strong>: <%= I18n.localize(r.checkout) %></p>
+      <% if r.active? %>
+        <%=
+          button_to('Cancelar reserva',
+                    inactivate_reservation_path(r.id),
+                    method: :patch)
+        %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>

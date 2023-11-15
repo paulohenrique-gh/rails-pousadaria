@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'User confirms reservation' do
-  it 'successfully' do
+describe 'User visits my-reservations page' do
+  it 'from the home page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -27,26 +27,17 @@ describe 'User confirms reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABCD1234')
+    room.reservations.create!(checkin: 5.days.from_now,
+                              checkout: 10.days.from_now, guest_count: 2,
+                              stay_total: 900, guest: guest)
 
     # Act
     login_as guest, scope: :guest
     visit root_path
-    click_on 'Pousada Bosque'
-    click_on 'Reservar'
-    fill_in 'Data de entrada', with: 10.days.from_now.strftime('%d/%m/%Y')
-    fill_in 'Data de saída', with: 20.days.from_now.strftime('%d/%m/%Y')
-    fill_in 'Quantidade de hóspedes', with: 2
-    click_on 'Verificar disponibilidade'
-    click_on 'Confirmar reserva'
+    click_on 'Minhas Reservas'
 
     # Assert
-    expect(page).to have_content 'Reserva registrada com sucesso'
+    expect(current_path).to eq my_reservations_path
     expect(page).to have_content 'Minhas Reservas'
-    expect(page).to have_content 'Código da reserva: ABCD1234'
-    expect(page).to have_content 'Nome da pousada: Pousada Bosque'
-    expect(page).to have_content "Data de entrada: #{10.days.from_now.strftime('%d/%m/%Y')}"
-    expect(page).to have_content "Data de saída: #{20.days.from_now.strftime('%d/%m/%Y')}"
-    expect(page).to have_button 'Cancelar reserva'
   end
 end
