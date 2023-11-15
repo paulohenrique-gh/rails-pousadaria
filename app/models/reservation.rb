@@ -16,13 +16,13 @@ class Reservation < ApplicationRecord
 
   enum status: { active: 0, inactive: 1 }
 
-  def cancel
-    self.inactive! if elligible_for_cancellation?
-  end
-
   def elligible_for_cancellation?
     days_before_checkin = (self.checkin.to_date - Date.today).to_i
     days_before_checkin >= MAX_DAYS_FOR_CANCELLING_BEFORE_CHECKIN
+  end
+
+  def cancel
+    self.inactive! if elligible_for_cancellation?
   end
 
   private
