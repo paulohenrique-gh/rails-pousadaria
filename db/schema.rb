@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_14_184202) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_15_012800) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name", null: false
     t.string "number", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_184202) do
     t.time "checkout_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "payment_method_one"
+    t.string "payment_method_one", default: "Dinheiro"
     t.string "payment_method_two"
     t.string "payment_method_three"
     t.integer "user_id", null: false
@@ -52,8 +52,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_184202) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.string "document"
+    t.string "name", null: false
+    t.string "document", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_guests_on_email", unique: true
@@ -68,6 +68,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_184202) do
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guest_id", null: false
+    t.string "code"
+    t.integer "status", default: 0
+    t.index ["guest_id"], name: "index_reservations_on_guest_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end
 
@@ -117,6 +121,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_184202) do
 
   add_foreign_key "guesthouses", "addresses"
   add_foreign_key "guesthouses", "users"
+  add_foreign_key "reservations", "guests"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "rooms", "guesthouses"
   add_foreign_key "seasonal_rates", "rooms"

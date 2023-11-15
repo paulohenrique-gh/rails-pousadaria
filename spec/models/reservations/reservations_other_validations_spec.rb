@@ -7,6 +7,9 @@ RSpec.describe Reservation, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -28,7 +31,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.from_now,
                                       checkout: 10.days.from_now,
-                                      guest_count: 5, room: room, stay_total: 900)
+                                      guest_count: 5, room: room, stay_total: 900,
+                                      guest: guest)
 
         # Assert
         expect(reservation).not_to be_valid
@@ -39,6 +43,9 @@ RSpec.describe Reservation, type: :model do
       it 'is a past date' do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
 
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
@@ -61,7 +68,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.ago,
                                       checkout: 10.days.from_now,
-                                      guest_count: 2, room: room, stay_total: 900)
+                                      guest_count: 2, room: room, stay_total: 900,
+                                      guest: guest)
 
         # Assert
         expect(reservation).not_to be_valid
@@ -72,6 +80,9 @@ RSpec.describe Reservation, type: :model do
       it 'is less than checkin date' do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
 
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
@@ -94,7 +105,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.from_now,
                                       checkout: 2.days.from_now,
-                                      guest_count: 2, room: room, stay_total: 900)
+                                      guest_count: 2, room: room, stay_total: 900,
+                                      guest: guest)
 
         # Assert
         expect(reservation).not_to be_valid
@@ -106,6 +118,9 @@ RSpec.describe Reservation, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -127,7 +142,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.from_now,
                                       checkout: 10.days.from_now,
-                                      guest_count: 0, room: room, stay_total: 900)
+                                      guest_count: 0, room: room, stay_total: 900,
+                                      guest: guest)
 
         # Assert
         expect(reservation).not_to be_valid
@@ -139,6 +155,9 @@ RSpec.describe Reservation, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -160,7 +179,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.from_now,
                                       checkout: 10.days.from_now,
-                                      guest_count: 2, room: room, stay_total: -50)
+                                      guest_count: 2, room: room, stay_total: -50,
+                                      guest: guest)
 
         # Assert
         expect(reservation).not_to be_valid
@@ -171,6 +191,9 @@ RSpec.describe Reservation, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -192,7 +215,8 @@ RSpec.describe Reservation, type: :model do
 
         reservation = Reservation.new(checkin: 5.days.from_now,
                                       checkout: 10.days.from_now,
-                                      guest_count: 2, room: room, stay_total: 900)
+                                      guest_count: 2, room: room, stay_total: 900,
+                                      guest: guest)
 
         # Assert
         expect(reservation).to be_valid

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User checks if room is available' do
+describe 'User tries to make a reservation' do
   it 'from the room list in the guesthouse page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -68,21 +68,16 @@ describe 'User checks if room is available' do
                         guesthouse: guesthouse)
 
     # Act
-    checkin = 10.days.from_now
-    checkout = 20.days.from_now
     visit root_path
     click_on 'Pousada Bosque'
     click_on 'Reservar'
-    fill_in 'Data de entrada', with: checkin
-    fill_in 'Data de saída', with: checkout
+    fill_in 'Data de entrada', with: 10.days.from_now
+    fill_in 'Data de saída', with: 20.days.from_now
     fill_in 'Quantidade de hóspedes', with: 2
     click_on 'Verificar disponibilidade'
 
     # Assert
     expect(page).to have_content 'Quarto disponível no período informado'
-    expect(page).to have_content "Data de entrada: #{checkin.strftime('%d/%m/%Y')}"
-    expect(page).to have_content "Data de saída: #{checkout.strftime('%d/%m/%Y')}"
-    expect(page).to have_content 'Quantidade de hóspedes: 2'
     expect(page).to have_content 'Valor total das diárias: R$ 1.650,00'
     expect(page).to have_button 'Confirmar reserva'
   end
@@ -90,6 +85,9 @@ describe 'User checks if room is available' do
   it 'and room is not available' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                          email: 'pedrada@mail.com', password: 'password')
 
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
@@ -113,7 +111,7 @@ describe 'User checks if room is available' do
     reservation = Reservation.create!(checkin: 10.days.from_now,
                                       checkout: 15.days.from_now,
                                       guest_count: 3, stay_total: 900,
-                                      room: room)
+                                      room: room, guest: guest)
 
     # Act
     visit root_path
@@ -131,6 +129,9 @@ describe 'User checks if room is available' do
   it 'and guest count exceeds room capacity' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                          email: 'pedrada@mail.com', password: 'password')
 
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
@@ -161,6 +162,6 @@ describe 'User checks if room is available' do
     click_on 'Verificar disponibilidade'
 
     # Assert
-    expect(page).to have_content 'Número de hóspedes excede capacidade do quarto'
+    expect(page).to have_content 'Quantidade de hóspedes excede capacidade do quarto'
   end
 end

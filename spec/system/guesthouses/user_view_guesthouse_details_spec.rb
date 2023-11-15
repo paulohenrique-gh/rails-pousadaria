@@ -97,7 +97,6 @@ describe 'Guest visits guesthouse details page' do
 
     # Assert
     expect(page).not_to have_content 'Complemento'
-    expect(page).not_to have_content 'Método de pagamento 1'
     expect(page).not_to have_content 'Método de pagamento 2'
     expect(page).not_to have_content 'Método de pagamento 3'
   end

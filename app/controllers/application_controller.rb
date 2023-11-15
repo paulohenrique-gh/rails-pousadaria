@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   protected
 
   def redirect_new_host_to_guesthouse_creation
@@ -19,5 +21,9 @@ class ApplicationController < ActionController::Base
 
   def set_room(room_id)
     @room = Room.find(room_id)
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :document])
   end
 end

@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
-  devise_for :guests, path: 'guests'
+  devise_for :users, :guests
   root to: 'home#index'
 
   get 'my-guesthouse', to: 'guesthouses#user_guesthouse'
-  get 'guesthouses-by-city/:city', to: 'guesthouses#by_city',
-                                   as: :guesthouses_by_city
+  get 'guesthouses-by-city/:city', to: 'guesthouses#by_city', as: :guesthouses_by_city
   get 'quick-search', to: 'guesthouse_search#quick_search'
   get 'advanced-search', to: 'guesthouse_search#advanced_search'
   get 'search-results', to: 'guesthouse_search#search_results'
+  get 'my-reservations', to: 'reservations#guest_index'
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
-      resources :reservations, only: [:new, :create]
-        get 'confirm', to: 'reservations#confirm'
+      get 'confirm', to: 'reservations#confirm'
+      resources :reservations, only: [:new, :create] do
+        patch :inactivate, on: :member
+      end
       resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member
       end

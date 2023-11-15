@@ -1,14 +1,34 @@
 <h2>Quarto disponível no período informado</h2>
-<h3>Detalhes</h3>
-<p>
-  <strong>Data de entrada:</strong> <%= I18n.localize(@reservation.checkin) %>
-</p>
-<p>
-  <strong>Data de saída:</strong> <%= I18n.localize(@reservation.checkout) %>
-</p>
-<p>
-  <strong>Quantidade de hóspedes:</strong> <%= @reservation.checkout %>
-</p>
+<% if current_guest %>
+  <h3>Detalhes</h3>
+  <p>
+    <strong><%= @reservation.guesthouse.brand_name %></strong>
+  </p>
+  <p>
+    <strong><%= @reservation.room.name %></strong>
+  </p>
+  <p>
+    <strong>Data de entrada:</strong> <%= I18n.localize(@reservation.checkin) %>
+  </p>
+  <p>
+    <strong>Horário de checkin:</strong>
+    <%= formatted_time(@reservation.guesthouse.checkin_time) %>
+  </p>
+  <p>
+    <strong>Data de saída:</strong> <%= I18n.localize(@reservation.checkout) %>
+  </p>
+  <p>
+    <strong>Horário de checkout:</strong>
+    <%= formatted_time(@reservation.guesthouse.checkout_time) %>
+  </p>
+  <p>
+    <strong>Quantidade de hóspedes:</strong> <%= @reservation.guest_count %>
+  </p>
+  <p>
+    <strong>Formas de pagamento:</strong>
+    <%= payment_methods_description(@reservation.guesthouse) %>
+  </p>
+<% end %>
 <p>
   <strong>Valor total das diárias:</strong>
   <%= number_to_currency(@reservation.stay_total) %>
@@ -18,7 +38,7 @@
             room_reservations_path,
             params: { checkin: @reservation.checkin,
                       checkout: @reservation.checkout,
-                      guest_count: @reservation.checkout,
+                      guest_count: @reservation.guest_count,
                       stay_total: @reservation.stay_total,
                       room_id: @reservation.room_id }
 %>

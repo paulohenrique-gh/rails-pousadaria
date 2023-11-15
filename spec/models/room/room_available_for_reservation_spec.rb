@@ -7,6 +7,9 @@ RSpec.describe Room, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -29,7 +32,7 @@ RSpec.describe Room, type: :model do
         reservation = Reservation.create!(checkin: 10.days.from_now,
                                           checkout: 15.days.from_now,
                                           guest_count: 3, stay_total: 900,
-                                          room: room)
+                                          room: room, guest: guest)
 
         new_checkin = 15.days.from_now.to_date
         new_checkout = 20.days.from_now.to_date
@@ -45,6 +48,9 @@ RSpec.describe Room, type: :model do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
+        guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                              email: 'pedrada@mail.com', password: 'password')
+
         address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                   neighbourhood: 'Santa Helena',
                                   city: 'Pulomiranga', state: 'RN',
@@ -67,7 +73,7 @@ RSpec.describe Room, type: :model do
         reservation = Reservation.create!(checkin: 10.days.from_now,
                                           checkout: 15.days.from_now,
                                           guest_count: 3, stay_total: 900,
-                                          room: room)
+                                          room: room, guest: guest)
 
         new_checkin = 8.days.from_now.to_date
         new_checkout = 20.days.from_now.to_date
@@ -83,6 +89,9 @@ RSpec.describe Room, type: :model do
     it 'returns true with no overlap in existing reservations' do
       # Arrange
       user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+      guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                            email: 'pedrada@mail.com', password: 'password')
 
       address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                                 neighbourhood: 'Santa Helena',
@@ -106,7 +115,7 @@ RSpec.describe Room, type: :model do
       reservation = Reservation.create!(checkin: 10.days.from_now,
                                         checkout: 15.days.from_now,
                                         guest_count: 3, stay_total: 900,
-                                        room: room)
+                                        room: room, guest: guest)
 
       new_checkin = 16.days.from_now
       new_checkout = 30.days.from_now

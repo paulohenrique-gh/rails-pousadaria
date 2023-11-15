@@ -116,4 +116,42 @@ RSpec.describe GuesthouseHelper, type: :helper do
       expect(result).to eq 'Possui TV'
     end
   end
+
+  describe '#payment_methods_description' do
+    it 'with 3 payment methods' do
+      # Arrange
+      guesthouse = Guesthouse.new(payment_method_one: 'Cartão',
+                                  payment_method_two: 'Pix',
+                                  payment_method_three: 'Dinheiro')
+
+      # Act
+      result = payment_methods_description(guesthouse)
+
+      # Assert
+      expect(result).to eq 'Cartão | Pix | Dinheiro'
+    end
+
+    it 'with 2 payment methods' do
+      # Arrange
+      guesthouse = Guesthouse.new(payment_method_one: 'Cartão',
+                                  payment_method_two: 'Pix')
+
+      # Act
+      result = payment_methods_description(guesthouse)
+
+      # Assert
+      expect(result).to eq 'Cartão | Pix'
+    end
+
+    it 'with 1 payment method' do
+      # Arrange
+      guesthouse = Guesthouse.new(payment_method_one: 'Cartão')
+
+      # Act
+      result = payment_methods_description(guesthouse)
+
+      # Assert
+      expect(result).to eq 'Cartão'
+    end
+  end
 end
