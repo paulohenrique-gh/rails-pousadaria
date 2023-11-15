@@ -13,11 +13,9 @@ class SeasonalRatesController < ApplicationController
     set_guesthouse_and_check_user(@room.guesthouse_id)
   end
 
-
   before_action only: [:show, :inactivate] do
     set_guesthouse_and_check_user(@seasonal_rate.room.guesthouse_id)
   end
-
 
   def show
     if @seasonal_rate.inactive?

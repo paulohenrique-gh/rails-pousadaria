@@ -36,7 +36,7 @@ RSpec.describe Reservation, type: :model do
       reservation.cancel
 
       # Assert
-      expect(reservation).to be_inactive
+      expect(reservation.reload).to be_inactive
     end
 
     it 'within 7 days before checkin' do
@@ -65,7 +65,7 @@ RSpec.describe Reservation, type: :model do
                           private_bathroom: true, tv: true,
                           guesthouse: guesthouse)
 
-      reservation = Reservation.create!(checkin: 7.days.from_now,
+      reservation = Reservation.create!(checkin: 6.days.from_now,
                                         checkout: 20.days.from_now, guest_count: 2,
                                         stay_total: 900, room: room, guest: guest)
 
@@ -73,7 +73,7 @@ RSpec.describe Reservation, type: :model do
       reservation.cancel
 
       # Assert
-      expect(reservation).not_to be_inactive
+      expect(reservation.reload).not_to be_inactive
     end
   end
 end

@@ -7,20 +7,32 @@ class Room < ApplicationRecord
             :max_people, :daily_rate, presence: true
 
   def current_daily_rate
-    SeasonalRate.active
-                .where(room_id: self.id)
-                .where('? BETWEEN start_date AND finish_date', Date.today)
-                .pluck(:rate)
-                .first || self.daily_rate
+    self.seasonal_rates
+        .active
+        .find_by('? BETWEEN start_date AND finish_date', Date.today)
+        .try(:rate) || self.daily_rate
   end
 
-  def available_for_reservation?(checkin_time, checkout_time)
+  def calculate_stay_total(checkin_date, checkout_date)
+    stay_total = 0
+    (checkin_date..checkout_date).each do |d|
+      seasonal_rate = self.seasonal_rates
+                          .active
+                          .find_by('? BETWEEN start_date AND finish_date', d)
+      stay_total += seasonal_rate.try(:rate) || self.daily_rate
+    end
+
+    stay_total
+  end
+
+  def available_for_reservation?(checkin_date, checkout_date)
     reservations = self.reservations
+                       .active
                        .where(":in BETWEEN checkin AND checkout OR "\
                               ":out BETWEEN checkin AND checkout OR "\
                               "checkin BETWEEN :in AND :out OR "\
                               "checkout BETWEEN :in AND :out",
-                              in: checkin_time, out: checkout_time)
+                              in: checkin_date, out: checkout_date)
 
     reservations.empty?
   end

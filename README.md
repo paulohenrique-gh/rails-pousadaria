@@ -120,6 +120,27 @@ Porta padrão: [3000](http://localhost:3000)
 - Para cada quarto listado são exibidas as informações cadastradas, com exceção da lista de preços por período, que apenas o proprietário consegue acessar entrando no link 'Mais detalhes' na sessão de quartos da página da pousada
 
 
+### Disponibilidade de quartos
+- Visitante sem cadastro pode iniciar a reserva de um quarto através da lista na página de detalhe de uma pousada
+- Na página da reserva, o visitante vê os detalhes do quarto e um formulário para informar as datas de checkin e checkout e a quantidade de hóspedes
+  - A data de checkout não pode ser menor que a de checkin
+  - A quantidade de hóspedes não pode ser negativa, nem exceder o limite do quarto
+- Se o quarto estiver disponível no período informado, o usuário ainda não autenticado é informado o valor total da estadia e tem acesso a um botão para confirmação da reserva
+  - O valor total é calculado com base no valor padrão da diária e nos preços por períodos cadastrados pelo proprietário
+  - As reservas canceladas de um quarto não são consideradas ao validar disponibilidade
+
+### Reservar quarto
+- Ao clicar no botão para confirmar a reserva, o visitante ainda não autenticado é direcionado para a página de cadastro, ou login caso já possua conta
+- O cadastro de hóspede requer as seguintes informações:
+  - Nome completo
+  - CPF
+  - E-mail
+  - Senha
+- Após autenticação, o usuário pode confirmar a reserva, que fica disponível no link 'Minhas Reservas' em qualquer página da aplicação
+- As reservas são identificadas por um código único de 8 caracteres
+- O usuário pode cancelar a reserva até 7 dias antes da data agendada para o checkin
+
+
 ## Referências
 
 Algumas páginas de documentação e artigos que tem ajudado
@@ -138,3 +159,5 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [```compact_blank```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-compact_blank)
 - [```delete_if```](https://edgeapi.rubyonrails.org/classes/ActionController/Parameters.html#method-i-delete_if)
 - [Scopes](https://www.campuscode.com.br/conteudos/scope-em-ruby-on-rails)
+- [```try```](https://api.rubyonrails.org/classes/NilClass.html#method-i-try)
+- [Condicionais com objeto nil](https://franzejr.github.io/best-ruby/refactorings/conditionals_when_object_is_nil.html#)

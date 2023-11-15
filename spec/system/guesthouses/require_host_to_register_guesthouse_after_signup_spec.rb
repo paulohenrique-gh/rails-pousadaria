@@ -4,7 +4,7 @@ describe "User creates host account" do
   it 'and is redirected to the guesthouse registration page' do
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     click_on 'Criar conta'
     fill_in 'E-mail', with: 'user@mail.com'
     fill_in 'Senha', with: 'password'

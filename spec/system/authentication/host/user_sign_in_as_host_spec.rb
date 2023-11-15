@@ -7,7 +7,7 @@ describe 'User signs in as host' do
 
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     within '.login_form' do
       fill_in 'E-mail', with: 'exemplo@mail.com'
       fill_in 'Senha', with: 'password'
@@ -29,7 +29,7 @@ describe 'User signs in as host' do
 
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     within '.login_form' do
       fill_in 'E-mail', with: 'exemplo@mail.com'
       fill_in 'Senha', with: '123456'

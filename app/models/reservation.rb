@@ -1,4 +1,6 @@
 class Reservation < ApplicationRecord
+  MAX_DAYS_FOR_CANCELLING_BEFORE_CHECKIN = 7
+
   belongs_to :room
   belongs_to :guest
   has_one :guesthouse, through: :room
@@ -15,8 +17,12 @@ class Reservation < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   def cancel
-    days_before_checkin = (self.checkin.to_date - Date.today).to_i - 1
-    self.inactive! if days_before_checkin > 7
+    self.inactive! if elligible_for_cancellation?
+  end
+
+  def elligible_for_cancellation?
+    days_before_checkin = (self.checkin.to_date - Date.today).to_i
+    days_before_checkin >= MAX_DAYS_FOR_CANCELLING_BEFORE_CHECKIN
   end
 
   private

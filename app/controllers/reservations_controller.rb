@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_guest!, only: [:create, :guest_index]
+  before_action :authenticate_guest!, only: [:create, :guest_index, :inactivate]
+
+  before_action :check_guest, only: [:inactivate]
 
   def new
     @room = Room.find(params[:room_id])
@@ -14,14 +16,19 @@ class ReservationsController < ApplicationController
     guest_count = params[:reservation][:guest_count].to_i
     days_count = (checkout - checkin).to_i + 1
 
-    stay_total = @room.current_daily_rate * days_count
+    stay_total = @room.calculate_stay_total(checkin, checkout)
 
     @reservation = Reservation.new(checkin: checkin, checkout: checkout,
                                    guest_count: guest_count,
                                    stay_total: stay_total, room: @room)
 
+    if days_count < 1
+      flash.now[:alert] = 'Data de saída não pode ser menor que data de entrada'
+      return render :new
+    end
+
     if guest_count > @room.max_people
-      flash[:alert] = 'Quantidade de hóspedes excede capacidade do quarto'
+      flash.now[:alert] = 'Quantidade de hóspedes excede capacidade do quarto'
       return render :new
     end
 
@@ -37,21 +44,33 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       redirect_to my_reservations_path, notice: 'Reserva registrada com sucesso'
+    else
+      flash.now[:alert] = 'Não foi possível concluir a reserva'
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def guest_index
-    @reservations = Reservation.where(guest: current_guest)
+    @reservations = Reservation.where(guest: current_guest).reverse
     render 'index'
   end
 
   def inactivate
-
+    @reservation = Reservation.find(params[:id])
+    @reservation.cancel
+    redirect_to my_reservations_path, notice: 'Reserva cancelada com sucesso'
   end
 
   private
 
   def reservation_params
     params.permit(:checkin, :checkout, :guest_count, :stay_total, :room_id)
+  end
+
+  def check_guest
+    reservation = Reservation.find(params[:id])
+    if reservation.guest != current_guest
+      redirect_to root_path
+    end
   end
 end

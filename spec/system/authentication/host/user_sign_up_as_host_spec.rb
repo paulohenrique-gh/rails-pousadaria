@@ -6,7 +6,7 @@ describe 'User sign up as host' do
 
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     click_on 'Criar conta'
 
     # Assert
@@ -18,7 +18,7 @@ describe 'User sign up as host' do
 
   it 'successfully' do
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     click_on 'Criar conta'
     fill_in 'E-mail', with: 'exemplo@mail.com'
     fill_in 'Senha', with: 'password'
@@ -31,7 +31,7 @@ describe 'User sign up as host' do
 
   it 'and submits blank field' do
     visit root_path
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
     click_on 'Criar conta'
     fill_in 'E-mail', with: 'exemplo@mail.com'
     fill_in 'Senha', with: 'password'

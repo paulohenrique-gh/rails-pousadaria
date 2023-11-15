@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User cancels reservation' do
-  it 'successfully' do
+  it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -27,28 +27,25 @@ describe 'User cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    room.reservations.create!(checkin: 10.days.from_now,
-                              checkout: 20.days.from_now, guest_count: 2,
-                              stay_total: 900, guest: guest)
+    reservation = Reservation.create!(checkin: 5.days.from_now,
+                                      checkout: 20.days.from_now, guest_count: 2,
+                                      stay_total: 900, room: room, guest: guest)
 
     # Act
-    login_as guest, scope: :guest
-    visit root_path
-    click_on 'Minhas Reservas'
-    click_on 'Cancelar reserva'
+    patch(inactivate_reservation_path(reservation.id))
 
     # Assert
-    expect(page).to have_content 'Reserva cancelada com sucesso'
-    expect(page).to have_content 'Status: Cancelada'
-    expect(guest.reservations.first).to be_inactive
+    expect(response).to redirect_to new_guest_session_path
   end
 
-  it 'within seven days' do
+  it 'and is not the owner' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
     guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
                           email: 'pedrada@mail.com', password: 'password')
+    other_guest = Guest.create!(name: 'Manco Mancada', document: '98765432100',
+                          email: 'mancada@mail.com', password: 'password')
 
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
@@ -69,16 +66,15 @@ describe 'User cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    room.reservations.create!(checkin: 5.days.from_now,
-                              checkout: 20.days.from_now, guest_count: 2,
-                              stay_total: 900, guest: guest)
+    reservation = Reservation.create!(checkin: 5.days.from_now,
+                                      checkout: 20.days.from_now, guest_count: 2,
+                                      stay_total: 900, room: room, guest: guest)
 
     # Act
-    login_as guest, scope: :guest
-    visit root_path
-    click_on 'Minhas Reservas'
+    login_as other_guest, scope: :guest
+    patch(inactivate_reservation_path(reservation.id))
 
     # Assert
-    expect(page).not_to have_button 'Cancelar reserva'
+    expect(response).to redirect_to root_path
   end
 end
