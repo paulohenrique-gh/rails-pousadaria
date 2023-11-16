@@ -1,0 +1,22 @@
+<h2>Gerenciar reserva <%= @reservation.code %></h2>
+<div>
+  <p>
+    <strong>Data agendada para entrada: </strong>
+    <%= I18n.localize(@reservation.checkin) %>
+  </p>
+  <p>
+    <strong>Data agendada para saída: </strong>
+    <%= I18n.localize(@reservation.checkout) %>
+  </p>
+  <p>
+    <strong>Status:</strong> 
+    <%= Reservation.human_attribute_name("status.#{@reservation.status}") %>
+  </p>
+  <% if @checkin_elligible %>
+    <p>
+      <%= button_to('Confirmar check-in',
+                    confirm_checkin_reservation_path(@reservation.id),
+                    method: :patch) %>
+    </p>
+  <% end %>
+</div>

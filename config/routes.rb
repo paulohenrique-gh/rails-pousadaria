@@ -8,12 +8,15 @@ Rails.application.routes.draw do
   get 'advanced-search', to: 'guesthouse_search#advanced_search'
   get 'search-results', to: 'guesthouse_search#search_results'
   get 'my-reservations', to: 'reservations#guest_index'
+  get 'my-guesthouse-reservations', to: 'reservations#user_index'
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       get 'confirm', to: 'reservations#confirm'
       resources :reservations, only: [:new, :create] do
         patch :inactivate, on: :member
+        get :manage, on: :member
+        patch :confirm_checkin, on: :member
       end
       resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member

@@ -161,3 +161,4 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [Scopes](https://www.campuscode.com.br/conteudos/scope-em-ruby-on-rails)
 - [```try```](https://api.rubyonrails.org/classes/NilClass.html#method-i-try)
 - [Condicionais com objeto nil](https://franzejr.github.io/best-ruby/refactorings/conditionals_when_object_is_nil.html#)
+- [Traduzindo Enums no Rails](https://www.campuscode.com.br/conteudos/traduzindo-enums-no-rails)

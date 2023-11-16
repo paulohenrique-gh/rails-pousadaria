@@ -11,3 +11,8 @@ pt-BR:
         guest_count: 'Número de hóspedes'
         max_people: 'Quantidade máxima de pessoas'
         stay_total: 'Valor total das diárias'
+      reservation/status:
+        active: 'Confirmada'
+        inactive: 'Cancelada'
+        guests_checked_in: 'Estadia ativa'
+        guests_checked_out: 'Finalizada'

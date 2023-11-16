@@ -14,7 +14,7 @@ class Reservation < ApplicationRecord
   validates :code, uniqueness: true, on: :create
   validate :check_room_capacity
 
-  enum status: { active: 0, inactive: 1 }
+  enum status: { active: 0, inactive: 1, guests_checked_in: 2, guests_checked_out: 3 }
 
   def elligible_for_cancellation?
     days_before_checkin = (self.checkin.to_date - Date.today).to_i
@@ -23,6 +23,10 @@ class Reservation < ApplicationRecord
 
   def cancel
     self.inactive! if elligible_for_cancellation?
+  end
+
+  def elligible_for_checkin?
+    Date.today.between?(self.checkin, self.checkout)
   end
 
   private

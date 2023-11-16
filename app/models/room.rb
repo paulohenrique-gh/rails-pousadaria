@@ -15,10 +15,10 @@ class Room < ApplicationRecord
 
   def calculate_stay_total(checkin_date, checkout_date)
     stay_total = 0
-    (checkin_date..checkout_date).each do |d|
+    (checkin_date..checkout_date).each do |date|
       seasonal_rate = self.seasonal_rates
                           .active
-                          .find_by('? BETWEEN start_date AND finish_date', d)
+                          .find_by('? BETWEEN start_date AND finish_date', date)
       stay_total += seasonal_rate.try(:rate) || self.daily_rate
     end
 
@@ -27,7 +27,7 @@ class Room < ApplicationRecord
 
   def available_for_reservation?(checkin_date, checkout_date)
     reservations = self.reservations
-                       .active
+                       .where(status: [:active, :guests_checked_in])
                        .where(":in BETWEEN checkin AND checkout OR "\
                               ":out BETWEEN checkin AND checkout OR "\
                               "checkin BETWEEN :in AND :out OR "\

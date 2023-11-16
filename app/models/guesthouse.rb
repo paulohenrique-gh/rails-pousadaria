@@ -2,6 +2,7 @@ class Guesthouse < ApplicationRecord
   belongs_to :address
   belongs_to :user
   has_many :rooms
+  has_many :reservations, through: :rooms
 
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, :checkin_time, :checkout_time, presence: true

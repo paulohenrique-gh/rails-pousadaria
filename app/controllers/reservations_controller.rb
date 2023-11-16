@@ -1,4 +1,8 @@
 class ReservationsController < ApplicationController
+  before_action only: [:create] do
+    sign_out(current_user) if current_user.present?
+  end
+
   before_action :authenticate_guest!, only: [:create, :guest_index, :inactivate]
 
   before_action :check_guest, only: [:inactivate]
@@ -21,6 +25,11 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(checkin: checkin, checkout: checkout,
                                    guest_count: guest_count,
                                    stay_total: stay_total, room: @room)
+
+    if checkin <= Date.today
+      flash.now[:alert] = 'Data de entrada mínima é 1 dia após a data atual'
+      return render :new
+    end
 
     if days_count < 1
       flash.now[:alert] = 'Data de saída não pode ser menor que data de entrada'
@@ -50,8 +59,31 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def manage
+    @reservation = Reservation.find(params[:id])
+    @checkin_elligible = @reservation.elligible_for_checkin?
+  end
+
+  def confirm_checkin
+    @reservation = Reservation.find(params[:id])
+    @checkin_elligible = @reservation.elligible_for_checkin?
+    if @checkin_elligible
+      @reservation.guests_checked_in!
+      return redirect_to(manage_reservation_path(@reservation.id),
+                         notice: 'Check-in confirmado com sucesso')
+    else
+      redirect_to(manage_reservation_path(@reservation.id),
+                  alert: 'Não foi possível confirmar o check-in')
+    end
+  end
+
   def guest_index
-    @reservations = Reservation.where(guest: current_guest).reverse
+    @reservations = current_guest.reservations.reverse
+    render 'index'
+  end
+
+  def user_index
+    @reservations = current_user.guesthouse.reservations.order(:checkin)
     render 'index'
   end
 
