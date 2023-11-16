@@ -34,7 +34,7 @@ describe 'User visit guesthouse reservations page' do
     allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('XYZ12345')
     room.reservations.create!(checkin: 15.days.from_now,
                               checkout: 20.days.from_now, guest_count: 1,
-                              stay_total: 900, guest: guest, status: :inactive)
+                              stay_total: 900, guest: guest, status: :cancelled)
 
 
     # Act

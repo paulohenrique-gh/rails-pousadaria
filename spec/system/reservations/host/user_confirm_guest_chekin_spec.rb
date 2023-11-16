@@ -95,7 +95,12 @@ describe 'Host confirms guest checkin' do
     # Assert
     expect(current_path).to eq manage_reservation_path(reservation.id)
     expect(page).to have_content 'Check-in confirmado com sucesso'
-    expect(reservation.reload.guests_checked_in?).to be true
+    expect(page).to have_content(
+      "Data e hora do check-in: #{reservation.reload.checked_in_at
+                                             .strftime('%d/%m/%Y %H:%M:%S')}"
+    )
+    expect(page).not_to have_button 'Confirmar check-in'
+    expect(reservation.guests_checked_in?).to be true
   end
 
   it 'before checkin date' do

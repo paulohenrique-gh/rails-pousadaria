@@ -12,7 +12,7 @@ pt-BR:
         max_people: 'Quantidade máxima de pessoas'
         stay_total: 'Valor total das diárias'
       reservation/status:
-        active: 'Confirmada'
-        inactive: 'Cancelada'
+        confirmed: 'Confirmada'
+        cancelled: 'Cancelada'
         guests_checked_in: 'Estadia ativa'
         guests_checked_out: 'Finalizada'

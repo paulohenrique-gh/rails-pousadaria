@@ -7,7 +7,7 @@
       <p><strong>Nome da pousada:</strong> <%= r.guesthouse.brand_name %></p>
       <p><strong>Data de entrada:</strong> <%= I18n.localize(r.checkin) %></p>
       <p><strong>Data de saída:</strong> <%= I18n.localize(r.checkout) %></p>
-      <% if r.active? && r.elligible_for_cancellation? %>
+      <% if r.confirmed? && r.elligible_for_cancellation? %>
         <%=
           button_to('Cancelar reserva',
                     inactivate_reservation_path(r.id),
@@ -42,7 +42,7 @@
           <strong>Status:</strong> 
           <%= Reservation.human_attribute_name("status.#{r.status}") %>
         </p>
-        <% if r.active? || r.guests_checked_in? %>
+        <% if r.confirmed? || r.guests_checked_in? %>
           <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
         <% end %>
       </div>

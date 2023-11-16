@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   end
 
   before_action :authenticate_guest!, only: [:create, :guest_index, :inactivate]
-
+  before_action :set_reservation, only: [:manage, :confirm_checkin, :inactivate]
   before_action :check_guest, only: [:inactivate]
 
   def new
@@ -49,22 +49,9 @@ class ReservationsController < ApplicationController
   end
 
   def manage
-    @reservation = Reservation.find(params[:id])
     @checkin_elligible = @reservation.elligible_for_checkin?
   end
 
-  def confirm_checkin
-    @reservation = Reservation.find(params[:id])
-    @checkin_elligible = @reservation.elligible_for_checkin?
-    if @checkin_elligible
-      @reservation.guests_checked_in!
-      return redirect_to(manage_reservation_path(@reservation.id),
-                         notice: 'Check-in confirmado com sucesso')
-    else
-      redirect_to(manage_reservation_path(@reservation.id),
-                  alert: 'Não foi possível confirmar o check-in')
-    end
-  end
 
   def guest_index
     @reservations = current_guest.reservations.reverse
@@ -76,10 +63,28 @@ class ReservationsController < ApplicationController
     render 'index'
   end
 
+  def confirm_checkin
+    @checkin_elligible = @reservation.elligible_for_checkin?
+    if @checkin_elligible
+      @reservation.guests_checked_in!
+      @reservation.update(checked_in_at: DateTime.now.localtime)
+      return redirect_to(manage_reservation_path(@reservation.id),
+                         notice: 'Check-in confirmado com sucesso')
+    else
+      redirect_to(manage_reservation_path(@reservation.id),
+                  alert: 'Não foi possível confirmar o check-in')
+    end
+  end
+
   def inactivate
-    @reservation = Reservation.find(params[:id])
     @reservation.cancel
-    redirect_to my_reservations_path, notice: 'Reserva cancelada com sucesso'
+    if @reservation.cancelled?
+      return redirect_to(my_reservations_path,
+                         notice: 'Reserva cancelada com sucesso')
+    else
+      redirect_to(my_reservations_path,
+                  alert: 'Não foi possível cancelar reserva')
+    end
   end
 
   private
@@ -88,9 +93,12 @@ class ReservationsController < ApplicationController
     params.permit(:checkin, :checkout, :guest_count, :stay_total, :room_id)
   end
 
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
   def check_guest
-    reservation = Reservation.find(params[:id])
-    if reservation.guest != current_guest
+    if set_reservation.guest != current_guest
       redirect_to root_path
     end
   end

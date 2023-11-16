@@ -27,7 +27,7 @@ class Room < ApplicationRecord
 
   def available_for_reservation?(checkin_date, checkout_date)
     reservations = self.reservations
-                       .where(status: [:active, :guests_checked_in])
+                       .where(status: [:confirmed, :guests_checked_in])
                        .where(":in BETWEEN checkin AND checkout OR "\
                               ":out BETWEEN checkin AND checkout OR "\
                               "checkin BETWEEN :in AND :out OR "\

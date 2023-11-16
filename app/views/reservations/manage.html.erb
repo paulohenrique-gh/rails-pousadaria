@@ -12,6 +12,12 @@
     <strong>Status:</strong> 
     <%= Reservation.human_attribute_name("status.#{@reservation.status}") %>
   </p>
+  <% if @reservation.guests_checked_in? %>
+    <p>
+      <strong>Data e hora do check-in:</strong>
+      <%= I18n.localize(@reservation.checked_in_at, format: :custom) %>
+    </p>
+  <% end %>
   <% if @checkin_elligible %>
     <p>
       <%= button_to('Confirmar check-in',

@@ -40,7 +40,7 @@ describe 'User cancels reservation' do
     # Assert
     expect(page).to have_content 'Reserva cancelada com sucesso'
     expect(page).to have_content 'Status: Cancelada'
-    expect(guest.reservations.first).to be_inactive
+    expect(guest.reservations.first).to be_cancelled
   end
 
   it 'within seven days' do
