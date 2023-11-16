@@ -26,18 +26,7 @@ class ReservationsController < ApplicationController
                                    guest_count: guest_count,
                                    stay_total: stay_total, room: @room)
 
-    if checkin <= Date.today
-      flash.now[:alert] = 'Data de entrada mínima é 1 dia após a data atual'
-      return render :new
-    end
-
-    if days_count < 1
-      flash.now[:alert] = 'Data de saída não pode ser menor que data de entrada'
-      return render :new
-    end
-
-    if guest_count > @room.max_people
-      flash.now[:alert] = 'Quantidade de hóspedes excede capacidade do quarto'
+    unless @reservation.valid?
       return render :new
     end
 

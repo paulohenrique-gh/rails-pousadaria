@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   MAX_DAYS_FOR_CANCELLING_BEFORE_CHECKIN = 7
 
   belongs_to :room
-  belongs_to :guest
+  belongs_to :guest, optional: true
   has_one :guesthouse, through: :room
 
   before_validation :generate_code, on: :create
@@ -10,7 +10,7 @@ class Reservation < ApplicationRecord
   validates :checkin, :checkout, :guest_count, :stay_total, presence: true
   validates :checkin, comparison: { greater_than: Date.today }
   validates :checkout, comparison: { greater_than: :checkin }
-  validates :guest_count, :stay_total, comparison: { greater_than: 0 }
+  validates :guest_count, comparison: { greater_than: 0 }
   validates :code, uniqueness: true, on: :create
   validate :check_room_capacity
 
@@ -26,7 +26,7 @@ class Reservation < ApplicationRecord
   end
 
   def elligible_for_checkin?
-    Date.today.between?(self.checkin, self.checkout)
+    Date.today.between?(self.checkin, self.checkout) && self.active?
   end
 
   private

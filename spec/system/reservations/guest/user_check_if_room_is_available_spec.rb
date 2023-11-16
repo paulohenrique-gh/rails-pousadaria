@@ -162,7 +162,7 @@ describe 'User tries to make a reservation' do
     click_on 'Verificar disponibilidade'
 
     # Assert
-    expect(page).to have_content 'Quantidade de hóspedes excede capacidade do quarto'
+    expect(page).to have_content 'Número de hóspedes excede capacidade do quarto'
   end
 
   it 'and there is active seasonal rate between checkin and checkout' do
