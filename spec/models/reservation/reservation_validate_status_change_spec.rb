@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
-  describe '#cancel' do
+  describe '#guest_cancel' do
     it 'more than 7 days before checkin' do
       # Arrange
       user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -33,7 +33,7 @@ RSpec.describe Reservation, type: :model do
                                         stay_total: 900, room: room, guest: guest)
 
       # Act
-      reservation.cancel
+      reservation.guest_cancel
 
       # Assert
       expect(reservation.reload).to be_cancelled
@@ -70,7 +70,7 @@ RSpec.describe Reservation, type: :model do
                                         stay_total: 900, room: room, guest: guest)
 
       # Act
-      reservation.cancel
+      reservation.guest_cancel
 
       # Assert
       expect(reservation.reload).not_to be_cancelled

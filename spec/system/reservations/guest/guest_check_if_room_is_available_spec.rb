@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User tries to make a reservation' do
+describe 'Guest checks room availability' do
   it 'from the room list in the guesthouse page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')

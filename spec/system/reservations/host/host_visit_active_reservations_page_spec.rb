@@ -1,12 +1,15 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
-describe 'User visits my-reservations page' do
+describe 'Host visits active reservations page' do
   it 'from the home page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
     guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
                           email: 'pedrada@mail.com', password: 'password')
+    guest = Guest.create!(name: 'Manco', document: '012345678910',
+                          email: 'mancada@mail.com', password: 'password')
 
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
@@ -27,17 +30,33 @@ describe 'User visits my-reservations page' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    room.reservations.create!(checkin: 5.days.from_now,
-                              checkout: 10.days.from_now, guest_count: 2,
-                              stay_total: 900, guest: guest)
+    reservation = Reservation.create!(checkin: 1.days.from_now,
+                                      checkout: 10.days.from_now, guest_count: 2,
+                                      stay_total: 900, guest: guest, room: room,
+                                      status: :guests_checked_in,
+                                      checked_in_at: 1.days.from_now.to_datetime)
 
     # Act
-    login_as guest, scope: :guest
+    travel_to 1.day.from_now
+    login_as user
     visit root_path
-    click_on 'Minhas Reservas'
+    click_on 'Estadias Ativas'
+    travel_back
 
     # Assert
-    expect(current_path).to eq my_reservations_path
-    expect(page).to have_content 'Minhas Reservas'
+    expect(page).to have_content 'Estadias ativas em Pousada Bosque'
+    expect(page).to have_content "Código da reserva: #{reservation.code}"
+    expect(page).to have_content 'Quarto: Brasil'
+    expect(page).to have_content(
+      "Data agendada de entrada: #{reservation.checkin.strftime('%d/%m/%Y')}"
+    )
+    expect(page).to have_content(
+      "Data agendada de saída: #{reservation.checkout.strftime('%d/%m/%Y')}"
+    )
+    expect(page).to have_content(
+      "Data e hora do check-in: #{(reservation.checked_in_at - 3.hours)
+                                              .strftime('%d/%m/%Y %H:%M:%S')}"
+    )
+    expect(page).to have_link 'Gerenciar reserva'
   end
 end

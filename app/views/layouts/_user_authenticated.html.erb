@@ -1,8 +1,9 @@
 <% if current_user.guesthouse %>
   <strong><%= link_to 'Minha Pousada', my_guesthouse_path %></strong> |
-  <strong><%= link_to 'Reservas', my_guesthouse_reservations_path %></strong>
+  <strong><%= link_to 'Reservas', my_guesthouse_reservations_path %></strong> |
+  <strong><%= link_to 'Estadias Ativas', my_active_reservations_path %></strong> |
 <% else %>
-  <%= link_to 'Cadastrar Pousada', new_guesthouse_path %>
+  <%= link_to 'Cadastrar Pousada', new_guesthouse_path %> |
 <% end %>
 
 <span><%= current_user.email %></span>

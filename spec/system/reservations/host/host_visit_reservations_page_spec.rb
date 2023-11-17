@@ -43,8 +43,8 @@ describe 'User visit guesthouse reservations page' do
     click_on 'Reservas'
 
     # Assert
-    first_reservation = page.find('.reservation-details:nth-child(1)')
-    second_reservation = page.find('.reservation-details:nth-child(2)')
+    first_reservation = page.find('.reservation-details:nth-of-type(1)')
+    second_reservation = page.find('.reservation-details:nth-of-type(2)')
     expect(page).to have_content 'Reservas de Pousada Bosque'
     expect(page).to have_content 'Código da reserva: ABCD1234'
     expect(page).to have_content 'Quarto: Brasil'

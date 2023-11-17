@@ -1,7 +1,8 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
-describe 'User cancels reservation' do
-  it 'successfully' do
+describe 'Host cancels reservation' do
+  it 'After minimum of 2 days after scheduled checkin' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -27,23 +28,26 @@ describe 'User cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    room.reservations.create!(checkin: 10.days.from_now,
-                              checkout: 20.days.from_now, guest_count: 2,
-                              stay_total: 900, guest: guest)
+    reservation = Reservation.create!(checkin: 1.days.from_now,
+                                      checkout: 10.days.from_now, guest_count: 2,
+                                      stay_total: 900, guest: guest, room: room)
 
     # Act
-    login_as guest, scope: :guest
+    travel_to 4.days.from_now
+    login_as user
     visit root_path
-    click_on 'Minhas Reservas'
-    click_on 'Cancelar reserva'
+    click_on 'Reservas'
+    click_on 'Gerenciar reserva'
+    click_on 'Cancelar'
 
     # Assert
+    expect(current_path).to eq my_guesthouse_reservations_path
     expect(page).to have_content 'Reserva cancelada com sucesso'
-    expect(page).to have_content 'Status: Cancelada'
-    expect(guest.reservations.first).to be_cancelled
+    expect(reservation.reload).to be_cancelled
+    travel_back
   end
 
-  it 'within seven days' do
+  it 'Before minimum of 2 days after scheduled checkin' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -69,16 +73,21 @@ describe 'User cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    room.reservations.create!(checkin: 5.days.from_now,
-                              checkout: 20.days.from_now, guest_count: 2,
-                              stay_total: 900, guest: guest)
+    reservation = Reservation.create!(checkin: 1.days.from_now,
+                                      checkout: 10.days.from_now, guest_count: 2,
+                                      stay_total: 900, guest: guest, room: room)
 
     # Act
-    login_as guest, scope: :guest
+    travel_to 2.days.from_now
+    login_as user
     visit root_path
-    click_on 'Minhas Reservas'
+    click_on 'Reservas'
+    click_on 'Gerenciar reserva'
 
     # Assert
-    expect(page).not_to have_button 'Cancelar reserva'
+    expect(page).not_to have_button 'Cancelar'
+    travel_back
   end
+
+
 end

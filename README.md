@@ -136,9 +136,25 @@ Porta padrão: [3000](http://localhost:3000)
   - CPF
   - E-mail
   - Senha
-- Após autenticação, o usuário pode confirmar a reserva, que fica disponível no link 'Minhas Reservas' em qualquer página da aplicação
+- Após autenticação, o usuário pode confirmar a reserva, que fica disponível no link "Minhas Reservas" em qualquer página da aplicação
 - As reservas são identificadas por um código único de 8 caracteres
-- O usuário pode cancelar a reserva até 7 dias antes da data agendada para o checkin
+- O usuário pode cancelar a reserva até 7 dias antes da data agendada para o check-in
+
+### Check-in
+- Usuário dono de pousada consegue visualizar suas reservas através da opção "Reservas" no menu.
+- A página de reservas lista todas as reservas da pousada, com os seguintes detalhes:
+  - Código da reserva
+  - Quarto
+  - Responsável pela reserva
+  - Data agendada para entrada
+  - Data agendada para saída
+  - Quantidade de hóspedes
+  - Status da reserva
+    - Confirmada: reserva agendada e confirmada pelo hóspede
+    - Cancelada: reserva cancelada pelo hóspede ou pelo proprietário
+    - Estadia ativa: reserva com check-in confirmado pelo proprietário
+    - Concluída: reserva com check-out confirmado pelo proprietário 
+- O proprietário pode cancelar a reserva a partir de 2 dias após a data agendada para o check-in em caso de não comparecimento do hóspede
 
 
 ## Referências

@@ -26,14 +26,14 @@ class Room < ApplicationRecord
   end
 
   def available_for_reservation?(checkin_date, checkout_date)
-    reservations = self.reservations
-                       .where(status: [:confirmed, :guests_checked_in])
-                       .where(":in BETWEEN checkin AND checkout OR "\
-                              ":out BETWEEN checkin AND checkout OR "\
-                              "checkin BETWEEN :in AND :out OR "\
-                              "checkout BETWEEN :in AND :out",
-                              in: checkin_date, out: checkout_date)
+    overlapping_reservations = self.reservations
+                              .where(status: [:confirmed, :guests_checked_in])
+                              .where(":in BETWEEN checkin AND checkout OR "\
+                                      ":out BETWEEN checkin AND checkout OR "\
+                                      "checkin BETWEEN :in AND :out OR "\
+                                      "checkout BETWEEN :in AND :out",
+                                      in: checkin_date, out: checkout_date)
 
-    reservations.empty?
+    overlapping_reservations.empty?
   end
 end

@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   get 'search-results', to: 'guesthouse_search#search_results'
   get 'my-reservations', to: 'reservations#guest_index'
   get 'my-guesthouse-reservations', to: 'reservations#user_index'
+  get 'my-active-reservations', to: 'reservations#user_active_reservations'
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       get 'confirm', to: 'reservations#confirm'
       resources :reservations, only: [:new, :create] do
-        patch :inactivate, on: :member
+        patch :cancellation_by_guest, on: :member
+        patch :cancellation_by_user, on: :member
         get :manage, on: :member
         patch :confirm_checkin, on: :member
       end

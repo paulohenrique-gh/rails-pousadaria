@@ -33,7 +33,7 @@ describe 'Host confirms guest checkin' do
                                       stay_total: 900, guest: guest, room: room)
 
     # Act
-    travel 2.days
+    travel_to 2.days.from_now
     login_as user
     visit root_path
     click_on 'Reservas'
@@ -84,7 +84,7 @@ describe 'Host confirms guest checkin' do
                                       stay_total: 900, guest: guest, room: room)
 
     # Act
-    travel 2.days
+    travel_to 2.days.from_now
     login_as user
     visit root_path
     click_on 'Reservas'

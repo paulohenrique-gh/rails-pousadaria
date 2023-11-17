@@ -7,10 +7,10 @@
       <p><strong>Nome da pousada:</strong> <%= r.guesthouse.brand_name %></p>
       <p><strong>Data de entrada:</strong> <%= I18n.localize(r.checkin) %></p>
       <p><strong>Data de saída:</strong> <%= I18n.localize(r.checkout) %></p>
-      <% if r.confirmed? && r.elligible_for_cancellation? %>
+      <% if r.elligible_for_cancellation_by_guest? %>
         <%=
           button_to('Cancelar reserva',
-                    inactivate_reservation_path(r.id),
+                    cancellation_by_guest_reservation_path(r.id),
                     method: :patch)
         %>
       <% else %>
@@ -46,6 +46,7 @@
           <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
         <% end %>
       </div>
+      <hr>
     <% end %>
   </div>
 <% elsif current_user %>

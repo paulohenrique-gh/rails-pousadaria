@@ -25,4 +25,7 @@
                     method: :patch) %>
     </p>
   <% end %>
+  <% if @cancellation_elligible %>
+    <%= button_to 'Cancelar', cancellation_by_user_reservation_path, method: :patch %>
+  <% end %>
 </div>
