@@ -19,11 +19,13 @@
     </p>
   <% end %>
   <% if @checkin_elligible %>
-    <p>
-      <%= button_to('Confirmar check-in',
-                    confirm_checkin_reservation_path(@reservation.id),
-                    method: :patch) %>
-    </p>
+    <%= button_to('Confirmar check-in',
+                  confirm_checkin_reservation_path(@reservation.id),
+                  method: :patch) %>
+  <% end %>
+  <% if @checkout_elligible %>
+    <%= link_to('Realizar check-out',
+                go_to_checkout_reservation_path(@reservation.id))%>
   <% end %>
   <% if @cancellation_elligible %>
     <%= button_to 'Cancelar', cancellation_by_user_reservation_path, method: :patch %>

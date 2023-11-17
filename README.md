@@ -178,3 +178,7 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [```try```](https://api.rubyonrails.org/classes/NilClass.html#method-i-try)
 - [Condicionais com objeto nil](https://franzejr.github.io/best-ruby/refactorings/conditionals_when_object_is_nil.html#)
 - [Traduzindo Enums no Rails](https://www.campuscode.com.br/conteudos/traduzindo-enums-no-rails)
+- [Manipulando o tempo nos testes](https://www.campuscode.com.br/conteudos/manipulando-o-tempo-nos-testes-da-aplicacao)
+- [```Time```](https://api.rubyonrails.org/classes/Time.html)
+- [```Time Helpers```](https://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html)
+- [Sessões](https://www.justinweiss.com/articles/how-rails-sessions-work/)

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         patch :cancellation_by_user, on: :member
         get :manage, on: :member
         patch :confirm_checkin, on: :member
+        get :go_to_checkout, on: :member
+        patch :confirm_checkout, on: :member
       end
       resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member

@@ -222,4 +222,5 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
       custom: "%d/%m/%Y %H:%M:%S"
+      date: "%d/%m/%Y"
     pm: ''

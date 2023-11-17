@@ -10,7 +10,8 @@ class ReservationsController < ApplicationController
                                             :user_active_reservations, :manage,
                                             :cancellation_by_user]
   before_action :set_reservation, only: [:manage, :confirm_checkin,
-                                         :cancellation_by_guest, :cancellation_by_user]
+                                         :cancellation_by_guest, :cancellation_by_user,
+                                         :go_to_checkout, :confirm_checkout]
   before_action :check_guest, only: [:cancellation_by_guest]
   before_action :check_user, only: [:confirm_checkin, :manage, :cancellation_by_user]
 
@@ -75,6 +76,7 @@ class ReservationsController < ApplicationController
   def manage
     @checkin_elligible = @reservation.elligible_for_checkin?
     @cancellation_elligible = @reservation.elligible_for_cancellation_by_user?
+    @checkout_elligible = @reservation.guests_checked_in?
   end
 
   def confirm_checkin
@@ -111,10 +113,43 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def go_to_checkout
+    current_time = Time.now.strftime('%H:%M:%S')
+    standard_checkin_time = @reservation.guesthouse.checkin_time
+                                                   .strftime('%H:%M:%S')
+
+    actual_checkin = @reservation.checked_in_at.to_date
+    actual_checkout = Date.today
+    actual_checkout -= 1 if current_time <= standard_checkin_time
+
+    @reprocessed_total = @reservation.room.calculate_stay_total(actual_checkin,
+                                                                actual_checkout)
+    session[:reprocessed_total] = @reprocessed_total
+
+    @payment_methods = @reservation.guesthouse
+                                   .attributes
+                                   .slice("payment_method_one",
+                                          "payment_method_two",
+                                          "payment_method_three")
+                                   .values
+
+  end
+
+  def confirm_checkout
+    @reservation.payment_method = reservation_params[:payment_method]
+    if @reservation.guests_checked_in?
+      @reservation.guests_checked_out!
+      redirect_to(my_guesthouse_reservations_path,
+                  notice: 'Estadia finalizada com sucesso')
+    end
+  end
+
   private
 
   def reservation_params
-    params.permit(:checkin, :checkout, :guest_count, :stay_total, :room_id)
+    params.require(:reservation)
+          .permit(:checkin, :checkout, :guest_count,
+                  :stay_total, :room_id, :payment_method)
   end
 
   def set_reservation

@@ -1,0 +1,18 @@
+<h2>Check-out da reserva <%= @reservation.code %></h2>
+<div>
+  <p>
+    <strong>Data e hora do check-in:</strong>
+    <%= l(@reservation.checked_in_at, format: :custom) %>
+  </p>
+  <p>
+    <strong>Valor da estadia até a data atual:</strong>
+    <%= number_to_currency(@reprocessed_total) %>
+  </p>
+</div>
+<%= form_with(model: @reservation, url: confirm_checkout_reservation_path(@reservation)) do |f| %>
+  <div>
+    <%= f.label :payment_method, 'Forma de pagamento' %>
+    <%= f.select :payment_method, @payment_methods, prompt: 'Selecione uma opção', required: true %>
+  </div>
+  <%= f.submit 'Confirmar' %>
+<% end %>
