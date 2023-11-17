@@ -4,13 +4,15 @@ class ReservationsController < ApplicationController
   end
 
 
-  before_action :authenticate_guest!, only: [:create, :guest_index, :cancellation_by_guest]
+  before_action :authenticate_guest!, only: [:create, :guest_index,
+                                             :cancellation_by_guest]
   before_action :authenticate_user!, only: [:confirm_checkin, :user_index,
-                                            :user_active_reservations, :manage]
-  before_action :set_reservation, only: [:manage, :confirm_checkin, :cancellation_by_guest,
-                                         :cancellation_by_user]
+                                            :user_active_reservations, :manage,
+                                            :cancellation_by_user]
+  before_action :set_reservation, only: [:manage, :confirm_checkin,
+                                         :cancellation_by_guest, :cancellation_by_user]
   before_action :check_guest, only: [:cancellation_by_guest]
-  before_action :check_user, only: [:confirm_checkin, :manage]
+  before_action :check_user, only: [:confirm_checkin, :manage, :cancellation_by_user]
 
   def new
     @room = Room.find(params[:room_id])

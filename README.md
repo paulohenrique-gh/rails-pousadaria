@@ -136,7 +136,7 @@ Porta padrão: [3000](http://localhost:3000)
   - CPF
   - E-mail
   - Senha
-- Após autenticação, o usuário pode confirmar a reserva, que fica disponível no link "Minhas Reservas" em qualquer página da aplicação
+- Após autenticação, o usuário pode confirmar a reserva, que ficará disponível no link "Minhas Reservas" em qualquer página da aplicação
 - As reservas são identificadas por um código único de 8 caracteres
 - O usuário pode cancelar a reserva até 7 dias antes da data agendada para o check-in
 
