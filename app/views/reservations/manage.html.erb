@@ -1,6 +1,10 @@
 <h2>Gerenciar reserva <%= @reservation.code %></h2>
 <div>
   <p>
+    <strong>Responsável:</strong>
+    <%= @reservation.guest.name %>
+  </p>
+  <p>
     <strong>Data agendada para entrada: </strong>
     <%= I18n.localize(@reservation.checkin) %>
   </p>
@@ -16,6 +20,24 @@
     <p>
       <strong>Data e hora do check-in:</strong>
       <%= I18n.localize(@reservation.checked_in_at, format: :custom) %>
+    </p>
+  <% end %>
+  <% if @reservation.guests_checked_out? %>
+    <p>
+      <strong>Data e hora do check-in:</strong>
+      <%= I18n.localize(@reservation.checked_in_at - 3.hours, format: :custom) %>
+    </p>
+    <p>
+      <strong>Data e hora do check-out:</strong>
+      <%= I18n.localize(@reservation.checked_out_at - 3.hours, format: :custom) %>
+    </p>
+    <p>
+      <strong>Total pago:</strong>
+      <%= number_to_currency(@reservation.stay_total) %>
+    </p>
+    <p>
+      <strong>Forma de pagamento:</strong>
+      <%= @reservation.payment_method %>
     </p>
   <% end %>
   <% if @checkin_elligible %>

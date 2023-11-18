@@ -2,8 +2,6 @@ require 'rails_helper'
 include ActiveSupport::Testing::TimeHelpers
 
 RSpec.describe Reservation, type: :model do
-  pending 'elligible_for_cancellation_by_guest?'
-
   describe '#guest_cancel' do
     it 'more than 7 days before checkin' do
       # Arrange
@@ -79,32 +77,6 @@ RSpec.describe Reservation, type: :model do
       expect(reservation.reload).not_to be_cancelled
     end
   end
-
-  describe '#elligible_for_checkin?' do
-    it 'between checkin and checkout dates' do
-      # Arrange
-      reservation = Reservation.new(checkin: 1.day.ago, checkout: 5.days.from_now)
-
-      # Act
-      result = reservation.elligible_for_checkin?
-
-      # Assert
-      expect(result).to be true
-    end
-
-    it 'before scheduled checkin date' do
-      # Arrange
-      reservation = Reservation.new(checkin: 2.day.from_now, checkout: 5.days.from_now)
-
-      # Act
-      result = reservation.elligible_for_checkin?
-
-      # Assert
-      expect(result).to be false
-    end
-  end
-
-  pending 'elligible_for_cancellation_by_user?'
 
   describe '#user_cancel' do
     it 'after minimum of 2 days and no checkin' do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 include ActiveSupport::Testing::TimeHelpers
 
-describe 'Host registers guest checkout' do
+describe 'Host registers checkout' do
   it 'from my-active-reservations' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -94,9 +94,13 @@ describe 'Host registers guest checkout' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
+    seasonal_rate = SeasonalRate.create!(start_date: 5.days.from_now,
+                                        finish_date: 7.days.from_now,
+                                        rate: 250, room: room)
+
     reservation = Reservation.create!(checkin: 1.days.from_now,
                                       checkout: 10.days.from_now, guest_count: 2,
-                                      stay_total: 1500, guest: guest, room: room,
+                                      stay_total: 1950, guest: guest, room: room,
                                       status: :guests_checked_in,
                                       checked_in_at: 1.days.from_now.to_datetime)
 
@@ -116,5 +120,7 @@ describe 'Host registers guest checkout' do
     expect(page).to have_content 'Estadia finalizada com sucesso'
     expect(reservation.reload.guests_checked_out?).to be true
     expect(reservation.checked_out_at).to eq 10.days.from_now.change(hour: 9)
+    expect(reservation.stay_total).to eq 1650
+    expect(reservation.payment_method).to eq 'Pix'
   end
 end

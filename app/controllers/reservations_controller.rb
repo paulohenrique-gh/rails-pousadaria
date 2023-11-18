@@ -80,9 +80,8 @@ class ReservationsController < ApplicationController
   end
 
   def confirm_checkin
-    @checkin_elligible = @reservation.elligible_for_checkin?
-    if @checkin_elligible
-      @reservation.guests_checked_in!
+    @reservation.guests_checked_in!
+    if @reservation.guests_checked_in?
       return redirect_to(manage_reservation_path(@reservation.id),
                          notice: 'Check-in confirmado com sucesso')
     else
@@ -132,16 +131,20 @@ class ReservationsController < ApplicationController
                                           "payment_method_two",
                                           "payment_method_three")
                                    .values
-
   end
 
   def confirm_checkout
-    @reservation.payment_method = reservation_params[:payment_method]
-    if @reservation.guests_checked_in?
-      @reservation.guests_checked_out!
-      redirect_to(my_guesthouse_reservations_path,
-                  notice: 'Estadia finalizada com sucesso')
+    @reservation.stay_total = session[:reprocessed_total]
+    if reservation_params[:payment_method].nil?
+      return redirect_to(go_to_checkout_reservation_path(@reservation.id),
+                         alert: 'Forma de pagamento não pode ficar vazia')
     end
+
+    @reservation.payment_method = reservation_params[:payment_method]
+
+    @reservation.guests_checked_out!
+    redirect_to(my_guesthouse_reservations_path,
+                  notice: 'Estadia finalizada com sucesso')
   end
 
   private

@@ -42,9 +42,7 @@
           <strong>Status:</strong> 
           <%= Reservation.human_attribute_name("status.#{r.status}") %>
         </p>
-        <% if r.confirmed? || r.guests_checked_in? %>
-          <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
-        <% end %>
+        <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
       </div>
       <hr>
     <% end %>

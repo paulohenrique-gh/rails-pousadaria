@@ -13,7 +13,6 @@ class Reservation < ApplicationRecord
   validates :checkout, comparison: { greater_than: :checkin }
   validates :guest_count, comparison: { greater_than: 0 }
   validates :code, uniqueness: true, on: :create
-  validates :payment_method, presence: true, on: :guests_checked_out!
   validate :check_room_capacity
 
   enum status: { confirmed: 0, cancelled: 1,
@@ -42,10 +41,12 @@ class Reservation < ApplicationRecord
   end
 
   def guests_checked_in!
+    return false unless elligible_for_checkin?
     self.update(status: :guests_checked_in, checked_in_at: DateTime.now)
   end
 
   def guests_checked_out!
+    return false if self.payment_method.nil? || !self.guests_checked_in?
     self.update(status: :guests_checked_out, checked_out_at: DateTime.now)
   end
 
@@ -59,9 +60,5 @@ class Reservation < ApplicationRecord
 
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
-  end
-
-  def generate_timestamp
-    self.checked_in_at = DateTime.now.localtime
   end
 end

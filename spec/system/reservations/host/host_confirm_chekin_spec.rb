@@ -1,7 +1,7 @@
 require 'rails_helper'
 include ActiveSupport::Testing::TimeHelpers
 
-describe 'Host confirms guest checkin' do
+describe 'Host confirms checkin' do
   it 'from the reservations page' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')

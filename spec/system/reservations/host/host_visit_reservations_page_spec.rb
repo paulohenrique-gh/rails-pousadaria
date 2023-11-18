@@ -56,7 +56,6 @@ describe 'User visit guesthouse reservations page' do
     )
     expect(page).to have_content('Quantidade de hóspedes: 2')
     expect(page).to have_content('Status: Confirmada')
-    expect(first_reservation).to have_link 'Gerenciar reserva'
     expect(page).to have_content 'Código da reserva: XYZ12345'
     expect(page).to have_content 'Quarto: Brasil'
     expect(page).to have_content(
@@ -67,6 +66,5 @@ describe 'User visit guesthouse reservations page' do
     )
     expect(page).to have_content('Quantidade de hóspedes: 1')
     expect(page).to have_content('Status: Cancelada')
-    expect(second_reservation).not_to have_link 'Gerenciar reserva'
   end
 end
