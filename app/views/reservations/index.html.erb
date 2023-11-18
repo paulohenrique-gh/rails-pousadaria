@@ -35,8 +35,8 @@
         <p><strong>Código da reserva:</strong> <%= r.code %></p>
         <p><strong>Quarto:</strong> <%= r.room.name %></p>
         <p><strong>Responsável:</strong> <%= r.guest.name %></p>
-        <p><strong>Data de entrada:</strong> <%= I18n.localize(r.checkin) %></p>
-        <p><strong>Data de saída:</strong> <%= I18n.localize(r.checkout) %></p>
+        <p><strong>Data agendada para entrada:</strong> <%= I18n.localize(r.checkin) %></p>
+        <p><strong>Data agendada para saída:</strong> <%= I18n.localize(r.checkout) %></p>
         <p><strong>Quantidade de hóspedes:</strong> <%= r.guest_count %></p>
         <p>
           <strong>Status:</strong> 

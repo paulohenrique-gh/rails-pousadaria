@@ -48,10 +48,10 @@ describe 'Host visits active reservations page' do
     expect(page).to have_content "Código da reserva: #{reservation.code}"
     expect(page).to have_content 'Quarto: Brasil'
     expect(page).to have_content(
-      "Data agendada de entrada: #{reservation.checkin.strftime('%d/%m/%Y')}"
+      "Data agendada para entrada: #{reservation.checkin.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content(
-      "Data agendada de saída: #{reservation.checkout.strftime('%d/%m/%Y')}"
+      "Data agendada para saída: #{reservation.checkout.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content(
       "Data e hora do check-in: #{(reservation.checked_in_at - 3.hours)

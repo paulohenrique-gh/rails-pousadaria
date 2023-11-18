@@ -49,20 +49,20 @@ describe 'User visit guesthouse reservations page' do
     expect(page).to have_content 'Código da reserva: ABCD1234'
     expect(page).to have_content 'Quarto: Brasil'
     expect(page).to have_content(
-      "Data de entrada: #{5.days.from_now.to_date.strftime('%d/%m/%Y')}"
+      "Data agendada para entrada: #{5.days.from_now.to_date.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content(
-      "Data de saída: #{10.days.from_now.to_date.strftime('%d/%m/%Y')}"
+      "Data agendada para saída: #{10.days.from_now.to_date.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content('Quantidade de hóspedes: 2')
     expect(page).to have_content('Status: Confirmada')
     expect(page).to have_content 'Código da reserva: XYZ12345'
     expect(page).to have_content 'Quarto: Brasil'
     expect(page).to have_content(
-      "Data de entrada: #{15.days.from_now.to_date.strftime('%d/%m/%Y')}"
+      "Data agendada para entrada: #{15.days.from_now.to_date.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content(
-      "Data de saída: #{20.days.from_now.to_date.strftime('%d/%m/%Y')}"
+      "Data agendada para saída: #{20.days.from_now.to_date.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content('Quantidade de hóspedes: 1')
     expect(page).to have_content('Status: Cancelada')

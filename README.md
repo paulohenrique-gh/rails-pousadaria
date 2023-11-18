@@ -154,7 +154,25 @@ Porta padrão: [3000](http://localhost:3000)
     - Cancelada: reserva cancelada pelo hóspede ou pelo proprietário
     - Estadia ativa: reserva com check-in confirmado pelo proprietário
     - Concluída: reserva com check-out confirmado pelo proprietário 
-- O proprietário pode cancelar a reserva a partir de 2 dias após a data agendada para o check-in em caso de não comparecimento do hóspede
+    - Link para página de gerenciamento da reserva
+- Na página de gerenciamento da reserva, o proprietário consegue confirmar o check-in do hóspede, desde que a data atual esteja entre a data agendada para entrada e a data agendada para saída, e o status atual da reserva seja "Confirmada"
+- O proprietário pode cancelar a reserva com satus "Confirmada" a partir de 2 dias após a data agendada para a entrada em caso de não comparecimento do hóspede
+
+### Check-out
+- Usuário dono de pousada pode gerenciar as reservas ativas entrando no link "Estadias Ativas" no menu
+- Cada estadia ativa listada possui um link para sua página de gerenciamento, e é detalhada com:
+  - Código da reserva
+  - Nome do quarto
+  - Responsável pela reserva
+  - Data agendada para entrada
+  - Data agendada para saída
+  - Quantidade de hóspedes
+  - Data e hora do check-in
+- A página de gerenciamento da reserva ativa tem um link 'Realizar check-out', que tem:
+  - A data e hora do check-in para fácil referência
+  - Valor da estadia até a data atual
+  - Forma de pagamento com opções de acordo com as formas cadastradas pelo proprietário da pousada
+- O valor total da estadia considera como data inicial a data de check-in registrada pelo proprietário, e como data final a data atual. Se o horário atual for maior que o horário de check-out padrão da pousada, é inclusa mais uma diária, mesmo que tenham se passado poucos minutos 
 
 
 ## Referências

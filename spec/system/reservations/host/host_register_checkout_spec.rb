@@ -44,7 +44,7 @@ describe 'Host registers checkout' do
                                       checked_in_at: 1.days.from_now.to_datetime)
 
     # Act
-    travel_to 10.days.from_now.change(hour: 9) do
+    travel_to 10.days.from_now.change(hour: 15) do
       login_as user
       visit root_path
       click_on 'Estadias Ativas'
@@ -58,7 +58,7 @@ describe 'Host registers checkout' do
       "Data e hora do check-in: #{I18n.localize(reservation.checked_in_at,
                                                 format: :custom)}"
     )
-    expect(page).to have_content 'Valor da estadia até a data atual: R$ 1.650,00'
+    expect(page).to have_content 'Valor da estadia até a data atual: R$ 1.950,00'
     expect(page).to have_field 'Forma de pagamento'
     expect(page).to have_button 'Confirmar'
   end
@@ -100,7 +100,7 @@ describe 'Host registers checkout' do
 
     reservation = Reservation.create!(checkin: 1.days.from_now,
                                       checkout: 10.days.from_now, guest_count: 2,
-                                      stay_total: 1950, guest: guest, room: room,
+                                      stay_total: 1800, guest: guest, room: room,
                                       status: :guests_checked_in,
                                       checked_in_at: 1.days.from_now.to_datetime)
 
@@ -120,7 +120,7 @@ describe 'Host registers checkout' do
     expect(page).to have_content 'Estadia finalizada com sucesso'
     expect(reservation.reload.guests_checked_out?).to be true
     expect(reservation.checked_out_at).to eq 10.days.from_now.change(hour: 9)
-    expect(reservation.stay_total).to eq 1650
+    expect(reservation.stay_total).to eq 1800
     expect(reservation.payment_method).to eq 'Pix'
   end
 end

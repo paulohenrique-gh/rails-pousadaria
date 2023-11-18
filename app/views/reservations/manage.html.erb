@@ -5,6 +5,10 @@
     <%= @reservation.guest.name %>
   </p>
   <p>
+    <strong>Quarto:</strong>
+    <%= link_to @reservation.room.name, @reservation.room %>
+  </p>
+  <p>
     <strong>Data agendada para entrada: </strong>
     <%= I18n.localize(@reservation.checkin) %>
   </p>

@@ -114,12 +114,12 @@ class ReservationsController < ApplicationController
 
   def go_to_checkout
     current_time = Time.now.strftime('%H:%M:%S')
-    standard_checkin_time = @reservation.guesthouse.checkin_time
-                                                   .strftime('%H:%M:%S')
+    standard_checkout_time = @reservation.guesthouse.checkout_time
+                                                    .strftime('%H:%M:%S')
 
     actual_checkin = @reservation.checked_in_at.to_date
     actual_checkout = Date.today
-    actual_checkout -= 1 if current_time <= standard_checkin_time
+    actual_checkout += 1 if current_time > standard_checkout_time
 
     @reprocessed_total = @reservation.room.calculate_stay_total(actual_checkin,
                                                                 actual_checkout)

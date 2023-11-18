@@ -141,4 +141,6 @@ describe '#calculate_stay_total' do
     # Assert
     expect(result).to eq 4875
   end
+
+  pending 'and current time is later than standard checkout'
 end

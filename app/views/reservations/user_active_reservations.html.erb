@@ -5,8 +5,10 @@
       <div class="reservation-details">
         <p><strong>Código da reserva:</strong> <%= r.code %></p>
         <p><strong>Quarto:</strong> <%= r.room.name %></p>
-        <p><strong>Data agendada de entrada:</strong> <%= l(r.checkin) %></p>
-        <p><strong>Data agendada de saída:</strong> <%= l(r.checkout) %></p>
+        <p><strong>Responsável:</strong> <%= r.guest.name %></p>
+        <p><strong>Data agendada para entrada:</strong> <%= l(r.checkin) %></p>
+        <p><strong>Data agendada para saída:</strong> <%= l(r.checkout) %></p>
+        <p><strong>Quantidade de hóspedes:</strong> <%= r.guest_count %></p>
         <p>
           <strong>Data e hora do check-in:</strong>
           <%= l(r.checked_in_at - 3.hours, format: :custom) %>
