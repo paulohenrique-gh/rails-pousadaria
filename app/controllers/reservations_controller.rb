@@ -3,17 +3,18 @@ class ReservationsController < ApplicationController
     sign_out(current_user) if current_user.present?
   end
 
-
   before_action :authenticate_guest!, only: [:create, :guest_index,
                                              :cancellation_by_guest]
   before_action :authenticate_user!, only: [:confirm_checkin, :user_index,
                                             :user_active_reservations, :manage,
-                                            :cancellation_by_user]
+                                            :cancellation_by_user,
+                                            :confirm_checkout]
   before_action :set_reservation, only: [:manage, :confirm_checkin,
                                          :cancellation_by_guest, :cancellation_by_user,
                                          :go_to_checkout, :confirm_checkout]
   before_action :check_guest, only: [:cancellation_by_guest]
-  before_action :check_user, only: [:confirm_checkin, :manage, :cancellation_by_user]
+  before_action :check_user, only: [:confirm_checkin, :manage,
+                                    :cancellation_by_user, :confirm_checkout]
 
   def new
     @room = Room.find(params[:room_id])

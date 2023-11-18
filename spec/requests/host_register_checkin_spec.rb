@@ -1,7 +1,7 @@
 require 'rails_helper'
 include ActiveSupport::Testing::TimeHelpers
 
-describe 'Host registers guest checkin' do
+describe 'Host registers checkin' do
   it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
