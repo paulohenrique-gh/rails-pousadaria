@@ -9,10 +9,12 @@
     <%= number_to_currency(@reprocessed_total) %>
   </p>
 </div>
-<%= form_with(model: @reservation, url: confirm_checkout_reservation_path(@reservation)) do |f| %>
+<%= form_with(model: @reservation,
+              url: confirm_checkout_reservation_path(@reservation)) do |f| %>
   <div>
     <%= f.label :payment_method, 'Forma de pagamento' %>
-    <%= f.select :payment_method, @payment_methods, prompt: 'Selecione uma opção', required: true %>
+    <%= f.select :payment_method, @payment_methods,
+                  prompt: 'Selecione uma opção', required: true %>
   </div>
   <%= f.submit 'Confirmar' %>
 <% end %>

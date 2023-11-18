@@ -1,0 +1,27 @@
+<% if @reservations.any? %>
+  <h2>Minhas Reservas</h2>
+
+  <% @reservations.each do |r| %>
+    <div class="reservations">
+      <p><strong>Código da reserva:</strong> <%= r.code %></p>
+      <p><strong>Nome da pousada:</strong> <%= r.guesthouse.brand_name %></p>
+      <p><strong>Data de entrada:</strong> <%= I18n.localize(r.checkin) %></p>
+      <p><strong>Data de saída:</strong> <%= I18n.localize(r.checkout) %></p>
+      <% if r.elligible_for_cancellation_by_guest? %>
+        <%=
+          button_to('Cancelar reserva',
+                    cancellation_by_guest_reservation_path(r.id),
+                    method: :patch)
+        %>
+      <% else %>
+        <p>
+          <strong>Status:</strong> 
+          <%= Reservation.human_attribute_name("status.#{r.status}") %>
+        </p>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>Você ainda não possui reservas</p>
+<% end %>

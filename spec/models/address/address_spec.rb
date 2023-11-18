@@ -79,6 +79,4 @@ RSpec.describe Address, type: :model do
       expect(address).to be_valid
     end
   end
-
-  pending 'postal_code format'
 end

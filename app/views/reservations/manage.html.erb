@@ -6,7 +6,7 @@
   </p>
   <p>
     <strong>Quarto:</strong>
-    <%= link_to @reservation.room.name, @reservation.room %>
+    <%= @reservation.room.name %>
   </p>
   <p>
     <strong>Data agendada para entrada: </strong>
@@ -54,6 +54,8 @@
                 go_to_checkout_reservation_path(@reservation.id))%>
   <% end %>
   <% if @cancellation_elligible %>
-    <%= button_to 'Cancelar', cancellation_by_user_reservation_path, method: :patch %>
+    <%= button_to('Cancelar',
+                   cancellation_by_user_reservation_path,
+                   method: :patch) %>
   <% end %>
 </div>

@@ -39,7 +39,7 @@ describe 'Host registers checkout' do
 
     reservation = Reservation.create!(checkin: 1.days.from_now,
                                       checkout: 10.days.from_now, guest_count: 2,
-                                      stay_total: 1950, guest: guest, room: room,
+                                      stay_total: 1800, guest: guest, room: room,
                                       status: :guests_checked_in,
                                       checked_in_at: 1.days.from_now.to_datetime)
 

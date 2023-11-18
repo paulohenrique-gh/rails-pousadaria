@@ -31,11 +31,11 @@ class ReservationsController < ApplicationController
     guest_count = params[:reservation][:guest_count].to_i
     days_count = (checkout - checkin).to_i + 1
 
-    stay_total = @room.calculate_stay_total(checkin, checkout)
-
     @reservation = Reservation.new(checkin: checkin, checkout: checkout,
-                                   guest_count: guest_count,
-                                   stay_total: stay_total, room: @room)
+                                   guest_count: guest_count, room: @room)
+
+    stay_total = @reservation.calculate_stay_total(checkin, checkout)
+    @reservation.stay_total = stay_total
 
     unless @reservation.valid?
       return render :new
@@ -61,12 +61,10 @@ class ReservationsController < ApplicationController
 
   def guest_index
     @reservations = current_guest.reservations.reverse
-    render 'index'
   end
 
   def user_index
     @reservations = current_user.guesthouse.reservations.order(:checkin)
-    render 'index'
   end
 
   def user_active_reservations
@@ -105,7 +103,7 @@ class ReservationsController < ApplicationController
     @reservation.user_cancel
     if @reservation.cancelled?
       return redirect_to(my_guesthouse_reservations_path,
-      notice: 'Reserva cancelada com sucesso')
+                         notice: 'Reserva cancelada com sucesso')
     else
       redirect_to(my_guesthouse_reservations_path,
                   alert: 'Não foi possível cancelar reserva')
@@ -113,16 +111,7 @@ class ReservationsController < ApplicationController
   end
 
   def go_to_checkout
-    current_time = Time.now.strftime('%H:%M:%S')
-    standard_checkout_time = @reservation.guesthouse.checkout_time
-                                                    .strftime('%H:%M:%S')
-
-    actual_checkin = @reservation.checked_in_at.to_date
-    actual_checkout = Date.today
-    actual_checkout += 1 if current_time > standard_checkout_time
-
-    @reprocessed_total = @reservation.room.calculate_stay_total(actual_checkin,
-                                                                actual_checkout)
+    @reprocessed_total = @reservation.reprocess_stay_total
     session[:reprocessed_total] = @reprocessed_total
 
     @payment_methods = @reservation.guesthouse

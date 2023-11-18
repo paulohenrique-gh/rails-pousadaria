@@ -1,6 +1,7 @@
 class Reservation < ApplicationRecord
   GUEST_MAX_DAYS_BEFORE_CHECKIN = 7
   USER_MIN_DAYS_AFTER_CHECKIN = 2
+  TIME_FORMAT = '%H:%M:%S'
 
   belongs_to :room
   belongs_to :guest, optional: true
@@ -48,6 +49,31 @@ class Reservation < ApplicationRecord
   def guests_checked_out!
     return false if self.payment_method.nil? || !self.guests_checked_in?
     self.update(status: :guests_checked_out, checked_out_at: DateTime.now)
+  end
+
+  def calculate_stay_total(checkin, checkout)
+    stay_total = 0
+    (checkin..checkout).each do |date|
+      seasonal_rate = self.room.seasonal_rates.active
+                          .find_by('? BETWEEN start_date AND finish_date', date)
+
+      stay_total += seasonal_rate.try(:rate) || self.room.daily_rate
+    end
+
+    stay_total
+  end
+
+  def reprocess_stay_total
+    raise 'Reserva sem check-in registrado' unless self.guests_checked_in?
+
+    current_time = Time.now.strftime(TIME_FORMAT)
+    standard_checkout_time = self.guesthouse.checkout_time.strftime(TIME_FORMAT)
+
+    actual_checkin = self.checked_in_at.to_date
+    actual_checkout = Date.today
+    actual_checkout += 1 if current_time > standard_checkout_time
+
+    reprocessed_total = calculate_stay_total(actual_checkin, actual_checkout)
   end
 
   private

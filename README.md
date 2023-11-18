@@ -173,7 +173,10 @@ Porta padrão: [3000](http://localhost:3000)
   - Valor da estadia até a data atual
   - Forma de pagamento com opções de acordo com as formas cadastradas pelo proprietário da pousada
 - O valor total da estadia considera como data inicial a data de check-in registrada pelo proprietário, e como data final a data atual. Se o horário atual for maior que o horário de check-out padrão da pousada, é inclusa mais uma diária, mesmo que tenham se passado poucos minutos 
-
+- Após check-out, a reserva fica com status finalizada, e são inclusos na página da reserva as informações:
+  - Data e hora do check-out
+  - Total pago
+  - Forma de pagamento
 
 ## Referências
 
