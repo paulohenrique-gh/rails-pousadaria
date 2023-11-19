@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registers reservation' do
+describe 'Guest registers reservation' do
   it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -37,6 +37,6 @@ describe 'User registers reservation' do
 
     # Assert
     expect(response).to redirect_to new_guest_session_path
-    expect(guest.reservations).to be_empty
+    expect(guest.reload.reservations).to be_empty
   end
 end

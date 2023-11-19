@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User cancels reservation' do
+describe 'Guest cancels reservation' do
   it 'and is not authenticated' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')

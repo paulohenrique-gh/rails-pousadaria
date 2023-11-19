@@ -78,7 +78,7 @@ RSpec.describe Reservation, type: :model do
       expect(reservation.guests_checked_out?).to be true
     end
 
-    it 'with current status confirmed' do
+    it 'with status other than guests_checked_in' do
       # Arrange
       user = User.create!(email: 'exemplo@mail.com', password: 'password')
 

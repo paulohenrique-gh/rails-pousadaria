@@ -35,11 +35,5 @@
 </p>
 <%=
   button_to 'Confirmar reserva',
-            room_reservations_path,
-            params: { reservation: { checkin: @reservation.checkin,
-                                     checkout: @reservation.checkout,
-                                     guest_count: @reservation.guest_count,
-                                     stay_total: @reservation.stay_total,
-                                     room_id: @reservation.room_id }
-                    }
+            room_reservations_path, method: :post
 %>

@@ -130,13 +130,14 @@ Porta padrão: [3000](http://localhost:3000)
   - As reservas canceladas de um quarto não são consideradas ao validar disponibilidade
 
 ### Reservar quarto
-- Ao clicar no botão para confirmar a reserva, o visitante ainda não autenticado é direcionado para a página de cadastro, ou login caso já possua conta
+- Ao clicar no botão para confirmar a reserva, o visitante ainda não autenticado é direcionado para a página de cadastro, ou login caso já possua conta.
 - O cadastro de hóspede requer as seguintes informações:
   - Nome completo
   - CPF
   - E-mail
   - Senha
-- Após autenticação, o usuário pode confirmar a reserva, que ficará disponível no link "Minhas Reservas" em qualquer página da aplicação
+- Após autenticação, o usuário é direcionado de volta à página de confirmação da reserva com as mesmas informações passadas no formulário anterior, e pode então confirmar
+- Depois de confirmada, a reserva fica disponível no link "Minhas Reservas" em qualquer página da aplicação
 - As reservas são identificadas por um código único de 8 caracteres
 - O usuário pode cancelar a reserva até 7 dias antes da data agendada para o check-in
 

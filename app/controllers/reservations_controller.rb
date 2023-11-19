@@ -23,14 +23,15 @@ class ReservationsController < ApplicationController
 
   def confirm
     @room = Room.find(params[:room_id])
-    if params[:reservation].nil?
+    session[:reservation] = params[:reservation]
+
+    if session[:reservation].nil?
       return redirect_to new_room_reservation_path(@room.id)
     end
 
-    checkin = params[:reservation][:checkin].to_date
-    checkout = params[:reservation][:checkout].to_date
-    guest_count = params[:reservation][:guest_count].to_i
-    days_count = (checkout - checkin).to_i + 1
+    checkin = session[:reservation][:checkin].to_date
+    checkout = session[:reservation][:checkout].to_date
+    guest_count = session[:reservation][:guest_count].to_i
 
     @reservation = Reservation.new(checkin: checkin, checkout: checkout,
                                    guest_count: guest_count, room: @room)
@@ -46,14 +47,17 @@ class ReservationsController < ApplicationController
       flash.now[:alert] = 'Quarto não disponível no período informado'
       render :new
     end
+
+    session[:reservation] = @reservation
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.new(session[:reservation])
     @reservation.guest = current_guest
 
     if @reservation.save
       redirect_to my_reservations_path, notice: 'Reserva registrada com sucesso'
+      session.delete(:reservation)
     else
       flash.now[:alert] = 'Não foi possível concluir a reserva'
       render 'new', status: :unprocessable_entity
@@ -134,7 +138,7 @@ class ReservationsController < ApplicationController
 
     @reservation.guests_checked_out!
     redirect_to(my_guesthouse_reservations_path,
-                  notice: 'Estadia finalizada com sucesso')
+                notice: 'Estadia finalizada com sucesso')
   end
 
   private
