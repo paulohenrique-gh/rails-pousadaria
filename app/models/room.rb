@@ -13,18 +13,6 @@ class Room < ApplicationRecord
         .try(:rate) || self.daily_rate
   end
 
-  def calculate_stay_total(checkin_date, checkout_date)
-    stay_total = 0
-    (checkin_date..checkout_date).each do |date|
-      seasonal_rate = self.seasonal_rates
-                          .active
-                          .find_by('? BETWEEN start_date AND finish_date', date)
-      stay_total += seasonal_rate.try(:rate) || self.daily_rate
-    end
-
-    stay_total
-  end
-
   def available_for_reservation?(checkin_date, checkout_date)
     overlapping_reservations = self.reservations
                               .where(status: [:confirmed, :guests_checked_in])

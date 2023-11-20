@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    if session["reservation"]
+    if current_guest && session["reservation"]
       return room_confirm_path(session["reservation"]["room_id"],
                                params: { reservation: session["reservation"] })
     else

@@ -73,7 +73,7 @@ class Reservation < ApplicationRecord
     actual_checkout = Date.today
     actual_checkout += 1 if current_time > standard_checkout_time
 
-    reprocessed_total = calculate_stay_total(actual_checkin, actual_checkout)
+    calculate_stay_total(actual_checkin, actual_checkout)
   end
 
   private
