@@ -1,8 +1,7 @@
 module AddressHelper
   def full_address_string(address)
-    description = "#{address.street_name}, #{address.number}, "
-    description << "#{address.complement}, " if address.complement.present?
-    description << "#{address.neighbourhood}, #{address.postal_code}, "
-    description << "#{address.city} - #{address.state}"
+    [address.street_name, address.number, address.complement,
+    address.neighbourhood, address.postal_code,
+    "#{address.city} - #{address.state}"].compact.join(', ')
   end
 end

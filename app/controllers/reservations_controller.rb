@@ -116,8 +116,12 @@ class ReservationsController < ApplicationController
   end
 
   def go_to_checkout
-    @reprocessed_total = @reservation.reprocess_stay_total
-    session[:reprocessed_total] = @reprocessed_total
+    begin
+      @reprocessed_total = @reservation.reprocess_stay_total
+      session[:reprocessed_total] = @reprocessed_total
+    rescue => e
+      redirect_to manage_reservation_path(@reservation.id), alert: e.message
+    end
 
     @payment_methods = @reservation.guesthouse
                                    .attributes

@@ -29,9 +29,6 @@ module GuesthouseHelper
     method_one = guesthouse.payment_method_one
     method_two = guesthouse.payment_method_two
     method_three = guesthouse.payment_method_three
-    description = "#{method_one}" if method_one.present?
-    description << " | #{method_two}" if method_two.present?
-    description << " | #{method_three}" if method_three.present?
-    description
+    [method_one, method_two, method_three].compact.join(' | ')
   end
 end
