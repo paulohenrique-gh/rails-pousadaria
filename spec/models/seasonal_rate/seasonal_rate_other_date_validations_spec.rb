@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SeasonalRate, type: :model do
   describe '#valid?' do
-    context 'finish date is greater than start date' do
+    context 'finish date' do
       it 'returns false when finish date is less than start date' do
         # Arrange
         user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -66,6 +66,10 @@ RSpec.describe SeasonalRate, type: :model do
         expect(seasonal_rate).to be_valid
         expect(seasonal_rate.errors.include? :finish_date).to be false
       end
+    end
+
+    context 'start date' do
+      pending 'returns false if date is in the past'
     end
   end
 end

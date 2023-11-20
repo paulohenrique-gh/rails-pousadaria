@@ -60,8 +60,8 @@ describe 'User adds seasonal rate to room' do
     room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
-    room.seasonal_rates.create!(start_date: '2023-11-20',
-                                finish_date: '2023-11-30', rate: 225)
+    room.seasonal_rates.create!(start_date: 5.days.from_now,
+                                finish_date: 15.days.from_now, rate: 225)
 
     # Act
     login_as user
@@ -69,8 +69,8 @@ describe 'User adds seasonal rate to room' do
     click_on 'Minha Pousada'
     click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
-    fill_in 'Data inicial', with: '24/12/2023'
-    fill_in 'Data final', with: '01/01/2024'
+    fill_in 'Data inicial', with: 20.days.from_now
+    fill_in 'Data final', with: 25.days.from_now
     fill_in 'Valor', with: 250
     click_on 'Enviar'
 
@@ -79,8 +79,14 @@ describe 'User adds seasonal rate to room' do
     expect(current_path).to eq room_path(room.id)
     expect(page).to have_content 'Preços por período:'
     expect(page).to have_content 'Padrão: R$ 150,00'
-    expect(page).to have_content 'De 20/11/2023 a 30/11/2023: R$ 225,00'
-    expect(page).to have_content 'De 24/12/2023 a 01/01/2024: R$ 250,00'
+    expect(page).to have_content(
+      "De #{5.days.from_now.to_date.strftime('%d/%m/%Y')} "\
+      "a #{15.days.from_now.to_date.strftime('%d/%m/%Y')}: R$ 225,00"
+    )
+    expect(page).to have_content(
+      "De #{20.days.from_now.to_date.strftime('%d/%m/%Y')} "\
+      "a #{25.days.from_now.to_date.strftime('%d/%m/%Y')}: R$ 250,00"
+    )
   end
 
   it 'and start date is greater than finish date' do
@@ -111,8 +117,8 @@ describe 'User adds seasonal rate to room' do
     click_on 'Minha Pousada'
     click_on 'Mais detalhes'
     click_on 'Adicionar preço por período'
-    fill_in 'Data inicial', with: '01/01/2024'
-    fill_in 'Data final', with: '24/12/2023'
+    fill_in 'Data inicial', with: 10.days.from_now
+    fill_in 'Data final', with: 5.days.from_now
     fill_in 'Valor', with: 250
     click_on 'Enviar'
 

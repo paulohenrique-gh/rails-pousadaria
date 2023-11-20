@@ -27,7 +27,7 @@ describe 'Guest cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    reservation = Reservation.create!(checkin: 5.days.from_now,
+    reservation = Reservation.create!(checkin: 10.days.from_now,
                                       checkout: 20.days.from_now, guest_count: 2,
                                       stay_total: 900, room: room, guest: guest)
 
@@ -66,7 +66,7 @@ describe 'Guest cancels reservation' do
                         private_bathroom: true, tv: true,
                         guesthouse: guesthouse)
 
-    reservation = Reservation.create!(checkin: 5.days.from_now,
+    reservation = Reservation.create!(checkin: 10.days.from_now,
                                       checkout: 20.days.from_now, guest_count: 2,
                                       stay_total: 900, room: room, guest: guest)
 

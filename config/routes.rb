@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'my-reservations', to: 'reservations#guest_index'
   get 'my-guesthouse-reservations', to: 'reservations#user_index'
   get 'my-active-reservations', to: 'reservations#user_active_reservations'
+  post 'abandon-reservation', to: 'reservations#abandon'
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     resources :rooms, only: [:new, :create, :edit, :update, :show] do

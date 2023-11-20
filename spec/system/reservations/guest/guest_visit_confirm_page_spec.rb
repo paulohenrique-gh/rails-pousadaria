@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Guests confirms reservation' do
-  it 'successfully' do
+describe 'Guests visits confirmation page' do
+  it 'and confirms reservation' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -41,6 +41,7 @@ describe 'Guests confirms reservation' do
     click_on 'Confirmar reserva'
 
     # Assert
+    expect(current_path).to eq my_reservations_path
     expect(page).to have_content 'Reserva registrada com sucesso'
     expect(page).to have_content 'Minhas Reservas'
     expect(page).to have_content 'Código da reserva: ABCD1234'

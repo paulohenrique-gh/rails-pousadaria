@@ -73,4 +73,6 @@ describe 'User signs up as guest' do
     # Assert
     expect(page).to have_content 'Não foi possível salvar hóspede'
   end
+
+  pending 'and goes back to reservation page'
 end

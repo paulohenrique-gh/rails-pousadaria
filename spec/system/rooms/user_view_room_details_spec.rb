@@ -99,5 +99,4 @@ describe 'User visits room page' do
     # Assert
     expect(current_path).to eq root_path
   end
-
 end

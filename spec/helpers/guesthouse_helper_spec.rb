@@ -65,7 +65,7 @@ RSpec.describe GuesthouseHelper, type: :helper do
 
     it 'raises error when type is invalid' do
       # Arrange
-      time = 'wrong type of argument'
+      time = 'wrong format'
 
       # Act
       result = formatted_time(time)

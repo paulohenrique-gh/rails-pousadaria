@@ -155,7 +155,7 @@ Porta padrão: [3000](http://localhost:3000)
     - Cancelada: reserva cancelada pelo hóspede ou pelo proprietário
     - Estadia ativa: reserva com check-in confirmado pelo proprietário
     - Concluída: reserva com check-out confirmado pelo proprietário 
-    - Link para página de gerenciamento da reserva
+  - Link para página de gerenciamento da reserva
 - Na página de gerenciamento da reserva, o proprietário consegue confirmar o check-in do hóspede, desde que a data atual esteja entre a data agendada para entrada e a data agendada para saída, e o status atual da reserva seja "Confirmada"
 - O proprietário pode cancelar a reserva com satus "Confirmada" a partir de 2 dias após a data agendada para a entrada em caso de não comparecimento do hóspede
 

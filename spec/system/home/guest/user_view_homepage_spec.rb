@@ -9,14 +9,6 @@ describe 'User visits home page' do
     expect(page).to have_content 'Pousadaria'
   end
 
-  it "and sees the search bar" do
-    # Act
-    visit root_path
-
-    # Assert
-    expect(page).to have_field 'Buscar pousada'
-  end
-
   it 'and sees only active guesthouses' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')

@@ -56,11 +56,12 @@ class ReservationsController < ApplicationController
     @reservation.guest = current_guest
 
     if @reservation.save
-      redirect_to my_reservations_path, notice: 'Reserva registrada com sucesso'
+      return (redirect_to my_reservations_path,
+              notice: 'Reserva registrada com sucesso')
       session.delete(:reservation)
     else
       flash.now[:alert] = 'Não foi possível concluir a reserva'
-      render 'new', status: :unprocessable_entity
+      redirect_to new_room_reservation_path(params[:room_id])
     end
   end
 

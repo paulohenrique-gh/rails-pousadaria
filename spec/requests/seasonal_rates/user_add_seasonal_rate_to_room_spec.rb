@@ -28,8 +28,8 @@ describe 'User adds seasonal rate to room' do
       room_seasonal_rates_path(room.id),
       params: {
         seasonal_rate: {
-          start_date: '2023-12-06',
-          finish_date: '2023-12-08',
+          start_date: 5.days.from_now,
+          finish_date: 10.days.from_now,
           rate: 125
         }
       }
@@ -72,8 +72,8 @@ describe 'User adds seasonal rate to room' do
       room_seasonal_rates_path(guesthouse.id, room.id),
       params: {
         seasonal_rate: {
-          start_date: '2023-12-06',
-          finish_date: '2023-12-08',
+          start_date: 5.days.from_now,
+          finish_date: 10.days.from_now,
           rate: 125
         }
       }

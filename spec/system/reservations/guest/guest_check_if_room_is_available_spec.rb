@@ -165,7 +165,7 @@ describe 'Guest checks room availability' do
     expect(page).to have_content 'Número de hóspedes excede capacidade do quarto'
   end
 
-  it 'and there is active seasonal rate between checkin and checkout' do
+  it 'with active seasonal rate between checkin and checkout' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 

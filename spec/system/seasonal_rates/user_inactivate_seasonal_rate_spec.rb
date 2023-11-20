@@ -23,8 +23,8 @@ describe 'User inactivates seasonal rate' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: '2023-11-10',
-                                         finish_date: '2023-11-15',
+    seasonal_rate = SeasonalRate.create!(start_date: 10.days.from_now,
+                                         finish_date: 20.days.from_now,
                                          rate: 400, room: room)
 
     # Act
@@ -39,7 +39,10 @@ describe 'User inactivates seasonal rate' do
 
     # Assert
     expect(page).to have_content 'Preço por período excluído com sucesso'
-    expect(page).not_to have_content 'De 10/11/2023 a 15/11/2023: R$ 400,00'
+    expect(page).not_to have_content(
+      "De #{10.days.from_now.to_date.strftime('%d/%m/%Y')} "\
+      "a #{20.days.from_now.to_date.strftime('%d/%m/%Y')}: R$ 400,00"
+    )
     expect(seasonal_rate.reload).to be_inactive
   end
 

@@ -86,8 +86,7 @@ describe 'User registers guesthouse' do
 
     # Act
     login_as user
-    visit root_path
-    click_on 'Cadastrar Pousada'
+    visit new_guesthouse_path
     fill_in 'Nome Fantasia', with: 'Pousada Bosque'
     fill_in 'Razão Social', with: 'Pousada Ramos Faria LTDA'
     fill_in 'CNPJ', with: ''

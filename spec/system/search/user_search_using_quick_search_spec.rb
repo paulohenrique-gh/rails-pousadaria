@@ -44,7 +44,7 @@ describe 'User searches for a guesthouse' do
     expect(page).to have_link 'Pousada Bosques Verdes'
   end
 
-  it "and doesn't get inactive houses" do
+  it "and inactive houses are not listed" do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 

@@ -143,10 +143,12 @@ describe 'User edits room' do
     click_on 'Editar'
     fill_in 'Dimensão em m²', with: 300
     fill_in 'Descrição', with: 'Tema brasileiro'
+    uncheck 'Disponível para reservas'
     click_on 'Enviar'
 
     # Assert
     expect(page).to have_content 'Quarto atualizado com sucesso'
+    expect(page).to have_content 'Não disponível para reservas'
     expect(page).to have_content 'Dimensão: 300 m²'
     expect(page).to have_content 'Descrição: Tema brasileiro'
   end
