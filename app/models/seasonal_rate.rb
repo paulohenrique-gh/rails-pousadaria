@@ -15,6 +15,14 @@ class SeasonalRate < ApplicationRecord
           .where('? BETWEEN start_date AND finish_date', date)
   }
 
+  def inactive!
+    unless self.room.booked?(self.start_date, self.finish_date)
+      return super
+    else
+      false
+    end
+  end
+
   private
 
   def dates_do_not_overlap

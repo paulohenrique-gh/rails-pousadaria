@@ -77,6 +77,7 @@ Porta padrão: [3000](http://localhost:3000)
 - Não é permitida sobreposição de datas. Ao tentar incluir período em que a data inicial ou final esteja dentro de outro período já cadastrado, o cadastro não é concluído
 - Apenas o dono da pousada tem acesso à lista de preços por período, entrando na tela de detalhes do quarto
 - Não é possível editar preço por período, apenas inativar
+- Só é possível inativar preço por período se o quarto não possuir reservas no período
 
 ### Listagem de pousadas
 - Usuário não autenticado visualiza todas as pousadas cadastradas e ativas na aplicação

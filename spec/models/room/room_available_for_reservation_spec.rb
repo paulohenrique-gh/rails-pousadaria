@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Room, type: :model do
-  describe '#available_for_reservation?' do
+  describe '#booked?' do
     context 'returns false when there is overlap in existing reservations' do
       it 'with new checkin between existing checkins or checkouts' do
         # Arrange
@@ -38,10 +38,10 @@ RSpec.describe Room, type: :model do
         new_checkout = 20.days.from_now.to_date
 
         # Act
-        result = room.available_for_reservation?(new_checkin, new_checkout)
+        result = room.booked?(new_checkin, new_checkout)
 
         # Assert
-        expect(result).to be false
+        expect(result).to be true
       end
 
       it 'with existing checkins and checkouts between new ones' do
@@ -79,10 +79,10 @@ RSpec.describe Room, type: :model do
         new_checkout = 20.days.from_now.to_date
 
         # Act
-        result = room.available_for_reservation?(new_checkin, new_checkout)
+        result = room.booked?(new_checkin, new_checkout)
 
         # Assert
-        expect(result).to be false
+        expect(result).to be true
       end
     end
 
@@ -121,10 +121,10 @@ RSpec.describe Room, type: :model do
       new_checkout = 30.days.from_now
 
       # Act
-      result = room.available_for_reservation?(new_checkin, new_checkout)
+      result = room.booked?(new_checkin, new_checkout)
 
       # Assert
-      expect(result).to be true
+      expect(result).to be false
     end
   end
 end

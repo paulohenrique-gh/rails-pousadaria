@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
   before_action :redirect_new_host_to_guesthouse_creation
 
   def show
-    @active_seasonal_rates = @room.seasonal_rates.active
+    @active_seasonal_rates = @room.seasonal_rates.active.order(:start_date)
   end
 
   def new

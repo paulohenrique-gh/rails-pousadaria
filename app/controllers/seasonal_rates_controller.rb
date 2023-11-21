@@ -41,10 +41,14 @@ class SeasonalRatesController < ApplicationController
 
   def inactivate
     @seasonal_rate.inactive!
-    redirect_to(
-      @seasonal_rate.room,
-      notice: 'Preço por período excluído com sucesso'
-    )
+    if @seasonal_rate.inactive?
+      redirect_to(@seasonal_rate.room,
+                  notice: 'Preço por período excluído com sucesso')
+    else
+      redirect_to(@seasonal_rate.room,
+                  alert: "O quarto possui reservas no período selecionado. "\
+                         "Não é possível inativar.")
+    end
   end
 
   private

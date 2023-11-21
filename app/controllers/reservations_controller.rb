@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
       return render :new
     end
 
-    unless @room.available_for_reservation?(checkin, checkout)
+    if @room.booked?(checkin, checkout)
       flash.now[:alert] = 'Quarto não disponível no período informado'
       render :new
     end
@@ -57,8 +57,7 @@ class ReservationsController < ApplicationController
     end
 
     @reservation = Reservation.new(session[:reservation])
-    unless @reservation.room.available_for_reservation?(@reservation.checkin,
-                                                        @reservation.checkout)
+    if @reservation.room.booked?(@reservation.checkin, @reservation.checkout)
       session.delete(:reservation)
       return redirect_to(
         new_room_reservation_path(@reservation.room_id),
