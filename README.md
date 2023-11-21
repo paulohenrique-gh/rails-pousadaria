@@ -73,6 +73,7 @@ Porta padrão: [3000](http://localhost:3000)
   - Data de início
   - Data final
   - Valor da diária no período
+- Não é permitido cadastro de preço por período com data inicial menor que a data atual
 - Não é permitida sobreposição de datas. Ao tentar incluir período em que a data inicial ou final esteja dentro de outro período já cadastrado, o cadastro não é concluído
 - Apenas o dono da pousada tem acesso à lista de preços por período, entrando na tela de detalhes do quarto
 - Não é possível editar preço por período, apenas inativar

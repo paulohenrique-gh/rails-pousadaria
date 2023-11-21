@@ -66,11 +66,11 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.create!(start_date: '2023-12-01',
-                                            finish_date: '2023-12-31',
+        seasonal_rate = SeasonalRate.create!(start_date: 15.days.from_now,
+                                            finish_date: 25.days.from_now,
                                             rate: 200, room: room)
-        other_seasonal_rate = SeasonalRate.new(start_date: '2023-11-15',
-                                              finish_date: '2023-11-20',
+        other_seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now,
+                                              finish_date: 10.days.from_now,
                                               rate: 400, room: room)
 
         # Assert

@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 describe 'User visits room page' do
   it 'and returns to guesthouse page' do
@@ -57,15 +58,17 @@ describe 'User visits room page' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: 5.days.ago,
-                                         finish_date: 5.days.from_now,
+    seasonal_rate = SeasonalRate.create!(start_date: 5.days.from_now,
+                                         finish_date: 15.days.from_now,
                                          rate: 400, room: room)
 
     # Act
-    login_as user
-    visit root_path
-    click_on 'Pousada Bosque'
-    click_on 'Mais detalhes'
+    travel_to 6.days.from_now do
+      login_as user
+      visit root_path
+      click_on 'Pousada Bosque'
+      click_on 'Mais detalhes'
+    end
 
     # Assert
     expect(page).to have_content 'Valor da diária: R$ 400,00'

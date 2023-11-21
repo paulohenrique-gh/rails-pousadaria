@@ -74,5 +74,60 @@ describe 'User signs up as guest' do
     expect(page).to have_content 'Não foi possível salvar hóspede'
   end
 
-  pending 'and goes back to reservation page'
+  it 'and goes back to confirm reservation' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
+                                    address: address, user: user)
+
+    room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        private_bathroom: true, tv: true,
+                        guesthouse: guesthouse)
+
+    # Act
+    visit new_room_reservation_path(room.id)
+    fill_in 'Data de entrada', with: 10.days.from_now
+    fill_in 'Data de saída', with: 20.days.from_now
+    fill_in 'Quantidade de hóspedes', with: 2
+    click_on 'Verificar disponibilidade'
+    click_on 'Confirmar reserva'
+    click_on 'Criar conta'
+    fill_in 'Nome completo', with: 'Pedro Pedrada'
+    fill_in 'CPF', with: '12345678910'
+    fill_in 'E-mail', with: 'pedrada@mail.com'
+    fill_in 'Senha', with: 'password'
+    fill_in 'Confirme sua senha', with: 'password'
+    click_on 'Salvar'
+
+    # Assert
+    expect(current_path).to eq room_confirm_path(room.id)
+    expect(page).to have_content 'Quarto disponível no período informado'
+    expect(page).to have_content 'Pousada Bosque'
+    expect(page).to have_content 'Quarto Brasil'
+    expect(page).to have_content(
+      "Data de entrada: #{10.days.from_now.to_date.strftime('%d/%m/%Y')}"
+    )
+    expect(page).to have_content 'Horário de check-in: 08:00'
+    expect(page).to have_content(
+      "Data de saída: #{20.days.from_now.to_date.strftime('%d/%m/%Y')}"
+    )
+    expect(page).to have_content 'Horário de check-out: 18:00'
+    expect(page).to have_content 'Quantidade de hóspedes: 2'
+    expect(page).to have_content 'Formas de pagamento: Dinheiro'
+    expect(page).to have_content 'Valor total das diárias: R$ 1.650,00'
+    expect(page).to have_button 'Confirmar reserva'
+  end
 end

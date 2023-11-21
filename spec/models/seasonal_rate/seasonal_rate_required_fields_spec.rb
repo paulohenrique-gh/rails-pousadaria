@@ -25,7 +25,7 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(finish_date: '2023-11-14', rate: 200,
+        seasonal_rate = SeasonalRate.new(finish_date: 15.days.from_now, rate: 200,
                                         room: room)
 
         # Act / Assert
@@ -54,7 +54,7 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(start_date: '2023-11-09', rate: 200,
+        seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now, rate: 200,
                                         room: room )
 
         # Act / Assert
@@ -83,8 +83,8 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(start_date: '2023-11-09',
-                                        finish_date: '2023-11-14', room: room)
+        seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now,
+                                        finish_date: 10.days.from_now, room: room)
 
         # Act / Assert
         expect(seasonal_rate).not_to be_valid
@@ -92,8 +92,8 @@ RSpec.describe SeasonalRate, type: :model do
 
       it 'returns false when room is missing' do
         # Arrange
-        seasonal_rate = SeasonalRate.new(start_date: '2023-11-09',
-                                        finish_date: '2023-11-14', rate: 200)
+        seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now,
+                                        finish_date: 10.days.from_now, rate: 200)
 
         # Act / Assert
         expect(seasonal_rate).not_to be_valid
@@ -121,8 +121,8 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(start_date: '2023-11-09',
-                                        finish_date: '2023-11-14',
+        seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now,
+                                        finish_date: 10.days.from_now,
                                         rate: 200, room: room)
 
         # Act / Assert

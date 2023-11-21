@@ -52,13 +52,26 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    if session[:reservation].nil?
+      return redirect_to new_room_reservation_path(params[:room_id])
+    end
+
     @reservation = Reservation.new(session[:reservation])
+    unless @reservation.room.available_for_reservation?(@reservation.checkin,
+                                                        @reservation.checkout)
+      session.delete(:reservation)
+      return redirect_to(
+        new_room_reservation_path(@reservation.room_id),
+        alert: 'Quarto não está mais disponível. Selecione outra data.'
+      )
+    end
+
     @reservation.guest = current_guest
+    session.delete(:reservation)
 
     if @reservation.save
       return (redirect_to my_reservations_path,
               notice: 'Reserva registrada com sucesso')
-      session.delete(:reservation)
     else
       flash.now[:alert] = 'Não foi possível concluir a reserva'
       redirect_to new_room_reservation_path(params[:room_id])
@@ -142,6 +155,7 @@ class ReservationsController < ApplicationController
     @reservation.payment_method = reservation_params[:payment_method]
 
     @reservation.guests_checked_out!
+    session.delete(:reprocessed_total)
     redirect_to(my_guesthouse_reservations_path,
                 notice: 'Estadia finalizada com sucesso')
   end

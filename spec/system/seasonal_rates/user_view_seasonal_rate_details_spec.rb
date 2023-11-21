@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 describe 'User visits seasonal rate details' do
   it 'from the room details page' do
@@ -23,24 +24,26 @@ describe 'User visits seasonal rate details' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: 5.days.ago,
+    seasonal_rate = SeasonalRate.create!(start_date: 2.days.from_now,
                                          finish_date: 5.days.from_now,
                                          rate: 400, room: room)
 
     # Act
-    login_as user
-    visit root_path
-    click_on 'Minha Pousada'
-    within('.room_details_list') do
-      click_on 'Mais detalhes'
-    end
+    travel_to 3.days.from_now do
+      login_as user
+      visit root_path
+      click_on 'Minha Pousada'
+      within('.room_details_list') do
+        click_on 'Mais detalhes'
+      end
 
-    within('.seasonal_rates_list') do
-      click_on 'Detalhes'
+      within('.seasonal_rates_list') do
+        click_on 'Detalhes'
+      end
     end
 
     # Assert
-    formatted_starting_date = 5.days.ago.strftime('%d/%m/%Y')
+    formatted_starting_date = 2.days.from_now.strftime('%d/%m/%Y')
     formatted_finish_date = 5.days.from_now.strftime('%d/%m/%Y')
     formatted_creation_date = seasonal_rate.created_at
                                            .strftime('%d/%m/%Y %H:%M:%S')
@@ -75,7 +78,7 @@ describe 'User visits seasonal rate details' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: 5.days.ago,
+    seasonal_rate = SeasonalRate.create!(start_date: 2.days.from_now,
                                          finish_date: 5.days.from_now,
                                          rate: 400, room: room)
 
@@ -110,7 +113,7 @@ describe 'User visits seasonal rate details' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: 5.days.ago,
+    seasonal_rate = SeasonalRate.create!(start_date: 2.days.from_now,
                                          finish_date: 5.days.from_now,
                                          rate: 400, room: room)
 

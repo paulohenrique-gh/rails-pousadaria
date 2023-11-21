@@ -1,24 +1,24 @@
 <h2>Quarto disponível no período informado</h2>
 <% if current_guest %>
-  <h3>Detalhes</h3>
+  <h3>Detalhes da reserva</h3>
   <p>
     <strong><%= @reservation.guesthouse.brand_name %></strong>
   </p>
   <p>
-    <strong><%= @reservation.room.name %></strong>
+    <strong>Quarto <%= @reservation.room.name %></strong>
   </p>
   <p>
     <strong>Data de entrada:</strong> <%= I18n.localize(@reservation.checkin) %>
   </p>
   <p>
-    <strong>Horário de checkin:</strong>
+    <strong>Horário de check-in:</strong>
     <%= formatted_time(@reservation.guesthouse.checkin_time) %>
   </p>
   <p>
     <strong>Data de saída:</strong> <%= I18n.localize(@reservation.checkout) %>
   </p>
   <p>
-    <strong>Horário de checkout:</strong>
+    <strong>Horário de check-out:</strong>
     <%= formatted_time(@reservation.guesthouse.checkout_time) %>
   </p>
   <p>

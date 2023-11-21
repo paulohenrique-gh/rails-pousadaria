@@ -4,6 +4,7 @@ class SeasonalRate < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   validates :start_date, :finish_date, :rate, presence: true
+  validates :start_date, comparison: { greater_than_or_equal_to: Date.today }
   validates :finish_date, comparison: { greater_than_or_equal_to: :start_date,
                           message: 'não pode ser menor que data inicial' }
   validate :dates_do_not_overlap

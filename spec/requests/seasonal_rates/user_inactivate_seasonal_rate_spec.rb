@@ -24,8 +24,8 @@ describe 'User inactivates seasonal rate' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: '2023-11-10',
-                                         finish_date: '2023-11-15',
+    seasonal_rate = SeasonalRate.create!(start_date: 10.days.from_now,
+                                         finish_date: 15.days.from_now,
                                          rate: 400, room: room)
 
     # Act
@@ -62,8 +62,8 @@ describe 'User inactivates seasonal rate' do
                         dimension: 200, max_people: 3, daily_rate: 150,
                         guesthouse: guesthouse)
 
-    seasonal_rate = SeasonalRate.create!(start_date: '2023-11-10',
-                                         finish_date: '2023-11-15',
+    seasonal_rate = SeasonalRate.create!(start_date: 10.days.from_now,
+                                         finish_date: 15.days.from_now,
                                          rate: 400, room: room)
 
     # Act
