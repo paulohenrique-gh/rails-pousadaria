@@ -1,29 +1,33 @@
+<% if @reviews.any? %>
 <h2>Avaliações de <%= current_user.guesthouse.brand_name %></h2>
 
-<% @reviews.each do |review| %>
-  <p>
-    <strong>Código da reserva:</strong>
-    <%= review.reservation.code %>
-  </p>
-  <p>
-    <strong>Quarto:</strong>
-    <%= review.reservation.room.name %>
-  </p>
-  <p>
-    <strong>Nota:</strong>
-    <%= review.rating %>
-  </p>
-  <dl>
-    <dt><strong>Avaliação:</strong></dt>
-    <dd><%= review.description %></dd>
-  </dl>
-  <% if review.response.present? %>
+  <% @reviews.each do |review| %>
+    <p>
+      <strong>Código da reserva:</strong>
+      <%= review.reservation.code %>
+    </p>
+    <p>
+      <strong>Quarto:</strong>
+      <%= review.reservation.room.name %>
+    </p>
+    <p>
+      <strong>Nota:</strong>
+      <%= review.rating %>
+    </p>
     <dl>
-      <dt><strong>Sua resposta:</strong></dt>
-      <dd><%= review.response %></dd>
+      <dt><strong>Avaliação:</strong></dt>
+      <dd><%= review.description %></dd>
     </dl>
-  <% else %>
-    <%= link_to 'Responder avaliação', respond_review_path(review) %>
+    <% if review.response.present? %>
+      <dl>
+        <dt><strong>Sua resposta:</strong></dt>
+        <dd><%= review.response %></dd>
+      </dl>
+    <% else %>
+      <%= link_to 'Responder avaliação', respond_review_path(review) %>
+    <% end %>
+    <hr>
   <% end %>
-  <hr>
+<% else %>
+  <p>Você ainda não possui avaliações</p>
 <% end %>

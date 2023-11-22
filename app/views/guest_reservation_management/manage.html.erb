@@ -63,5 +63,15 @@
       </strong>
     </dt>
     <dd><%= @reservation.review.description %></dd>
+    <% if @reservation.review.response.present? %>
+      <dt>
+        <strong>
+          Resposta do proprietário em <%= l(@reservation.review.updated_at.to_date) %>:
+        </strong>
+      </dt>
+      <dd><%= @reservation.review.response %></dd>
+    <% end %>
   </dl>
 <% end %>
+
+<%= link_to 'Voltar', reservations_guest_path %>
