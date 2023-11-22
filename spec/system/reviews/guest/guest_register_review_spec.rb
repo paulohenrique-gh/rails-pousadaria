@@ -47,7 +47,7 @@ describe 'Guest register review after checkout' do
       # Assert
       expect(page).to have_content 'Avalie sua estadia em Pousada Bosque'
       expect(page).to have_content "Código da reserva: #{reservation.code}"
-      expect(page).to have_content 'Classificação geral'
+      expect(page).to have_content 'Nota'
       expect(page).to have_field 'Adicione uma avaliação escrita'
       expect(page).to have_button 'Enviar'
     end

@@ -11,7 +11,7 @@
 
 <%= form_with(model: [@reservation, @review]) do |f| %>
   <div class="review_radio_buttons">
-    <p>Classificação geral: </p>
+    <p>Nota: </p>
     <%= f.radio_button :rating, -1, hidden: true, checked: true %>
     <% (0..5).each do |rating| %> 
       <%= f.radio_button :rating, rating %>

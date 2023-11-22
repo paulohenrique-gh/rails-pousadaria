@@ -6,5 +6,6 @@ pt-BR:
         other: 'Avaliações'
     attributes:
       review:
-        rating: 'Classificação'
-        description: 'Avaliação escrita' 
+        rating: 'Nota'
+        description: 'Avaliação escrita'
+        response: 'Resposta'

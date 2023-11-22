@@ -1,0 +1,37 @@
+<h2><%= @review.reservation.guesthouse.brand_name %></h2>
+
+<%= 
+  render partial: 'shared/error_messages', locals: { resource: @review }
+%>
+
+
+<p>
+  <strong>Código da reserva:</strong>
+  <%= @review.reservation.code %>
+</p>
+<p>
+  <strong>Quarto:</strong>
+  <%= @review.reservation.room.name %>
+</p>
+<p>
+  <strong>Nome do hóspede:</strong>
+  <%= @review.reservation.guest.name %>
+</p>
+<p>
+  <strong>Data do checkout:</strong>
+  <%= l(@review.reservation.checked_out_at.to_date) %>
+</p>
+<p>
+  <strong>Nota:</strong>
+  <%= @review.rating %>
+</p>
+<dl>
+  <dt><strong>Avaliação:</strong></dt>
+  <dd><%= @review.description %></dd>
+</dl>
+<p><strong>Sua Resposta</strong></p>
+<%= form_with(model: @review, url: save_response_review_path(@review),
+              method: :post) do |f| %>
+  <div><%= f.text_area :response %></div>
+  <div><%= f.submit 'Enviar' %></div>
+<% end %>

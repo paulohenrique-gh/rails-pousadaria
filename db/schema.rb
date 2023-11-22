@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_22_014037) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_22_185839) do
   create_table "addresses", force: :cascade do |t|
     t.string "street_name", null: false
     t.string "number", null: false
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_014037) do
     t.integer "reservation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "response"
     t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
   end
 

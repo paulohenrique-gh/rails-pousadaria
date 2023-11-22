@@ -41,7 +41,7 @@ describe 'Guests visits confirmation page' do
     click_on 'Confirmar reserva'
 
     # Assert
-    expect(current_path).to eq guest_reservations_path
+    expect(current_path).to eq reservations_guest_path
     expect(page).to have_content 'Reserva registrada com sucesso'
     expect(page).to have_content 'Minhas Reservas'
     expect(page).to have_content 'Código da reserva: ABCD1234'

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users, :guests
   root to: 'home#index'
 
-  get 'my-guesthouse', to: 'guesthouses#user_guesthouse'
   get 'guesthouses-by-city/:city', to: 'guesthouses#by_city', as: :guesthouses_by_city
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
@@ -22,7 +21,10 @@ Rails.application.routes.draw do
         get :guest_manage, to: 'guest_reservation_management#manage', on: :member
         patch :guest_cancel, to: 'guest_reservation_management#cancel', on: :member
 
-        resources :reviews, only: [:new, :create]
+        resources :reviews, only: [:new, :create] do
+          get :respond, to: 'reviews#respond', on: :member
+          post :save_response, to: 'reviews#save_response', on: :member
+        end
       end
 
       resources :seasonal_rates, only: [:new, :create, :show] do
@@ -34,9 +36,14 @@ Rails.application.routes.draw do
     patch :reactivate, on: :member
   end
 
-  resource :reservations, only: [:index] do
-    get :guest, to: 'guest_reservation_management#index'
-    get :host, to: 'user_reservation_management#index'
-    get :active, to: 'user_reservation_management#active_reservations_index'
+  resource :user, only: [:index] do
+    get :guesthouse, to: 'guesthouses#user_guesthouse'
+    get :reservations, to: 'user_reservation_management#index'
+    get :active_reservations, to: 'user_reservation_management#active_reservations_index'
+    get :reviews, to: 'reviews#user_reviews'
+  end
+
+  resource :guest, only: [:index] do
+    get :reservations, to: 'guest_reservation_management#index'
   end
 end

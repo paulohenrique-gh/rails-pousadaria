@@ -14,10 +14,10 @@ class GuestReservationManagementController < ApplicationController
   def cancel
     @reservation.guest_cancel
     if @reservation.cancelled?
-      return redirect_to(guest_reservations_path,
+      return redirect_to(reservations_guest_path,
                          notice: 'Reserva cancelada com sucesso')
     else
-      redirect_to(guest_reservations_path,
+      redirect_to(reservations_guest_path,
                   alert: 'Não foi possível cancelar reserva')
     end
   end

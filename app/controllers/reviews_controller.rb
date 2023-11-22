@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:user_reviews]
   before_action :authenticate_guest!, only: [:new]
   before_action :set_reservation, only: [:new, :create]
   before_action :check_guest, only: [:new]
@@ -13,16 +14,35 @@ class ReviewsController < ApplicationController
 
     if @review.save
       return redirect_to guest_manage_reservation_path(@reservation),
-             notice: 'Avaliação registrada com sucesso'
+      notice: 'Avaliação registrada com sucesso'
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def user_reviews
+    @reviews = current_user.guesthouse.reviews
+  end
+
+  def respond
+    @review = Review.find(params[:id])
+  end
+
+  def save_response
+    @review = Review.find(params[:id])
+    @review.response = params[:review][:response]
+
+    if @review.save
+      redirect_to reviews_user_path, notice: 'Resposta registrada com sucesso'
+    else
+      render :respond, status: :unprocessable_entity
     end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :description)
+    params.require(:review).permit(:rating, :description, :response)
   end
 
   def set_reservation

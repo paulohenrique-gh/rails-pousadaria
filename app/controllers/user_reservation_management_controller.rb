@@ -27,10 +27,10 @@ class UserReservationManagementController < ApplicationController
   def cancel
     @reservation.user_cancel
     if @reservation.cancelled?
-      return redirect_to(host_reservations_path,
+      return redirect_to(reservations_user_path,
                          notice: 'Reserva cancelada com sucesso')
     else
-      redirect_to(host_reservations_path,
+      redirect_to(reservations_user_path,
                   alert: 'Não foi possível cancelar reserva')
     end
   end
@@ -74,7 +74,7 @@ class UserReservationManagementController < ApplicationController
 
     @reservation.guests_checked_out!
     session.delete(:reprocessed_total)
-    redirect_to(host_reservations_path,
+    redirect_to(reservations_user_path,
                 notice: 'Estadia finalizada com sucesso')
   end
 
