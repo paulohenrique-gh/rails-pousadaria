@@ -6,6 +6,7 @@ class Reservation < ApplicationRecord
   belongs_to :room
   belongs_to :guest, optional: true
   has_one :guesthouse, through: :room
+  has_one :review
 
   before_validation :generate_code, on: :create
 

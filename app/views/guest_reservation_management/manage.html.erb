@@ -51,4 +51,17 @@
   <% end %>
 </div>
 
-<%= link_to 'Avaliar', new_reservation_review_path(@reservation) %>
+<% if @reservation.guests_checked_out? && @reservation.review.nil? %>
+  <%= link_to 'Avaliar', new_reservation_review_path(@reservation) %>
+<% end %>
+
+<% if @reservation.review.present? %>
+  <dl>
+    <dt>
+      <strong>
+        Avaliação registrada em <%= l(@reservation.review.created_at.to_date) %>:
+      </strong>
+    </dt>
+    <dd><%= @reservation.review.description %></dd>
+  </dl>
+<% end %>

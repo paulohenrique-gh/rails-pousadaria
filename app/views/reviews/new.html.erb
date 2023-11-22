@@ -1,11 +1,15 @@
 <h2>Avalie sua estadia em <%= @reservation.guesthouse.brand_name %></h2>
 
+<%= 
+  render partial: 'shared/error_messages', locals: { resource: @review }
+%>
+
 <p>
   <strong>Código da reserva:</strong>
   <%= @reservation.code %>
 </p>
 
-<%= form_with model: @review do |f| %>
+<%= form_with(model: [@reservation, @review]) do |f| %>
   <div class="review_radio_buttons">
     <p>Classificação geral: </p>
     <%= f.radio_button :rating, -1, hidden: true, checked: true %>
