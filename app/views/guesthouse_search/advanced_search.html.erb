@@ -1,6 +1,6 @@
 <h2>Busca Avançada</h2>
 
-<%= form_with(scope: :guesthouse, url: search_results_path,
+<%= form_with(scope: :guesthouse, url: search_results_guesthouses_path,
               method: :get, class: 'advanced_search_form') do |f| %>
   <div>
     <%= f.label :brand_name, 'Nome da pousada' %>

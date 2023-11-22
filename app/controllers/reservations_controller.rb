@@ -58,7 +58,7 @@ class ReservationsController < ApplicationController
     session.delete(:reservation)
 
     if @reservation.save
-      return (redirect_to my_reservations_path,
+      return (redirect_to guest_reservations_path,
               notice: 'Reserva registrada com sucesso')
     else
       flash.now[:alert] = 'Não foi possível concluir a reserva'

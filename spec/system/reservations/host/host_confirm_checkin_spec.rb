@@ -135,7 +135,7 @@ describe 'Host confirms checkin' do
 
     # Act
     login_as user
-    visit my_guesthouse_reservations_path
+    visit host_reservations_path
 
     # Assert
     expect(page).not_to have_button 'Confirmar check-in'

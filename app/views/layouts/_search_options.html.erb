@@ -1,9 +1,9 @@
 <div class="search_options">
-  <%= form_with(url: quick_search_path, method: :get) do |f| %>
+  <%= form_with(url: quick_search_guesthouses_path, method: :get) do |f| %>
     <%= f.label :query, 'Buscar pousada' %>
     <%= f.text_field :query %>
     <%= f.submit 'Buscar' %>
   <% end %>
   
-  <%= link_to 'Busca avançada', advanced_search_path %>
+  <%= link_to 'Busca avançada', advanced_search_guesthouses_path %>
 </div>

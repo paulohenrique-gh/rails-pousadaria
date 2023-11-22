@@ -116,7 +116,7 @@ describe 'Host registers checkout' do
     end
 
     # Assert
-    expect(current_path).to eq my_guesthouse_reservations_path
+    expect(current_path).to eq host_reservations_path
     expect(page).to have_content 'Estadia finalizada com sucesso'
     expect(reservation.reload.guests_checked_out?).to be true
     expect(reservation.checked_out_at).to eq 10.days.from_now.change(hour: 9)

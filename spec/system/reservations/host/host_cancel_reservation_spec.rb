@@ -42,7 +42,7 @@ describe 'Host cancels reservation' do
     click_on 'Cancelar'
 
     # Assert
-    expect(current_path).to eq my_guesthouse_reservations_path
+    expect(current_path).to eq host_reservations_path
     expect(page).to have_content 'Reserva cancelada com sucesso'
     expect(reservation.reload).to be_cancelled
     travel_back

@@ -25,7 +25,7 @@ class GuesthouseSearchController < ApplicationController
     @room_params = search_params[:room].delete_if { |_, v| v == '0' }
 
     if @guesthouse_params.empty? && @address_params.empty? && @room_params.empty?
-      return(redirect_to advanced_search_path,
+      return(redirect_to advanced_search_guesthouses_path,
              alert: 'Informe pelo menos um critério para pesquisa')
     end
 
