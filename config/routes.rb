@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         get :guest_manage, to: 'guest_reservation_management#manage', on: :member
         patch :guest_cancel, to: 'guest_reservation_management#cancel', on: :member
         get :review, to: 'guest_reservation_management#review', on: :member
+        resources :reviews, only: [:new, :create]
       end
       resources :seasonal_rates, only: [:new, :create, :show] do
         patch :inactivate, on: :member

@@ -30,17 +30,23 @@ describe 'Guest register review after checkout' do
     reservation = Reservation.create!(checkin: 5.days.from_now,
                                       checkout: 10.days.from_now,
                                       guest_count: 2, stay_total: 900,
-                                      room: room, guest: guest,
-                                      status: :guests_checked_out)
+                                      room: room, guest: guest)
 
     # Act
+    reservation.guests_checked_out!
     travel_to 11.days.from_now do
       login_as guest, scope: :guest
       visit root_path
       click_on 'Minhas Reservas'
       click_on 'Gerenciar'
       click_on 'Avaliar'
-    end
 
+      # Assert
+      expect(page).to have_content 'Avalie sua estadia em Pousada Bosque'
+      expect(page).to have_content "Código da reserva: #{reservation.code}"
+      expect(page).to have_content 'Classificação geral'
+      expect(page).to have_field 'Adicione uma avaliação escrita'
+      expect(page).to have_button 'Enviar'
+    end
   end
 end

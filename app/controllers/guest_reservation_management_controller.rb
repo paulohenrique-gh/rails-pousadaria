@@ -1,8 +1,6 @@
 class GuestReservationManagementController < ApplicationController
   before_action :authenticate_guest!, only: [:index, :manage, :cancel]
-
   before_action :set_reservation, only: [:manage, :cancel]
-
   before_action :check_guest, only: [:cancel]
 
   def index
@@ -10,7 +8,7 @@ class GuestReservationManagementController < ApplicationController
   end
 
   def manage
-
+    @cancellation_elligible = @reservation.elligible_for_cancellation_by_guest?
   end
 
   def cancel
@@ -22,10 +20,6 @@ class GuestReservationManagementController < ApplicationController
       redirect_to(my_reservations_path,
                   alert: 'Não foi possível cancelar reserva')
     end
-  end
-
-  def review
-
   end
 
   private

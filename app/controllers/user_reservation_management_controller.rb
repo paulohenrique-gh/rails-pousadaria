@@ -2,7 +2,6 @@ class UserReservationManagementController < ApplicationController
   before_action :authenticate_user!, only: [:index, :active_reservations_index,
                                             :manage, :confirm_checkin, :cancel,
                                             :go_to_checkout, :confirm_checkout]
-
   before_action :set_reservation, only: [:manage, :confirm_checkin, :cancel,
                                          :go_to_checkout, :confirm_checkout]
   before_action :check_user, only: [:manage, :confirm_checkin, :cancel,
@@ -61,6 +60,7 @@ class UserReservationManagementController < ApplicationController
                                           "payment_method_two",
                                           "payment_method_three")
                                    .values
+                                   .compact
   end
 
   def confirm_checkout

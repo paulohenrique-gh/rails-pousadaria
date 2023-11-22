@@ -52,7 +52,7 @@ describe 'Guests visits confirmation page' do
     expect(page).to have_content(
       "Data agendada para saída: #{20.days.from_now.strftime('%d/%m/%Y')}"
     )
-    expect(page).to have_button 'Cancelar reserva'
+    expect(page).to have_content 'Status: Confirmada'
   end
 
   it 'and room is already taken' do

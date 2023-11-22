@@ -1,0 +1,24 @@
+<h2>Avalie sua estadia em <%= @reservation.guesthouse.brand_name %></h2>
+
+<p>
+  <strong>Código da reserva:</strong>
+  <%= @reservation.code %>
+</p>
+
+<%= form_with model: @review do |f| %>
+  <div class="review_radio_buttons">
+    <p>Classificação geral: </p>
+    <%= f.radio_button :rating, -1, hidden: true, checked: true %>
+    <% (0..5).each do |rating| %> 
+      <%= f.radio_button :rating, rating %>
+      <%= f.label :rating, rating, class: 'radio_label' %>
+    <% end %>
+  </div>
+  <div class="review_description">
+    <%= f.label :description, 'Adicione uma avaliação escrita' %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

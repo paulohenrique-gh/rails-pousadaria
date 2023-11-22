@@ -7,18 +7,10 @@
       <p><strong>Nome da pousada:</strong> <%= r.guesthouse.brand_name %></p>
       <p><strong>Data agendada para entrada:</strong> <%= I18n.localize(r.checkin) %></p>
       <p><strong>Data agendada para saída:</strong> <%= I18n.localize(r.checkout) %></p>
-      <% if r.elligible_for_cancellation_by_guest? %>
-        <%=
-          button_to('Cancelar reserva',
-                    guest_cancel_reservation_path(r),
-                    method: :patch)
-        %>
-      <% else %>
-        <p>
-          <strong>Status:</strong> 
-          <%= Reservation.human_attribute_name("status.#{r.status}") %>
-        </p>
-      <% end %>
+      <p>
+        <strong>Status:</strong> 
+        <%= Reservation.human_attribute_name("status.#{r.status}") %>
+      </p>
       <%= link_to 'Gerenciar', guest_manage_reservation_path(r) %>
     </div>
     <hr>
@@ -26,3 +18,5 @@
 <% else %>
   <p>Você ainda não possui reservas</p>
 <% end %>
+
+<%= link_to 'Voltar', my_reservations_path %>

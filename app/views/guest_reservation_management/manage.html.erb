@@ -1,1 +1,54 @@
-<%= link_to 'Avaliar', review_reservation_path(@reservation) %>
+<h2>Gerenciar reserva <%= @reservation.code %></h2>
+<div>
+  <p>
+    <strong>Pousada:</strong>
+    <%= @reservation.guesthouse.brand_name %>
+  </p>
+  <p>
+    <strong>Quarto:</strong>
+    <%= @reservation.room.name %>
+  </p>
+  <p>
+    <strong>Data agendada para entrada: </strong>
+    <%= I18n.localize(@reservation.checkin) %>
+  </p>
+  <p>
+    <strong>Data agendada para saída: </strong>
+    <%= I18n.localize(@reservation.checkout) %>
+  </p>
+  <p>
+    <strong>Status:</strong> 
+    <%= Reservation.human_attribute_name("status.#{@reservation.status}") %>
+  </p>
+  <% if @reservation.guests_checked_in? %>
+    <p>
+      <strong>Data e hora do check-in:</strong>
+      <%= I18n.localize(@reservation.checked_in_at, format: :custom) %>
+    </p>
+  <% end %>
+  <% if @reservation.guests_checked_out? %>
+    <p>
+      <strong>Data e hora do check-in:</strong>
+      <%= I18n.localize(@reservation.checked_in_at, format: :custom) %>
+    </p>
+    <p>
+      <strong>Data e hora do check-out:</strong>
+      <%= I18n.localize(@reservation.checked_out_at, format: :custom) %>
+    </p>
+    <p>
+      <strong>Total pago:</strong>
+      <%= number_to_currency(@reservation.stay_total) %>
+    </p>
+    <p>
+      <strong>Forma de pagamento:</strong>
+      <%= @reservation.payment_method %>
+    </p>
+  <% end %>
+  <% if @cancellation_elligible %>
+    <%= button_to('Cancelar',
+                   guest_cancel_reservation_path,
+                   method: :patch) %>
+  <% end %>
+</div>
+
+<%= link_to 'Avaliar', new_reservation_review_path(@reservation) %>

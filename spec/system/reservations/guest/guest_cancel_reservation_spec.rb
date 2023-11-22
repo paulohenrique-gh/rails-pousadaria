@@ -35,7 +35,8 @@ describe 'Guest cancels reservation' do
     login_as guest, scope: :guest
     visit root_path
     click_on 'Minhas Reservas'
-    click_on 'Cancelar reserva'
+    click_on 'Gerenciar'
+    click_on 'Cancelar'
 
     # Assert
     expect(page).to have_content 'Reserva cancelada com sucesso'

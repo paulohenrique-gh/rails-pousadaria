@@ -82,3 +82,19 @@
   margin-top: 15px;
   font-size: 12px
 }
+
+.review_radio_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.radio_label {
+  margin-right: 10px;
+}
+
+.review_description {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
