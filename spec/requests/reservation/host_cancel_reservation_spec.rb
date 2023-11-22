@@ -35,7 +35,7 @@ describe 'Host cancels reservation' do
 
     # Act
     travel_to 4.days.from_now do
-      patch(cancellation_by_user_reservation_path(reservation.id))
+      patch(user_cancel_reservation_path(reservation.id))
     end
 
     # Assert
@@ -79,7 +79,7 @@ describe 'Host cancels reservation' do
     # Act
     travel_to 4.days.from_now do
       login_as other_user
-      patch(cancellation_by_user_reservation_path(reservation.id))
+      patch(user_cancel_reservation_path(reservation.id))
     end
 
     # Assert
@@ -121,7 +121,7 @@ describe 'Host cancels reservation' do
     # Act
     travel_to 2.days.from_now do
       login_as user
-      patch(cancellation_by_user_reservation_path(reservation.id))
+      patch(user_cancel_reservation_path(reservation.id))
     end
 
     # Assert

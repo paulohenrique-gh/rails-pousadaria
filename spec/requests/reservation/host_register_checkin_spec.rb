@@ -125,7 +125,7 @@ describe 'Host registers checkin' do
     patch(confirm_checkin_reservation_path(reservation.id))
 
     # Assert
-    expect(response).to redirect_to manage_reservation_path(reservation.id)
+    expect(response).to redirect_to user_manage_reservation_path(reservation.id)
     expect(reservation.reload.guests_checked_in?).to be false
   end
 end

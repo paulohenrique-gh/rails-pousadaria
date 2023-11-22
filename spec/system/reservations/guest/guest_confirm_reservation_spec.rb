@@ -46,8 +46,12 @@ describe 'Guests visits confirmation page' do
     expect(page).to have_content 'Minhas Reservas'
     expect(page).to have_content 'Código da reserva: ABCD1234'
     expect(page).to have_content 'Nome da pousada: Pousada Bosque'
-    expect(page).to have_content "Data de entrada: #{10.days.from_now.strftime('%d/%m/%Y')}"
-    expect(page).to have_content "Data de saída: #{20.days.from_now.strftime('%d/%m/%Y')}"
+    expect(page).to have_content(
+      "Data agendada para entrada: #{10.days.from_now.strftime('%d/%m/%Y')}"
+    )
+    expect(page).to have_content(
+      "Data agendada para saída: #{20.days.from_now.strftime('%d/%m/%Y')}"
+    )
     expect(page).to have_button 'Cancelar reserva'
   end
 

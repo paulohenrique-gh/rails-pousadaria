@@ -54,7 +54,7 @@ describe 'Host visits active reservations page' do
       "Data agendada para saída: #{reservation.checkout.strftime('%d/%m/%Y')}"
     )
     expect(page).to have_content(
-      "Data e hora do check-in: #{(reservation.checked_in_at - 3.hours)
+      "Data e hora do check-in: #{(reservation.checked_in_at)
                                               .strftime('%d/%m/%Y %H:%M:%S')}"
     )
     expect(page).to have_link 'Gerenciar reserva'

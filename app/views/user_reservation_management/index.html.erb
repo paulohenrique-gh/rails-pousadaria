@@ -14,7 +14,7 @@
           <strong>Status:</strong> 
           <%= Reservation.human_attribute_name("status.#{r.status}") %>
         </p>
-        <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
+        <%= link_to 'Gerenciar reserva', user_manage_reservation_path(r.id) %>
       </div>
       <hr>
     <% end %>

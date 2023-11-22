@@ -11,9 +11,9 @@
         <p><strong>Quantidade de hóspedes:</strong> <%= r.guest_count %></p>
         <p>
           <strong>Data e hora do check-in:</strong>
-          <%= l(r.checked_in_at - 3.hours, format: :custom) %>
+          <%= l(r.checked_in_at, format: :custom) %>
         </p>
-        <%= link_to 'Gerenciar reserva', manage_reservation_path(r.id) %>
+        <%= link_to 'Gerenciar reserva', user_manage_reservation_path(r.id) %>
       </div>
       <hr>
     <% end %>
@@ -21,4 +21,3 @@
 <% else %>
   <p>Sua pousada não possui reservas com estadia ativa</p>
 <% end %>
-

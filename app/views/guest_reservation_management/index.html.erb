@@ -5,12 +5,12 @@
     <div class="reservations">
       <p><strong>Código da reserva:</strong> <%= r.code %></p>
       <p><strong>Nome da pousada:</strong> <%= r.guesthouse.brand_name %></p>
-      <p><strong>Data de entrada:</strong> <%= I18n.localize(r.checkin) %></p>
-      <p><strong>Data de saída:</strong> <%= I18n.localize(r.checkout) %></p>
+      <p><strong>Data agendada para entrada:</strong> <%= I18n.localize(r.checkin) %></p>
+      <p><strong>Data agendada para saída:</strong> <%= I18n.localize(r.checkout) %></p>
       <% if r.elligible_for_cancellation_by_guest? %>
         <%=
           button_to('Cancelar reserva',
-                    cancellation_by_guest_reservation_path(r.id),
+                    guest_cancel_reservation_path(r),
                     method: :patch)
         %>
       <% else %>
@@ -19,6 +19,7 @@
           <%= Reservation.human_attribute_name("status.#{r.status}") %>
         </p>
       <% end %>
+      <%= link_to 'Gerenciar', guest_manage_reservation_path(r) %>
     </div>
     <hr>
   <% end %>

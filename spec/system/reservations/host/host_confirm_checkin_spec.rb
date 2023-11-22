@@ -93,7 +93,7 @@ describe 'Host confirms checkin' do
     travel_back
 
     # Assert
-    expect(current_path).to eq manage_reservation_path(reservation.id)
+    expect(current_path).to eq user_manage_reservation_path(reservation.id)
     expect(page).to have_content 'Check-in confirmado com sucesso'
     expect(page).to have_content(
       "Data e hora do check-in: #{reservation.reload.checked_in_at

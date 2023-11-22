@@ -32,7 +32,7 @@ describe 'Guest cancels reservation' do
                                       stay_total: 900, room: room, guest: guest)
 
     # Act
-    patch(cancellation_by_guest_reservation_path(reservation.id))
+    patch(guest_cancel_reservation_path(reservation.id))
 
     # Assert
     expect(response).to redirect_to new_guest_session_path
@@ -72,7 +72,7 @@ describe 'Guest cancels reservation' do
 
     # Act
     login_as other_guest, scope: :guest
-    patch(cancellation_by_guest_reservation_path(reservation.id))
+    patch(guest_cancel_reservation_path(reservation.id))
 
     # Assert
     expect(response).to redirect_to root_path
