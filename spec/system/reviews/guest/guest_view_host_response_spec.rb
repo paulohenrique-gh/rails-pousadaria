@@ -50,8 +50,7 @@ describe 'Guest visit reservation management page' do
 
       # Assert
       expect(page).to have_content(
-        "Resposta do proprietário em #{I18n.localize(review.updated_at.to_date)}: "\
-        "Obrigado"
+        "Resposta do proprietário em #{I18n.localize(review.updated_at.to_date)}: Obrigado"
       )
     end
   end

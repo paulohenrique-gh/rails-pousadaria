@@ -1,0 +1,11 @@
+<h2>Avaliações - <%= @guesthouse.brand_name %></h2>
+
+<h3>Média: ★ <%= @average_rating %> </h3>
+
+<% @reviews.each do |review| %>
+  <p><%= review.guest.name %>, <%= l(review.created_at.to_date) %></p>
+  <p>Nota <%= review.rating %> - <q><%= review.description %> </q></p>
+  <br>
+<% end %>
+
+<%= link_to 'Voltar', @guesthouse %>

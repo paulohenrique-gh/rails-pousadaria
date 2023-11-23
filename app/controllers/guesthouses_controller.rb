@@ -6,14 +6,13 @@ class GuesthousesController < ApplicationController
     set_guesthouse_and_check_user(params[:id])
   end
 
-  before_action :set_guesthouse, only: [:show, :reactivate]
+  before_action :set_guesthouse, only: [:show, :reactivate, :reviews]
   before_action :check_guesthouse_presence, only: [:new, :create]
   before_action :redirect_new_host_to_guesthouse_creation, except: [:new, :create]
 
   def show
     @user = current_user
-    @available_rooms = @guesthouse.rooms.where(available: true)
-    @all_rooms = @guesthouse.rooms
+    set_guesthouse_info(@guesthouse)
   end
 
   def new
@@ -59,10 +58,8 @@ class GuesthousesController < ApplicationController
 
   def user_guesthouse
     @user = current_user
-
     @guesthouse = @user.guesthouse
-    @available_rooms = @guesthouse.rooms.where(available: true)
-    @all_rooms = @guesthouse.rooms
+    set_guesthouse_info(@guesthouse)
 
     render 'show', status: :ok
   end
@@ -74,6 +71,11 @@ class GuesthousesController < ApplicationController
                                        .where(address: addresses_by_city)
                                        .order(:brand_name)
     redirect_to root_path if @available_guesthouses.empty?
+  end
+
+  def reviews
+    @reviews = @guesthouse.reviews.order(:created_at).reverse
+    @average_rating = @guesthouse.reviews.average(:rating).to_f
   end
 
   private
@@ -93,6 +95,13 @@ class GuesthousesController < ApplicationController
 
   def set_guesthouse
     @guesthouse = Guesthouse.find(params[:id])
+  end
+
+  def set_guesthouse_info(guesthouse)
+    @available_rooms = @guesthouse.rooms.where(available: true)
+    @all_rooms = @guesthouse.rooms
+    @recent_reviews = @guesthouse.reviews.order(:created_at).reverse.first(3)
+    @average_rating = @guesthouse.reviews.average(:rating).to_f
   end
 
   def check_guesthouse_presence

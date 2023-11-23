@@ -5,4 +5,5 @@ class Guest < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reservations
+  has_many :reviews, through: :reservations
 end

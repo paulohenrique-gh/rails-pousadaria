@@ -98,3 +98,7 @@
   flex-direction: column;
   width: 500px;
 }
+
+q {
+  font-style: italic;
+}

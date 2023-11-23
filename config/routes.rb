@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'quick-search', to: 'guesthouse_search#quick_search', on: :collection
     get 'advanced-search', to: 'guesthouse_search#advanced_search', on: :collection
     get 'search-results', to: 'guesthouse_search#search_results', on: :collection
+    get 'reviews', to: 'guesthouses#reviews', on: :member
 
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       get 'confirm', to: 'reservations#confirm'
