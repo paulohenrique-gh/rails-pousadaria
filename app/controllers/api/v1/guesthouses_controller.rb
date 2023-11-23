@@ -1,13 +1,11 @@
 class Api::V1::GuesthousesController < Api::V1::ApiController
   def index
-    guesthouses = Guesthouse.active.order(:brand_name)
+    guesthouses = Guesthouse.active
     if params[:search].present?
       guesthouses = guesthouses.where('brand_name LIKE ?', "%#{params[:search]}%")
     end
 
-    guesthouses = guesthouses.as_json.map do |g|
-      guesthouse_json_formatter(g)
-    end
+    guesthouses = guesthouses.as_json.map { |g| guesthouse_json_formatter(g) }
 
     render status: 200, json: guesthouses
   end
