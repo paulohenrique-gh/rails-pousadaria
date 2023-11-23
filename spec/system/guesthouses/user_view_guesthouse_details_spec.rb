@@ -200,7 +200,7 @@ describe 'Host visits own guesthouse details page' do
     click_on 'Minha Pousada'
 
     # Assert
-    expect(current_path).to eq guesthouse_user_path
+    expect(current_path).to eq user_guesthouse_path
     expect(page).to have_content 'Razão social: Pousada Ramos Faria LTDA'
     expect(page).to have_content 'CNPJ: 02303221000152'
     expect(page).to have_link 'Adicionar quarto'

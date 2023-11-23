@@ -181,6 +181,11 @@ Porta padrão: [3000](http://localhost:3000)
   - Total pago
   - Forma de pagamento
 
+### Avalidações de estadia
+- Hóspede pode registrar avaliações após o check-out no menu Minhas Reservas, clicando no link "Gerenciar" disponível em cada reserva. A avaliação é feita registrando uma nota de 0 a 5, onde 0 é péssima e 5 é ótima, e um texto descritivo da estadia
+- O usuário dono de pousada tem acesso a todas as suas avaliações através do menu "Avaliações", e pode responder as avaliações de sua pousada. Após registrada, a resposta fica disponível também para o hóspede na página de gerenciamento de sua reserva
+- Fica disponível também uma sessão com as avaliações na página de detalhes de uma pousada. O usuário pode visualizar a média das avaliações, acessar as 3 últimas avaliações, e ir para uma página com todas as avaliações da pousada clicando em "Visualizar todas" no final da listagem prévia.
+
 ## Referências
 
 Algumas páginas de documentação e artigos que tem ajudado

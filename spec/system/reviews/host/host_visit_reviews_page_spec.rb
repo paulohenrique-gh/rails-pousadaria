@@ -93,7 +93,7 @@ describe 'Host visits reviews page' do
 
     # Act
     travel_to 15.days.from_now do
-      visit reviews_user_path
+      visit user_reviews_path
 
       # Assert
       expect(current_path).to eq new_user_session_path

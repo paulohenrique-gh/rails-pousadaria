@@ -37,14 +37,20 @@ Rails.application.routes.draw do
     patch :reactivate, on: :member
   end
 
-  resource :user, only: [:index] do
-    get :guesthouse, to: 'guesthouses#user_guesthouse'
-    get :reservations, to: 'user_reservation_management#index'
+  scope :user do
+    get :guesthouse, to: 'guesthouses#user_guesthouse', as: :user_guesthouse
+    get :reservations, to: 'user_reservation_management#index', as: :user_reservations
     get :active_reservations, to: 'user_reservation_management#active_reservations_index'
-    get :reviews, to: 'reviews#user_reviews'
+    get :reviews, to: 'reviews#user_reviews', as: :user_reviews
   end
 
-  resource :guest, only: [:index] do
-    get :reservations, to: 'guest_reservation_management#index'
+  scope :guest do
+    get :reservations, to: 'guest_reservation_management#index', as: :guest_reservations
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :guesthouses, only: [:index]
+    end
   end
 end

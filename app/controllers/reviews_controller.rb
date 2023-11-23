@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
     @review.response = params[:review][:response]
 
     if @review.save
-      redirect_to reviews_user_path, notice: 'Resposta registrada com sucesso'
+      redirect_to user_reviews_path, notice: 'Resposta registrada com sucesso'
     else
       render :respond, status: :unprocessable_entity
     end

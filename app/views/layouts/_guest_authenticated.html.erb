@@ -1,4 +1,4 @@
-<%= link_to 'Minhas Reservas', reservations_guest_path %>
+<%= link_to 'Minhas Reservas', guest_reservations_path %>
 <span><%= current_guest.name %> - <%= current_guest.email %></span>
 
 <%= button_to 'Sair', destroy_guest_session_path, method: :delete %>

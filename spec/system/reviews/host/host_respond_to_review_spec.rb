@@ -107,7 +107,7 @@ describe 'Host responds to review' do
       click_on 'Enviar'
 
       # Assert
-      expect(current_path).to eq reviews_user_path
+      expect(current_path).to eq user_reviews_path
       expect(page).to have_content 'Resposta registrada com sucesso'
       expect(page).to have_content 'Sua resposta: Grato'
       expect(page).not_to have_link 'Responder avaliação'
