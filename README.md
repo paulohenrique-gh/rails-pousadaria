@@ -186,6 +186,14 @@ Porta padrão: [3000](http://localhost:3000)
 - O usuário dono de pousada tem acesso a todas as suas avaliações através do menu "Avaliações", e pode responder as avaliações de sua pousada. Após registrada, a resposta fica disponível também para o hóspede na página de gerenciamento de sua reserva
 - Fica disponível também uma sessão com as avaliações na página de detalhes de uma pousada. O usuário pode visualizar a média das avaliações, acessar as 3 últimas avaliações, e ir para uma página com todas as avaliações da pousada clicando em "Visualizar todas" no final da listagem prévia.
 
+### API
+
+#### URL Base
+
+
+#### Endpoints
+##### Listagem de pousadas: retorna uma lista completa das pousadas cadastradas e ativas na plataforma.
+
 ## Referências
 
 Algumas páginas de documentação e artigos que tem ajudado
