@@ -50,8 +50,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :guesthouses, only: [:index, :show], shallow: true do
+      resources :guesthouses, only: [:index, :show] do
         resources :rooms, only: [:index]
+      end
+
+      resources :rooms, only: [:check_availability] do
+        get :check_availability
       end
     end
   end
