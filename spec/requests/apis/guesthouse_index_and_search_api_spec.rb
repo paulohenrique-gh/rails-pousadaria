@@ -52,6 +52,7 @@ describe 'Guesthouse index and search API' do
         expect(json_response.first["pet_policy"]).to eq true
         expect(json_response.first["checkin_time"]).to eq '08:00'
         expect(json_response.first["checkout_time"]).to eq '18:00'
+        expect(json_response.first["payment_method_one"]).to eq 'Dinheiro'
         expect(json_response.first["address"]["street_name"]).to eq 'Rua das Pedras'
         expect(json_response.first["address"]["number"]).to eq '30'
         expect(json_response.first["address"]["neighbourhood"]).to eq 'São José'
@@ -65,6 +66,7 @@ describe 'Guesthouse index and search API' do
         expect(json_response.second["pet_policy"]).to eq true
         expect(json_response.second["checkin_time"]).to eq '08:00'
         expect(json_response.second["checkout_time"]).to eq '18:00'
+        expect(json_response.first["payment_method_one"]).to eq 'Dinheiro'
         expect(json_response.second["address"]["street_name"]).to eq 'Rua Carlos Pontes'
         expect(json_response.second["address"]["number"]).to eq '450'
         expect(json_response.second["address"]["neighbourhood"]).to eq 'Santa Helena'
