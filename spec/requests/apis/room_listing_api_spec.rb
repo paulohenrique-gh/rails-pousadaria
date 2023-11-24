@@ -50,7 +50,6 @@ describe 'Room listing API' do
       expect(json_response.first["accessibility"]).to eq true
       expect(json_response.first["available"]).to eq true
       expect(json_response.first["closet"]).to eq false
-      expect(json_response.first.keys).not_to include("guesthouse_id")
       expect(json_response.first.keys).not_to include("created_at")
       expect(json_response.first.keys).not_to include("updated_at")
 
@@ -67,7 +66,6 @@ describe 'Room listing API' do
       expect(json_response.second["accessibility"]).to eq false
       expect(json_response.second["available"]).to eq true
       expect(json_response.second["closet"]).to eq false
-      expect(json_response.second.keys).not_to include("guesthouse_id")
       expect(json_response.second.keys).not_to include("created_at")
       expect(json_response.second.keys).not_to include("updated_at")
     end

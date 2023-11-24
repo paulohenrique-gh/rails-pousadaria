@@ -11,4 +11,8 @@ class Api::V1::ApiController < ActionController::API
   def render_status_404
     render status: 404
   end
+
+  def render_status_400
+    render status: 400
+  end
 end
