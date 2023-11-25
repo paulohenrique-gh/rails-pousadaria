@@ -82,7 +82,7 @@ describe 'Guest checks room availability' do
     expect(page).to have_button 'Confirmar reserva'
   end
 
-  it 'and room is not available' do
+  it 'and room is booked' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
 
@@ -206,5 +206,72 @@ describe 'Guest checks room availability' do
 
      # Assert
      expect(page).to have_content 'Valor total das diárias: R$ 2.250,00'
+  end
+
+  it 'and guesthouse is inactive' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                          email: 'pedrada@mail.com', password: 'password')
+
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
+                                    address: address, user: user,
+                                    status: :inactive)
+
+    room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        private_bathroom: true, tv: true,
+                        guesthouse: guesthouse)
+
+    # Act
+    visit new_room_reservation_path(room.id)
+
+    # Assert
+    expect(current_path).to eq root_path
+  end
+
+  it 'and room is marked as unavailable by the host' do
+    # Arrange
+    user = User.create!(email: 'exemplo@mail.com', password: 'password')
+
+    guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
+                          email: 'pedrada@mail.com', password: 'password')
+
+    address = Address.create!(street_name: 'Rua das Pedras', number: '30',
+                              neighbourhood: 'Santa Helena',
+                              city: 'Pulomiranga', state: 'RN',
+                              postal_code: '99000-525')
+
+    guesthouse = Guesthouse.create!(brand_name: 'Pousada Bosque',
+                                    corporate_name: 'Pousada Ramos Faria LTDA',
+                                    registration_number: '02303221000152',
+                                    phone_number: '1130205000',
+                                    email: 'atendimento@pousadabosque',
+                                    checkin_time: '08:00',
+                                    checkout_time: '18:00',
+                                    address: address, user: user)
+
+    room = Room.create!(name: 'Brasil', description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        private_bathroom: true, tv: true,
+                        guesthouse: guesthouse, available: false)
+
+    # Act
+    visit new_room_reservation_path(room.id)
+
+    # Assert
+    expect(current_path).to eq root_path
   end
 end

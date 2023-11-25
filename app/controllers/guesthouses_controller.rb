@@ -8,10 +8,11 @@ class GuesthousesController < ApplicationController
 
   before_action :set_guesthouse, only: [:show, :reactivate, :reviews]
   before_action :check_guesthouse_presence, only: [:new, :create]
-  before_action :redirect_new_host_to_guesthouse_creation, except: [:new, :create]
+  before_action :redirect_new_host_to_guesthouse_creation, only: [:show]
 
   def show
     @user = current_user
+    redirect_to root_path if @user.nil? && @guesthouse.inactive?
     set_guesthouse_info(@guesthouse)
   end
 

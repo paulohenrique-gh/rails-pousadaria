@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:user_reviews, :save_response]
+  before_action :authenticate_user!, only: [:user_reviews, :respond, :save_response]
   before_action :authenticate_guest!, only: [:new, :create]
   before_action :set_reservation, only: [:new, :create]
   before_action :check_guest, only: [:new, :create]
+  before_action :redirect_new_host_to_guesthouse_creation, only: [:user_reviews]
 
   def new
     @review = Review.new(reservation: @reservation)
@@ -27,6 +28,7 @@ class ReviewsController < ApplicationController
 
   def respond
     @review = Review.find(params[:id])
+    redirect_to user_reviews_path if @review.response.present?
   end
 
   def save_response

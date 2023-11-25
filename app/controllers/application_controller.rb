@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound do
+    redirect_to root_path
+  end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

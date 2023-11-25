@@ -175,6 +175,14 @@ describe 'Guest visits guesthouse details page' do
     expect(page).not_to have_content 'Método de pagamento 2'
     expect(page).not_to have_content 'Método de pagamento 3'
   end
+
+  it "and passes invalid ID in the URL" do
+    # Act
+    visit '/guesthouses/999999999'
+
+    # Assert
+    expect(current_path).to eq root_path
+  end
 end
 
 describe 'Host visits own guesthouse details page' do

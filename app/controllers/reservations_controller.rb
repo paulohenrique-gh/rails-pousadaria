@@ -4,14 +4,14 @@ class ReservationsController < ApplicationController
   end
 
   before_action :authenticate_guest!, only: [:create]
+  before_action :set_room, only: [:new, :confirm, :create]
+  before_action :redirect_new_host_to_guesthouse_creation, only: [:new, :confirm]
 
   def new
-    @room = Room.find(params[:room_id])
     @reservation = Reservation.new
   end
 
   def confirm
-    @room = Room.find(params[:room_id])
     session[:reservation] = params[:reservation]
 
     if session[:reservation].nil?
@@ -46,6 +46,7 @@ class ReservationsController < ApplicationController
     end
 
     @reservation = Reservation.new(session[:reservation])
+
     if @reservation.room.booked?(@reservation.checkin, @reservation.checkout)
       session.delete(:reservation)
       return redirect_to(
@@ -68,13 +69,8 @@ class ReservationsController < ApplicationController
 
   private
 
-  def set_reservation
-    @reservation = Reservation.find(params[:id])
-  end
-
-  def check_user
-    if set_reservation.guesthouse.user != current_user
-      redirect_to root_path
-    end
+  def set_room
+    @room = Room.find(params[:room_id])
+    redirect_to root_path if @room.guesthouse.inactive? || !@room.available
   end
 end

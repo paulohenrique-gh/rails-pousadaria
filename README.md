@@ -432,7 +432,7 @@ Consulta disponibilidade de um quarto de acordo com os parâmetros passados na r
 **Exemplos**
 - Requisição
   ```
-  http://localhost:3000/api/v1/rooms/7/check_availability/?checkin=20-12-2023&checkout=25-12-2023&guest_count=2
+  http://localhost:3000/api/v1/rooms/7/check_availability/?checkin=2023-12-20&checkout=2023-12-25&guest_count=2
   ```
 - Resposta
   ```json
