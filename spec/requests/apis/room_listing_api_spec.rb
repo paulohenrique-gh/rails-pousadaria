@@ -121,12 +121,16 @@ describe 'Room listing API' do
 
         # Assert
         expect(response).to have_http_status(500)
+        json_response = JSON.parse(response.body)
+        expect(json_response["error"]).to eq 'Erro interno'
     end
 
     it 'fails if guesthouse is not found' do
       get api_v1_guesthouse_rooms_path(99999999999999)
 
       expect(response).to have_http_status(404)
+      json_response = JSON.parse(response.body)
+      expect(json_response["error"]).to eq 'Não encontrado'
     end
   end
 end

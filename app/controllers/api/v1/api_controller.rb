@@ -5,14 +5,10 @@ class Api::V1::ApiController < ActionController::API
   protected
 
   def render_status_500
-    render status: 500
+    render status: 500, json: { error: 'Erro interno' }
   end
 
   def render_status_404
-    render status: 404
-  end
-
-  def render_status_400
-    render status: 400
+    render status: 404, json: { error: 'Não encontrado' }
   end
 end

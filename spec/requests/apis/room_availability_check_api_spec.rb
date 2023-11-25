@@ -152,6 +152,8 @@ describe 'Room availability check API' do
 
       # Assert
       expect(response).to have_http_status(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["error"]).to eq 'Parâmetros inválidos'
     end
 
     it 'fails when checkin date given is in the past' do
@@ -190,6 +192,8 @@ describe 'Room availability check API' do
 
       # Assert
       expect(response).to have_http_status(400)
+      json_response = JSON.parse(response.body)
+      expect(json_response["error"]).to eq 'Parâmetros inválidos'
     end
   end
 end

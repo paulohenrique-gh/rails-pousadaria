@@ -93,6 +93,8 @@ describe 'Guesthouse index and search API' do
 
         # Assert
         expect(response).to have_http_status(500)
+        json_response = JSON.parse(response.body)
+        expect(json_response["error"]).to eq 'Erro interno'
       end
     end
 

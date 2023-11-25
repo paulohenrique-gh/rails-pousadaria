@@ -8,7 +8,7 @@ class Api::V1::RoomsController < Api::V1::ApiController
 
   def check_availability
     @room = Room.find(params[:room_id])
-    return render status: 400 if bad_request?
+    return render status: 400, json: { error: 'Parâmetros inválidos' } if bad_request?
 
     response_hash = {}
 
