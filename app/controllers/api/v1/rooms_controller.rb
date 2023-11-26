@@ -15,7 +15,7 @@ class Api::V1::RoomsController < Api::V1::ApiController
     if !@room.booked?(@checkin, @checkout) && @room.available
       response_hash["stay_total"] = @stay_total
     else
-      response_hash["error"] = 'Quarto não disponível'
+      response_hash["error"] = 'Quarto não disponível no período informado'
     end
 
     render status: 200, json: response_hash

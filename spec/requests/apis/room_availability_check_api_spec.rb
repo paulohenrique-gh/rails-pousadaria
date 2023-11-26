@@ -66,14 +66,15 @@ describe 'Room availability check API' do
       checkin = 10.days.from_now.to_date.strftime('%Y-%m-%d')
       checkout = 20.days.from_now.to_date.strftime('%Y-%m-%d')
       get(
-        "/api/v1/rooms/#{room.id}/check_availability/?checkin=#{checkin}&checkout=#{checkout}&guest_count=2"
+        "/api/v1/rooms/#{room.id}/check_availability/?" +
+        "checkin=#{checkin}&checkout=#{checkout}&guest_count=2"
       )
 
       # Assert
       expect(response).to have_http_status(200)
       expect(response.content_type).to include('application/json')
       json_response = JSON.parse(response.body)
-      expect(json_response["error"]).to eq 'Quarto não disponível'
+      expect(json_response["error"]).to eq 'Quarto não disponível no período informado'
     end
 
     it 'returns error message when room is booked' do
@@ -111,14 +112,15 @@ describe 'Room availability check API' do
       checkin = 10.days.from_now.to_date.strftime('%Y-%m-%d')
       checkout = 20.days.from_now.to_date.strftime('%Y-%m-%d')
       get(
-        "/api/v1/rooms/#{room.id}/check_availability/?checkin=#{checkin}&checkout=#{checkout}&guest_count=2"
+        "/api/v1/rooms/#{room.id}/check_availability/?" +
+        "checkin=#{checkin}&checkout=#{checkout}&guest_count=2"
       )
 
       # Assert
       expect(response).to have_http_status(200)
       expect(response.content_type).to include('application/json')
       json_response = JSON.parse(response.body)
-      expect(json_response["error"]).to eq 'Quarto não disponível'
+      expect(json_response["error"]).to eq 'Quarto não disponível no período informado'
     end
 
     it 'fails with invalid parameters' do

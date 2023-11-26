@@ -198,7 +198,8 @@ Retorna uma lista completa das pousadas cadastradas e ativas na plataforma. É p
 
 **Endpoint**: ```/guesthouses```
 
-**Parâmetros opcionais**: ```/?search=[nome da pousada]```
+**Parâmetro opcional**:
+- ```search``` - Termo de busca para filtrar pousadas pelo nome
 
 **Exemplo sem parâmetro de busca**
 
