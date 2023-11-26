@@ -411,7 +411,8 @@ Retorna um JSON com os detalhes de uma pousada, incluindo a média de avaliaçõ
       "city": "São Paulo",
       "state": "SP",
       "postal_code": "11111-111"
-    }
+    },
+    "average_rating": 4.75
   }
   ```  
 ---

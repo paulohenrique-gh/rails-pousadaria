@@ -41,9 +41,9 @@ class Api::V1::RoomsController < Api::V1::ApiController
       guest_count = params[:guest_count]
 
       reservation = @room.reservations.build(checkin: @checkin,
-                                              checkout: @checkout,
-                                              stay_total: @stay_total,
-                                              guest_count: guest_count)
+                                             checkout: @checkout,
+                                             stay_total: @stay_total,
+                                             guest_count: guest_count)
 
       unless reservation.valid?
         return true
