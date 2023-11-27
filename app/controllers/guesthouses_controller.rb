@@ -87,7 +87,7 @@ class GuesthousesController < ApplicationController
       :phone_number, :email, :description, :address_id,
       :payment_method_one, :payment_method_two, :payment_method_three,
       :pet_policy, :guesthouse_policy, :checkin_time, :checkout_time,
-      address_attributes: [
+      :pictures, address_attributes: [
         :street_name, :number, :complement, :neighbourhood,
         :postal_code, :city, :state
       ]

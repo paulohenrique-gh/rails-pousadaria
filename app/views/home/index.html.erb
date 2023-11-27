@@ -1,39 +1,22 @@
 <div class="home_page_content">
   <% if @recent_guesthouses.any? %>
-    <div class="available_cities">
-      <ul class="cities_list">
+    <div class="row">
+      <div class="available_cities col-4">
         <div class="cities_list-header">Cidades disponíveis</div>
-        <% @available_cities.each do |city| %>
-          <li class="cities_list-city_link">
-            <%= link_to city, guesthouses_by_city_path(city) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="guesthouse_listing">
-      <div class="recent_guesthouses">
-        <h2>Pousadas Recentes</h2>
-        <% @recent_guesthouses.each do |g| %>
-          <div class="guesthouse_listing-item">
-            <div class="guesthouse_listing-item-name">
-              <%= link_to g.brand_name, g %>
-            </div>
-            <div class="guesthouse_listing-item-city">
-              <%= g.address.city %>
-            </div>
-          </div>
-        <% end %>
+        <ul class="cities_list list-group">
+          <% @available_cities.each do |city| %>
+            <li class="cities_list-city_link list-group-item">
+              <%= link_to city, guesthouses_by_city_path(city) %>
+            </li>
+          <% end %>
+        </ul>
       </div>
-      
-      <hr>
-      
-      <% if @other_guesthouses.any? %>
-        <div class="other_guesthouses">
-          <h2>Outras Pousadas</h2>
-          <% @other_guesthouses.each do |g| %>
-            <div class="guesthouse_listing-item">
-              <div class="guesthouse_listing-item-name">
+      <div class="guesthouse_listing col-8 mb-5">
+        <h2>Pousadas Recentes</h2>
+        <div class="recent_guesthouses row text-center border rounded">
+          <% @recent_guesthouses.each do |g| %>
+            <div class="guesthouse_listing-item col-4 p-3">
+              <div class="guesthouse_listing-item-name fs-4">
                 <%= link_to g.brand_name, g %>
               </div>
               <div class="guesthouse_listing-item-city">
@@ -42,7 +25,24 @@
             </div>
           <% end %>
         </div>
-      <% end %>
+    </div>
+      
+    <% if @other_guesthouses.any? %>
+      <div class="other_guesthouses row text-center">
+        <div class="guesthouse_listing-item col-8 offset-4 row">
+          <% @other_guesthouses.each do |g| %>
+              <div class="col-4 p-3">
+                <div class="guesthouse_listing-item-name fs-4">
+                  <%= link_to g.brand_name, g %>
+                </div>
+                <div class="guesthouse_listing-item-city">
+                  <%= g.address.city %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     </div>
   <% else %>
     <h2>Nenhuma pousada cadastrada</h2>

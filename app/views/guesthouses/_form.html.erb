@@ -3,89 +3,200 @@
 %>
 
 <%= form_with(model: @guesthouse) do |f| %>
-  <div>
-    <%= f.label :brand_name, 'Nome Fantasia' %><span class="required"> *</span>
-    <%= f.text_field :brand_name, required: true %> 
+  <div class="row mb-3">
+    <%= f.label :brand_name, 'Nome Fantasia', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :brand_name, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :corporate_name, 'Razão Social' %><span class="required"> *</span>
-    <%= f.text_field :corporate_name, required: true %>
+
+  <div class="row mb-3">
+        <%= f.label :corporate_name, 'Razão Social', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :corporate_name, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :registration_number, 'CNPJ' %><span class="required"> *</span>
-    <%= f.text_field :registration_number, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :registration_number, 'CNPJ', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :registration_number, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :phone_number, 'Telefone' %><span class="required"> *</span>
-    <%= f.telephone_field :phone_number, required: true, minlength: 10, maxlength: 11 %>
+
+  <div class="row mb-3">
+      <%= f.label :phone_number, 'Telefone', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.telephone_field :phone_number, required: true,
+                               minlength: 10, maxlength: 11, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :email, 'E-mail' %><span class="required"> *</span>
-    <%= f.email_field :email, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :email, 'E-mail', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.email_field :email, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
+
   <%= f.fields_for :address do |a| %>
-    <div>
-      <%= a.label :street_name, 'Logradouro' %><span class="required"> *</span>
-      <%= a.text_field :street_name, required: true %>
+    <div class="row mb-3">
+      <%= a.label :street_name, 'Logradouro', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :street_name, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :number, 'Número' %><span class="required"> *</span>
-      <%= a.text_field :number, required: true %>
+
+    <div class="row mb-3">
+      <%= a.label :number, 'Número', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :number, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :complement, 'Complemento' %>
-      <%= a.text_field :complement %>
+
+    <div class="row mb-3">
+      <%= a.label :complement, 'Complemento', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :complement, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :neighbourhood, 'Bairro' %><span class="required"> *</span>
-      <%= a.text_field :neighbourhood, required: true %>
+
+    <div class="row mb-3">
+      <%= a.label :neighbourhood, 'Bairro', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :neighbourhood, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :postal_code, 'CEP' %><span class="required"> *</span>
-      <%= a.text_field :postal_code, required: true %>
+
+    <div class="row mb-3">
+      <%= a.label :postal_code, 'CEP', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :postal_code, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :city, 'Cidade' %><span class="required"> *</span>
-      <%= a.text_field :city, required: true %>
+    
+    <div class="row mb-3">
+      <%= a.label :city, 'Cidade', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :city, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :state, 'Estado' %><span class="required"> *</span>
-      <%= a.text_field :state, required: true %>
+
+    <div class="row mb-3">
+      <%= a.label :state, 'Estado', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= a.text_field :state, required: true, class: 'form-control' %>
+        </div>
+      </div>
     </div>
   <% end %>
-  <div>
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_area :description %>
+  
+  <div class="row mb-3">
+    <%= f.label :description, 'Descrição', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :payment_method_one, 'Método de pagamento 1' %>
-    <%= f.text_field :payment_method_one %>
+
+  <div class="row mb-3">
+    <%= f.label :payment_method_one, 'Método de pagamento 1', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :payment_method_one, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :payment_method_two, 'Método de pagamento 2' %>
-    <%= f.text_field :payment_method_two %>
+
+  <div class="row mb-3">
+    <%= f.label :payment_method_two, 'Método de pagamento 2', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :payment_method_two, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :payment_method_three, 'Método de pagamento 3' %>
-    <%= f.text_field :payment_method_three %>
+
+  <div class="row mb-3">
+    <%= f.label :payment_method_three, 'Método de pagamento 3', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :payment_method_three, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :pet_policy, 'Aceita pets' %>
-    <%= f.check_box :pet_policy %>
+
+
+  <div class="row mb-3">
+    <%= f.label :guesthouse_policy, 'Políticas de uso', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_area :guesthouse_policy, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :guesthouse_policy, 'Políticas de uso' %>
-    <%= f.text_area :guesthouse_policy %>
+
+  <div class="row mb-3">
+    <%= f.label :checkin_time, 'Horário de check-in', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.time_field :checkin_time, { value: formatted_time(@guesthouse.checkin_time),
+                                          class: 'form-control' } %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :checkin_time, 'Horário de check-in' %>
-    <%= f.time_field :checkin_time, { value: formatted_time(@guesthouse.checkin_time) } %>
+
+  <div class="row mb-3">
+    <%= f.label :checkout_time, 'Horário de check-out', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.time_field :checkout_time, { value: formatted_time(@guesthouse.checkout_time),
+                                           class: 'form-control' } %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :checkout_time, 'Horário de check-out' %>
-    <%= f.time_field :checkout_time, { value: formatted_time(@guesthouse.checkout_time) } %>
+
+  <div class="row mb-3">
+    <%= f.label :pictures, 'Adicionar foto', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <%= f.file_field :pictures, class: 'form-control' %>
+    </div>
   </div>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :pet_policy, class: 'form-check-input' %>
+        <%= f.label :pet_policy, 'Aceita pets', class: 'form-check-label' %>
+      </div>
+    </div>
+  </div>
+
   <div>
-    <%= f.submit 'Enviar' %>
+    <%= f.submit 'Enviar', class: 'btn btn-primary mb-3' %>
   </div>
 <% end %>

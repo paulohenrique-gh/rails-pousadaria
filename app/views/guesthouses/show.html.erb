@@ -1,142 +1,127 @@
-<h2>Detalhes de <%= @guesthouse.brand_name %></h2>
+<h2 class="text-center"><%= @guesthouse.brand_name %></h2>
 
 <% if @guesthouse.reviews.any? %>
-  <h3>★ <%= @average_rating %></h3>
+  <h3 class=text-center>★ <%= @average_rating %></h3>
 <% else %>
   <p>Esta pousada ainda não possui avaliações</p>
 <% end %>
 
-<dl>
-  <dt><strong>Status:</strong></dt>
-  <dd><%= t(@guesthouse.status) %></dd>
-  
-  <dt><strong>Nome:</strong></dt>
-  <dd><%= @guesthouse.brand_name %></dd>
-  
-  <% if current_user == @guesthouse.user %>
-    <dt><strong>Razão social:</strong></dt>
-    <dd><%= @guesthouse.corporate_name %></dd>
-
-    <dt><strong>CNPJ:</strong></dt>
-    <dd><%= @guesthouse.registration_number %></dd>
-  <% end %>
-
-  <dt><strong>Telefone:</strong></dt>
-  <dd><%= @guesthouse.phone_number %></dd>
-
-  <dt><strong>E-mail:</strong></dt>
-  <dd><%= @guesthouse.email %></dd>
-
-  <dt><strong>Logradouro:</strong></dt>
-  <dd><%= @guesthouse.address.street_name %></dd>
-
-  <dt><strong>Número:</strong></dt>
-  <dd><%= @guesthouse.address.number %></dd>
-
-  <% if @guesthouse.address.complement.present? %>
-    <dt><strong>Complemento:</strong></dt>
-    <dd><%= @guesthouse.address.complement %></dd>
-  <% end %>
-
-  <dt><strong>Bairro:</strong></dt>
-  <dd><%= @guesthouse.address.neighbourhood %></dd>
-
-  <dt><strong>CEP:</strong></dt>
-  <dd><%= @guesthouse.address.postal_code %></dd>
-
-  <dt><strong>Cidade:</strong></dt>
-  <dd><%= @guesthouse.address.city %></dd>
-
-  <dt><strong>Estado:</strong></dt>
-  <dd><%= @guesthouse.address.state %></dd>
-
-  <% if @guesthouse.description.present? %>
-    <dt><strong>Descrição:</strong></dt>
-    <dd><%= @guesthouse.description %></dd>
-  <% end %>
-
-  <% if @guesthouse.payment_method_one.present? %>
-    <dt><strong>Método de pagamento 1:</strong></dt>
-    <dd><%= @guesthouse.payment_method_one %></dd>
-  <% end %>
-
-  <% if @guesthouse.payment_method_two.present? %>
-    <dt><strong>Método de pagamento 2:</strong></dt>
-    <dd><%= @guesthouse.payment_method_two %></dd>
-  <% end %>
-
-  <% if @guesthouse.payment_method_three.present? %>
-    <dt><strong>Método de pagamento 3:</strong></dt>
-    <dd><%= @guesthouse.payment_method_three %></dd>
-  <% end %>
-
-  <% if @guesthouse.pet_policy.present? %>
-    <dt><strong>Política para pets:</strong></dt>
-    <dd><%= pet_policy_description(@guesthouse.pet_policy) %></dd>
-  <% end %>
-
-  <% if @guesthouse.guesthouse_policy.present? %>
-    <dt><strong>Políticas de uso:</strong></dt>
-    <dd><%= @guesthouse.guesthouse_policy %></dd>
-  <% end %>
-  
-  <% if @guesthouse.checkin_time.present? %>
-    <dt><strong>Horário de check-in:</strong></dt>
-    <dd><%= formatted_time(@guesthouse.checkin_time) %></dd>
-  <% end %>
-
-  <% if @guesthouse.checkout_time.present? %>
-    <dt><strong>Horário de check-out:</strong></dt>
-    <dd><%= formatted_time(@guesthouse.checkout_time) %></dd>
-  <% end %>
+<dl class="row">
+  <div class="col-4">
+    <dt><strong>Status:</strong></dt>
+    <dd><%= t(@guesthouse.status) %></dd>
+    
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @guesthouse.brand_name %></dd>
+    
+    <% if current_user == @guesthouse.user %>
+      <dt><strong>Razão social:</strong></dt>
+      <dd><%= @guesthouse.corporate_name %></dd>
+      <dt><strong>CNPJ:</strong></dt>
+      <dd><%= @guesthouse.registration_number %></dd>
+    <% end %>
+    <dt><strong>Telefone:</strong></dt>
+    <dd><%= @guesthouse.phone_number %></dd>
+    <dt><strong>E-mail:</strong></dt>
+    <dd><%= @guesthouse.email %></dd>
+    <dt><strong>Logradouro:</strong></dt>
+    <dd><%= @guesthouse.address.street_name %></dd>
+    <dt><strong>Número:</strong></dt>
+    <dd><%= @guesthouse.address.number %></dd>
+    <% if @guesthouse.address.complement.present? %>
+      <dt><strong>Complemento:</strong></dt>
+      <dd><%= @guesthouse.address.complement %></dd>
+    <% end %>
+    <dt><strong>Bairro:</strong></dt>
+    <dd><%= @guesthouse.address.neighbourhood %></dd>
+    <dt><strong>CEP:</strong></dt>
+    <dd><%= @guesthouse.address.postal_code %></dd>
+    <dt><strong>Cidade:</strong></dt>
+    <dd><%= @guesthouse.address.city %></dd>
+    <dt><strong>Estado:</strong></dt>
+    <dd><%= @guesthouse.address.state %></dd>
+    <% if @guesthouse.description.present? %>
+      <dt><strong>Descrição:</strong></dt>
+      <dd><%= @guesthouse.description %></dd>
+    <% end %>
+    <% if @guesthouse.payment_method_one.present? %>
+      <dt><strong>Método de pagamento 1:</strong></dt>
+      <dd><%= @guesthouse.payment_method_one %></dd>
+    <% end %>
+    <% if @guesthouse.payment_method_two.present? %>
+      <dt><strong>Método de pagamento 2:</strong></dt>
+      <dd><%= @guesthouse.payment_method_two %></dd>
+    <% end %>
+    <% if @guesthouse.payment_method_three.present? %>
+      <dt><strong>Método de pagamento 3:</strong></dt>
+      <dd><%= @guesthouse.payment_method_three %></dd>
+    <% end %>
+    <% if @guesthouse.pet_policy.present? %>
+      <dt><strong>Política para pets:</strong></dt>
+      <dd><%= pet_policy_description(@guesthouse.pet_policy) %></dd>
+    <% end %>
+    <% if @guesthouse.guesthouse_policy.present? %>
+      <dt><strong>Políticas de uso:</strong></dt>
+      <dd><%= @guesthouse.guesthouse_policy %></dd>
+    <% end %>
+    
+    <% if @guesthouse.checkin_time.present? %>
+      <dt><strong>Horário de check-in:</strong></dt>
+      <dd><%= formatted_time(@guesthouse.checkin_time) %></dd>
+    <% end %>
+    <% if @guesthouse.checkout_time.present? %>
+      <dt><strong>Horário de check-out:</strong></dt>
+      <dd><%= formatted_time(@guesthouse.checkout_time) %></dd>
+    <% end %>
+  </div>
 
   <% if @user && @guesthouse == @user.guesthouse && @all_rooms.any? %>
-    <dt><strong>Quartos:</strong></dt>
-    <dd>
-      <ul class="room_details_list">
-        <% @all_rooms.each do |room| %>
-          <li class="room_details_list-item">
-            <%= render partial: 'shared/room_details', locals: { room: room } %>
-            <% if @guesthouse.active? %>
-              <%= link_to 'Mais detalhes', room %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </dd>
-  <% elsif @available_rooms.any? %>
-    <dt><strong>Quartos:</strong></dt>
+    <div class="col-4">
+      <dt><strong>Quartos:</strong></dt>
       <dd>
         <ul class="room_details_list">
-          <% @available_rooms.each do |room| %>
+          <% @all_rooms.each do |room| %>
             <li class="room_details_list-item">
               <%= render partial: 'shared/room_details', locals: { room: room } %>
-              <%= button_to 'Reservar', new_room_reservation_path(room.id), method: :get %>
+              <% if @guesthouse.active? %>
+                <%= link_to 'Mais detalhes', room %>
+              <% end %>
             </li>
           <% end %>
         </ul>
-    </dd>
+      </dd>
+    </div>
+  <% elsif @available_rooms.any? %>
+    <div class="col-4">
+      <dt><strong>Quartos:</strong></dt>
+        <dd>
+          <ul class="room_details_list">
+            <% @available_rooms.each do |room| %>
+              <li class="room_details_list-item">
+                <%= render partial: 'shared/room_details', locals: { room: room } %>
+                <%= button_to 'Reservar', new_room_reservation_path(room.id), method: :get %>
+              </li>
+            <% end %>
+          </ul>
+      </dd>
+    </div>
   <% end %>
 
   <% if @recent_reviews.any? %>
-    <dt><strong>Avaliações | Média: ★ <%= @average_rating %></strong></dt>
-
-    <dd>
-      <% @recent_reviews.each do |review| %>
-        <p><%= review.guest.name %>, <%= l(review.created_at.to_date) %></p>
-        <p>Nota <%= review.rating %> - <q><%= review.description %> </q></p>
-        <br>
-      <% end %>
-    </dd>
-
-    <%= link_to 'Visualizar todas', reviews_guesthouse_path(@guesthouse) %>
+    <div class="col-4">
+      <dt><strong>Avaliações | Média: ★ <%= @average_rating %></strong></dt>
+      <dd>
+        <% @recent_reviews.each do |review| %>
+          <p><%= review.guest.name %>, <%= l(review.created_at.to_date) %></p>
+          <p>Nota <%= review.rating %> - <q><%= review.description %> </q></p>
+          <br>
+        <% end %>
+      </dd>
+      <%= link_to 'Visualizar todas', reviews_guesthouse_path(@guesthouse) %>
+    </div>
   <% end %>
 </dl>
 
 <div class="edit_options"><%= render 'links' %></div>
-
-<div class="return_link">
-  <%= link_to 'Voltar', root_path %>
-</div>
 
 

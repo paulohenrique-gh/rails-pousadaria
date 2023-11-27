@@ -38,7 +38,7 @@ class Api::V1::RoomsController < Api::V1::ApiController
       @checkout = @checkout.to_date
       @stay_total = @room.reservations.build
                          .calculate_stay_total(@checkin, @checkout)
-      guest_count = params[:guest_count]
+      guest_count = params[:guest_count].to_i
 
       reservation = @room.reservations.build(checkin: @checkin,
                                              checkout: @checkout,
@@ -52,6 +52,6 @@ class Api::V1::RoomsController < Api::V1::ApiController
       return true
     end
 
-    return false
+    false
   end
 end

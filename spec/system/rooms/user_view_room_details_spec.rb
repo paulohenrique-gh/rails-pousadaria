@@ -32,7 +32,7 @@ describe 'User visits room page' do
 
     # Assert
     expect(current_path).to eq guesthouse_path(guesthouse.id)
-    expect(page).to have_content 'Detalhes de Pousada Bosque'
+    expect(page).to have_content 'Pousada Bosque'
     expect(page).not_to have_content 'Detalhes do quarto Brasil'
   end
 
