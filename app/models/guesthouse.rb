@@ -1,4 +1,6 @@
 class Guesthouse < ApplicationRecord
+  ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png']
+
   belongs_to :address
   belongs_to :user
   has_many :rooms
@@ -9,6 +11,7 @@ class Guesthouse < ApplicationRecord
   validates :brand_name, :corporate_name, :registration_number, :phone_number,
             :email, :checkin_time, :checkout_time, presence: true
   validates :phone_number, length: { in: 10..11 }
+  validate :file_format_must_be_jpeg_or_png
 
   enum status: { active: 0, inactive: 1 }
 
@@ -50,5 +53,19 @@ class Guesthouse < ApplicationRecord
     matching_guesthouses.where(address: matching_addresses)
                         .where(rooms: matching_rooms)
                         .order(:brand_name)
+  end
+
+  private
+
+  def file_format_must_be_jpeg_or_png
+    if self.pictures.attached?
+      new_files = self.pictures.select { |file| file.new_record? }
+
+      new_files.each do |file|
+        unless file.content_type.in?(ALLOWED_FILE_TYPES)
+          self.errors.add(:pictures, 'devem ser em formato JPEG ou PNG')
+        end
+      end
+    end
   end
 end

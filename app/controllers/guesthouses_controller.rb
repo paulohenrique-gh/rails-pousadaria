@@ -35,7 +35,13 @@ class GuesthousesController < ApplicationController
   def edit; end
 
   def update
-    if @guesthouse.update(guesthouse_params)
+    @guesthouse.assign_attributes(guesthouse_params)
+
+    if params[:guesthouse][:pictures].present?
+      @guesthouse.pictures.attach(params[:guesthouse][:pictures])
+    end
+
+    if @guesthouse.save
       redirect_to root_path, notice: 'Pousada atualizada com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar a pousada'
@@ -87,7 +93,7 @@ class GuesthousesController < ApplicationController
       :phone_number, :email, :description, :address_id,
       :payment_method_one, :payment_method_two, :payment_method_three,
       :pet_policy, :guesthouse_policy, :checkin_time, :checkout_time,
-      :pictures, address_attributes: [
+      address_attributes: [
         :street_name, :number, :complement, :neighbourhood,
         :postal_code, :city, :state
       ]
