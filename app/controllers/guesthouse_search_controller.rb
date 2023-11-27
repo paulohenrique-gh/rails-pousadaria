@@ -2,6 +2,8 @@ class GuesthouseSearchController < ApplicationController
   before_action :redirect_new_host_to_guesthouse_creation
 
   def quick_search
+    return redirect_to root_path if params[:query].empty?
+
     @single_query = params[:query]
     @guesthouses = Guesthouse.quick_search(@single_query)
 

@@ -8,26 +8,43 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
   </head>
 
-  <body>
-    <h1><%= link_to 'Pousadaria', root_path %></h1>
-    <nav>
-      <%= render 'layouts/search_options' %>
+  <body class="container">
+    <nav class="navbar bg-body-primary row justify-content-between">
+      <h1 class="col-3"><%= link_to 'Pousadaria', root_path %></h1>
       
       <% if current_user %>
         <%= render 'layouts/user_authenticated' %>
       <% elsif current_guest %>
         <%= render 'layouts/guest_authenticated' %>
       <% else %>
-        <strong><%= link_to 'Entrar como proprietário', new_user_session_path %></strong> |
-        <strong><%= link_to 'Entrar como hóspede', new_guest_session_path %></strong>
+        <div class="col-6 row">
+          <strong class="col-6"><%= link_to 'Entrar como proprietário', new_user_session_path %></strong>
+          <strong class="col-6"><%= link_to 'Entrar como hóspede', new_guest_session_path %></strong>
+        </div>
       <% end %>
     </nav>
+      <%= render 'layouts/search_options' %>
     <main>
-        <div class="alert"><%= alert %></div>
-        <div class="notice"><%= notice %></div>
-        <%= yield %>
+      <div>
+        <% if flash[:alert] %>
+          <div class="alert alert-warning"><%= alert %></div>
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="alert alert-success"><%= notice %></div>
+        <% end %>
+      </div>
+      <%= yield %>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous">
+    </script>
   </body>
 </html>

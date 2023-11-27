@@ -1,9 +1,17 @@
-<div class="search_options">
-  <%= form_with(url: quick_search_guesthouses_path, method: :get) do |f| %>
-    <%= f.label :query, 'Buscar pousada' %>
-    <%= f.text_field :query %>
-    <%= f.submit 'Buscar' %>
+<div class="search_options row text-center justify-content-center mb-3">
+  <%= form_with(url: quick_search_guesthouses_path, method: :get, class: 'col-8 text-end') do |f| %>
+    <div class="row align-items-center justify-content-end">
+      <div class="col-auto">
+        <%= f.label :query, 'Buscar pousada', class: "col-form-label" %>
+      </div>
+      <div class="col-auto">
+        <%= f.text_field :query, required: true, placeholder: 'Nome, bairro ou cidade', class: 'form-control' %>
+      </div>
+      <div class="col-auto">
+        <%= f.submit 'Buscar', class: 'btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
+  <%= link_to 'Busca avançada', advanced_search_guesthouses_path, class: 'col-4 text-start' %>
   
-  <%= link_to 'Busca avançada', advanced_search_guesthouses_path %>
 </div>

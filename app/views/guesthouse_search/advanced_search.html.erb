@@ -1,60 +1,108 @@
-<h2>Busca Avançada</h2>
-
-<%= form_with(scope: :guesthouse, url: search_results_guesthouses_path,
-              method: :get, class: 'advanced_search_form') do |f| %>
-  <div>
-    <%= f.label :brand_name, 'Nome da pousada' %>
-    <%= f.text_field :brand_name %>
-  </div>
-  <%= f.fields_for :address do |a| %>
-    <div>
-      <%= a.label :neighbourhood, 'Bairro' %>
-      <%= a.text_field :neighbourhood %>
+<div class="container w-50">
+  <h2 class="text-center mb-3">Busca Avançada</h2>
+  
+  <%= form_with(scope: :guesthouse, url: search_results_guesthouses_path,
+                method: :get, class: 'advanced_search_form') do |f| %>
+    <div class="row mb-3">
+      <%= f.label :brand_name, 'Nome da pousada', class: 'col-3 col-form-label' %>
+      <div class="col-9">
+        <%= f.text_field :brand_name, class: 'form-control' %>
+      </div>
     </div>
-    <div>
-      <%= a.label :city, 'Cidade' %>
-      <%= a.text_field :city %>
+    <%= f.fields_for :address do |a| %>
+      <div class="row mb-3">
+        <%= a.label :neighbourhood, 'Bairro', class: 'col-3 col-form-label' %>
+        <div class="col-9">
+          <%= a.text_field :neighbourhood, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= a.label :city, 'Cidade', class: 'col-3 col-form-label' %>
+        <div class="col-9">
+          <%= a.text_field :city, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= a.label :state, 'Estado', class: 'col-3 col-form-label' %>
+        <div class="col-9">
+          <%= a.text_field :state, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="row mb-3">
+      <div class="col-9 offset-3">
+        <div class="form-check">
+          <%= f.check_box :pet_policy, class: 'form-check-input' %>
+          <%= f.label :pet_policy, 'Aceita pets', class:'form-check-label' %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= a.label :state, 'Estado' %>
-      <%= a.text_field :state %>
-    </div>
+  
+    <%= f.fields_for :room do |r| %>
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :private_bathroom, class: 'form-check-input' %>
+            <%= r.label :private_bathroom, 'Banheiro no quarto', class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :balcony, class: 'form-check-input' %>
+            <%= r.label :balcony, 'Varanda', class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :air_conditioning, class: 'form-check-input' %>
+            <%= r.label :air_conditioning, 'Ar-condicionado', class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :tv, class: 'form-check-input' %>
+            <%= r.label :tv, 'TV', class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :closet, class: 'form-check-input' %>
+            <%= r.label :closet, 'Guarda-roupas', class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :safe, class: 'form-check-input' %>
+            <%= r.label :safe, 'Cofre', class:'form-check-label' %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row mb-3">
+        <div class="col-9 offset-3">
+          <div class="form-check">
+            <%= r.check_box :accessibility, class: 'form-check-input' %>
+            <%= r.label :accessibility, 'Acessível para pessoas com deficiência',
+                        class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.submit 'Buscar', class: 'btn btn-primary' %>
   <% end %>
-  <div>
-    <%= f.check_box :pet_policy %>
-    <%= f.label :pet_policy, 'Aceita pets' %>
-  </div>
-  <%= f.fields_for :room do |r| %>
-    <div>
-      <%= r.check_box :private_bathroom %>
-      <%= r.label :private_bathroom, 'Banheiro no quarto' %>
-    </div>
-    <div>
-      <%= r.check_box :balcony %>
-      <%= r.label :balcony, 'Varanda' %>
-    </div>
-    <div>
-      <%= r.check_box :air_conditioning %>
-      <%= r.label :air_conditioning, 'Ar-condicionado' %>
-    </div>
-    <div>
-      <%= r.check_box :tv %>
-      <%= r.label :tv, 'TV' %>
-    </div>
-    <div>
-      <%= r.check_box :closet %>
-      <%= r.label :closet, 'Guarda-roupas' %>
-    </div>
-    <div>
-      <%= r.check_box :safe %>
-      <%= r.label :safe, 'Cofre' %>
-    </div>
-    <div>
-      <%= r.check_box :accessibility %>
-      <%= r.label :accessibility, 'Acessível para pessoas com deficiência' %>
-    </div>
-  <% end %>
-  <div>
-    <%= f.submit 'Buscar' %>
-  </div>
-<% end %>
+</div>

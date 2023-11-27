@@ -1,12 +1,25 @@
 <% if current_user.guesthouse %>
-  <strong><%= link_to 'Minha Pousada', user_guesthouse_path %></strong> |
-  <strong><%= link_to 'Reservas', user_reservations_path %></strong> |
-  <strong><%= link_to 'Estadias Ativas', active_reservations_path %></strong> |
-  <strong><%= link_to 'Avaliações', user_reviews_path %></strong> |
+  <div class="row col-9 justify-content-center align-items-center">
+    <strong class="col-2"><%= link_to 'Minha Pousada', user_guesthouse_path %></strong>
+    <strong class="col-2"><%= link_to 'Reservas', user_reservations_path %></strong>
+    <strong class="col-2"><%= link_to 'Estadias Ativas', active_reservations_path %></strong>
+    <strong class="col-2"><%= link_to 'Avaliações', user_reviews_path %></strong>
+    <div class="row col-4 align-items-center">
+      <span class="col-9 text-start"><%= current_user.email %></span>
+      <div class="col-3">
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
 <% else %>
-  <%= link_to 'Cadastrar Pousada', new_guesthouse_path %> |
+  <div class="row col-9 justify-content-end align-items-center">
+    <strong class="col-6 text-end"><%= link_to 'Cadastrar Pousada', new_guesthouse_path %></strong>
+    <div class="row col-3 align-items-center">
+      <span class="col-9 text-start"><%= current_user.email %></span>
+      <div class="col-3">
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
-<span><%= current_user.email %></span>
-
-<%= button_to 'Sair', destroy_user_session_path, method: :delete %>
