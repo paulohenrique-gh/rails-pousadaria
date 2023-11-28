@@ -30,7 +30,7 @@ class GuesthousesController < ApplicationController
 
     @guesthouse.user = current_user
     if @guesthouse.save
-      redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
+      redirect_to @guesthouse, notice: 'Pousada cadastrada com sucesso'
     else
       flash.now[:alert] = 'Não foi possível cadastrar pousada'
       render 'new', status: :unprocessable_entity
@@ -46,7 +46,7 @@ class GuesthousesController < ApplicationController
     end
 
     if @guesthouse.save
-      redirect_to root_path, notice: 'Pousada atualizada com sucesso'
+      redirect_to @guesthouse, notice: 'Pousada atualizada com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar a pousada'
       render 'edit', status: :unprocessable_entity

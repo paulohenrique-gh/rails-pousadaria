@@ -74,7 +74,7 @@ describe 'User visits room page' do
     expect(page).to have_content 'Valor da diária: R$ 400,00'
   end
 
-  it 'and is not the owner' do
+  it 'and guest cannot visit room page if marked as unavailable' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
@@ -91,10 +91,10 @@ describe 'User visits room page' do
                                     checkout_time: '18:00',
                                     address: address, user: user)
 
-    room = guesthouse.rooms.create!(name: 'Brasil',
-                             description: 'Quarto com tema Brasil',
-                             dimension: 200, max_people: 3, daily_rate: 150,
-                             available: false)
+    room = Room.create!(name: 'Brasil',
+                        description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        guesthouse: guesthouse, available: false)
 
     # Act
     visit room_path(room.id)

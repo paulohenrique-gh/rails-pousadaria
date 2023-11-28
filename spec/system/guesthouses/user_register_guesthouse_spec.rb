@@ -75,9 +75,8 @@ describe 'User registers guesthouse' do
     click_on 'Enviar'
 
     # Assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq guesthouse_path(user.reload.guesthouse.id)
     expect(page).to have_content 'Pousada cadastrada com sucesso'
-    expect(page).to have_content "Pousada Bosque\nPulomiranga"
   end
 
   it 'and leaves required fields blank' do

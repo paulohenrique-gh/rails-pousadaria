@@ -11,7 +11,7 @@
         button_to(
           'Inativar',
           inactivate_guesthouse_path(@guesthouse.id),
-          { method: 'patch', class: 'btn btn-danger' }
+          { method: 'patch', class: 'btn btn-danger btn-sm' }
         )
       %>
     </div>
@@ -21,7 +21,7 @@
         button_to(
           'Reativar',
           reactivate_guesthouse_path(@guesthouse.id),
-          { method: 'patch', class: 'btn btn-primary' }
+          { method: 'patch', class: 'btn btn-primary btn-sm' }
         )
       %>
     </div>

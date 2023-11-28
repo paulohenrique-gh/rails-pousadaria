@@ -145,7 +145,6 @@ describe 'Guest visits guesthouse details page' do
         "Nota 4 - Muito bom"
       )
       expect(page).to have_link 'Visualizar todas'
-      expect(page).not_to have_link 'Mais detalhes'
       expect(page).not_to have_link 'Adicionar quarto'
     end
   end

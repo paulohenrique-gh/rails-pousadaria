@@ -17,6 +17,7 @@ class RoomsController < ApplicationController
   before_action :redirect_new_host_to_guesthouse_creation
 
   def show
+    set_guesthouse_and_check_user(@room.guesthouse_id) unless @room.available
     @active_seasonal_rates = @room.seasonal_rates.active.order(:start_date)
   end
 
