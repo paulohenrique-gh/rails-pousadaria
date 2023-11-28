@@ -73,34 +73,35 @@
     </table>
   <% end %>
 
-  <div class="row w-50 mb-3">
-    <% if @checkin_elligible %>
-      <div class="col-4">
-        <%= button_to('Confirmar check-in',
-                      confirm_checkin_reservation_path(@reservation.id),
-                      method: :patch, class: 'btn btn-primary') %>
-      </div>
-    <% end %>
-    <% if @checkout_elligible %>
-      <div class="col-4">
-        <%= link_to('Registrar consumo',
-                    new_reservation_purchase_path(@reservation.id),
-                    class: 'btn btn-primary')%>
-      </div>
-      <div class="col-4">
-        <%= link_to('Realizar check-out',
-                    go_to_checkout_reservation_path(@reservation.id),
-                    class: 'btn btn-primary')%>
-      </div>
-    <% end %>
-    <% if @cancellation_elligible %>
-      <div class="col-4">
-        <%= button_to('Cancelar',
-                       user_cancel_reservation_path,
-                       method: :patch, class: 'btn btn-danger') %>
-      </div>
-    <% end %>
+  <div class="row">
+    <%= link_to 'Voltar', active_reservations_path, class: 'col-4' %>
+    <div class="row w-50 mb-3 col-8 text-end">
+      <% if @checkin_elligible %>
+        <div class="col-4">
+          <%= button_to('Confirmar check-in',
+                        confirm_checkin_reservation_path(@reservation.id),
+                        method: :patch, class: 'btn btn-primary') %>
+        </div>
+      <% end %>
+      <% if @checkout_elligible %>
+        <div class="col-4">
+          <%= link_to('Registrar consumo',
+                      new_reservation_purchase_path(@reservation.id),
+                      class: 'btn btn-primary')%>
+        </div>
+        <div class="col-4">
+          <%= link_to('Realizar check-out',
+                      go_to_checkout_reservation_path(@reservation.id),
+                      class: 'btn btn-primary')%>
+        </div>
+      <% end %>
+      <% if @cancellation_elligible %>
+        <div class="col-4">
+          <%= button_to('Cancelar',
+                         user_cancel_reservation_path,
+                         method: :patch, class: 'btn btn-danger') %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <%= link_to 'Voltar', active_reservations_path %>
 </div>
