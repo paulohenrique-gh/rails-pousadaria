@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      purchase:
+        one: 'Compra'
+        other: 'Compras'
+    attributes:
+      purchase:
+        product_name: 'Nome do produto'
+        price: 'Valor unitário'
+        quantity: 'Quantidade'

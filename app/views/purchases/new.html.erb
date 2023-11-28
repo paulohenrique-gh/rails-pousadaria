@@ -2,6 +2,8 @@
   <h2 class="text-center mb-3">Registrar consumo</h2>
   <h3 class="text-center mb-3">Reserva <%= @reservation.code %></h3>
 
+  <%= render partial: 'shared/error_messages', locals: { resource: @purchase } %>
+
   <%= form_with(model: [@reservation, @purchase]) do |f| %>
     <div class="row mb-3">
       <%= f.label :product_name, 'Nome do produto', class: 'col-4 col-form-label' %>
