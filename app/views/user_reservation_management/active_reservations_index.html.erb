@@ -13,7 +13,8 @@
           <strong>Data e hora do check-in:</strong>
           <%= l(r.checked_in_at, format: :custom) %>
         </p>
-        <%= link_to 'Gerenciar reserva', user_manage_reservation_path(r.id) %>
+        <%= link_to 'Gerenciar reserva', user_manage_reservation_path(r.id),
+                    class: 'btn btn-primary' %>
       </div>
       <hr>
     <% end %>

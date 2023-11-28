@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         get :guest_manage, to: 'guest_reservation_management#manage', on: :member
         patch :guest_cancel, to: 'guest_reservation_management#cancel', on: :member
 
+        resources :purchases, only: [:new, :create]
+
         resources :reviews, only: [:new, :create] do
           get :respond, to: 'reviews#respond', on: :member
           post :save_response, to: 'reviews#save_response', on: :member

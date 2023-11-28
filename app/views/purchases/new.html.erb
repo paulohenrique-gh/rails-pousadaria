@@ -1,0 +1,41 @@
+<div class="container w-50">
+  <h2 class="text-center mb-3">Registrar consumo</h2>
+  <h3 class="text-center mb-3">Reserva <%= @reservation.code %></h3>
+
+  <%= form_with(model: [@reservation, @purchase]) do |f| %>
+    <div class="row mb-3">
+      <%= f.label :product_name, 'Nome do produto', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.text_field :product_name, require: true, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <%= f.label :price, 'Valor unitário', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.number_field :price, require: true, min: 0.01,
+                              step: 0.01, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <%= f.label :quantity, 'Quantidade', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.number_field :quantity, require: true, min: 1, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <%= link_to 'Voltar', user_manage_reservation_path(@reservation.id), class: 'col-4' %>
+    <div class="col-8 text-end">
+      <%= f.submit 'Enviar', class: 'btn btn-primary mb-3' %>
+    </div>
+  </div>
+  <% end %>
+</div>

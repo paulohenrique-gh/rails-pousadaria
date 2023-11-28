@@ -69,8 +69,6 @@ describe 'Host registers checkout' do
 
     guest = Guest.create!(name: 'Pedro Pedrada', document: '012345678910',
                           email: 'pedrada@mail.com', password: 'password')
-    guest = Guest.create!(name: 'Manco', document: '012345678910',
-                          email: 'mancada@mail.com', password: 'password')
 
     address = Address.create!(street_name: 'Rua das Pedras', number: '30',
                               neighbourhood: 'Santa Helena',
