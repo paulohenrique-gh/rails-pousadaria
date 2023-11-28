@@ -44,6 +44,35 @@
       <%= @reservation.payment_method %>
     </p>
   <% end %>
+
+  <% if @reservation.purchases.any? %>
+    <table class="table mb-3">
+      <thead>
+        <tr>
+          <th colspan="5" class="text-center">Histórico de consumo</th>
+        </tr>
+        <tr>
+          <th>Produto</th>
+          <th>Valor unitário</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+          <th>Data e hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reservation.purchases.each do |p| %>
+          <tr>
+            <td><%= p.product_name %></td>
+            <td><%= number_to_currency(p.price) %></td>
+            <td><%= p.quantity %></td>
+            <td><%= number_to_currency(p.price * p.quantity) %></td>
+            <td><%= l(p.created_at, format: :custom) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
   <div class="row w-50 mb-3">
     <% if @checkin_elligible %>
       <div class="col-4">

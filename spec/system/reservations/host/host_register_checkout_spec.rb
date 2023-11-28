@@ -43,6 +43,10 @@ describe 'Host registers checkout' do
                                       status: :guests_checked_in,
                                       checked_in_at: 1.days.from_now.to_datetime)
 
+    reservation.purchases.create!(product_name: 'Pastel', price: 6.5, quantity: 2)
+    reservation.purchases.create!(product_name: 'Pão', price: 0.5, quantity: 15)
+    reservation.purchases.create!(product_name: 'Pepsi', price: 11.3, quantity: 1)
+
     # Act
     travel_to 10.days.from_now.change(hour: 15) do
       login_as user
@@ -59,6 +63,8 @@ describe 'Host registers checkout' do
                                                 format: :custom)}"
     )
     expect(page).to have_content 'Valor da estadia até a data atual: R$ 1.950,00'
+    expect(page).to have_content "Valor do consumo: R$ 31,80"
+    expect(page).to have_content "Valor total a pagar: R$ 1.981,80"
     expect(page).to have_field 'Forma de pagamento'
     expect(page).to have_button 'Confirmar'
   end
@@ -102,6 +108,10 @@ describe 'Host registers checkout' do
                                       status: :guests_checked_in,
                                       checked_in_at: 1.days.from_now.to_datetime)
 
+    reservation.purchases.create!(product_name: 'Pastel', price: 6.5, quantity: 2)
+    reservation.purchases.create!(product_name: 'Pão', price: 0.5, quantity: 15)
+    reservation.purchases.create!(product_name: 'Pepsi', price: 11.3, quantity: 1)
+
     # Act
     travel_to 10.days.from_now.change(hour: 9) do
       login_as user
@@ -118,7 +128,7 @@ describe 'Host registers checkout' do
     expect(page).to have_content 'Estadia finalizada com sucesso'
     expect(reservation.reload.guests_checked_out?).to be true
     expect(reservation.checked_out_at).to eq 10.days.from_now.change(hour: 9)
-    expect(reservation.stay_total).to eq 1800
+    expect(reservation.stay_total).to eq 1831.8
     expect(reservation.payment_method).to eq 'Pix'
   end
 end

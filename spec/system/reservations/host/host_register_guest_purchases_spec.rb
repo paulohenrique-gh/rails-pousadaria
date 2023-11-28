@@ -95,12 +95,15 @@ describe 'Host registers guest purchases' do
       click_on 'Enviar'
 
       # Assert
+      purchase = reservation.purchases.last
       expect(page).to have_content 'Consumo registrado com sucesso'
-      expect(reservation.purchases.size).to eq 1
-      purchase = reservation.purchases.first
-      expect(purchase.product_name).to eq 'Suco de goiaba'
-      expect(purchase.price).to eq 4
-      expect(purchase.quantity).to eq 2
+      expect(page).to have_content 'Suco de goiaba'
+      expect(page).to have_content 'R$ 4,00'
+      expect(page).to have_content '2'
+      expect(page).to have_content 'R$ 8,00'
+      expect(page).to have_content(
+        "#{I18n.localize(purchase.created_at, format: :custom)}"
+      )
     end
   end
 

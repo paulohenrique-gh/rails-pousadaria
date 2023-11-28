@@ -1,20 +1,36 @@
-<h2>Check-out da reserva <%= @reservation.code %></h2>
-<div>
-  <p>
-    <strong>Data e hora do check-in:</strong>
-    <%= l(@reservation.checked_in_at, format: :custom) %>
-  </p>
-  <p>
-    <strong>Valor da estadia até a data atual:</strong>
-    <%= number_to_currency(@reprocessed_total) %>
-  </p>
-</div>
-<%= form_with(model: @reservation,
-              url: confirm_checkout_reservation_path(@reservation)) do |f| %>
+<div class="w-50">
+  <h2 class="mb-3">Check-out da reserva <%= @reservation.code %></h2>
   <div>
-    <%= f.label :payment_method, 'Forma de pagamento' %>
-    <%= f.select :payment_method, @payment_methods,
-                  prompt: 'Selecione uma opção', required: true %>
+    <p>
+      <strong>Data e hora do check-in:</strong>
+      <%= l(@reservation.checked_in_at, format: :custom) %>
+    </p>
+    <p>
+      <strong>Valor da estadia até a data atual:</strong>
+      <%= number_to_currency(@reprocessed_total) %>
+    </p>
+    <p>
+      <strong>Valor do consumo:</strong>
+      <%= number_to_currency(@purchase_total) %>
+    </p>
+    <p>
+      <strong>Valor total a pagar:</strong>
+      <%= number_to_currency(@reprocessed_total + @purchase_total) %>
+    </p>
   </div>
-  <%= f.submit 'Confirmar' %>
-<% end %>
+  <%= form_with(model: @reservation,
+                url: confirm_checkout_reservation_path(@reservation)) do |f| %>
+    <div class="mb-3">
+      <%= f.label :payment_method, 'Forma de pagamento' %>
+      <%= f.select :payment_method, @payment_methods,
+                    prompt: 'Selecione uma opção', required: true %>
+    </div>
+    <div class="row align-items-center">
+      <%= link_to 'Voltar', user_manage_reservation_path(@reservation.id),
+                  class: 'col-4' %>
+      <div class="col-8 text-center">
+        <%= f.submit 'Confirmar', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

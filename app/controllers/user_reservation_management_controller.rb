@@ -61,10 +61,14 @@ class UserReservationManagementController < ApplicationController
                                           "payment_method_three")
                                    .values
                                    .compact
+    @purchase_total = @reservation.purchases
+                        .pluck(:price, :quantity)
+                        .reduce(0) { |sum, (price, quantity)| sum + (price * quantity) }
+    session[:purchase_total] = @purchase_total
   end
 
   def confirm_checkout
-    @reservation.stay_total = session[:reprocessed_total]
+    @reservation.stay_total = session[:reprocessed_total] + session[:purchase_total]
     if reservation_params[:payment_method].nil?
       return redirect_to(go_to_checkout_reservation_path(@reservation.id),
                          alert: 'Forma de pagamento não pode ficar vazia')
@@ -74,6 +78,7 @@ class UserReservationManagementController < ApplicationController
 
     @reservation.guests_checked_out!
     session.delete(:reprocessed_total)
+    session.delete(:purchase_total)
     redirect_to(user_reservations_path,
                 notice: 'Estadia finalizada com sucesso')
   end
