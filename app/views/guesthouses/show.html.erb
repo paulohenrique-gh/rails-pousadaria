@@ -122,6 +122,25 @@
   <% end %>
 </dl>
 
+<div class="guesthouse-photos row mb-3">
+  <% if @guesthouse.pictures.attached? %>
+    <h2 class="text-center mb-4">Fotos da pousada</h2>
+    <% @guesthouse.pictures.each do |picture| %>
+      <div class="col-4 mb-3 text-center">
+        <%= image_tag picture, size: '400x400', alt: @guesthouse.brand_name,
+                               class: 'mb-1' %>
+        <% if current_user.present? && current_user.guesthouse.pictures.present? && 
+              current_user.guesthouse.pictures.include?(picture) %>
+          <%= button_to 'Excluir', delete_picture_guesthouse_path(@guesthouse.id),
+                        params: { picture_id: picture.id },
+                        method: :delete,
+                        class: 'btn btn-danger btn-sm' %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <div class="edit_options"><%= render 'links' %></div>
 
 

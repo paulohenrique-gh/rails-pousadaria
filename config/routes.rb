@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'advanced-search', to: 'guesthouse_search#advanced_search', on: :collection
     get 'search-results', to: 'guesthouse_search#search_results', on: :collection
     get 'reviews', to: 'guesthouses#reviews', on: :member
+    delete 'delete-picture', to: 'guesthouses#delete_picture', on: :member
 
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       get 'confirm', to: 'reservations#confirm'

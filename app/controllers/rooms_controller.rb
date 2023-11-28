@@ -25,6 +25,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+    if params[:room][:pictures].present?
+      @room.pictures.attach(params[:room][:pictures])
+    end
+
     @room.guesthouse = @guesthouse
     if @room.save
       redirect_to @guesthouse, notice: 'Quarto cadastrado com sucesso'
@@ -37,7 +41,12 @@ class RoomsController < ApplicationController
   def edit; end
 
   def update
-    if @room.update(room_params)
+    @room.assign_attributes(room_params)
+    if params[:room][:pictures].present?
+      @room.pictures.attach(params[:room][:pictures])
+    end
+
+    if @room.save
       redirect_to @room, notice: 'Quarto atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar quarto'

@@ -1,59 +1,136 @@
 <%= render partial: 'shared/error_messages', locals: { resource: @room } %>
 
 <%= form_with(scope: @room, url: resource, method: method) do |f| %>
-  <div>
-    <%= f.label :name, 'Nome' %><span class="required"> *</span>
-    <%= f.text_field :name, required: true %>
+  <div class="row mb-3">
+    <%= f.label :name, 'Nome', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_field :name, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :description, 'Descrição' %><span class="required"> *</span>
-    <%= f.text_area :description, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :description, 'Descrição', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.text_area :description, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :dimension, 'Dimensão em m²' %><span class="required"> *</span>
-    <%= f.number_field :dimension, step: 0.5, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :dimension, 'Dimensão em m²', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.number_field :dimension, step: 0.5, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :max_people, 'Quantidade máxima de pessoas' %><span class="required"> *</span>
-    <%= f.number_field :max_people, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :max_people, 'Quantidade máxima de pessoas', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.number_field :max_people, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :daily_rate, 'Valor da diária padrão' %><span class="required"> *</span>
-    <%= f.number_field :daily_rate, step: 0.01, required: true %>
+
+  <div class="row mb-3">
+    <%= f.label :daily_rate, 'Valor da diária padrão', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <div>
+        <%= f.number_field :daily_rate, step: 0.01, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :available, 'Disponível para reservas' %>
-    <%= f.check_box :available %>
+
+  <div class="row mb-3">
+    <%= f.label :pictures, 'Adicionar foto', class: 'col-4 col-form-label' %>
+    <div class="col-8">
+      <%= f.file_field :pictures, multiple: true,
+                        class: 'form-control', accept: 'image/png,image/jpeg' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :private_bathroom, 'Possui banheiro próprio' %>
-    <%= f.check_box :private_bathroom %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :available, class: 'form-check-input' %>
+        <%= f.label :available, 'Disponível para reservas',
+                    class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :balcony, 'Possui varanda' %>
-    <%= f.check_box :balcony %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :private_bathroom, class: 'form-check-input' %>
+        <%= f.label :private_bathroom, 'Possui banheiro próprio',
+                    class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :air_conditioning, 'Possui ar-condicionado' %>
-    <%= f.check_box :air_conditioning %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :balcony, class: 'form-check-input' %>
+        <%= f.label :balcony, 'Possui varanda', class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :tv, 'Possui TV' %>
-    <%= f.check_box :tv %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :air_conditioning, class: 'form-check-input' %>
+        <%= f.label :air_conditioning, 'Possui ar-condicionado',
+                    class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :closet, 'Possui guarda-roupas' %>
-    <%= f.check_box :closet %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :tv, class: 'form-check-input' %>
+        <%= f.label :tv, 'Possui TV', class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :safe, 'Possui cofre' %>
-    <%= f.check_box :safe %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :closet, class: 'form-check-input' %>
+        <%= f.label :closet, 'Possui guarda-roupas',class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :accessibility, 'Acessível para pessoas com deficiência' %>
-    <%= f.check_box :accessibility %>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :safe, class: 'form-check-input' %>
+        <%= f.label :safe, 'Possui cofre', class: 'form-check-label' %>
+      </div>
+    </div>
   </div>
+
+  <div class="row mb-3">
+    <div class="col-8 offset-4">
+      <div class="form-check">
+        <%= f.check_box :accessibility, class: 'form-check-input' %>
+        <%= f.label :accessibility, 'Acessível para pessoas com deficiência',
+                    class: 'form-check-label' %>
+      </div>
+    </div>
+  </div>
+
   <div>
-    <%= f.submit 'Enviar' %>
+    <%= f.submit 'Enviar', class: 'btn btn-primary mb-3' %>
   </div>
 <% end %>

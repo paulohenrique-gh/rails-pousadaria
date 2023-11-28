@@ -1,5 +1,7 @@
-<h2>Cadastro de Quarto</h2>
-<h3><%= @room.guesthouse.brand_name %></h3>
+<div class="container w-auto">
+  <h2 class="text-center mb-3">Cadastro de Quarto</h2>
+  <h3 class="text-center mb-3"><%= @room.guesthouse.brand_name %></h3>
 
-<%= render partial: 'form',
-           locals: { resource: guesthouse_rooms_path(@guesthouse.id), method: 'post' } %>
+  <%= render partial: 'form',
+            locals: { resource: guesthouse_rooms_path(@guesthouse.id), method: 'post' } %>
+</div>

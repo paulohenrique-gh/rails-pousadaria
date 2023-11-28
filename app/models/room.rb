@@ -2,9 +2,11 @@ class Room < ApplicationRecord
   belongs_to :guesthouse
   has_many :seasonal_rates
   has_many :reservations
+  has_many_attached :pictures
 
   validates :name, :description, :dimension,
             :max_people, :daily_rate, presence: true
+  validate :file_format_must_be_jpeg_or_png
 
   def current_daily_rate
     self.seasonal_rates

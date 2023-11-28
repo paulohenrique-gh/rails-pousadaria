@@ -1,12 +1,13 @@
 class GuesthousesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update,
-                                            :inactivate, :reactivate, :user_guesthouse]
+                                            :inactivate, :reactivate,
+                                            :user_guesthouse, :delete_picture]
 
-  before_action  only: [:edit, :update, :inactivate] do
+  before_action  only: [:edit, :update, :inactivate, :delete_picture] do
     set_guesthouse_and_check_user(params[:id])
   end
 
-  before_action :set_guesthouse, only: [:show, :reactivate, :reviews]
+  before_action :set_guesthouse, only: [:show, :reactivate, :reviews, :delete_picture]
   before_action :check_guesthouse_presence, only: [:new, :create]
   before_action :redirect_new_host_to_guesthouse_creation, only: [:show]
 
@@ -23,6 +24,10 @@ class GuesthousesController < ApplicationController
 
   def create
     @guesthouse = Guesthouse.new(guesthouse_params)
+    if params[:guesthouse][:pictures].present?
+      @guesthouse.pictures.attach(params[:guesthouse][:pictures])
+    end
+
     @guesthouse.user = current_user
     if @guesthouse.save
       redirect_to root_path, notice: 'Pousada cadastrada com sucesso'
@@ -36,7 +41,6 @@ class GuesthousesController < ApplicationController
 
   def update
     @guesthouse.assign_attributes(guesthouse_params)
-
     if params[:guesthouse][:pictures].present?
       @guesthouse.pictures.attach(params[:guesthouse][:pictures])
     end
@@ -83,6 +87,14 @@ class GuesthousesController < ApplicationController
   def reviews
     @reviews = @guesthouse.reviews.order(:created_at).reverse
     @average_rating = @guesthouse.reviews.average(:rating).to_f
+  end
+
+  def delete_picture
+    if @guesthouse.pictures.find(params[:picture_id]).purge
+      redirect_to @guesthouse, notice: 'Foto excluída com sucesso'
+    else
+      redirect_to @guesthouse, alert: 'Não foi possível excluir foto'
+    end
   end
 
   private
