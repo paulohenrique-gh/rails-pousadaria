@@ -471,3 +471,4 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [```Time Helpers```](https://api.rubyonrails.org/classes/ActiveSupport/Testing/TimeHelpers.html)
 - [Sessões](https://www.justinweiss.com/articles/how-rails-sessions-work/)
 - [Redirecionando para página específica após signin/signout](https://github.com/heartcombo/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-in-out)
+- [Mock da variável session em testes de requisição](https://gist.github.com/dteoh/99721c0321ccd18286894a962b5ce584)
