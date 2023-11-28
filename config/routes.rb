@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
     resources :rooms, only: [:new, :create, :edit, :update, :show] do
       get 'confirm', to: 'reservations#confirm'
+      delete 'delete-picture', to: 'rooms#delete_picture', on: :member
+
       resources :reservations, only: [:new, :create] do
         get :user_manage, to: 'user_reservation_management#manage', on: :member
         patch :user_cancel, to: 'user_reservation_management#cancel', on: :member

@@ -91,7 +91,7 @@ class GuesthousesController < ApplicationController
 
   def delete_picture
     if @guesthouse.pictures.find(params[:picture_id]).purge
-      redirect_to @guesthouse, notice: 'Foto excluída com sucesso'
+      redirect_to @guesthouse, notice: 'Foto removida com sucesso'
     else
       redirect_to @guesthouse, alert: 'Não foi possível excluir foto'
     end

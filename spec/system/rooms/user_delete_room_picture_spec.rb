@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User removes guesthouse photo' do
+describe 'User deletes room picture' do
   it 'successfully' do
     # Arrange
     user = User.create!(email: 'exemplo@mail.com', password: 'password')
@@ -19,21 +19,26 @@ describe 'User removes guesthouse photo' do
                                     checkout_time: '18:00',
                                     address: address, user: user)
 
-    guesthouse.pictures
-              .attach(io: File.open('spec/dummy_files/dummy.png'),
-                      filename: 'dummy.png', content_type: 'image/png')
-    guesthouse.save
+    room = Room.create!(name: 'Brasil',
+                        description: 'Quarto com tema Brasil',
+                        dimension: 200, max_people: 3, daily_rate: 150,
+                        guesthouse: guesthouse)
+
+    room.pictures.attach(io: File.open('spec/dummy_files/dummy.png'),
+                         filename: 'dummy.png', content_type: 'image/png')
+    room.save
 
     # Act
     login_as user
     visit root_path
     click_on 'Minha Pousada'
-    within '.guesthouse-photos' do
+    click_on 'Mais detalhes'
+    within '.room-pictures' do
       click_on 'Excluir'
     end
 
     # Assert
     expect(page).to have_content 'Foto removida com sucesso'
-    expect(guesthouse.reload.pictures.attached?).to be false
+    expect(room.reload.pictures.attached?).to be false
   end
 end

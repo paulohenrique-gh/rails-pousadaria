@@ -1,39 +1,63 @@
-<h2><%= @room.guesthouse.brand_name %></h2>
-<h3>Detalhes do quarto <%= @room.name %></h3>
-<div>
-  <strong><%= room_availability(@room) %></strong>
+<h2 class="text-center mb-3"><%= @room.guesthouse.brand_name %></h2>
+<h3 class="text-center mb-3">Detalhes do quarto <%= @room.name %></h3>
+<div class="row">
+  <div class="col-4">
+    <div>
+      <strong><%= room_availability(@room) %></strong>
+    </div>
+    <dl>
+      <dt><strong>Nome:</strong></dt>
+      <dd><%= @room.name %></dd>
+    
+      <dt><strong>Descrição:</strong></dt>
+      <dd><%= @room.description %></dd>
+    
+      <dt><strong>Dimensão:</strong></dt>
+      <dd>
+        <%=
+          number_with_precision(
+            @room.dimension, separator: ',', strip_insignificant_zeros: true
+          )
+        %> m²
+      </dd>
+    
+      <dt><strong>Número máximo de pessoas:</strong></dt>
+      <dd><%= @room.max_people %></dd>
+    
+      <dt><strong>Valor da diária:</strong></dt>
+      <dd>
+        <%= number_to_currency(@room.current_daily_rate) %>
+      </dd>
+    
+      <%= render 'extra_features' %>
+    
+      <% if current_user.present? && @room.guesthouse.user == current_user %>
+        <%= render 'seasonal_rates' %>
+      <% end %>
+
+      <%= button_to 'Reservar', new_room_reservation_path(@room.id),
+                               method: :get, class: 'btn btn-primary' %>
+    </dl>
+  </div>
+
+  <% if @room.pictures.attached? %>
+    <div class="room-pictures col-8 row">
+      <% @room.pictures.each do |picture| %>
+        <div class="col-6 mb-3 text-center">
+          <%= image_tag picture, size: '400x400', alt: @room.name,
+          class: 'mb-1 rounded' %>
+          <% if current_user.present? && @room.guesthouse.user == current_user %>
+            <%= button_to 'Excluir', delete_picture_room_path(@room.id),
+                          params: { picture_id: picture.id },
+                          method: :delete,
+                          class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-<dl>
-  <dt><strong>Nome:</strong></dt>
-  <dd><%= @room.name %></dd>
 
-  <dt><strong>Descrição:</strong></dt>
-  <dd><%= @room.description %></dd>
-  
-  <dt><strong>Dimensão:</strong></dt>
-  <dd>
-    <%= 
-      number_with_precision(
-        @room.dimension, separator: ',', strip_insignificant_zeros: true
-      )
-    %> m²
-  </dd>
-
-  <dt><strong>Número máximo de pessoas:</strong></dt>
-  <dd><%= @room.max_people %></dd>
-
-  <dt><strong>Valor da diária:</strong></dt>
-  <dd>
-    <%= number_to_currency(@room.current_daily_rate) %>
-  </dd>
-
-  <%= render 'extra_features' %>
-
-  <%= render 'seasonal_rates' %>
-</dl>
+<hr>
 
 <%= render 'links' %>
-
-<div class="return_link">
-  <%= link_to 'Voltar', @guesthouse %>
-</div>

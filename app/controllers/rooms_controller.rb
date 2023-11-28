@@ -1,7 +1,8 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update,
+                                            :delete_picture]
 
-  before_action only: [:show, :edit, :update] do
+  before_action only: [:show, :edit, :update, :delete_picture] do
     set_room(params[:id])
   end
 
@@ -9,7 +10,7 @@ class RoomsController < ApplicationController
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
-  before_action only: [:show, :edit, :update] do
+  before_action only: [:edit, :update, :delete_picture] do
     set_guesthouse_and_check_user(@room.guesthouse_id)
   end
 
@@ -51,6 +52,14 @@ class RoomsController < ApplicationController
     else
       flash.now[:alert] = 'Não foi possível atualizar quarto'
       render 'new', status: :unprocessable_entity
+    end
+  end
+
+  def delete_picture
+    if @room.pictures.find(params[:picture_id]).purge
+      redirect_to @room, notice: 'Foto removida com sucesso'
+    else
+      redirect_to @room, alert: 'Não foi possível excluir foto'
     end
   end
 

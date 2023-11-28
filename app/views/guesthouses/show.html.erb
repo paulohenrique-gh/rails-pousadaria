@@ -83,9 +83,6 @@
           <% @all_rooms.each do |room| %>
             <li class="room_details_list-item">
               <%= render partial: 'shared/room_details', locals: { room: room } %>
-              <% if @guesthouse.active? %>
-                <%= link_to 'Mais detalhes', room %>
-              <% end %>
             </li>
           <% end %>
         </ul>
@@ -97,9 +94,10 @@
         <dd>
           <ul class="room_details_list">
             <% @available_rooms.each do |room| %>
-              <li class="room_details_list-item">
+              <li class="room_details_list-item mb-3">
                 <%= render partial: 'shared/room_details', locals: { room: room } %>
-                <%= button_to 'Reservar', new_room_reservation_path(room.id), method: :get %>
+                <%= button_to 'Reservar', new_room_reservation_path(room.id),
+                               method: :get, class: 'btn btn-primary' %>
               </li>
             <% end %>
           </ul>
@@ -122,13 +120,13 @@
   <% end %>
 </dl>
 
-<div class="guesthouse-photos row mb-3">
-  <% if @guesthouse.pictures.attached? %>
+<% if @guesthouse.pictures.attached? %>
+  <div class="guesthouse-photos row mb-3 justify-content-center">
     <h2 class="text-center mb-4">Fotos da pousada</h2>
     <% @guesthouse.pictures.each do |picture| %>
       <div class="col-4 mb-3 text-center">
         <%= image_tag picture, size: '400x400', alt: @guesthouse.brand_name,
-                               class: 'mb-1' %>
+                               class: 'mb-1 rounded' %>
         <% if current_user.present? && current_user.guesthouse.pictures.present? && 
               current_user.guesthouse.pictures.include?(picture) %>
           <%= button_to 'Excluir', delete_picture_guesthouse_path(@guesthouse.id),
@@ -138,8 +136,10 @@
         <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+<hr>
 
 <div class="edit_options"><%= render 'links' %></div>
 

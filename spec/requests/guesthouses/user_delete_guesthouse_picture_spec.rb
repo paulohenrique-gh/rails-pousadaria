@@ -26,11 +26,11 @@ describe 'User deletes guesthouse picture' do
 
     # Act
     delete(delete_picture_guesthouse_path(guesthouse.id),
-           params: { picture_id: guesthouse.pictures.last.id } )
+           params: { picture_id: guesthouse.pictures.last.id })
 
     # Assert
     expect(response).to redirect_to new_user_session_path
-    expect(guesthouse.reload.pictures.size).to be 1
+    expect(guesthouse.reload.pictures.size).to eq 1
   end
 
   it 'and is not the owner' do

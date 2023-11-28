@@ -1,11 +1,15 @@
-<% if @room.guesthouse.user == current_user %>
-  <div class="edit_options">
-    <div>
-      <%=
-        link_to(
-          'Editar', edit_room_path(@room.id)
-        )
-      %>
+<div class="row text-center mb-3 align-items-center">
+  <% if @room.guesthouse.user == current_user %>
+    <div class="col-4">
+      <%= link_to('Editar', edit_room_path(@room.id)) %>
     </div>
+    <div class="col-4">
+      <%= link_to('Adicionar preço por período',
+                  new_room_seasonal_rate_path(@room.id)) %>
+    </div>
+  <% end %>
+  
+  <div class="return_link col-4">
+    <%= link_to 'Voltar', @room.guesthouse %>
   </div>
-<% end %>
+</div>
