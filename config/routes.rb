@@ -62,6 +62,8 @@ Rails.application.routes.draw do
       resources :rooms, only: [:check_availability] do
         get :check_availability
       end
+
+      get :cities, to: 'guesthouses#cities'
     end
   end
 end

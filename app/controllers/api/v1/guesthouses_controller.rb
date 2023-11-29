@@ -21,6 +21,13 @@ class Api::V1::GuesthousesController < Api::V1::ApiController
     render status: 200, json: guesthouse
   end
 
+  def cities
+    available_cities = []
+    Address.available_cities.each { |city| available_cities << { city_name: city } }
+
+    render status: 200, json: available_cities
+  end
+
   private
 
   def guesthouse_json_formatter(guesthouse)

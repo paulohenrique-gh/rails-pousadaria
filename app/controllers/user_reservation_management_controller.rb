@@ -36,15 +36,20 @@ class UserReservationManagementController < ApplicationController
   end
 
   def confirm_checkin
-    guest_params.each do |guest_data|
+    guests = []
+    guest_params().each do |guest_data|
       @guest_checkin = GuestCheckin.new(guest_data)
       @guest_checkin.reservation = @reservation
 
-      unless @guest_checkin.save
-        flash.now[:alert] = 'Não foi possível confirmar o check-in'
-        return render :manage, status: :unprocessable_entity
+      unless @guest_checkin.valid?
+        return redirect_to user_manage_reservation_path(@reservation.id),
+                           alert: 'Preencha os dados de todos os hóspedes'
       end
+
+      guests << @guest_checkin
     end
+
+    guests.each { |guest| guest.save }
 
     @reservation.guests_checked_in!
     if @reservation.guests_checked_in?

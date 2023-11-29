@@ -209,8 +209,6 @@ describe 'Host registers checkin' do
     end
 
     # Assert
-    expect(page).to have_content 'Não foi possível confirmar o check-in'
-    expect(page).to have_content 'Nome não pode ficar em branco'
-    expect(page).to have_content 'Documento não pode ficar em branco'
+    expect(page).to have_content 'Preencha os dados de todos os hóspedes'
   end
 end
