@@ -21,6 +21,8 @@ rails server
 
 Porta padrão: [3000](http://localhost:3000)
 
+[Documentação da API](/API_DOC.md)
+
 ## Cadastro de dono de pousada
 - Usuáro pode criar conta como dono de pousada com e-mail e senha
 
