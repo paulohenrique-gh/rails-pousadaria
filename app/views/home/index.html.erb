@@ -6,7 +6,7 @@
         <ul class="cities_list list-group">
           <% @available_cities.each do |city| %>
             <li class="cities_list-city_link list-group-item">
-              <%= link_to city, guesthouses_by_city_path(city) %>
+              <%= link_to city, guesthouses_by_city_path(params: { city: city }) %>
             </li>
           <% end %>
         </ul>

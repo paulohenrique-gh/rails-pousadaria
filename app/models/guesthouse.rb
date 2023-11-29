@@ -15,6 +15,12 @@ class Guesthouse < ApplicationRecord
 
   accepts_nested_attributes_for :address
 
+  def self.by_city(city)
+    Guesthouse.active
+              .where(address: Address.where('city LIKE ?', city))
+              .order(:brand_name)
+  end
+
   def self.quick_search(query)
     Guesthouse.active
               .joins(:address)

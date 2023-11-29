@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :guests
   root to: 'home#index'
 
-  get 'guesthouses-by-city/:city', to: 'guesthouses#by_city', as: :guesthouses_by_city
+  get 'guesthouses-by-city', to: 'guesthouses#by_city', as: :guesthouses_by_city
 
   resources :guesthouses, only: [:new, :create, :edit, :update, :show], shallow: true do
     get 'quick-search', to: 'guesthouse_search#quick_search', on: :collection
@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :guesthouses, only: [:index, :show] do
+        get :cities, to: 'guesthouses#cities', on: :collection
         resources :rooms, only: [:index]
       end
 
@@ -63,7 +64,6 @@ Rails.application.routes.draw do
         get :check_availability
       end
 
-      get :cities, to: 'guesthouses#cities'
     end
   end
 end

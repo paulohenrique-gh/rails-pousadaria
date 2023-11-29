@@ -76,11 +76,10 @@ class GuesthousesController < ApplicationController
   end
 
   def by_city
+    return redirect_to root_path if params[:city].nil?
     @city = params[:city]
-    addresses_by_city = Address.where(city: @city)
-    @available_guesthouses = Guesthouse.active
-                                       .where(address: addresses_by_city)
-                                       .order(:brand_name)
+    @available_guesthouses = Guesthouse.by_city(@city)
+
     redirect_to root_path if @available_guesthouses.empty?
   end
 

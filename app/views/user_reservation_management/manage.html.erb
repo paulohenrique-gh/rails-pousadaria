@@ -142,7 +142,7 @@
         <% end %>
         <div class="row align-items-center justify-content-end">
           <div class="col-4 text-start">
-            <%= link_to 'Voltar', active_reservations_path %>
+            <%= link_to 'Voltar', :back, class: 'text-start' %>
           </div>
           <div class="col-8 row justify-content-end">
             <div class="col-3 text-end">
@@ -155,7 +155,7 @@
 
     <% if @checkout_elligible %>
       <div class="col-4">
-        <%= link_to 'Voltar', active_reservations_path, class: 'text-start' %>
+        <%= link_to 'Voltar', :back, class: 'text-start' %>
       </div>
       <div class="col-8 row justify-content-end">
         <div class="col-3 text-end">

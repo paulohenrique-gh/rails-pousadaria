@@ -22,6 +22,14 @@ class Api::V1::GuesthousesController < Api::V1::ApiController
   end
 
   def cities
+    if params[:city].present?
+      guesthouses = Guesthouse.by_city(params[:city])
+
+      guesthouses = guesthouses.as_json.map { |g| guesthouse_json_formatter(g) }
+
+      return render status: 200, json: guesthouses
+    end
+
     available_cities = []
     Address.available_cities.each { |city| available_cities << { city_name: city } }
 
