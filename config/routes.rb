@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :reservations, only: [:new, :create] do
         get :user_manage, to: 'user_reservation_management#manage', on: :member
         patch :user_cancel, to: 'user_reservation_management#cancel', on: :member
-        patch :confirm_checkin, to: 'user_reservation_management#confirm_checkin', on: :member
+        post :confirm_checkin, to: 'user_reservation_management#confirm_checkin', on: :member
         get :go_to_checkout, to: 'user_reservation_management#go_to_checkout', on: :member
         patch :confirm_checkout, to: 'user_reservation_management#confirm_checkout', on: :member
 

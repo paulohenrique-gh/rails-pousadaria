@@ -29,9 +29,11 @@ describe 'Host cancels reservation' do
                         guesthouse: guesthouse)
 
     reservation = Reservation.create!(checkin: 1.days.from_now,
-                                      checkout: 10.days.from_now, guest_count: 2,
+                                      checkout: 10.days.from_now, guest_count: 1,
                                       stay_total: 900, guest: guest, room: room,
                                       status: :confirmed)
+
+    reservation.guest_checkins.create!(guest_name: 'Rui', document: '123546')
 
     # Act
     travel_to 4.days.from_now

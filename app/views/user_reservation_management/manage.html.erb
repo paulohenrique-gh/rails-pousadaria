@@ -1,5 +1,16 @@
+<% if @guest_checkin.present? %>
+  <%= render partial: 'shared/error_messages', locals: { resource: @guest_checkin } %>
+<% end %>
+
 <h2 class="mb-3">Gerenciar reserva <%= @reservation.code %></h2>
-<div>
+<div class="w-100">
+  <% if @cancellation_elligible %>
+    <div>
+      <%= button_to 'Cancelar', user_cancel_reservation_path(@reservation),
+                    method: :patch,
+                    class: 'btn btn-danger mb-3' %>
+    </div>
+  <% end %>
   <p>
     <strong>Responsável:</strong>
     <%= @reservation.guest.name %>
@@ -45,6 +56,28 @@
     </p>
   <% end %>
 
+  <% if @reservation.guest_checkins.any? %>
+    <table class="table mb-3">
+      <thead>
+        <tr>
+          <th colspan="2" class="text-center">Hóspedes registrados</th>
+        </tr>
+        <tr>
+          <th>Nome</th>
+          <th>RG ou CPF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reservation.guest_checkins.each do |guest| %>
+          <tr>
+            <td><%= guest.guest_name %></td>
+            <td><%= guest.document %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
   <% if @reservation.purchases.any? %>
     <table class="table mb-3">
       <thead>
@@ -73,35 +106,69 @@
     </table>
   <% end %>
 
-  <div class="row">
-    <%= link_to 'Voltar', active_reservations_path, class: 'col-4' %>
-    <div class="row w-50 mb-3 col-8 text-end">
-      <% if @checkin_elligible %>
-        <div class="col-4">
-          <%= button_to('Confirmar check-in',
-                        confirm_checkin_reservation_path(@reservation.id),
-                        method: :patch, class: 'btn btn-primary') %>
+  <div class="row teste align-items-center">
+    <% if @checkin_elligible %>
+      <p class="mb-5">
+        <strong>Quantidade de hóspedes informada:</strong>
+        <%= @reservation.guest_count %>
+      </p>
+      <%= form_with(scope: :guest_checkin,
+                    url: confirm_checkin_reservation_path(@reservation.id),
+                    method: :post) do |f| %>
+        <% @reservation.guest_count.times do |count| %>
+          <div id="guest-<%= count %>" class="mb-3">
+            <div class="row mb-3">
+              <%= f.label :guest_name, 'Nome do hóspede',
+                          class: 'col-4 col-form-label' %>
+              <div class="col-8">
+                <div>
+                  <%= f.text_field :guest_name, name: "guest[#{count}][guest_name]", 
+                                   class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <%= f.label :document, 'RG ou CPF',
+                          class: 'col-4 col-form-label' %>
+              <div class="col-8">
+                <%= f.text_field :document, name: "guest[#{count}][document]",
+                                 class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+        <% end %>
+        <div class="row align-items-center justify-content-end">
+          <div class="col-4 text-start">
+            <%= link_to 'Voltar', active_reservations_path %>
+          </div>
+          <div class="col-8 row justify-content-end">
+            <div class="col-3 text-end">
+              <%= submit_tag 'Confirmar check-in', class: 'btn btn-primary', name: 'confirm_checkin' %>
+            </div>
+          </div>
         </div>
       <% end %>
-      <% if @checkout_elligible %>
-        <div class="col-4">
+    <% end %>
+
+    <% if @checkout_elligible %>
+      <div class="col-4">
+        <%= link_to 'Voltar', active_reservations_path, class: 'text-start' %>
+      </div>
+      <div class="col-8 row justify-content-end">
+        <div class="col-3 text-end">
           <%= link_to('Registrar consumo',
                       new_reservation_purchase_path(@reservation.id),
                       class: 'btn btn-primary')%>
         </div>
-        <div class="col-4">
+        <div class="col-3 text-end">
           <%= link_to('Realizar check-out',
                       go_to_checkout_reservation_path(@reservation.id),
                       class: 'btn btn-primary')%>
-        </div>
-      <% end %>
-      <% if @cancellation_elligible %>
-        <div class="col-4">
-          <%= button_to('Cancelar',
-                         user_cancel_reservation_path,
-                         method: :patch, class: 'btn btn-danger') %>
-        </div>
-      <% end %>
-    </div>
+      </div>
+      </div>
+    <% end %>
   </div>
 </div>

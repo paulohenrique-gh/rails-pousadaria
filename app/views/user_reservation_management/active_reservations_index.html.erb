@@ -1,5 +1,5 @@
 <% if @reservations.any? %>
-  <h2>Estadias ativas em <%= current_user.guesthouse.brand_name %></h2>
+  <h2 class="mb-3">Estadias ativas em <%= current_user.guesthouse.brand_name %></h2>
   <div class="reservations">
     <% @reservations.each do |r| %>
       <div class="reservation-details">

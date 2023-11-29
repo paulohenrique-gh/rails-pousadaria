@@ -35,7 +35,7 @@ describe 'Host registers checkin' do
 
     # Act
     travel_to 1.day.from_now
-    patch(confirm_checkin_reservation_path(reservation.id))
+    post(confirm_checkin_reservation_path(reservation.id))
     travel_back
 
     # Assert
@@ -79,7 +79,7 @@ describe 'Host registers checkin' do
     # Act
     travel_to 1.day.from_now
     login_as other_user
-    patch(confirm_checkin_reservation_path(reservation.id))
+    post(confirm_checkin_reservation_path(reservation.id))
     travel_back
 
     # Assert
@@ -116,13 +116,14 @@ describe 'Host registers checkin' do
                         guesthouse: guesthouse)
 
     reservation = Reservation.create!(checkin: 5.days.from_now,
-                                      checkout: 10.days.from_now, guest_count: 2,
+                                      checkout: 10.days.from_now, guest_count: 1,
                                       stay_total: 900, guest: guest, room: room,
                                       status: :confirmed)
 
     # Act
     login_as user
-    patch(confirm_checkin_reservation_path(reservation.id))
+    post(confirm_checkin_reservation_path(reservation.id),
+         params: { guest: { "0": { guest_name: 'Rafael', document: 123456 }} })
 
     # Assert
     expect(response).to redirect_to user_manage_reservation_path(reservation.id)

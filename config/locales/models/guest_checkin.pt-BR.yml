@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      guest_checkin:
+        one: 'Entrada de hóspedes'
+        other: 'Entradas de hóspedes'
+    attributes:
+      guest_checkin:
+        guest_name: 'Nome'
+        document: 'Documento'

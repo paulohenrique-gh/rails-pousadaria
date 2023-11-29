@@ -36,6 +36,16 @@ class UserReservationManagementController < ApplicationController
   end
 
   def confirm_checkin
+    guest_params.each do |guest_data|
+      @guest_checkin = GuestCheckin.new(guest_data)
+      @guest_checkin.reservation = @reservation
+
+      unless @guest_checkin.save
+        flash.now[:alert] = 'Não foi possível confirmar o check-in'
+        return render :manage, status: :unprocessable_entity
+      end
+    end
+
     @reservation.guests_checked_in!
     if @reservation.guests_checked_in?
       return redirect_to(user_manage_reservation_path(@reservation.id),
@@ -89,6 +99,16 @@ class UserReservationManagementController < ApplicationController
     params.require(:reservation)
           .permit(:checkin, :checkout, :guest_count,
                   :stay_total, :room_id, :payment_method)
+  end
+
+  def guest_params
+    guest_data_collection = []
+    @reservation.guest_count.times do |index|
+      guest_data_collection << params[:guest].require(index.to_s)
+                                             .permit(:guest_name, :document)
+    end
+
+    guest_data_collection
   end
 
   def set_reservation

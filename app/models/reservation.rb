@@ -8,6 +8,7 @@ class Reservation < ApplicationRecord
   has_one :guesthouse, through: :room
   has_one :review
   has_many :purchases
+  has_many :guest_checkins
 
   before_validation :generate_code, on: :create
 
