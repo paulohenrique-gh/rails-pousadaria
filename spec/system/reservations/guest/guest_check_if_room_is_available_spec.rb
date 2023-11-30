@@ -35,7 +35,6 @@ describe 'Guest checks room availability' do
     expect(page).to have_content 'Quarto com tema Brasil'
     expect(page).to have_content 'Capacidade para até 3 pessoa(s)'
     expect(page).to have_content 'Valor da diária: R$ 150,00'
-    expect(page).to have_content 'Disponível para reservas'
     expect(page).to have_content 'Banheiro próprio'
     expect(page).to have_content 'TV'
     expect(page).to have_field 'Data de entrada'

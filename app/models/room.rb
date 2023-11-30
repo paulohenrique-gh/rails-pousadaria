@@ -6,7 +6,8 @@ class Room < ApplicationRecord
 
   validates :name, :description, :dimension,
             :max_people, :daily_rate, presence: true
-  validates :daily_rate, comparison: { greater_than_or_equal_to: 0.01 }
+  validates :dimension, :daily_rate, comparison: { greater_than_or_equal_to: 0.01 }
+  validates :max_people, comparison: { greater_than_or_equal_to: 1 }
   validate :file_format_must_be_jpeg_or_png
 
   def current_daily_rate

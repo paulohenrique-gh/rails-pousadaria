@@ -96,9 +96,6 @@ describe 'Guest visits guesthouse details page' do
       expect(page).to have_content 'CEP: 99000-525'
       expect(page).to have_content 'Cidade: Pulomiranga'
       expect(page).to have_content 'Estado: RN'
-      expect(page).to have_content(
-        'Descrição: Pousada tranquila no interior do Rio Grande do Norte'
-      )
       expect(page).to have_content 'Método de pagamento 1: Pix'
       expect(page).to have_content 'Método de pagamento 2: Cartão de crédito'
       expect(page).to have_content 'Método de pagamento 3: Dinheiro'
@@ -113,7 +110,6 @@ describe 'Guest visits guesthouse details page' do
       expect(page).to have_content '200 m²'
       expect(page).to have_content 'Capacidade para até 3 pessoa(s)'
       expect(page).to have_content 'Valor da diária: R$ 150,00'
-      expect(page).to have_content 'Disponível para reservas'
       expect(page).to have_content 'Banheiro próprio'
       expect(page).to have_content 'Varanda'
       expect(page).to have_content 'Ar-condicionado'

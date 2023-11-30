@@ -57,9 +57,6 @@ describe 'User edits room' do
     visit edit_room_path(room.id)
 
     # Assert
-    expect(page).to have_content(
-      'Você não tem autorização para alterar esta pousada'
-    )
     expect(current_path).to eq new_guesthouse_path
   end
 

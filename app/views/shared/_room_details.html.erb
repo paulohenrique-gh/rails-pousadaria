@@ -1,4 +1,6 @@
-<strong>Quarto <%= room.name %></strong>
+<div class="mb-3">
+  <strong>Quarto <%= room.name %></strong>
+</div>
 <p><%= room.description %></p>
 <p>
   <%= 
@@ -9,7 +11,6 @@
 </p>
 <p>Capacidade para até <%= room.max_people %> pessoa(s)</p>
 <p>Valor da diária: <%= number_to_currency(room.current_daily_rate) %></p>
-<p><%= room_availability(room) %></p>
 
 <% if extra_features?(room) %>
   <% extra_features_collection(room).each do |feat| %>

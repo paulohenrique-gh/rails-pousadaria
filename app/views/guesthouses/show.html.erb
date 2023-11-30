@@ -38,10 +38,6 @@
     <dd><%= @guesthouse.address.city %></dd>
     <dt><strong>Estado:</strong></dt>
     <dd><%= @guesthouse.address.state %></dd>
-    <% if @guesthouse.description.present? %>
-      <dt><strong>Descrição:</strong></dt>
-      <dd><%= @guesthouse.description %></dd>
-    <% end %>
     <% if @guesthouse.payment_method_one.present? %>
       <dt><strong>Método de pagamento 1:</strong></dt>
       <dd><%= @guesthouse.payment_method_one %></dd>

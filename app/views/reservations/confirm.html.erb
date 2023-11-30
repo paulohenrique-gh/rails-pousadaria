@@ -1,6 +1,6 @@
-<h2>Quarto disponível no período informado</h2>
+<h2 class="mb-3">Quarto disponível no período informado</h2>
 <% if current_guest %>
-  <h3>Detalhes da reserva</h3>
+  <h3 class="mb-3">Detalhes da reserva</h3>
   <p>
     <strong><%= @reservation.guesthouse.brand_name %></strong>
   </p>
@@ -33,7 +33,12 @@
   <strong>Valor total das diárias:</strong>
   <%= number_to_currency(@reservation.stay_total) %>
 </p>
-<%=
-  button_to 'Confirmar reserva',
-            room_reservations_path, method: :post
-%>
+
+<div class="mb-3">
+  <%= button_to 'Confirmar reserva',
+                room_reservations_path, method: :post,
+                class: 'btn btn-primary' %>
+</div>
+
+<%= link_to 'Voltar', new_room_reservation_path(@room.id) %>
+

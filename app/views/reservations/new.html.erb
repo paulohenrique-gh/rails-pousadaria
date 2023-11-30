@@ -1,29 +1,48 @@
-<%= render partial: 'shared/error_messages', locals: { resource: @reservation } %>
+<div class="w-50">
+  <%= render partial: 'shared/error_messages', locals: { resource: @reservation } %>
+  
+  <h2 class="mb-3">Realizar reserva</h2>
+  
+  <%= render partial: 'shared/room_details', locals: { room: @room }%>
 
-<h2>Realizar reserva</h2>
-
-<%= render partial: 'shared/room_details', locals: { room: @room }%>
-
-<%= form_with(model: [@room, @reservation], url: room_confirm_path(@room.id), method: :get) do |f| %>
-  <div>
-    <%= f.label :checkin, 'Data de entrada' %><span class="required"> *</span>
-    <%= f.date_field :checkin, required: true %>
-  </div>
-  <div>
-    <%= f.label :checkout, 'Data de saída' %><span class="required"> *</span>
-    <%= f.date_field :checkout, required: true %>
-  </div>
-  <div>
-    <%= f.label :guest_count, 'Quantidade de hóspedes' %><span class="required"> *</span>
-    <%= f.number_field :guest_count, required: true, min: 1 %>
-  </div>
-  <div>
-    <%= f.submit 'Verificar disponibilidade' %>
-  </div>
-<% end %>
-
-<p class="disclaimer">
-  <strong>Aviso: </strong>Valor da diária pode variar de acordo com período
-</p>
-
-<%= link_to 'Voltar', @room.guesthouse, class: 'return_link' %>
+  <hr>
+  
+  <%= form_with(model: [@room, @reservation], url: room_confirm_path(@room.id), method: :get) do |f| %>
+    <div class="row mb-3">
+      <%= f.label :checkin, 'Data de entrada', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.date_field :checkin, required: true, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <%= f.label :checkout, 'Data de saída', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.date_field :checkout, required: true, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <%= f.label :guest_count, 'Quantidade de hóspedes', class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <div>
+          <%= f.number_field :guest_count, required: true, min: 1, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.submit 'Verificar disponibilidade', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  
+  <p class="disclaimer">
+    <strong>Aviso: </strong>Valor da diária pode variar de acordo com período
+  </p>
+  
+  <%= link_to 'Voltar', @room.guesthouse %>
+</div>

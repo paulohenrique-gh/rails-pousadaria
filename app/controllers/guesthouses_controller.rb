@@ -55,7 +55,7 @@ class GuesthousesController < ApplicationController
 
   def inactivate
     @guesthouse.inactive!
-    redirect_to root_path, notice: 'Pousada inativada com sucesso'
+    redirect_to @guesthouse, notice: 'Pousada inativada com sucesso'
   end
 
   def reactivate

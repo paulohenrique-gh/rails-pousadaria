@@ -12,7 +12,7 @@
         <%= Reservation.human_attribute_name("status.#{r.status}") %>
       </p>
       <%= link_to 'Gerenciar', guest_manage_reservation_path(r),
-                  class: 'btn btn-primary' %>
+                  class: 'btn btn-primary btn-sm' %>
     </div>
     <hr>
   <% end %>
@@ -20,4 +20,6 @@
   <p>Você ainda não possui reservas</p>
 <% end %>
 
-<%= link_to 'Voltar', root_path %>
+<div class="mb-3">
+  <%= link_to 'Voltar', root_path %>
+</div>

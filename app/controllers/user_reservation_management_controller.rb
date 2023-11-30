@@ -8,7 +8,7 @@ class UserReservationManagementController < ApplicationController
                                     :go_to_checkout, :confirm_checkout]
 
   def index
-    @reservations = current_user.guesthouse.reservations.order(:checkin)
+    @reservations = current_user.guesthouse.reservations.reverse
   end
 
   def active_reservations_index
