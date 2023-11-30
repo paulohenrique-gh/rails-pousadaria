@@ -141,8 +141,9 @@
           <hr>
         <% end %>
         <div class="row align-items-center justify-content-end">
-          <div class="col-4 text-start">
-            <%= link_to 'Voltar', :back, class: 'text-start' %>
+          <div class="col-4 text-start row">
+            <%= link_to 'Reservas', user_reservations_path, class: 'text-start col-6' %>
+            <%= link_to 'Estadias Ativas', active_reservations_path, class: 'text-start col-6' %>
           </div>
           <div class="col-8 row justify-content-end">
             <div class="col-3 text-end">
@@ -154,10 +155,11 @@
     <% end %>
 
     <% if @checkout_elligible %>
-      <div class="col-4">
-        <%= link_to 'Voltar', :back, class: 'text-start' %>
+      <div class="col-4 text-start row">
+        <%= link_to 'Reservas', user_reservations_path, class: 'text-start col-6' %>
+        <%= link_to 'Estadias Ativas', active_reservations_path, class: 'text-start col-6' %>
       </div>
-      <div class="col-8 row justify-content-end">
+      <div class="col-8 row justify-content-end text-end">
         <div class="col-3 text-end">
           <%= link_to('Registrar consumo',
                       new_reservation_purchase_path(@reservation.id),
@@ -167,7 +169,7 @@
           <%= link_to('Realizar check-out',
                       go_to_checkout_reservation_path(@reservation.id),
                       class: 'btn btn-primary')%>
-      </div>
+        </div>
       </div>
     <% end %>
   </div>

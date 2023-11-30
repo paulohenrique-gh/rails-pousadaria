@@ -1,11 +1,13 @@
 <div class="row text-center mb-3 align-items-center">
   <% if @room.guesthouse.user == current_user %>
     <div class="col-4">
-      <%= link_to('Editar', edit_room_path(@room.id)) %>
+      <%= link_to('Editar', edit_room_path(@room.id),
+                   class: 'btn btn-primary btn-sm') %>
     </div>
     <div class="col-4">
       <%= link_to('Adicionar preço por período',
-                  new_room_seasonal_rate_path(@room.id)) %>
+                  new_room_seasonal_rate_path(@room.id),
+                  class: 'btn btn-primary btn-sm') %>
     </div>
   <% end %>
   

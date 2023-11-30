@@ -66,7 +66,7 @@ class UserReservationManagementController < ApplicationController
       @reprocessed_total = @reservation.reprocess_stay_total
       session[:reprocessed_total] = @reprocessed_total
     rescue => e
-      redirect_to manage_reservation_path(@reservation.id), alert: e.message
+      redirect_to user_manage_reservation_path(@reservation.id), alert: e.message
     end
 
     @payment_methods = @reservation.guesthouse

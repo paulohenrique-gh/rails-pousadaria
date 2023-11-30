@@ -1,10 +1,12 @@
 <div class="row text-center mb-3 align-items-center">
   <% if @user && @guesthouse == @user.guesthouse && @guesthouse.active? %>
     <div class="col-3">
-      <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id) %>
+      <%= link_to 'Editar', edit_guesthouse_path(@guesthouse.id),
+                  class: 'btn btn-primary btn-sm' %>
     </div>
     <div class="col-3">
-      <%= link_to 'Adicionar quarto', new_guesthouse_room_path(@guesthouse.id) %>
+      <%= link_to 'Adicionar quarto', new_guesthouse_room_path(@guesthouse.id),
+                  class: 'btn btn-primary btn-sm' %>
     </div>
     <div class="col-3">
       <%=

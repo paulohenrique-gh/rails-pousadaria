@@ -1,6 +1,6 @@
-<h2 class="text-center mb-3"><%= @guesthouse.brand_name %></h2>
+<h2 class="text-center mb-5"><%= @guesthouse.brand_name %></h2>
 
-<div class="edit_options"><%= render 'links' %></div>
+<div><%= render 'links' %></div>
 
 <hr>
 
@@ -96,8 +96,13 @@
             <% @available_rooms.each do |room| %>
               <li class="room_details_list-item mb-3">
                 <%= render partial: 'shared/room_details', locals: { room: room } %>
-                <%= button_to 'Reservar', new_room_reservation_path(room.id),
-                               method: :get, class: 'btn btn-primary btn-sm' %>
+                <div class="row w-100">
+                  <%= link_to 'Mais detalhes', room, class: 'btn btn-primary btn-sm col-4' %>
+                  <div class="col-4">
+                    <%= button_to 'Reservar', new_room_reservation_path(room.id),
+                                   method: :get, class: 'btn btn-primary btn-sm' %>
+                  </div>
+                </div>
               </li>
               <hr>
             <% end %>

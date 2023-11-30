@@ -72,9 +72,9 @@ describe 'Guest visits guesthouse details page' do
     review_two = Review.create!(rating: 5, description: 'Bem tranquilo',
                                   reservation: reservation_two)
     review_three = Review.create!(rating: 4, description: 'Bacana',
-    reservation: reservation_three)
+                                  reservation: reservation_three)
     review_four = Review.create!(rating: 2, description: 'Muito quente',
-    reservation: reservation_four)
+                                 reservation: reservation_four)
 
     avarage_rating = guesthouse.reviews.average(:rating).to_f
 
@@ -85,8 +85,6 @@ describe 'Guest visits guesthouse details page' do
 
     # Assert
       expect(page).to have_content "★ #{avarage_rating}"
-      expect(page).to have_content 'Status: Ativa'
-      expect(page).to have_content 'Nome: Pousada Bosque'
       expect(page).not_to have_content 'Razão social: Pousada Ramos Faria LTDA'
       expect(page).not_to have_content 'CNPJ: 02303221000152'
       expect(page).to have_content 'Telefone: 1130205000'

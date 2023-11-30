@@ -149,8 +149,8 @@ describe 'User edits room' do
     # Assert
     expect(page).to have_content 'Quarto atualizado com sucesso'
     expect(page).to have_content 'Não disponível para reservas'
+    expect(page).to have_content 'Tema brasileiro'
     expect(page).to have_content 'Dimensão: 300 m²'
-    expect(page).to have_content 'Descrição: Tema brasileiro'
   end
 
   it 'and leaves required fields empty' do

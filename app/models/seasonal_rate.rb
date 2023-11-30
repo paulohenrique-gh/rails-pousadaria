@@ -7,6 +7,7 @@ class SeasonalRate < ApplicationRecord
   validates :start_date, comparison: { greater_than_or_equal_to: Date.today }
   validates :finish_date, comparison: { greater_than_or_equal_to: :start_date,
                           message: 'não pode ser menor que data inicial' }
+  validates :rate, comparison: { greater_than_or_equal_to: 0.01 }
   validate :dates_do_not_overlap
 
   scope :overlapping_dates, ->(room_id, rate_id, date) {

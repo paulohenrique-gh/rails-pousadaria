@@ -3,19 +3,37 @@
 %>
 
 <%= form_with(model: [@room, @seasonal_rate]) do |f| %>
-  <div>
-    <%= f.label :start_date, 'Data inicial' %><span class="required"> *</span>
-    <%= f.date_field :start_date %>
+  <div class="row mb-3">
+    <%= f.label :start_date, 'Data inicial', class: 'col-4 col-form-label' %></span>
+    <div class="col-8">
+      <div>
+        <%= f.date_field :start_date, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :finish_date, 'Data final' %><span class="required"> *</span>
-    <%= f.date_field :finish_date %>
+
+  <div class="row mb-3">
+    <%= f.label :finish_date, 'Data final', class: 'col-4 col-form-label' %></span>
+    <div class="col-8">
+      <div>
+        <%= f.date_field :finish_date, required: true, class: 'form-control' %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :rate, 'Valor' %><span class="required"> *</span>
-    <%= f.number_field :rate, step: 0.01 %>
+
+  <div class="row mb-3">
+    <%= f.label :rate, 'Valor', class: 'col-4 col-form-label' %></span>
+    <div class="col-8">
+      <div>
+        <%= f.number_field :rate, step: 0.01, required: true, class: 'form-control'  %>
+      </div>
+    </div>
   </div>
-  <div style="display: flex">
-    <%= f.submit 'Enviar' %>
+
+  <div class="row">
+    <%= link_to 'Voltar', @room, class: 'col-4' %>
+    <div class="col-8 text-end">
+      <%= f.submit 'Enviar', class: 'btn btn-primary mb-3' %>
+    </div>
   </div>
 <% end %>

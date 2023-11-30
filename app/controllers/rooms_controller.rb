@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
       redirect_to @room, notice: 'Quarto atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível atualizar quarto'
-      render 'new', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end
   end
 

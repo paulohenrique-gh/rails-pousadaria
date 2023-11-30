@@ -239,3 +239,4 @@ Algumas páginas de documentação e artigos que tem ajudado
 - [Sessões](https://www.justinweiss.com/articles/how-rails-sessions-work/)
 - [Redirecionando para página específica após signin/signout](https://github.com/heartcombo/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-in-out)
 - [Mock da variável session em testes de requisição](https://gist.github.com/dteoh/99721c0321ccd18286894a962b5ce584)
+- [Removendo classe CSS field_with_errors](https://gist.github.com/ehsanatwork/6dd0c65e290ee505a103a62ad24b3675)

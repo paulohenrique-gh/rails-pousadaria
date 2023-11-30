@@ -1,7 +1,9 @@
-<h2>
-  <%= @seasonal_rate.room.guesthouse.brand_name %> -
-  Quarto <%= @seasonal_rate.room.name %>
-</h2>
-<h3>Adicionar preço por período</h3>
-
-<%= render 'form' %>
+<div class="container w-50">
+  <h2 class="text-center mb-3">Adicionar preço por período</h2>
+  <h3 class="text-center mb-3">
+    <%= @seasonal_rate.room.guesthouse.brand_name %> -
+    Quarto <%= @seasonal_rate.room.name %>
+  </h3>
+  
+  <%= render 'form' %>
+</div>
