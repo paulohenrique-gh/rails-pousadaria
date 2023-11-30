@@ -1,5 +1,5 @@
 <% if @reviews.any? %>
-<h2>Avaliações de <%= current_user.guesthouse.brand_name %></h2>
+<h2 class="mb-3">Avaliações de <%= current_user.guesthouse.brand_name %></h2>
 
   <% @reviews.each do |review| %>
     <p>
@@ -24,10 +24,13 @@
         <dd><%= review.response %></dd>
       </dl>
     <% else %>
-      <%= link_to 'Responder avaliação', respond_review_path(review) %>
+      <%= link_to 'Responder avaliação', respond_review_path(review),
+                  class: 'btn btn-primary' %>
     <% end %>
     <hr>
   <% end %>
 <% else %>
   <p>Você ainda não possui avaliações</p>
 <% end %>
+
+<%= link_to 'Voltar', root_path %>

@@ -1,28 +1,40 @@
-<h2>Avalie sua estadia em <%= @reservation.guesthouse.brand_name %></h2>
+<h2 class="text-center mb-3">Avalie sua estadia em <%= @reservation.guesthouse.brand_name %></h2>
 
 <%= 
   render partial: 'shared/error_messages', locals: { resource: @review }
 %>
 
-<p>
+<h3 class="text-center mb-3">
   <strong>Código da reserva:</strong>
   <%= @reservation.code %>
-</p>
+</h3>
 
 <%= form_with(model: [@reservation, @review]) do |f| %>
-  <div class="review_radio_buttons">
-    <p>Nota: </p>
-    <%= f.radio_button :rating, -1, hidden: true, checked: true %>
-    <% (0..5).each do |rating| %> 
-      <%= f.radio_button :rating, rating %>
-      <%= f.label :rating, rating, class: 'radio_label' %>
-    <% end %>
-  </div>
-  <div class="review_description">
-    <%= f.label :description, 'Adicione uma avaliação escrita' %>
-    <%= f.text_area :description %>
-  </div>
-  <div>
-    <%= f.submit 'Enviar' %>
+  <div class="container w-75">
+    <div class="row mb-3 align-items-center">
+      <div class="col-4 col-form-label">Nota: </div>
+      <%= f.radio_button :rating, -1, hidden: true, checked: true %>
+      <div class="col-8">
+        <% (0..5).each do |rating| %>
+          <div class="form-check form-check-inline">
+            <%= f.radio_button :rating, rating, class: 'form-check-input' %>
+            <%= f.label :rating, rating, class: 'form-check-label' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <%= f.label :description, 'Adicione uma avaliação escrita',
+                  class: 'col-4 col-form-label' %>
+      <div class="col-8">
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= link_to 'Voltar', :back, class: 'col-4' %>
+      <div class="col-8 text-end">
+        <%= f.submit 'Enviar', class: 'btn btn-primary mb-3' %>
+      </div>
+    </div>
   </div>
 <% end %>

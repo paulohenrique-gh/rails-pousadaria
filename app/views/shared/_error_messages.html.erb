@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div>
+  <div class="alert alert-danger">
     <p>O formulário contém os erros abaixo:</p>
     <ul>
       <% resource.errors.full_messages.each do |msg| %>

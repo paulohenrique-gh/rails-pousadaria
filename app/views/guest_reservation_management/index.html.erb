@@ -1,5 +1,5 @@
 <% if @reservations.any? %>
-  <h2>Minhas Reservas</h2>
+  <h2 class="mb-3">Minhas Reservas</h2>
 
   <% @reservations.each do |r| %>
     <div class="reservations">
@@ -11,7 +11,8 @@
         <strong>Status:</strong> 
         <%= Reservation.human_attribute_name("status.#{r.status}") %>
       </p>
-      <%= link_to 'Gerenciar', guest_manage_reservation_path(r) %>
+      <%= link_to 'Gerenciar', guest_manage_reservation_path(r),
+                  class: 'btn btn-primary' %>
     </div>
     <hr>
   <% end %>
@@ -19,4 +20,4 @@
   <p>Você ainda não possui reservas</p>
 <% end %>
 
-<%= link_to 'Voltar', guest_reservations_path %>
+<%= link_to 'Voltar', root_path %>

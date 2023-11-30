@@ -1,5 +1,5 @@
-<h2>Gerenciar reserva <%= @reservation.code %></h2>
-<div>
+<h2 class="mb-3">Gerenciar reserva <%= @reservation.code %></h2>
+<div class="w-50">
   <p>
     <strong>Pousada:</strong>
     <%= @reservation.guesthouse.brand_name %>
@@ -44,34 +44,40 @@
       <%= @reservation.payment_method %>
     </p>
   <% end %>
-  <% if @cancellation_elligible %>
-    <%= button_to('Cancelar',
-                   guest_cancel_reservation_path,
-                   method: :patch) %>
-  <% end %>
-</div>
 
-<% if @reservation.guests_checked_out? && @reservation.review.nil? %>
-  <%= link_to 'Avaliar', new_reservation_review_path(@reservation) %>
-<% end %>
-
-<% if @reservation.review.present? %>
-  <dl>
-    <dt>
-      <strong>
-        Avaliação registrada em <%= l(@reservation.review.created_at.to_date) %>:
-      </strong>
-    </dt>
-    <dd><%= @reservation.review.description %></dd>
-    <% if @reservation.review.response.present? %>
+  <% if @reservation.review.present? %>
+    <dl>
       <dt>
         <strong>
-          Resposta do proprietário em <%= l(@reservation.review.updated_at.to_date) %>:
+          Avaliação registrada em <%= l(@reservation.review.created_at.to_date) %>:
         </strong>
       </dt>
-      <dd><%= @reservation.review.response %></dd>
-    <% end %>
-  </dl>
-<% end %>
+      <dd><%= @reservation.review.description %></dd>
+      <% if @reservation.review.response.present? %>
+        <dt>
+          <strong>
+            Resposta do proprietário em <%= l(@reservation.review.updated_at.to_date) %>:
+          </strong>
+        </dt>
+        <dd><%= @reservation.review.response %></dd>
+      <% end %>
+    </dl>
+  <% end %>
 
-<%= link_to 'Voltar', guest_reservations_path %>
+
+  <div class="row w-50 align-items-center">
+    <%= link_to 'Voltar', guest_reservations_path, class: 'col-4' %>
+    <div class="col-8 text-end">
+      <% if @cancellation_elligible %>
+        <%= button_to('Cancelar',
+                      guest_cancel_reservation_path,
+                      method: :patch,
+                      class: 'btn btn-danger mb-3') %>
+      <% end %>
+      <% if @reservation.guests_checked_out? && @reservation.review.nil? %>
+          <%= link_to 'Avaliar', new_reservation_review_path(@reservation),
+                      class: 'btn btn-primary mb-3' %>
+    </div>
+    <% end %>
+  </div>
+</div>

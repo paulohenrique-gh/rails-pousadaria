@@ -4,19 +4,13 @@
 
 <hr>
 
-<% if @guesthouse.reviews.any? %>
-  <h3 class=text-center>★ <%= @average_rating %></h3>
-<% else %>
-  <p>Esta pousada ainda não possui avaliações</p>
-<% end %>
-
 <dl class="row">
   <div class="col-4">
-    <dt><strong>Status:</strong></dt>
-    <dd><%= t(@guesthouse.status) %></dd>
-    
-    <dt><strong>Nome:</strong></dt>
-    <dd><%= @guesthouse.brand_name %></dd>
+    <% if @guesthouse.description.present? %>
+      <div class="text-center mb-3">
+        <strong><%= @guesthouse.description %></strong>
+      </div>
+    <% end %>
     
     <% if current_user == @guesthouse.user %>
       <dt><strong>Razão social:</strong></dt>
@@ -87,7 +81,9 @@
           <% @all_rooms.each do |room| %>
             <li class="room_details_list-item">
               <%= render partial: 'shared/room_details', locals: { room: room } %>
+              <%= link_to 'Mais detalhes', room, class: 'btn btn-primary btn-sm' %>
             </li>
+            <hr>
           <% end %>
         </ul>
       </dd>
@@ -101,27 +97,31 @@
               <li class="room_details_list-item mb-3">
                 <%= render partial: 'shared/room_details', locals: { room: room } %>
                 <%= button_to 'Reservar', new_room_reservation_path(room.id),
-                               method: :get, class: 'btn btn-primary' %>
+                               method: :get, class: 'btn btn-primary btn-sm' %>
               </li>
+              <hr>
             <% end %>
           </ul>
       </dd>
     </div>
   <% end %>
 
-  <% if @recent_reviews.any? %>
-    <div class="col-4">
-      <dt><strong>Avaliações | Média: ★ <%= @average_rating %></strong></dt>
+  <div class="col-4">
+    <% if @recent_reviews.any? %>
+      <dt class="mb-3"><strong>Avaliações | Média: ★ <%= @average_rating %></strong></dt>
       <dd>
         <% @recent_reviews.each do |review| %>
           <p><%= review.guest.name %>, <%= l(review.created_at.to_date) %></p>
           <p>Nota <%= review.rating %> - <q><%= review.description %> </q></p>
-          <br>
+          <hr>
         <% end %>
       </dd>
-      <%= link_to 'Visualizar todas', reviews_guesthouse_path(@guesthouse) %>
-    </div>
-  <% end %>
+      <%= link_to 'Visualizar todas', reviews_guesthouse_path(@guesthouse),
+                  class: 'btn btn-primary btn-sm' %>
+    <% else %>
+      <div>Esta pousada ainda não possui avaliações</div>
+    <% end %>
+  </div>
 </dl>
 
 <hr>
