@@ -120,7 +120,6 @@ Porta padrão: [3000](http://localhost:3000)
 - Usuário não autenticado consegue visualizar todos os quartos disponíveis na página de detalhes de uma pousada
 - Para cada quarto listado são exibidas as informações cadastradas, com exceção da lista de preços por período, que apenas o proprietário consegue acessar entrando no link 'Mais detalhes' na sessão de quartos da página da pousada
 
-
 ## Disponibilidade de quartos
 - Visitante sem cadastro pode iniciar a reserva de um quarto através da lista na página de detalhe de uma pousada
 - Na página da reserva, o visitante vê os detalhes do quarto e um formulário para informar as datas de checkin e checkout e a quantidade de hóspedes
@@ -207,7 +206,7 @@ Porta padrão: [3000](http://localhost:3000)
 ## Check-in com cadastro de hóspedes
 - Ao registrar o check-in, o proprietário deve informar o nome completo e RG ou CPF de cada uma das pessoas que estão se hospedendo
 - Na página de registro de check-in, ficam disponíveis campos para preenchimento de acordo com o número de hóspedes informado pelo usuário visitante na hora da confirmação da reserva
-- A listagem de hóspedes cadastrados também ficam disponíveis na página de gerenciamento da reserva
+- A listagem de hóspedes cadastrados também fica disponível na página de gerenciamento da reserva
 
 ---
 

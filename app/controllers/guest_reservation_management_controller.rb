@@ -1,7 +1,7 @@
 class GuestReservationManagementController < ApplicationController
   before_action :authenticate_guest!, only: [:index, :manage, :cancel]
   before_action :set_reservation, only: [:manage, :cancel]
-  before_action :check_guest, only: [:cancel]
+  before_action :check_guest, only: [:manage, :cancel]
 
   def index
     @reservations = current_guest.reservations.reverse

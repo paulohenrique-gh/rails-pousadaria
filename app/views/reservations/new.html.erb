@@ -2,7 +2,11 @@
   <%= render partial: 'shared/error_messages', locals: { resource: @reservation } %>
   
   <h2 class="mb-3">Realizar reserva</h2>
-  
+
+  <div class="mb-3">
+    <strong><%= @room.guesthouse.brand_name %></strong>
+  </div>
+
   <%= render partial: 'shared/room_details', locals: { room: @room }%>
 
   <hr>

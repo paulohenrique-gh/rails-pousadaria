@@ -75,7 +75,7 @@ class UserReservationManagementController < ApplicationController
                                           "payment_method_two",
                                           "payment_method_three")
                                    .values
-                                   .compact
+                                   .compact_blank
     @purchase_total = @reservation.purchases
                         .pluck(:price, :quantity)
                         .reduce(0) { |sum, (price, quantity)| sum + (price * quantity) }

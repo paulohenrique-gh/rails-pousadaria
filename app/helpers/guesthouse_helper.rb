@@ -29,6 +29,6 @@ module GuesthouseHelper
     method_one = guesthouse.payment_method_one
     method_two = guesthouse.payment_method_two
     method_three = guesthouse.payment_method_three
-    [method_one, method_two, method_three].compact.join(' | ')
+    [method_one, method_two, method_three].compact_blank.join(' | ')
   end
 end
