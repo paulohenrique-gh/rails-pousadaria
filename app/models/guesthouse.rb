@@ -11,6 +11,8 @@ class Guesthouse < ApplicationRecord
   validates :phone_number, length: { in: 10..11 }
   validate :file_format_must_be_jpeg_or_png
 
+  before_save :clear_empty_strings
+
   enum status: { active: 0, inactive: 1 }
 
   accepts_nested_attributes_for :address
@@ -57,5 +59,11 @@ class Guesthouse < ApplicationRecord
     matching_guesthouses.where(address: matching_addresses)
                         .where(rooms: matching_rooms)
                         .order(:brand_name)
+  end
+
+  def clear_empty_strings
+    attributes.each do |key, value|
+      self[key] = nil if self[key] == ''
+    end
   end
 end
