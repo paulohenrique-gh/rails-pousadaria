@@ -11,9 +11,9 @@
           <% end %>
         </ul>
       </div>
-      <div class="guesthouse_listing col-8 mb-5">
+      <div class="guesthouse_listing col-8">
         <h2>Pousadas Recentes</h2>
-        <div class="recent_guesthouses row text-center border rounded">
+        <div class="recent_guesthouses row text-center border rounded mb-5">
           <% @recent_guesthouses.each do |g| %>
             <div class="guesthouse_listing-item col-4 p-3">
               <div class="guesthouse_listing-item-name fs-4">
@@ -25,24 +25,26 @@
             </div>
           <% end %>
         </div>
+
+        <% if @other_guesthouses.any? %>
+          <div class="other_guesthouses row text-center">
+            <div class="guesthouse_listing-item row">
+              <% @other_guesthouses.each do |g| %>
+                  <div class="col-4 p-3">
+                    <div class="guesthouse_listing-item-name fs-4">
+                      <%= link_to g.brand_name, g %>
+                    </div>
+                    <div class="guesthouse_listing-item-city">
+                      <%= g.address.city %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
     </div>
       
-    <% if @other_guesthouses.any? %>
-      <div class="other_guesthouses row text-center">
-        <div class="guesthouse_listing-item col-8 offset-4 row">
-          <% @other_guesthouses.each do |g| %>
-              <div class="col-4 p-3">
-                <div class="guesthouse_listing-item-name fs-4">
-                  <%= link_to g.brand_name, g %>
-                </div>
-                <div class="guesthouse_listing-item-city">
-                  <%= g.address.city %>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
     </div>
   <% else %>
     <h2>Nenhuma pousada cadastrada</h2>

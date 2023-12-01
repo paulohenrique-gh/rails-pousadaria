@@ -1,6 +1,6 @@
-<h2><%= @guesthouse.brand_name %> - Quarto <%= @room.name %></h2>
+<h2 class="mb-3"><%= @guesthouse.brand_name %> - Quarto <%= @room.name %></h2>
 
-<h3>Preço por período</h3>
+<h3 class="mb-3">Preço por período</h3>
 
 <dl>
   <dt><strong>Data inicial:</strong></dt>
@@ -17,11 +17,10 @@
 </dl>
 
 <div class="edit_options">
-  <%=
-    button_to(
-      'Inativar',
-      inactivate_seasonal_rate_path(@seasonal_rate.id),
-      { method: 'patch' }
+  <%= button_to('Inativar',
+                inactivate_seasonal_rate_path(@seasonal_rate.id),
+                method: 'patch',
+                class: 'btn btn-primary mb-3'
     )
   %>
   

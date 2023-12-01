@@ -10,15 +10,17 @@ class RoomsController < ApplicationController
     set_guesthouse_and_check_user(params[:guesthouse_id])
   end
 
-  before_action only: [:show, :edit, :update, :delete_picture] do
+  before_action only: [:edit, :update, :delete_picture] do
     set_guesthouse_and_check_user(@room.guesthouse.id)
   end
 
   before_action :redirect_new_host_to_guesthouse_creation
 
   def show
-    redirect_guest_if_marked_as_unavailable
-    set_guesthouse_and_check_user(@room.guesthouse_id) unless @room.available
+    if !@room.available && current_user != @room.guesthouse.user
+      return redirect_to root_path
+    end
+
     @active_seasonal_rates = @room.seasonal_rates.active.order(:start_date)
   end
 
@@ -73,11 +75,5 @@ class RoomsController < ApplicationController
                                  :private_bathroom, :balcony,
                                  :air_conditioning, :tv, :closet,
                                  :safe, :accessibility, :available)
-  end
-
-  def redirect_guest_if_marked_as_unavailable
-    if !@room.available && current_user != @room.guesthouse.user
-      return redirect_to root_path
-    end
   end
 end

@@ -6,15 +6,17 @@
       <%= number_to_currency(@room.daily_rate) %>
     </li>
     
-    <% @active_seasonal_rates.each do |sr| %>
-      <li>
-        <strong>
-          De <%= I18n.localize(sr.start_date) %>
-          a <%= I18n.localize(sr.finish_date) %>: 
-        </strong> <%= number_to_currency(sr.rate) %>
+    <% if @active_seasonal_rates.present? %>
+      <% @active_seasonal_rates.each do |sr| %>
+        <li>
+          <strong>
+            De <%= I18n.localize(sr.start_date) %>
+            a <%= I18n.localize(sr.finish_date) %>: 
+          </strong> <%= number_to_currency(sr.rate) %>
 
-      | <%= link_to('Detalhes', sr) %>
-      </li>
+        | <%= link_to('Detalhes', sr) %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </dd>

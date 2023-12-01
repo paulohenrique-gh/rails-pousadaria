@@ -33,7 +33,7 @@
       <%= render 'extra_features' %>
     
       <% if current_user.present? && @room.guesthouse.user == current_user %>
-        <%= render 'seasonal_rates' %>
+         <%= render 'seasonal_rates' %>
       <% else %>
         <%= button_to 'Reservar', new_room_reservation_path(@room.id),
                                 method: :get, class: 'btn btn-primary' %>

@@ -23,8 +23,8 @@
     <%= f.label :dimension, 'Dimensão em m²', class: 'col-4 col-form-label' %>
     <div class="col-8">
       <div>
-        <%= f.number_field :dimension, step: 0.5, required: true,
-                            min: 0.01, class: 'form-control' %>
+        <%= f.number_field :dimension, step: 0.1, required: true,
+                            min: 0.1, class: 'form-control' %>
       </div>
     </div>
   </div>

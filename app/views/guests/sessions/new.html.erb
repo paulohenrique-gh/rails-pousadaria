@@ -1,28 +1,47 @@
-<h2>Entrar como hóspede</h2>
+<div class="container w-50">
+  <h2 class="mb-3 text-center">Entrar como hóspede</h2>
+  
+  <%= form_for(resource, as: resource_name,
+                         url: session_path(resource_name),
+                         html: { class: 'login_form' }) do |f| %>
+    <div class="field row mb-3">
+      <%= f.label :email, class: 'col-5 col-form-label' %>
+      <div class="col-7">
+        <div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                            class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="field row mb-3">
+      <%= f.label :password, class: 'col-5 col-form-label' %>
+      <div class="col-7">
+        <div>
+          <%= f.password_field :password, autocomplete: "current-password",
+                               class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  
+    <% if devise_mapping.rememberable? %>
+      <div class="field row mb-3">
+        <div class="col-7 offset-5">
+          <div class="form-check">
+            <%= f.check_box :remember_me, class: 'form-check-input' %>
+            <%= f.label :remember_me, class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
-<%= form_for(resource, as: resource_name,
-                       url: session_path(resource_name),
-                       html: { class: 'login_form' }) do |f| %>
-  <div class="field">
-    <%= f.label :email, 'E-mail' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, 'Senha' %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="row align-items-center">
+      <div class="col-9 text-start">
+        <%= render "guests/shared/links" %>
+      </div>
+      <div class="col-3 text-end">
+        <%= f.submit 'Entrar', class: 'btn btn-primary' %>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Entrar" %>
-  </div>
-<% end %>
-
-<%= render "guests/shared/links" %>
+</div>

@@ -49,7 +49,7 @@ user_nine = User.create!(email: 'encanto@mail.com', password: 'password')
 user_ten = User.create!(email: 'sol@mail.com', password: 'password')
 
 
-address_one = Address.create!(street_name: 'Rua Santo Amaro', number: '455',
+address_one = Address.create!(stree_name: 'Rua Santo Amaro', number: '455',
                               neighbourhood: 'Parque Dois Irmãos',
                               city: 'Salvador', state: 'BA', postal_code: '75000-525')
 
@@ -116,7 +116,7 @@ guesthouse_two = Guesthouse.create!(brand_name: 'Pousada Paulista',
                                     payment_method_two: 'Transferência bancária', address: address_two,
                                     user: user_two)
 
-guesthouse_three = Guesthouse.create!(brand_name: 'Pousada Ceará Charmoso',
+guesthouse_three = Guesthouse.create!(brand_name: 'Pousada Ceará Charme',
                                       corporate_name: 'XYZ Turismo LTDA',
                                       registration_number: '98.765.432/0001-50',
                                       phone_number: '8533332222',
@@ -385,10 +385,9 @@ room_two_guesthouse_ten = Room.create!(name: 'Anos 90',
                                        guesthouse: guesthouse_ten)
 
 
-seasonal_rate_one = SeasonalRate.new(start_date: 10.days.ago,
+seasonal_rate_one = SeasonalRate.create!(start_date: 10.days.ago,
                                          finish_date: 20.days.from_now,
                                          rate: 450, room: room_one_guesthouse_eight)
-seasonal_rate_one.save(validate: false)
 
 seasonal_rate_two = SeasonalRate.create!(start_date: 15.days.from_now,
                                          finish_date: 25.days.from_now,
