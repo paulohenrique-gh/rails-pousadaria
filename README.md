@@ -4,14 +4,9 @@ Versão Ruby: 3.2.1
 
 Versão Rails: 7.1.1
 
-Instalar dependências:
+Instalar dependências e iniciar o banco de dados:
 ```
-bundle install
-```
-
-Criar o banco de dados:
-```
-rails db:migrate
+bin/setup
 ```
 
 Iniciar o servidor:

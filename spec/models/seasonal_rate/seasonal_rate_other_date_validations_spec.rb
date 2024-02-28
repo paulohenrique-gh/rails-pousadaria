@@ -26,9 +26,9 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(start_date: '2024-01-01',
-                                        finish_date: '2023-12-24',
-                                        rate: 200, room: room)
+        seasonal_rate = SeasonalRate.new(start_date: 5.days.from_now,
+                                         finish_date: 3.days.from_now,
+                                         rate: 200, room: room)
         expect(seasonal_rate).not_to be_valid
         expect(seasonal_rate.errors.include? :finish_date).to be true
         expect(seasonal_rate.errors[:finish_date]).to include(
@@ -59,8 +59,8 @@ RSpec.describe SeasonalRate, type: :model do
                             dimension: 200, max_people: 3, daily_rate: 150,
                             guesthouse: guesthouse)
 
-        seasonal_rate = SeasonalRate.new(start_date: '2023-12-24',
-                                        finish_date: '2024-01-01',
+        seasonal_rate = SeasonalRate.new(start_date: 3.days.from_now,
+                                        finish_date: 5.days.from_now,
                                         rate: 200, room: room)
 
         expect(seasonal_rate).to be_valid
